@@ -1,20 +1,20 @@
 .deznav {
-  background-color: #f1f1f1;
+  background-color: #f1f1f1 !important;
 }
 .deznav-scroll {
-  background: #fff;
-  margin: 30px 20px;
+  background: #fff !important;
+  margin: 30px 20px !important;
   border-radius: 30px !important;
 }
 .button-border {
   border: 1px solid #0047AB;
-  padding: 7px 14px;
-  border-radius: 12px;
+  padding: 7px 14px !important;
+  border-radius: 12px !important;
 }
 .button-join .bg-style {
-  background: #0047AB;
-  color: #fff;
-  padding: 12px;
-  border-radius: 22px;
-  margin: 0px;
+  background: #0047AB !important;
+  color: #fff !important;
+  padding: 12px !important;
+  border-radius: 22px !important;
+  margin: 0px !important;
 }
