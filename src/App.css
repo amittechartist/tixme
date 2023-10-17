@@ -81,3 +81,58 @@ ul#menu span {
 [data-sibebarbg="color_3"][data-theme-version="dark"] .deznav .metismenu a:hover, [data-sibebarbg="color_3"][data-theme-version="dark"] .deznav .metismenu a:focus, [data-sibebarbg="color_3"][data-theme-version="dark"] .deznav .metismenu a.mm-active, [data-sibebarbg="color_3"] .deznav .metismenu a:hover, [data-sibebarbg="color_3"] .deznav .metismenu a:focus, [data-sibebarbg="color_3"] .deznav .metismenu a.mm-active {
   color: #000 !important;
 }
+
+
+.tab-button-box {
+  background: #fff;
+  border: 1px solid rgba(184, 185, 185, 1);
+  padding: 0px;
+  border-radius: 15px;
+  overflow: hidden;
+  height: 63px;
+}
+.tab-button-box .tab-button-active{
+  background: rgba(0, 71, 171, 1);
+  color: #fff !important;
+}
+.tab-button-box .tab-button-grey-active{
+  background: rgba(241, 241, 241, 1);
+  color: #000 !important;
+}
+.tab-button-box span {
+  height: 48px;
+  color: #000 !important;
+  display: inline-block;
+  text-align: center;
+  padding: 11px 0px;
+  margin: 6px;
+  border-radius: 10px;
+  width: 230px;
+  cursor: pointer;
+}
+span.input-group-text {
+  background: #fff !important;
+  border: 1px solid rgba(184, 185, 185, 1) !important;
+}
+[data-theme-version="light"] .input-warning-o .input-group-text, [data-theme-version="dark"] .input-warning-o .input-group-text {
+  background-color: transparent;
+  border-color: rgba(184, 185, 185, 1);
+  color: rgba(184, 185, 185, 1);
+}
+[data-theme-version="light"] .input-warning-o .form-control, [data-theme-version="dark"] .input-warning-o .form-control {
+  border-color: rgba(184, 185, 185, 1);
+}
+.checkout-style-element {
+  position: absolute;
+  bottom: 0px;
+}
+.checkout-style-bottom {
+  position: relative;
+}
+.form-check-input[type="checkbox"] {
+  border-radius: 0.25em;
+  width: 190px;
+  height: 28px;
+  margin-top: 22px;
+  background: rgba(0, 71, 171, 0.25);
+}
