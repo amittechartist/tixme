@@ -16,6 +16,7 @@ function App() {
       <BrowserRouter>
       <Routes>
         <Route path={'/'} element={<OrganizerLayout> <Dashboard title={'dashboard'} /> </OrganizerLayout>} />
+        <Route path={organizer_url+'event/dashboard'} element={<OrganizerLayout> <Dashboard title={'dashboard'} /> </OrganizerLayout>} />
         <Route path={organizer_url+'event/add-event'} element={<OrganizerLayout> <EventType title={'Select event type'} /> </OrganizerLayout>} />
         <Route path={organizer_url+'event/add-event-basic-info'} element={<OrganizerLayout> <EventBasicInfo title={'Basic Info'} /> </OrganizerLayout>} />
         <Route path={organizer_url+'event/add-event-details'} element={<OrganizerLayout> <EventDetails title={'Event Details'} /> </OrganizerLayout>} />        
