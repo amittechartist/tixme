@@ -1,7 +1,7 @@
 import React from "react";
-import Header from '../../layout/admin/partial/Header';
-import Sidebar from '../../layout/admin/partial/Sidebar';
-import Footer from '../../layout/admin/partial/Footer';
+import Header from './partial/Header';
+import Sidebar from './partial/Sidebar';
+import Footer from './partial/Footer';
 import Logo from '../../common/logo.svg';
 const Layout = () => {
     return (

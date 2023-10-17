@@ -2,7 +2,7 @@
 
 var currentURL      = window.location.href;
 
-function addSwitcher()
+// function addSwitcher()
 {
 	
 	var urlLTR = '';
@@ -39,7 +39,7 @@ function addSwitcher()
 
 (function($) {
     "use strict"
-	addSwitcher();
+	// addSwitcher();
 
 	
     const body = $('body');

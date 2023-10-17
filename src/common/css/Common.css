@@ -1,0 +1,41 @@
+.theme-color {
+    color: #0047AB;
+}
+
+.text-black {
+    color: #000 !important;
+}
+/* font width */
+.text-bold-600 {
+    font-weight: 600;
+}
+.font-30{
+    font-size: 30px;
+}
+.float-right {
+    float: right;
+}
+
+.text-grey {
+    color: rgba(87, 87, 87, 1);
+}
+
+.text-light-grey {
+    color: rgba(85, 85, 85, 1);
+
+}
+
+.btn-2 {
+    background: rgba(100, 149, 237, 0.35);
+    width: 85px;
+    height: 35px;
+    top: 809px;
+    left: 567px;
+    border-radius: 9px;
+    border: none;
+}
+.bg-title-style {
+    width: 120px;
+    text-align: center;
+    display: inline-block;
+}
