@@ -8,6 +8,7 @@ import PersonIcon from '../../../common/icon/person 1.svg';
 import AppLogo from '../../../common/logo.svg';
 import { Link } from "react-router-dom";
 import Sidebar from './Sidebar'
+import {app_url} from '../../../common/Helpers';
 const Header = () => {
     return (
         <>
@@ -34,7 +35,7 @@ const Header = () => {
                         </Col>
                         <Col md={6}>
                             <div className="float-left">
-                                <Link to={'/'}>
+                                <Link to={app_url}>
                                     <span>
                                         <img src={AppLogo} />
                                     </span>

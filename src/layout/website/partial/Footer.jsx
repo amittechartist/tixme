@@ -9,38 +9,66 @@ import facebookicon from '../../../common/icon/social/facebookicon.svg';
 import Instagramicon from '../../../common/icon/social/instagramicon.svg';
 import Whatsappicon from '../../../common/icon/social/whatsappicon.svg';
 import Youtubeicon from '../../../common/icon/social/youtubeicon.svg';
+import whitestart from '../../../common/icon/whitestart.svg';
+import EllipseIcon from '../../../common/icon/Ellipse 5.svg';
+import SubscribeBg from '../../../common/icon/Subscribe.svg';
 import { Link } from "react-router-dom";
 const Footer = () => {
     return (
         <>
-            <footer className="footer-container">
-                <div className="footer-head">
-                    <Row className="mb-5">
-                        <Col md={12} className="">
-                            <ul className="website_top_menu text-center ">
-                                <li className="nav-item">
-                                    <span className="">
-                                        <img src={Whitestart} alt="" /> <span className="footer-title">Ready to host events ?</span>
+            <Container>
+                <div className="subsacribe-box">
+                    <img src={SubscribeBg} className="SubscribeBg" alt="" />
+                    <Row className="subsacribe-content">
+                        <Col md={12}>
+                            <div className="subsscribe-box-style">
+                                <span><img src={EllipseIcon} alt="" /><span className="Want-to-receive">Want to receive events &<br />news and updates?</span></span>
+                            </div>
+                            <div>
+                                <input type="text" placeholder="Name" />
+                                <input type="text" placeholder="Email ID" />
+                            </div>
+                            <div>
+                                <Link className="button-join" to={'/'}>
+                                    <span>
+                                        <span className="bg-style"><img height={30} width={30} src={whitestart} /></span><span className="bg-style">Pay Now</span>
                                     </span>
-                                </li>
-                                <li className="nav-item">
-                                    <Link className="button-join" to={'/'}>
-                                        <span>
-                                            <span className="bg-style-white"><img height={30} width={30} src={BluestarIcon} /></span><span className="bg-style-white">My Account</span>
-                                        </span>
-                                    </Link>
-                                </li>
-                                <li className="nav-item">
-                                    <Link className="button-join" to={'/'}>
-                                        <span>
-                                            <span className="bg-style-white"><img height={30} width={30} src={BluestarIcon} /></span><span className="bg-style-white">My Account</span>
-                                        </span>
-                                    </Link>
-                                </li>
-                            </ul>
+                                </Link>
+                            </div>
                         </Col>
                     </Row>
-                    <Container fluid>
+                </div>
+            </Container>
+            <footer className="footer-container">
+                <div className="footer-head">
+                    <Container>
+                        <Row className="mb-5">
+                            <Col md={12} className="">
+                                <ul className="website_top_menu text-center ">
+                                    <li className="nav-item">
+                                        <span className="">
+                                            <img src={Whitestart} alt="" /> <span className="footer-title">Ready to host events ?</span>
+                                        </span>
+                                    </li>
+                                    <li className="nav-item">
+                                        <Link className="button-join" to={'/'}>
+                                            <span>
+                                                <span className="bg-style-white"><img height={30} width={30} src={BluestarIcon} /></span><span className="bg-style-white">My Account</span>
+                                            </span>
+                                        </Link>
+                                    </li>
+                                    <li className="nav-item">
+                                        <Link className="button-join" to={'/'}>
+                                            <span>
+                                                <span className="bg-style-white"><img height={30} width={30} src={BluestarIcon} /></span><span className="bg-style-white">My Account</span>
+                                            </span>
+                                        </Link>
+                                    </li>
+                                </ul>
+                            </Col>
+                        </Row>
+                    </Container>
+                    <Container>
                         <Row className="footer-bottom-container">
                             <Col md={5} style={{ paddingRight: "30px" }}>
                                 <div className="footer-left-box footer-box-style">

@@ -11,10 +11,12 @@ import Eventlogo from '../../common/icon/eventlogo.svg';
 import Timelogo from '../../common/icon/time 1.svg';
 import Hourglasslogo from '../../common/icon/hourglass.svg';
 import LocationIcon from '../../common/icon/location.svg';
+import Eventimg from '../../common/event.jpg';
+import DateIcon from '../../common/icon/date 2.svg';
 const Home = ({ title }) => {
     return (
         <>
-            <div className="home_banner home-padding">
+            <div className="home_banner">
                 <Container>
                     <Row>
                         <Col>
@@ -26,65 +28,72 @@ const Home = ({ title }) => {
                     </Row>
                 </Container>
             </div>
-            <div className="find-nearby-section mt-5">
-                <Container fluid className="home-padding">
-                    <Row>
-                        <Col md={12}>
-                            <h3 className="find-near-box">Find Near By Events</h3>
-                        </Col>
-                        <Col md={12} className="pt-5 pb-5">
+            <div className="mt-5 mb-5">
+                <Container>
+                    <div className="find-nearby-section">
+                        <Row>
+                            <Col md={12}>
+                                <h3 className="find-near-box">Find Near By Events</h3>
+                            </Col>
+                            <Col md={12} className="pt-5 pb-5">
 
-                        </Col>
-                        <Col md={12}>
-                            <div className="category-section mt-5 text-center">
-                                <ul>
-                                    <li className="d-inline-block mx-4">
-                                        <div className="category-items-box">
-                                            <img className="ticket-category-bg" src={MusicIcon} alt="" />
-                                            <img className="ticket-bg" src={TicketIcon} alt="" />
-                                        </div>
-                                    </li>
-                                    <li className="d-inline-block mx-4">
-                                        <div className="category-items-box">
-                                            <img className="ticket-category-bg" src={MusicIcon} alt="" />
-                                            <img className="ticket-bg" src={TicketIcon} alt="" />
-                                        </div>
-                                    </li>
-                                    <li className="d-inline-block mx-4">
-                                        <div className="category-items-box">
-                                            <img className="ticket-category-bg" src={MusicIcon} alt="" />
-                                            <img className="ticket-bg" src={TicketIcon} alt="" />
-                                        </div>
-                                    </li>
-                                    <li className="d-inline-block mx-4">
-                                        <div className="category-items-box">
-                                            <img className="ticket-category-bg" src={MusicIcon} alt="" />
-                                            <img className="ticket-bg" src={TicketIcon} alt="" />
-                                        </div>
-                                    </li>
-                                    <li className="d-inline-block mx-4">
-                                        <div className="category-items-box">
-                                            <img className="ticket-category-bg" src={MusicIcon} alt="" />
-                                            <img className="ticket-bg" src={TicketIcon} alt="" />
-                                        </div>
-                                    </li>
-                                    <li className="d-inline-block mx-4">
-                                        <div className="category-items-box">
-                                            <img className="ticket-category-bg" src={MusicIcon} alt="" />
-                                            <img className="ticket-bg" src={TicketIcon} alt="" />
-                                        </div>
-                                    </li>
-                                </ul>
-                            </div>
-                        </Col>
-                    </Row>
+                            </Col>
+                            <Col md={12}>
+                                <div className="category-section text-center">
+                                    <ul>
+                                        <li className="d-inline-block mx-2">
+                                            <div className="category-items-box">
+                                                <img className="ticket-category-bg" src={MusicIcon} alt="" />
+                                                <img className="ticket-bg" src={TicketIcon} alt="" />
+                                            </div>
+                                        </li>
+                                        <li className="d-inline-block mx-2">
+                                            <div className="category-items-box">
+                                                <img className="ticket-category-bg" src={MusicIcon} alt="" />
+                                                <img className="ticket-bg" src={TicketIcon} alt="" />
+                                            </div>
+                                        </li>
+                                        <li className="d-inline-block mx-2">
+                                            <div className="category-items-box">
+                                                <img className="ticket-category-bg" src={MusicIcon} alt="" />
+                                                <img className="ticket-bg" src={TicketIcon} alt="" />
+                                            </div>
+                                        </li>
+                                        <li className="d-inline-block mx-2">
+                                            <div className="category-items-box">
+                                                <img className="ticket-category-bg" src={MusicIcon} alt="" />
+                                                <img className="ticket-bg" src={TicketIcon} alt="" />
+                                            </div>
+                                        </li>
+                                        <li className="d-inline-block mx-2">
+                                            <div className="category-items-box">
+                                                <img className="ticket-category-bg" src={MusicIcon} alt="" />
+                                                <img className="ticket-bg" src={TicketIcon} alt="" />
+                                            </div>
+                                        </li>
+                                        <li className="d-inline-block mx-2">
+                                            <div className="category-items-box">
+                                                <img className="ticket-category-bg" src={MusicIcon} alt="" />
+                                                <img className="ticket-bg" src={TicketIcon} alt="" />
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </Col>
+                        </Row>
+                    </div>
                 </Container>
             </div>
             <div className="event-category-section">
-                <Container>
+                <Container className="">
                     <Row>
                         <Col md={4} className='mb-3'>
                             <div className="event-box-style">
+                                <div className="event-image-part">
+                                    <img className="event-image" src={Eventimg} alt="" />
+                                    <span className="event-category-img">Party</span>
+                                    <span className="on-img-date"><img src={DateIcon} alt="" /><span className="on-img-date-val">26 Jan</span></span>
+                                </div>
                                 <div className="organizer-name-sec d-flex align-items-center px-2 py-2">
                                     <div className="d-inline-block mr-3">
                                         <img height={70} width={70} src={Eventlogo} alt="" />
@@ -137,6 +146,11 @@ const Home = ({ title }) => {
                         </Col>
                         <Col md={4} className='mb-3'>
                             <div className="event-box-style">
+                                <div className="event-image-part">
+                                    <img className="event-image" src={Eventimg} alt="" />
+                                    <span className="event-category-img">Party</span>
+                                    <span className="on-img-date"><img src={DateIcon} alt="" /><span className="on-img-date-val">26 Jan</span></span>
+                                </div>
                                 <div className="organizer-name-sec d-flex align-items-center px-2 py-2">
                                     <div className="d-inline-block mr-3">
                                         <img height={70} width={70} src={Eventlogo} alt="" />
@@ -189,6 +203,11 @@ const Home = ({ title }) => {
                         </Col>
                         <Col md={4} className='mb-3'>
                             <div className="event-box-style">
+                                <div className="event-image-part">
+                                    <img className="event-image" src={Eventimg} alt="" />
+                                    <span className="event-category-img">Party</span>
+                                    <span className="on-img-date"><img src={DateIcon} alt="" /><span className="on-img-date-val">26 Jan</span></span>
+                                </div>
                                 <div className="organizer-name-sec d-flex align-items-center px-2 py-2">
                                     <div className="d-inline-block mr-3">
                                         <img height={70} width={70} src={Eventlogo} alt="" />
@@ -241,6 +260,11 @@ const Home = ({ title }) => {
                         </Col>
                         <Col md={4} className='mb-3'>
                             <div className="event-box-style">
+                                <div className="event-image-part">
+                                    <img className="event-image" src={Eventimg} alt="" />
+                                    <span className="event-category-img">Party</span>
+                                    <span className="on-img-date"><img src={DateIcon} alt="" /><span className="on-img-date-val">26 Jan</span></span>
+                                </div>
                                 <div className="organizer-name-sec d-flex align-items-center px-2 py-2">
                                     <div className="d-inline-block mr-3">
                                         <img height={70} width={70} src={Eventlogo} alt="" />
@@ -293,6 +317,11 @@ const Home = ({ title }) => {
                         </Col>
                         <Col md={4} className='mb-3'>
                             <div className="event-box-style">
+                                <div className="event-image-part">
+                                    <img className="event-image" src={Eventimg} alt="" />
+                                    <span className="event-category-img">Party</span>
+                                    <span className="on-img-date"><img src={DateIcon} alt="" /><span className="on-img-date-val">26 Jan</span></span>
+                                </div>
                                 <div className="organizer-name-sec d-flex align-items-center px-2 py-2">
                                     <div className="d-inline-block mr-3">
                                         <img height={70} width={70} src={Eventlogo} alt="" />
@@ -345,6 +374,11 @@ const Home = ({ title }) => {
                         </Col>
                         <Col md={4} className='mb-3'>
                             <div className="event-box-style">
+                                <div className="event-image-part">
+                                    <img className="event-image" src={Eventimg} alt="" />
+                                    <span className="event-category-img">Party</span>
+                                    <span className="on-img-date"><img src={DateIcon} alt="" /><span className="on-img-date-val">26 Jan</span></span>
+                                </div>
                                 <div className="organizer-name-sec d-flex align-items-center px-2 py-2">
                                     <div className="d-inline-block mr-3">
                                         <img height={70} width={70} src={Eventlogo} alt="" />
@@ -398,8 +432,8 @@ const Home = ({ title }) => {
                     </Row>
                 </Container>
             </div>
-            <div className="events-count-section home-padding">
-                <Container fluid className="text-center">
+            <div className="events-count-section mt-5 mb-5">
+                <Container className="text-center">
                     <ul>
                         <li className="d-inline-block">
                             <div className="count-box">
@@ -434,28 +468,28 @@ const Home = ({ title }) => {
                     </ul>
                 </Container>
             </div>
-            <div className="our_partner">
-                <Container fluid className="home-padding">
+            <div className="our_partner mt-5 mb-5">
+                <Container>
                     <Row>
-                        <Col md={12} className="mb-4">
+                        <Col md={12} className="mb-5">
                             <img src={OurPartnerIcon} alt="" />
                         </Col>
                         <Col md={12}>
                             <div className="partner-slider text-center">
                                 <ul>
-                                    <li className="d-inline-block mx-5">
+                                    <li className="d-inline-block mx-3">
                                         <img src={GoogleIcon} alt="" />
                                     </li>
-                                    <li className="d-inline-block mx-5">
+                                    <li className="d-inline-block mx-3">
                                         <img src={GoogleIcon} alt="" />
                                     </li>
-                                    <li className="d-inline-block mx-5">
+                                    <li className="d-inline-block mx-3">
                                         <img src={GoogleIcon} alt="" />
                                     </li>
-                                    <li className="d-inline-block mx-5">
+                                    <li className="d-inline-block mx-3">
                                         <img src={GoogleIcon} alt="" />
                                     </li>
-                                    <li className="d-inline-block mx-5">
+                                    <li className="d-inline-block mx-3">
                                         <img src={GoogleIcon} alt="" />
                                     </li>
                                 </ul>

@@ -10,6 +10,7 @@ import OrganizerLayout from './layout/organizer/Layout'
 // website
 import WebsiteLayout from './layout/website/Layout'
 import Home from './pages/website/Home';
+import Event from './pages/website/Event';
 
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import {app_url, organizer_url} from './common/Helpers';
@@ -20,6 +21,7 @@ function App() {
       <Routes>
         {/* website */}
         <Route path={app_url} element={<WebsiteLayout> <Home title={'Tixme'} /> </WebsiteLayout>} />
+        <Route path={app_url+'event'} element={<WebsiteLayout> <Event title={'Tixme'} /> </WebsiteLayout>} />
         {/* Organizer Admin */}
         <Route path={organizer_url+'event/dashboard'} element={<OrganizerLayout> <Dashboard title={'dashboard'} /> </OrganizerLayout>} />
         <Route path={organizer_url+'event/add-event'} element={<OrganizerLayout> <EventType title={'Select event type'} /> </OrganizerLayout>} />

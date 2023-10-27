@@ -43,22 +43,19 @@ footer.footer-container {
 .footer-box-style {
     background: #fff;
     border-radius: 30px 30px 0px 0px;
-    padding: 60px 36px 40px 100px;
+    padding: 33px 13px 62px 31px;
     font-family: 'Gilroy-Regular', Arial, sans-serif;
-    width: 100%;
     height: 100%;
 }
-.footer-bottom-container {
-    padding: 00px 50px;
-}
-.Welcome_to_text{
+.Welcome_to_text {
     font-family: 'Gilroy-Regular', Arial, sans-serif;
-    font-size: 22px;
+    font-size: 20px;
     font-weight: 500;
-    line-height: 40px;
+    line-height: 24px;
     letter-spacing: 0em;
     text-align: left;
     color: #000;
+    padding-right: 39px;
 }
 span.footer-box-style-title {
     color: rgba(0, 71, 171, 1);
@@ -71,7 +68,7 @@ span.footer-box-style-title {
 .footer-right-box ul li {
     list-style: disc;
     margin-left: 40px;
-    font-size: 21px;
+    font-size: 16px;
     font-family: 'Gilroy-Regular', Arial, sans-serif;
     font-weight: 600;
     color: #000;
@@ -113,8 +110,10 @@ p.banner_text {
 }
 .ticket-category-bg {
     position: absolute;
-    top: -50px;
-    right: 50px;
+    top: -59px;
+    right: 28px;
+    height: auto;
+    width: 98px;
 }
 .category-items-box {
     position: relative;
@@ -124,14 +123,18 @@ p.banner_text {
     color: rgba(0, 71, 171, 1);
     font-weight: 600;
     font-size: 30px;
+    padding-left: 30px;
+    padding-top: 10px;
 }
-  .find-nearby-section {
-    background-image: url("http://localhost:3000/static/media/findnear%20By%20Events.e7b8d9621c008b24d0ae.svg");
+.find-nearby-section {
+    background-image: url('../../../common/icon/findnear\ By\ Events.svg');
+}
+.find-nearby-section {
     background-size: cover;
     background-repeat: no-repeat;
-    margin: 8px 48px;
     background-position: unset;
-    height: 462px;
+    height: 284px;
+    width: 100%;
 }
 .count-box-title {
     background: linear-gradient(180deg, rgba(0, 71, 171, 0.6) 0%, rgba(255, 255, 255, 0) 100%);
@@ -154,13 +157,22 @@ p.banner_text {
     margin-right: 33px;
 }
 .count-box {
-    background-image: url(http://localhost:3000/static/media/Rectangle5.7e53b2828f41f97e44da.svg);
+    background-image: url('../../../common/icon/Rectangle5.svg');
     background-size: contain;
     padding: 32px 30px;
     background-repeat: no-repeat;
     background-position: right;
     height: 171px;
     width: 300px;
+}
+.count-box {
+    background-image: url('../../../common/icon/Rectangle5.svg');
+    background-size: contain;
+    padding: 32px 30px;
+    background-repeat: no-repeat;
+    background-position: right;
+    height: 171px;
+    width: 220px;
 }
 .organizer-name {
     color: rgba(0, 71, 171, 1);
@@ -172,6 +184,9 @@ p.banner_text {
     background: #fff;
     border-radius: 30px;
     overflow: hidden;
+    box-shadow: 1px 3px 5px 0px rgba(217,217,217,0.75);
+-webkit-box-shadow: 1px 3px 5px 0px rgba(217,217,217,0.75);
+-moz-box-shadow: 1px 3px 5px 0px rgba(217,217,217,0.75);
 }
 .event-duration {
     color: rgba(0, 71, 171, 1);
@@ -224,9 +239,222 @@ p.banner_text {
     color: #000;
     font-size: 20px;
     font-weight: 600;
+    text-decoration: line-through;
 }
 .price-section {
     position: relative;
     top: -25px;
     left: -13px;
+}
+img.ticket-bg {
+    width: auto;
+    height: 70px;
+}
+.event-image {
+    width: 100%;
+}
+.event-category-img {
+    background: rgba(0, 71, 171, 0.5);
+    color: #fff;
+    padding: 5px 40px;
+    border-radius: 10px;
+    position: absolute;
+    left: 10px;
+    top: 13px;
+}
+.event-image-part {
+    position: relative;
+}
+.on-img-date {
+    position: absolute;
+    bottom: -4px;
+    right: 10px;
+}
+.event-title {
+    font-size: 57px;
+    color: #000;
+    font-weight: 600;
+}
+.event-category-title {
+    background: linear-gradient(180deg, rgba(0, 71, 171, 0.35) 0%, rgba(0, 71, 171, 0.0525) 100%);
+    border-radius: 6px;
+    padding: 8px 42px;
+    color: rgba(0, 71, 171, 1);
+    font-weight: 600;
+    font-size: 22px;
+}
+.event-banner {
+    width: 100%;
+}
+.desc-sec p {
+    color: #000;
+    font-size: 16px;
+}
+.desc-sec .sec-title {
+    color: #000;
+    font-weight: 600;
+    font-size: 27px;
+    margin-bottom: 16px;
+    display: block;
+}
+.eventpage-box-style {
+    background: linear-gradient(#d5e7ff, white) padding-box, linear-gradient(to bottom, #0047AB, #ffffff) border-box;
+    border-radius: 15px;
+    border: 2px solid transparent;
+    padding: 14px 29px;
+}
+.right-box-title p {
+    color: #0047AB;
+    font-weight: 600;
+    font-size: 23px;
+    margin-bottom: 0;
+}
+.right-box-title p {
+    color: #0047AB;
+    font-weight: 600;
+    font-size: 23px;
+    margin-bottom: 0;
+    border-bottom: 1px solid #6495ED;
+}
+p.time-box-date {
+    text-align: center;
+    border: 1px solid #0047AB;
+    border-radius: 6px;
+    background: #fff;
+    padding: 7px 16px;
+    font-size: 23px;
+    font-weight: 600;
+    color: #0047AB;
+    margin: 0px 5px;
+}
+.time-box-text {
+    color: #0047AB;
+    font-weight: 600;
+    font-size: 13px;
+}
+p.time-box-date {
+    border: 1px solid #0047AB;
+    border-radius: 6px;
+    background: #fff;
+    font-size: 23px;
+    font-weight: 600;
+    color: #0047AB;
+    margin: 0px 9px;
+    height: 50px;
+    width: 50px;
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    margin-bottom: 0;
+    padding-top: 4px;
+}
+#root{
+    background: #fff;
+}
+.border-botton-devider {
+    width: 100%;
+    border-bottom: 1px solid #6495ED;
+}
+.followers-title {
+    color: #414141;
+    font-weight: 600;
+    font-size: 18px;
+    margin-bottom: 0;
+}
+.followers-count {
+    color: #0047AB;
+    font-weight: 600;
+    font-size: 30px;
+    line-height: 27px;
+}
+.follow-btn {
+    background: #fff;
+    border: 1px solid #0047AB;
+    color: #0047AB;
+    font-weight: 600;
+    padding: 4px 19px;
+    border-radius: 9px;
+}
+.event-page-organizer-deta.d-block {
+    color: rgba(0, 71, 171, 1);
+    font-weight: 600;
+    font-size: 12px;
+}
+.font-13 {
+    font-size: 13px;
+}
+p.Ticket-title {
+    font-weight: 600;
+    color: #0047AB;
+    font-size: 26px;
+}
+.margin-css {
+    margin-top: -28px;
+}
+.cart-btn {
+    font-size: 30px;
+    height: 43px;
+    display: inline-block;
+    width: 43px;
+    text-align: center;
+    border-radius: 11px;
+    margin: 2px 7px;
+    cursor: pointer;
+}
+.cart-number{
+    font-size: 28px;
+    height: 43px;
+    display: inline-block;
+    width: 43px;
+    text-align: center;
+    margin-top: 2px;
+    border-radius: 11px;
+    font-weight: 600;
+    color: #000;
+}
+.cart-minus{
+    background: #0047AB;
+    color: #fff;
+}
+.cart-plus{
+    background: #0047AB59;
+    color: #fff;
+}
+.dashed-border-devider {
+    width: 100%;
+    border: 1px dashed #0047ab;
+}
+.main-title {
+    color: #0047ab;
+    font-weight: 600;
+    font-size: 23px;
+}
+.font-10{
+    font-size: 10px !important;
+}
+.ticket-price-area-bg{
+    background-image: url('../../../common/icon/Rectangleeventpage.svg');   
+}
+.ticket-price-area-bg {
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: bottom;
+    overflow: hidden;
+}
+.subsacribe-box {
+    width: 100%;
+    height: 100%;
+}
+.subsacribe-box{
+    position: relative;
+}
+.SubscribeBg {
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 1;
+}
+.subsacribe-content{    
+    position: relative;
+    z-index: 3;
 }
