@@ -223,8 +223,12 @@
         display: block;
     }
     .mobile-screen {
-        position: relative;
-        top: 6px;
+        display: block;
         left: -8px;
+        position: relative;
+        top: 9px;
+        height: auto;
+        width: 86px;
+        margin: 0px -9px !important;
     }
 }
