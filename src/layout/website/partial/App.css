@@ -99,8 +99,8 @@ p.banner_shop_desc {
 }
   
 p.banner_text {
-    font-size: 75px;
-    line-height: 115px;
+    font-size: 60px;
+    line-height: 84px;
     font-weight: 800;
     font-family: 'Gilroy-Bold', Arial, sans-serif;
     color: #000;
@@ -127,14 +127,14 @@ p.banner_text {
     padding-top: 10px;
 }
 .find-nearby-section {
-    background-image: url('../../../common/icon/findnear\ By\ Events.svg');
+    background-image: url('../../../common/icon/findnearByEvents.png');
 }
 .find-nearby-section {
-    background-size: cover;
+    background-size: 100% 360px;
     background-repeat: no-repeat;
     background-position: unset;
-    height: 284px;
-    width: 100%;
+    height: 375px;
+    width: auto;
 }
 .count-box-title {
     background: linear-gradient(180deg, rgba(0, 71, 171, 0.6) 0%, rgba(255, 255, 255, 0) 100%);
@@ -232,7 +232,7 @@ p.banner_text {
 }
 .price {
     color: rgba(0, 71, 171, 1);
-    font-size: 31px;
+    font-size: 23px;
     font-weight: 600;
 }
 .cut-price {
@@ -386,16 +386,16 @@ p.time-box-date {
 p.Ticket-title {
     font-weight: 600;
     color: #0047AB;
-    font-size: 26px;
+    font-size: 18px;
 }
 .margin-css {
     margin-top: -28px;
 }
 .cart-btn {
-    font-size: 30px;
-    height: 43px;
+    font-size: 23px;
+    height: 33px;
     display: inline-block;
-    width: 43px;
+    width: 33px;
     text-align: center;
     border-radius: 11px;
     margin: 2px 7px;
@@ -442,10 +442,9 @@ p.Ticket-title {
     overflow: hidden;
 }
 .subsacribe-box {
+    height: 500px;
     width: 100%;
-    height: 100%;
-}
-.subsacribe-box{
+    margin-top: 200px;
     position: relative;
 }
 .SubscribeBg {
@@ -453,8 +452,111 @@ p.Ticket-title {
     left: 0;
     top: 0;
     z-index: 1;
+    height: 100%;
+    width: 100%;
 }
 .subsacribe-content{    
     position: relative;
     z-index: 3;
+}
+.subsacribe-content {
+    padding: 80px 0px 0px 80px;
+}
+span.Want-to-receive {
+    color: #0047AB;
+    font-weight: 600;
+    font-size: 40px;
+    line-height: 45px;
+    display: block;
+    padding-left: 30px;
+}
+.subsscribe-box-style img {
+    position: relative;
+    top: 36px;
+}
+.footer-input {
+    background: linear-gradient(#d3d3d3, white) padding-box, linear-gradient(to bottom, #0047AB, #ffffff) border-box;
+    height: 50px;
+    width: 300px;
+    margin-right: 47px;
+    border-radius: 14px;
+    padding: 1px 14px;
+    border-color: transparent;
+    border-width: 1px;
+
+}
+.footer-input::placeholder {
+    color: #0047AB59; /* Set the color you want here */
+
+}
+.theme-color{
+    color: #0047AB;
+}
+img.LogoIcon-footer {
+    position: absolute;
+    z-index: 33;
+    right: -99px;
+    top: -147px;
+    width: auto;
+    height: 539px;
+}
+
+select.theme-dropdown {
+    border: 1px solid #B8B9B9;
+    height: 45px;
+    width: 200px;
+    border-radius: 11px;
+    margin-right: 20px;
+    padding-left: 9px;
+    background: #ffffff !important;
+    color: #6495ED;
+    position: relative;
+}
+input.theme-input {
+    border: 1px solid #B8B9B9;
+    height: 45px;
+    width: 350px;
+    border-radius: 11px;
+    margin-right: 20px;
+    padding-left: 15px;
+    background: #ffffff !important;
+    color: #6495ED;
+}
+input.theme-input::placeholder{
+    color: #6495ED;
+}
+.event-list-bg {
+    background-image: url('../../../common/icon/eventhomebg.png');      
+}
+.event-list-bg {
+    background-position: left;
+    background-size: 100% 100%;
+    height: 1437px;
+    background-repeat: no-repeat;
+    padding-top: 93px;
+    position: relative;
+}
+.event-title-home img {
+    height: auto;
+    width: 8px;
+    margin-right: 5px;
+}
+.event-title-home {
+    color: #0047AB;
+    font-weight: 600;
+    font-size: 29px;
+    position: absolute;
+    top: 13px;
+    left: 63px;
+}
+.left-footer-logo-box{
+    padding-right: 30px;
+}
+.cart-increment-button {
+    position: relative;
+    top: -12px;
+    left: 38px;
+}
+.mobile-screen{
+    display: none;
 }

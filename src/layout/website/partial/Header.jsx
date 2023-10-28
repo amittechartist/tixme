@@ -18,6 +18,9 @@ const Header = () => {
                         <Col md={12} className="pt-3 pb-3 bg-white">
                             <ul className="website_top_menu float-right">
                                 <li className="nav-item">
+                                <Link to={app_url}><img className="header-logo mobile-screen" src={AppLogo} /></Link>
+                                </li>
+                                <li className="nav-item">
                                     <Link className="button-border" to={'/'}>
                                         <span>
                                             <img src={LocationsIcon} /> Location <img src={Locationstart} />
@@ -37,7 +40,7 @@ const Header = () => {
                             <div className="float-left">
                                 <Link to={app_url}>
                                     <span>
-                                        <img src={AppLogo} />
+                                        <img className="header-logo big-screen" src={AppLogo} />
                                     </span>
                                 </Link>
                             </div>

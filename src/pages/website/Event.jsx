@@ -112,9 +112,9 @@ const Page = ({ title }) => {
                                             <Col md={12}>
                                                 <div className="tags pt-4 pb-5">
                                                     <ul>
-                                                        <li className="d-inline-block m-1 mb-3"><span className="event-category-title font-13">Online Events</span></li>
-                                                        <li className="d-inline-block m-1 mb-3"><span className="event-category-title font-13">Things To Do Online</span></li>
-                                                        <li className="d-inline-block m-1 mb-3"><span className="event-category-title font-13">Online Networking</span></li>
+                                                        <li className="d-inline-block m-1 mb-3"><span className="event-category-title event-category-title-mobile font-13">Online Events</span></li>
+                                                        <li className="d-inline-block m-1 mb-3"><span className="event-category-title event-category-title-mobile font-13">Things To Do Online</span></li>
+                                                        <li className="d-inline-block m-1 mb-3"><span className="event-category-title event-category-title-mobile font-13">Online Networking</span></li>
                                                     </ul>
                                                 </div>
                                             </Col>
@@ -142,7 +142,7 @@ const Page = ({ title }) => {
                                                                             <img className="event-image" src={Eventimg} alt="" />
                                                                         </div>
                                                                     </Col>
-                                                                    <Col md={7}>
+                                                                    <Col md={7} className="event-view-page">
                                                                         <div className="organizer-name-sec px-2 py-2">
                                                                             <div className="d-inline-flex align-items-center  event-time-area">
                                                                                 <div className="d-inline-block mr-1">
@@ -171,12 +171,12 @@ const Page = ({ title }) => {
                                                                             <p className="font-10">Lorem ipsum is a pseudo-Latin text used in web design, typography, layout..</p>
                                                                         </div>
                                                                     </Col>
-                                                                    <Col md={7} className="border-top-doted">
+                                                                    <Col md={7} xs={7} className="border-top-doted">
                                                                         <div className="location d-flex align-items-center text-center">
                                                                             <img height={30} width={30} src={LocationIcon} alt="" /> <span>Wilton , United States</span>
                                                                         </div>
                                                                     </Col>
-                                                                    <Col md={5}>
+                                                                    <Col md={5} xs={5}>
                                                                         <div className="price-section text-center">
                                                                             <p>Ticket Price</p>
                                                                             <span className="price">$99</span><span className="cut-price">$100</span>
@@ -195,7 +195,7 @@ const Page = ({ title }) => {
                                                                             <img className="event-image" src={Eventimg} alt="" />
                                                                         </div>
                                                                     </Col>
-                                                                    <Col md={7}>
+                                                                    <Col md={7} className="event-view-page">
                                                                         <div className="organizer-name-sec px-2 py-2">
                                                                             <div className="d-inline-flex align-items-center event-time-area">
                                                                                 <div className="d-inline-block mr-1">
@@ -224,12 +224,12 @@ const Page = ({ title }) => {
                                                                             <p className="font-10">Lorem ipsum is a pseudo-Latin text used in web design, typography, layout..</p>
                                                                         </div>
                                                                     </Col>
-                                                                    <Col md={7} className="border-top-doted">
+                                                                    <Col md={7} xs={7} className="border-top-doted">
                                                                         <div className="location d-flex align-items-center text-center">
                                                                             <img height={30} width={30} src={LocationIcon} alt="" /> <span>Wilton , United States</span>
                                                                         </div>
                                                                     </Col>
-                                                                    <Col md={5}>
+                                                                    <Col md={5} xs={5}>
                                                                         <div className="price-section text-center">
                                                                             <p>Ticket Price</p>
                                                                             <span className="price">$99</span><span className="cut-price">$100</span>
@@ -273,7 +273,7 @@ const Page = ({ title }) => {
                             <div className="organised-by-box eventpage-box-style">
                                 <div className="organizer-name-sec d-flex align-items-center px-2 py-2">
                                     <div className="d-inline-block mr-3">
-                                        <img height={70} width={70} src={Eventlogo} alt="" />
+                                        <img height={70} width={70} src={Eventlogo} alt="" className="organiger-logo" />
                                     </div>
                                     <div className="d-inline-block">
                                         <span className="organizer-by d-block">Organised by</span>
@@ -319,7 +319,7 @@ const Page = ({ title }) => {
                                             <p className="Ticket-title">Ticket</p>
                                             <span className="price">$99</span><span className="cut-price">$100</span>
                                         </div>
-                                        <div className="d-inline-block">
+                                        <div className="d-inline-block cart-increment-button">
                                             <span>
                                                 <span className="cart-minus cart-btn">-</span>
                                                 <span className="cart-number">01</span>
@@ -358,7 +358,7 @@ const Page = ({ title }) => {
                                             <p className="Ticket-title">Ticket</p>
                                             <span className="price">$99</span><span className="cut-price">$100</span>
                                         </div>
-                                        <div className="d-inline-block">
+                                        <div className="d-inline-block cart-increment-button">
                                             <span>
                                                 <span className="cart-minus cart-btn">-</span>
                                                 <span className="cart-number">01</span>
@@ -406,9 +406,9 @@ const Page = ({ title }) => {
                     </Row>
                 </Container>
             </div>
-            <div className="event-category-section">
+            <div className="event-category-section mb-5">
                 <Container className="">
-                    <Row>
+                    <Row className="event-box-mobile">
                         <Col md={4} className='mb-3'>
                             <div className="event-box-style">
                                 <div className="event-image-part">
@@ -418,7 +418,7 @@ const Page = ({ title }) => {
                                 </div>
                                 <div className="organizer-name-sec d-flex align-items-center px-2 py-2">
                                     <div className="d-inline-block mr-3">
-                                        <img height={70} width={70} src={Eventlogo} alt="" />
+                                        <img height={70} width={70} src={Eventlogo} alt="" className="organiger-logo" />
                                     </div>
                                     <div className="d-inline-block">
                                         <span className="organizer-by d-block">Organised by</span>
@@ -451,12 +451,12 @@ const Page = ({ title }) => {
                                 </div>
                                 <div className="ticket-price-area mt-3">
                                     <Row>
-                                        <Col md={7} className="border-top-doted">
+                                        <Col md={7} xs={7} className="border-top-doted">
                                             <div className="location d-flex align-items-center text-center">
                                                 <img height={30} width={30} src={LocationIcon} alt="" /> <span>Wilton , United States</span>
                                             </div>
                                         </Col>
-                                        <Col md={5}>
+                                        <Col md={5} xs={5}>
                                             <div className="price-section text-center">
                                                 <p>Ticket Price</p>
                                                 <span className="price">$99</span><span className="cut-price">$100</span>
@@ -475,7 +475,7 @@ const Page = ({ title }) => {
                                 </div>
                                 <div className="organizer-name-sec d-flex align-items-center px-2 py-2">
                                     <div className="d-inline-block mr-3">
-                                        <img height={70} width={70} src={Eventlogo} alt="" />
+                                        <img height={70} width={70} src={Eventlogo} alt="" className="organiger-logo" />
                                     </div>
                                     <div className="d-inline-block">
                                         <span className="organizer-by d-block">Organised by</span>
@@ -508,12 +508,12 @@ const Page = ({ title }) => {
                                 </div>
                                 <div className="ticket-price-area mt-3">
                                     <Row>
-                                        <Col md={7} className="border-top-doted">
+                                        <Col md={7} xs={7} className="border-top-doted">
                                             <div className="location d-flex align-items-center text-center">
                                                 <img height={30} width={30} src={LocationIcon} alt="" /> <span>Wilton , United States</span>
                                             </div>
                                         </Col>
-                                        <Col md={5}>
+                                        <Col md={5} xs={5}>
                                             <div className="price-section text-center">
                                                 <p>Ticket Price</p>
                                                 <span className="price">$99</span><span className="cut-price">$100</span>
@@ -532,7 +532,7 @@ const Page = ({ title }) => {
                                 </div>
                                 <div className="organizer-name-sec d-flex align-items-center px-2 py-2">
                                     <div className="d-inline-block mr-3">
-                                        <img height={70} width={70} src={Eventlogo} alt="" />
+                                        <img height={70} width={70} src={Eventlogo} alt="" className="organiger-logo" />
                                     </div>
                                     <div className="d-inline-block">
                                         <span className="organizer-by d-block">Organised by</span>
@@ -565,12 +565,12 @@ const Page = ({ title }) => {
                                 </div>
                                 <div className="ticket-price-area mt-3">
                                     <Row>
-                                        <Col md={7} className="border-top-doted">
+                                        <Col md={7} xs={7} className="border-top-doted">
                                             <div className="location d-flex align-items-center text-center">
                                                 <img height={30} width={30} src={LocationIcon} alt="" /> <span>Wilton , United States</span>
                                             </div>
                                         </Col>
-                                        <Col md={5}>
+                                        <Col md={5} xs={5}>
                                             <div className="price-section text-center">
                                                 <p>Ticket Price</p>
                                                 <span className="price">$99</span><span className="cut-price">$100</span>

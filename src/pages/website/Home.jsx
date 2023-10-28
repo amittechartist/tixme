@@ -13,6 +13,7 @@ import Hourglasslogo from '../../common/icon/hourglass.svg';
 import LocationIcon from '../../common/icon/location.svg';
 import Eventimg from '../../common/event.jpg';
 import DateIcon from '../../common/icon/date 2.svg';
+import EllipseIcon from '../../common/icon/Ellipse 5.svg';
 const Home = ({ title }) => {
     return (
         <>
@@ -35,10 +36,16 @@ const Home = ({ title }) => {
                             <Col md={12}>
                                 <h3 className="find-near-box">Find Near By Events</h3>
                             </Col>
-                            <Col md={12} className="pt-5 pb-5">
-
+                            <Col md={12} className="pt-2 pb-5 ml-5 Find-Near-form">
+                                <select name="" id="" className="theme-dropdown">
+                                    <option value="">Category</option>
+                                </select>
+                                <select name="" id="" className="theme-dropdown">
+                                    <option value="">Location</option>
+                                </select>
+                                <input type="text" className="theme-input" placeholder="Search anything" />
                             </Col>
-                            <Col md={12}>
+                            <Col md={12} className="mt-5">
                                 <div className="category-section text-center">
                                     <ul>
                                         <li className="d-inline-block mx-2">
@@ -85,8 +92,9 @@ const Home = ({ title }) => {
                 </Container>
             </div>
             <div className="event-category-section">
-                <Container className="">
-                    <Row>
+                <Container className="event-list-bg">
+                    <span className="event-title-home"><img src={EllipseIcon} alt="" /> Events</span>
+                    <Row className="event-box-mobile">
                         <Col md={4} className='mb-3'>
                             <div className="event-box-style">
                                 <div className="event-image-part">
@@ -96,7 +104,7 @@ const Home = ({ title }) => {
                                 </div>
                                 <div className="organizer-name-sec d-flex align-items-center px-2 py-2">
                                     <div className="d-inline-block mr-3">
-                                        <img height={70} width={70} src={Eventlogo} alt="" />
+                                        <img height={70} width={70} src={Eventlogo} alt="" className="organiger-logo" />
                                     </div>
                                     <div className="d-inline-block">
                                         <span className="organizer-by d-block">Organised by</span>
@@ -129,12 +137,12 @@ const Home = ({ title }) => {
                                 </div>
                                 <div className="ticket-price-area mt-3">
                                     <Row>
-                                        <Col md={7} className="border-top-doted">
+                                        <Col md={7} xs={7} className="border-top-doted">
                                             <div className="location d-flex align-items-center text-center">
                                                 <img height={30} width={30} src={LocationIcon} alt="" /> <span>Wilton , United States</span>
                                             </div>
                                         </Col>
-                                        <Col md={5}>
+                                        <Col md={5} xs={5}>
                                             <div className="price-section text-center">
                                                 <p>Ticket Price</p>
                                                 <span className="price">$99</span><span className="cut-price">$100</span>
@@ -153,7 +161,7 @@ const Home = ({ title }) => {
                                 </div>
                                 <div className="organizer-name-sec d-flex align-items-center px-2 py-2">
                                     <div className="d-inline-block mr-3">
-                                        <img height={70} width={70} src={Eventlogo} alt="" />
+                                        <img height={70} width={70} src={Eventlogo} alt="" className="organiger-logo" />
                                     </div>
                                     <div className="d-inline-block">
                                         <span className="organizer-by d-block">Organised by</span>
@@ -186,12 +194,12 @@ const Home = ({ title }) => {
                                 </div>
                                 <div className="ticket-price-area mt-3">
                                     <Row>
-                                        <Col md={7} className="border-top-doted">
+                                        <Col md={7} xs={7} className="border-top-doted">
                                             <div className="location d-flex align-items-center text-center">
                                                 <img height={30} width={30} src={LocationIcon} alt="" /> <span>Wilton , United States</span>
                                             </div>
                                         </Col>
-                                        <Col md={5}>
+                                        <Col md={5} xs={5}>
                                             <div className="price-section text-center">
                                                 <p>Ticket Price</p>
                                                 <span className="price">$99</span><span className="cut-price">$100</span>
@@ -210,7 +218,7 @@ const Home = ({ title }) => {
                                 </div>
                                 <div className="organizer-name-sec d-flex align-items-center px-2 py-2">
                                     <div className="d-inline-block mr-3">
-                                        <img height={70} width={70} src={Eventlogo} alt="" />
+                                        <img height={70} width={70} src={Eventlogo} alt="" className="organiger-logo" />
                                     </div>
                                     <div className="d-inline-block">
                                         <span className="organizer-by d-block">Organised by</span>
@@ -243,12 +251,12 @@ const Home = ({ title }) => {
                                 </div>
                                 <div className="ticket-price-area mt-3">
                                     <Row>
-                                        <Col md={7} className="border-top-doted">
+                                        <Col md={7} xs={7} className="border-top-doted">
                                             <div className="location d-flex align-items-center text-center">
                                                 <img height={30} width={30} src={LocationIcon} alt="" /> <span>Wilton , United States</span>
                                             </div>
                                         </Col>
-                                        <Col md={5}>
+                                        <Col md={5} xs={5}>
                                             <div className="price-section text-center">
                                                 <p>Ticket Price</p>
                                                 <span className="price">$99</span><span className="cut-price">$100</span>
@@ -267,7 +275,7 @@ const Home = ({ title }) => {
                                 </div>
                                 <div className="organizer-name-sec d-flex align-items-center px-2 py-2">
                                     <div className="d-inline-block mr-3">
-                                        <img height={70} width={70} src={Eventlogo} alt="" />
+                                        <img height={70} width={70} src={Eventlogo} alt="" className="organiger-logo" />
                                     </div>
                                     <div className="d-inline-block">
                                         <span className="organizer-by d-block">Organised by</span>
@@ -300,12 +308,12 @@ const Home = ({ title }) => {
                                 </div>
                                 <div className="ticket-price-area mt-3">
                                     <Row>
-                                        <Col md={7} className="border-top-doted">
+                                        <Col md={7} xs={7} className="border-top-doted">
                                             <div className="location d-flex align-items-center text-center">
                                                 <img height={30} width={30} src={LocationIcon} alt="" /> <span>Wilton , United States</span>
                                             </div>
                                         </Col>
-                                        <Col md={5}>
+                                        <Col md={5} xs={5}>
                                             <div className="price-section text-center">
                                                 <p>Ticket Price</p>
                                                 <span className="price">$99</span><span className="cut-price">$100</span>
@@ -324,7 +332,7 @@ const Home = ({ title }) => {
                                 </div>
                                 <div className="organizer-name-sec d-flex align-items-center px-2 py-2">
                                     <div className="d-inline-block mr-3">
-                                        <img height={70} width={70} src={Eventlogo} alt="" />
+                                        <img height={70} width={70} src={Eventlogo} alt="" className="organiger-logo" />
                                     </div>
                                     <div className="d-inline-block">
                                         <span className="organizer-by d-block">Organised by</span>
@@ -357,12 +365,12 @@ const Home = ({ title }) => {
                                 </div>
                                 <div className="ticket-price-area mt-3">
                                     <Row>
-                                        <Col md={7} className="border-top-doted">
+                                        <Col md={7} xs={7} className="border-top-doted">
                                             <div className="location d-flex align-items-center text-center">
                                                 <img height={30} width={30} src={LocationIcon} alt="" /> <span>Wilton , United States</span>
                                             </div>
                                         </Col>
-                                        <Col md={5}>
+                                        <Col md={5} xs={5}>
                                             <div className="price-section text-center">
                                                 <p>Ticket Price</p>
                                                 <span className="price">$99</span><span className="cut-price">$100</span>
@@ -381,7 +389,7 @@ const Home = ({ title }) => {
                                 </div>
                                 <div className="organizer-name-sec d-flex align-items-center px-2 py-2">
                                     <div className="d-inline-block mr-3">
-                                        <img height={70} width={70} src={Eventlogo} alt="" />
+                                        <img height={70} width={70} src={Eventlogo} alt="" className="organiger-logo" />
                                     </div>
                                     <div className="d-inline-block">
                                         <span className="organizer-by d-block">Organised by</span>
@@ -414,12 +422,12 @@ const Home = ({ title }) => {
                                 </div>
                                 <div className="ticket-price-area mt-3">
                                     <Row>
-                                        <Col md={7} className="border-top-doted">
+                                        <Col md={7} xs={7} className="border-top-doted">
                                             <div className="location d-flex align-items-center text-center">
                                                 <img height={30} width={30} src={LocationIcon} alt="" /> <span>Wilton , United States</span>
                                             </div>
                                         </Col>
-                                        <Col md={5}>
+                                        <Col md={5} xs={5}>
                                             <div className="price-section text-center">
                                                 <p>Ticket Price</p>
                                                 <span className="price">$99</span><span className="cut-price">$100</span>
@@ -471,8 +479,8 @@ const Home = ({ title }) => {
             <div className="our_partner mt-5 mb-5">
                 <Container>
                     <Row>
-                        <Col md={12} className="mb-5">
-                            <img src={OurPartnerIcon} alt="" />
+                        <Col md={12} className="mb-5 OurPartnerIcon-title-box">
+                            <img className="OurPartnerIcon-title" src={OurPartnerIcon} alt="" />
                         </Col>
                         <Col md={12}>
                             <div className="partner-slider text-center">

@@ -1,0 +1,230 @@
+@media only screen and (max-width: 767px) {
+    p.banner_shop_desc {
+        font-size: 15px;
+        line-height: 25px;
+    }
+    p.banner_text {
+        font-size: 23px;
+        line-height: 38px;
+    }
+    .find-nearby-section {
+        background-image: none;
+        border: 1px solid #b9d1f5;
+        border-radius: 9px;
+        height: auto;
+    }
+    select.theme-dropdown {
+        width: 132px;
+        margin-bottom: 14px;
+    }
+    input.theme-input {
+        border: 1px solid #B8B9B9;
+        height: 45px;
+        width: 285px;
+        border-radius: 11px;
+        margin-right: 20px;
+        padding-left: 15px;
+        background: #ffffff !important;
+        color: #6495ED;
+    }
+    input.theme-input {
+        width: 285px;
+    }
+    .category-items-box {
+        margin-top: 4px;
+        margin-bottom: 45px;
+        padding-bottom: 25px;
+    }
+    .event-title-home img {
+        width: 24px;
+    }
+    .event-title-home {
+        font-size: 46px;
+        position: relative;
+    }
+    .event-box-mobile .event-box-style {
+        margin: 0px 14px;
+    }
+    img.organiger-logo {
+        height: auto;
+        width: 45px;
+    }
+    .organizer-name {
+        font-size: 15px;
+    }
+    .event-name span {
+        font-size: 21px;
+        margin-top: 12px;
+        margin-bottom: 0;
+    }
+    .event-name p {
+        font-size: 11px;
+        margin-bottom: 0;
+    }
+    .location span {
+        font-size: 10px;
+    }
+    .price {
+        font-size: 23px;
+    }
+    .cut-price {
+        font-size: 15px;
+    }
+    .location {
+        margin-bottom: 0;
+    }
+    .count-box {
+        padding: 20px 16px;
+        width: 150px;
+        height: 136px;
+    }
+    .count-box-title {
+        font-size: 30px;
+    }
+    .count-box-count {
+        font-size: 29px;
+        margin-right: -7px;
+    }
+    .OurPartnerIcon-title {
+        height: auto;
+        width: 250px;
+    }
+    .OurPartnerIcon-title-box {
+        text-align: center;
+    }
+    .partner-slider img {
+        height: auto;
+        width: 69px;
+        margin-bottom: 24px;
+    }
+    .subsacribe-box {
+        height: auto;
+        width: 100%;
+        margin-top: 0;
+        margin-bottom: 50px;
+    }
+    .subsacribe-content {
+        padding: 0;
+    }
+    span.Want-to-receive {
+        font-size: 13px;
+        line-height: 19px;
+    }
+    .footer-input {
+        height: 28px;
+        width: 135px;
+        margin-right: 8px;
+        padding: 1px 14px;
+        display: inline;
+        border-radius: 5px;
+    }
+    .Find-Near-form{
+        width: fit-content
+    }
+    .event-list-bg {
+        background-image: none;
+        padding-top: 0px;
+        height: auto;
+    }
+    img.LogoIcon-footer {
+        right: 0px;
+        top: 0;
+        height: 81px;
+    }
+    .subsscribe-box-style {
+        position: relative;
+        top: -45px;
+    }
+    .subsscribe-form-input-area {
+        margin: 6px 1px !important;
+    }
+    .subscribe-btn {
+        position: relative;
+        top: 18px;
+    }
+    .website_top_menu-footer .nav-item {
+        margin-bottom: 34px;
+    }
+    img.footer-logo {
+        height: auto;
+        width: 111px;
+    }
+    .Welcome_to_text {
+        font-size: 10px;
+        padding-right: 0px;
+    }
+    .footer-box-style {
+        border-radius: 30px;
+        padding: 11px;
+    }
+    .left-footer-logo-box {
+        padding-right: 20px;
+        padding-left: 20px;
+        margin-bottom: 20px;
+    }
+    .right-footer-logo-box {
+        padding-right: 32px;
+        padding-left: 32px;
+    }
+    .footer-short-text {
+        position: absolute;
+        bottom: -14px;
+    }
+    .event-title {
+        font-size: 26px;
+        margin: 0 !important;
+    }
+    .event-category-title {
+        padding: 8px 21px;
+        font-size: 12px;
+    }
+    span.event-duration.d-block {
+        font-size: 9px;
+    }
+    span.event-time.d-block {
+        font-size: 12px;
+    }
+    .event-time-area {
+        margin-bottom: 23px;
+    }
+    .desc-sec p {
+        font-size: 10px;
+    }
+    .event-category-title-mobile {
+        font-size: 8px;
+    }
+    .right-box-title p {
+        font-size: 16px;
+    }
+    .event-view-page .organizer-name-sec {
+        height: 30px;
+    }
+    .event-view-page .event-name span {
+        font-size: 14px;
+        margin-top: 13px;
+        margin-bottom: 0;
+    }
+    .button-join .bg-style {
+        padding: 10px !important;
+        font-size: 9px;
+    }
+    .button-border {
+        padding: 6px 8px !important;
+        font-size: 11px;
+    }
+    .big-screen{
+        display: none;
+    }
+    ul.website_top_menu li {
+        display: inline-block;
+        margin: 0px 6px;
+    }
+    .mobile-screen{
+        display: block;
+    }
+    .mobile-screen {
+        position: relative;
+        top: 6px;
+        left: -8px;
+    }
+}
