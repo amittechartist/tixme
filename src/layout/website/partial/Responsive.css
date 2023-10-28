@@ -150,8 +150,9 @@
         width: 111px;
     }
     .Welcome_to_text {
-        font-size: 10px;
-        padding-right: 0px;
+        font-size: 12px;
+        padding-right: 0;
+        line-height: 17px;
     }
     .footer-box-style {
         border-radius: 30px;
@@ -228,7 +229,10 @@
         position: relative;
         top: 9px;
         height: auto;
-        width: 86px;
+        width: 75px;
         margin: 0px -9px !important;
+    }
+    .footer-title {
+        font-size: 22px;
     }
 }
