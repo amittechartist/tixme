@@ -21,10 +21,10 @@ const Sidebar = () => {
                         </Link>
                         </li>
                         <li>
-                            <a class="has-arrow ai-icon" href="javascript:void(0);" aria-expanded="false">
+                            <Link class="has-arrow ai-icon" aria-expanded="false">
                             <img src={EventIcon} alt="Your Logo" />
                                 <span class="nav-text">Event Management</span>
-                            </a>
+                            </Link>
                             <ul aria-expanded="false">
                                 <li><Link className='text-black' to={organizer_url+'event/add-event'}>Add New</Link></li>
                                 <li><Link className='text-black' to={organizer_url+'event/add-event-basic-info'}>Basic Info </Link></li>
@@ -33,35 +33,35 @@ const Sidebar = () => {
                             </ul>
                         </li>
 
-                        <li><a href="reports.html" className="ai-icon" aria-expanded="false">
+                        <li><Link href="reports.html" className="ai-icon" aria-expanded="false">
                             <img src={ticketIcon} alt="Your Logo" />
                             <span className="nav-text">Event Bookings</span>
-                        </a>
+                        </Link>
                         </li>
-                        <li><a href="reports.html" className="ai-icon" aria-expanded="false">
+                        <li><Link href="reports.html" className="ai-icon" aria-expanded="false">
                             <img src={walletIcon} alt="Your Logo" />
                             <span className="nav-text">Finance</span>
-                        </a>
+                        </Link>
                         </li>
-                        <li><a href="reports.html" className="ai-icon" aria-expanded="false">
+                        <li><Link href="reports.html" className="ai-icon" aria-expanded="false">
                             <img src={scannerIcon} alt="Your Logo" />
                             <span className="nav-text">Tixme Scanner</span>
-                        </a>
+                        </Link>
                         </li>
-                        <li><a href="reports.html" className="ai-icon" aria-expanded="false">
+                        <li><Link href="reports.html" className="ai-icon" aria-expanded="false">
                             <img src={MenuIcon} alt="Your Logo" />
                             <span className="nav-text">Marketing</span>
-                        </a>
+                        </Link>
                         </li>
-                        <li><a href="reports.html" className="ai-icon" aria-expanded="false">
+                        <li><Link href="reports.html" className="ai-icon" aria-expanded="false">
                             <img src={peopleIcon} alt="Your Logo" />
                             <span className="nav-text">Manage Attendees</span>
-                        </a>
+                        </Link>
                         </li>
-                        <li><a href="reports.html" className="ai-icon" aria-expanded="false">
+                        <li><Link href="reports.html" className="ai-icon" aria-expanded="false">
                             <img src={supportIcon} alt="Your Logo" />
                             <span className="nav-text">Support</span>
-                        </a>
+                        </Link>
                         </li>
                     </ul>
                 </div>

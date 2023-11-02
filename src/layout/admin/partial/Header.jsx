@@ -7,26 +7,26 @@ import { Link } from "react-router-dom";
 const Header = () => {
     return (
         <>
-            <div class="header">
-                <div class="header-content">
-                    <nav class="navbar navbar-expand">
-                        <div class="collapse navbar-collapse justify-content-between">
-                            <div class="header-left">
+            <div className="header">
+                <div className="header-content">
+                    <nav className="navbar navbar-expand">
+                        <div className="collapse navbar-collapse justify-content-between">
+                            <div className="header-left">
 
                             </div>
-                            <ul class="navbar-nav header-right">
+                            <ul className="navbar-nav header-right">
 
-                                <li class="nav-item dropdown notification_dropdown">
+                                <li className="nav-item dropdown notification_dropdown">
                                 <Link to={'/'}><span className=""> <img src={DashboardIcon} alt="Your Logo" /> Dashboard</span></Link>
                                 </li>
-                                <li class="nav-item dropdown notification_dropdown">
+                                <li className="nav-item dropdown notification_dropdown">
                                     <Link className="button-border" to={'/'}>
                                         <span>
                                             <img src={LocationsIcon}/> Location <img src={Locationstart}/>
                                         </span>
                                     </Link>
                                 </li>
-                                <li class="nav-item dropdown notification_dropdown">
+                                <li className="nav-item dropdown notification_dropdown">
                                     <Link className="button-join" to={'/'}>
                                         <span>
                                              <span className="bg-style"><img height={30} width={30} src={PersonIcon}/></span><span className="bg-style">My Account</span>

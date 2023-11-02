@@ -9,7 +9,6 @@ const Dashboard = ({ title }) => {
                         <ol className="breadcrumb">
                             <li className="breadcrumb-item">{title}</li>
                         </ol>
-                        <span>Welcome Back, TIXME</span>
                     </div>
                     <div className="row">
                         <div className="row">

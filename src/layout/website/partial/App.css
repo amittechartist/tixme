@@ -560,3 +560,27 @@ input.theme-input::placeholder{
 .mobile-screen{
     display: none;
 }
+.signup-form-box {
+    box-shadow: 0px 0px 5px 3px rgba(219,219,219,0.75);
+    -webkit-box-shadow: 0px 0px 5px 3px rgba(219,219,219,0.75);
+    -moz-box-shadow: 0px 0px 5px 3px rgba(219,219,219,0.75);
+}
+.signup-page-padding {
+    padding: 90px 90px 60px 90px;
+}
+.signup-page-title {
+    font-weight: 600;
+    font-size: 33px;
+}
+.login-area {
+    background: #F1F2F4;
+}
+.signup-page-btn {
+    background: #006AFF;
+    border: none;
+    border-radius: 26px;
+}
+.reset-password-link {
+    color: #0150c1;
+    font-weight: 600;
+}

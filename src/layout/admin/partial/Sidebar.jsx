@@ -7,51 +7,39 @@ import scannerIcon from '../../../common/icon/scanner 1.svg';
 import MenuIcon from '../../../common/icon/Menu sidebar.svg';
 import peopleIcon from '../../../common/icon/people 1.svg';
 import supportIcon from '../../../common/icon/support.svg';
+import { Link,useNavigate } from 'react-router-dom';
+import {admin_url,app_url} from '../../../common/Helpers';
 const Sidebar = () => {
+    const navigate = useNavigate();
+    function Logout(){
+        localStorage.removeItem('adminauth');
+        navigate(app_url);
+    }
     return (
         <>
-            <div class="deznav">
-                <div class="deznav-scroll">
-                    <ul class="metismenu" id="menu">
-                        <li><a href="reports.html" class="ai-icon" aria-expanded="false">
+            <div className="deznav">
+                <div className="deznav-scroll">
+                    <ul className="metismenu" id="menu">
+                        <li><Link to={admin_url+'dashboard'} className="ai-icon" aria-expanded="false">
                             <img src={DashboardIcon} alt="Your Logo" />
-                            <span class="nav-text">Dashboard</span>
-                        </a>
+                            <span className="nav-text">Dashboard</span>
+                        </Link>
                         </li>
-                        <li><a href="reports.html" class="ai-icon" aria-expanded="false">
+                        <li>
+                            <Link class="has-arrow ai-icon" href="javascript:void(0);" aria-expanded="false">
                             <img src={EventIcon} alt="Your Logo" />
-                            <span class="nav-text">Event Management</span>
-                        </a>
+                                <span class="nav-text">Category</span>
+                            </Link>
+                            <ul aria-expanded="false">
+                                <li><Link className='text-black' to={admin_url+'add-category'}>Add New</Link></li>
+                                <li><Link className='text-black' to={admin_url+'all-category'}>All Category</Link></li>
+                            </ul>
                         </li>
-                        <li><a href="reports.html" class="ai-icon" aria-expanded="false">
-                            <img src={ticketIcon} alt="Your Logo" />
-                            <span class="nav-text">Event Bookings</span>
-                        </a>
-                        </li>
-                        <li><a href="reports.html" class="ai-icon" aria-expanded="false">
-                            <img src={walletIcon} alt="Your Logo" />
-                            <span class="nav-text">Finance</span>
-                        </a>
-                        </li>
-                        <li><a href="reports.html" class="ai-icon" aria-expanded="false">
-                            <img src={scannerIcon} alt="Your Logo" />
-                            <span class="nav-text">Tixme Scanner</span>
-                        </a>
-                        </li>
-                        <li><a href="reports.html" class="ai-icon" aria-expanded="false">
-                            <img src={MenuIcon} alt="Your Logo" />
-                            <span class="nav-text">Marketing</span>
-                        </a>
-                        </li>
-                        <li><a href="reports.html" class="ai-icon" aria-expanded="false">
-                            <img src={peopleIcon} alt="Your Logo" />
-                            <span class="nav-text">Manage Attendees</span>
-                        </a>
-                        </li>
-                        <li><a href="reports.html" class="ai-icon" aria-expanded="false">
-                            <img src={supportIcon} alt="Your Logo" />
-                            <span class="nav-text">Support</span>
-                        </a>
+                        <li>
+                            <div onClick={Logout} className="ai-icon cursor-pointer" aria-expanded="false">
+                                <img src={DashboardIcon} alt="Your Logo" />
+                                <span className="nav-text">Logout</span>
+                            </div>
                         </li>
                     </ul>
                 </div>

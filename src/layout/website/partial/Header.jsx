@@ -10,6 +10,7 @@ import { Link } from "react-router-dom";
 import Sidebar from './Sidebar'
 import {app_url} from '../../../common/Helpers';
 const Header = () => {
+    const customer_token = localStorage.getItem('customerauth');
     return (
         <>
             <header>
@@ -28,11 +29,22 @@ const Header = () => {
                                     </Link>
                                 </li>
                                 <li className="nav-item">
-                                    <Link className="button-join" to={'/'}>
-                                        <span>
-                                            <span className="bg-style"><img height={30} width={30} src={PersonIcon} /></span><span className="bg-style">My Account</span>
-                                        </span>
-                                    </Link>
+                                    {customer_token ?
+                                    (
+                                        <Link className="button-join" to={'/'}>
+                                            <span>
+                                                <span className="bg-style"><img height={30} width={30} src={PersonIcon} /></span><span className="bg-style">My Account</span>
+                                            </span>
+                                        </Link>
+                                    ) : 
+                                    (
+                                        <Link className="button-join" to={app_url+'auth/customer/signup'}>
+                                            <span>
+                                                <span className="bg-style"><img height={30} width={30} src={PersonIcon} /></span><span className="bg-style">Login</span>
+                                            </span>
+                                        </Link>
+                                    )
+                                    }
                                 </li>
                             </ul>
                         </Col>
