@@ -1,68 +1,22 @@
 import React, { useEffect, useState } from "react";
-import JoinStartButton from "../../../common/elements/JoinStartButton";
-import whitestar from '../../../common/icon/whitestar.svg';
 import { Button, Col, Row } from "react-bootstrap";
 import Card from 'react-bootstrap/Card';
-import toast from 'react-hot-toast';
-import Swal from 'sweetalert2';
-import withReactContent from 'sweetalert2-react-content';
-import { apiurl,admin_url } from '../../../common/Helpers';
+import { apiurl, admin_url } from '../../../common/Helpers';
 import { Link } from "react-router-dom";
 const Dashboard = ({ title }) => {
     const [Loader, setLoader] = useState(false);
     const [Listitems, setListitems] = useState([]);
-    const MySwal = withReactContent(Swal);
-    function CheckDelete(id){
-        MySwal.fire({
-            title: 'Are you sure you want to delete?',
-            showDenyButton: true,
-            showCancelButton: false,
-            confirmButtonText: 'Yes',
-          }).then((result) => {
-            /* Read more about isConfirmed, isDenied below */
-            if (result.isConfirmed) {
-                Delete(id)
-            } else if (result.isDenied) {
-              
-            }
-          })
-    }
-    const Delete = async (id) => {
+    const fetchList = async () => {
         try {
             const requestData = {
-                id: id,
-                isdelete: 1
-            };
-            fetch(apiurl + 'category/delete-category', {
+                isactive: 1,
+              };
+            fetch(apiurl + 'admin/get-organizer-list', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json', // Set the Content-Type header to JSON
                 },
                 body: JSON.stringify(requestData),
-            })
-                .then(response => response.json())
-                .then(data => {
-                    if (data.success == true) {
-                        toast.success('');
-                        fetchCategory();
-                    } else {
-
-                    }
-                })
-                .catch(error => {
-                    console.error('Insert error:', error);
-                });
-        } catch (error) {
-            console.error('Login api error:', error);
-        }
-    }
-    const fetchCategory = async () => {
-        try {
-            fetch(apiurl + 'category/get-category-list', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json', // Set the Content-Type header to JSON
-                }
             })
                 .then(response => response.json())
                 .then(data => {
@@ -79,15 +33,16 @@ const Dashboard = ({ title }) => {
             console.error('Login api error:', error);
         }
     }
+    console.log(Listitems);
     useEffect(() => {
-        fetchCategory();
+        fetchList();
     }, []);
     return (
         <>
             <div className="content-body" style={{ background: '#F1F1F1' }}>
                 <div className="container-fluid">
                     <div className="page-titles">
-                    <Link className="page-theme-btn position-right" to={admin_url+'add-category'}>Add category</Link>
+                        <Link className="page-theme-btn position-right" to={admin_url + 'active-organizers'}>View organizer</Link>
                         <ol className="breadcrumb">
                             <li className="breadcrumb-item">{title}</li>
                         </ol>
@@ -104,7 +59,8 @@ const Dashboard = ({ title }) => {
                                                         <tr>
                                                             <th style={{ width: '80px' }}><strong>#</strong></th>
                                                             <th><strong>Name</strong></th>
-                                                            <th><strong>Status</strong></th>
+                                                            <th><strong>Email</strong></th>
+                                                            <th><strong>Phone Number</strong></th>
                                                             <th></th>
                                                         </tr>
                                                     </thead>
@@ -113,15 +69,15 @@ const Dashboard = ({ title }) => {
                                                             <tr>
                                                                 <td><strong>{index + 1}</strong></td>
                                                                 <td>{item.name}</td>
-                                                                <td><span class="badge light badge-success">Active</span></td>
+                                                                <td>{item.email}</td>
+                                                                <td>{item.area_code}{item.phone_number}</td>
                                                                 <td>
                                                                     <div class="dropdown">
                                                                         <button type="button" class="btn btn-success light sharp" data-bs-toggle="dropdown">
                                                                             <svg width="20px" height="20px" viewBox="0 0 24 24" version="1.1"><g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><rect x="0" y="0" width="24" height="24" /><circle fill="#000000" cx="5" cy="12" r="2" /><circle fill="#000000" cx="12" cy="12" r="2" /><circle fill="#000000" cx="19" cy="12" r="2" /></g></svg>
                                                                         </button>
                                                                         <div class="dropdown-menu">
-                                                                            <Button variant="link" class="dropdown-item">Edit</Button>
-                                                                            <Button onClick={() => CheckDelete(item._id)} variant="link" class="dropdown-item">Delete</Button>
+                                                                            <Button variant="link" class="dropdown-item">View</Button>
                                                                         </div>
                                                                     </div>
                                                                 </td>

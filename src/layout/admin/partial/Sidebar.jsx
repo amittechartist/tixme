@@ -25,11 +25,26 @@ const Sidebar = () => {
                             <span className="nav-text">Dashboard</span>
                         </Link>
                         </li>
+                        <li><Link to={admin_url+'all-customers'} className="ai-icon" aria-expanded="false">
+                            <img src={DashboardIcon} alt="Your Logo" />
+                            <span className="nav-text">All Customers</span>
+                        </Link>
+                        </li>
                         <li>
-                            <Link class="has-arrow ai-icon" href="javascript:void(0);" aria-expanded="false">
+                            <a class="has-arrow ai-icon" href="javascript:void(0);" aria-expanded="false">
+                            <img src={EventIcon} alt="Your Logo" />
+                                <span class="nav-text">Organizer</span>
+                            </a>
+                            <ul aria-expanded="false">
+                                <li><Link className='text-black' to={admin_url+'active-organizer'}>Active</Link></li>
+                                <li><Link className='text-black' to={admin_url+'pending-organizer'}>Pending</Link></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a class="has-arrow ai-icon" href="javascript:void(0);" aria-expanded="false">
                             <img src={EventIcon} alt="Your Logo" />
                                 <span class="nav-text">Category</span>
-                            </Link>
+                            </a>
                             <ul aria-expanded="false">
                                 <li><Link className='text-black' to={admin_url+'add-category'}>Add New</Link></li>
                                 <li><Link className='text-black' to={admin_url+'all-category'}>All Category</Link></li>

@@ -2,7 +2,7 @@ import React from "react";
 const Dashboard = ({ title }) => {
     return (
         <>
-            <div className="content-body">
+            <div className="content-body" style={{ background: '#F1F1F1' }}>
 
                 <div className="container-fluid">
                     <div className="page-titles">

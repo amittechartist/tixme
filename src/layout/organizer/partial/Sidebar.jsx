@@ -21,15 +21,15 @@ const Sidebar = () => {
                         </Link>
                         </li>
                         <li>
-                            <Link class="has-arrow ai-icon" aria-expanded="false">
+                            <a href="javascript:void(0);" class="has-arrow ai-icon" aria-expanded="false">
                             <img src={EventIcon} alt="Your Logo" />
                                 <span class="nav-text">Event Management</span>
-                            </Link>
+                            </a>
                             <ul aria-expanded="false">
                                 <li><Link className='text-black' to={organizer_url+'event/add-event'}>Add New</Link></li>
-                                <li><Link className='text-black' to={organizer_url+'event/add-event-basic-info'}>Basic Info </Link></li>
-                                <li><Link className='text-black' to={organizer_url+'event/add-event-details'}>Details </Link></li>
-                                <li><Link className='text-black' to={organizer_url+'event/add-event-photos'}>Photos </Link></li>
+                                <li><Link className='text-black' to={organizer_url+'event/add-event-basic-info'}>All Event </Link></li>
+                                {/* <li><Link className='text-black' to={organizer_url+'event/add-event-details'}>Details </Link></li>
+                                <li><Link className='text-black' to={organizer_url+'event/add-event-photos'}>Photos </Link></li> */}
                             </ul>
                         </li>
 

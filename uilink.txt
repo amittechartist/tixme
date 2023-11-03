@@ -13,3 +13,6 @@ Following & Interests  page ui
 Support tickets  page ui
 edit profile page ui
 Filters on Events Page on the left hand side with events on right hand side ui 
+
+
+"homepage": "https://tixme-app.vercel.app/",
