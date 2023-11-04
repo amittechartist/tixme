@@ -43,7 +43,7 @@ const Dashboard = ({ title }) => {
                 .then(response => response.json())
                 .then(data => {
                     if (data.success == true) {
-                        toast.success('');
+                        toast.success('Deleted successfully');
                         fetchCategory();
                     } else {
 

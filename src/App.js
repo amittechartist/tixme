@@ -5,6 +5,8 @@ import AdminDashboard from './pages/admin/Dashboard';
 import AddCategory from './pages/admin/category/AddCategory';
 import AllCategory from './pages/admin/category/AllCategory';
 import AllCustomers from './pages/admin/customers/AllCustomers';
+import AddEventtype from './pages/admin/eventtype/Add';
+import AllEventtype from './pages/admin/eventtype/List';
 import ActiveOrganizer from './pages/admin/organizer/ActiveOrganizer';
 import PendingOrganizer from './pages/admin/organizer/PendingOrganizer';
 import AdminLayout from './layout/admin/Layout'
@@ -50,6 +52,8 @@ function App() {
         <Route path={admin_url+'dashboard'} element={<AdminLayout> <AdminDashboard title={'dashboard'} /> </AdminLayout>} />
         <Route path={admin_url+'add-category'} element={<AdminLayout> <AddCategory title={'Add Category'} /> </AdminLayout>} />
         <Route path={admin_url+'all-category'} element={<AdminLayout> <AllCategory title={'All Category'} /> </AdminLayout>} />
+        <Route path={admin_url+'add-event-type'} element={<AdminLayout> <AddEventtype title={'Add Event Type'} /> </AdminLayout>} />
+        <Route path={admin_url+'all-event-type'} element={<AdminLayout> <AllEventtype title={'All Event Type'} /> </AdminLayout>} />
         <Route path={admin_url+'all-customers'} element={<AdminLayout> <AllCustomers title={'All Customers'} /> </AdminLayout>} />
         <Route path={admin_url+'active-organizer'} element={<AdminLayout> <ActiveOrganizer title={'Active Organizer'} /> </AdminLayout>} />
         <Route path={admin_url+'pending-organizer'} element={<AdminLayout> <PendingOrganizer title={'Pending Organizer'} /> </AdminLayout>} />

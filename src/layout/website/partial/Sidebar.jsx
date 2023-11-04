@@ -29,7 +29,7 @@ const Sidebar = () => {
                     </Link>
                 </li>
                 <li className="nav-item">
-                    <Link className="button-border" to={'/'}>
+                    <Link className="button-border" to={app_url+'auth/organizer/login'}>
                         <span>
                             List your event
                         </span>

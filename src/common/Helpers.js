@@ -8,3 +8,12 @@ export function isEmail(email) {
     var regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
     return regex.test(email);
 }
+export const get_date_time = (date) => {
+    const options = { day: 'numeric', month: 'short', year: 'numeric' };
+    const dateParts = new Intl.DateTimeFormat('en-US', options).formatToParts(new Date(date));
+
+    const Dateview = dateParts[2].value + ' ' + dateParts[0].value + ' ' + dateParts[4].value;
+    const Timeview = new Date(date).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+
+    return [{ Dateview, Timeview }];
+};

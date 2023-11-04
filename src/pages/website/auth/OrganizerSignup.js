@@ -86,7 +86,7 @@ const Home = ({ title }) => {
                                 </div>
                                 <p className="forgot-password-text">Forgot your password? <Link className='reset-password-link'>Reset your password</Link></p>
                                 <Link to={app_url+'auth/customer/signup'} className='signup-page-btn'>
-                                    <p className="forgot-password-text">Want to login as ticket buyer? <Link to={app_url+'auth/customer/signup'} className='reset-password-link'>Login</Link></p>
+                                    <p className="forgot-password-text">Want to login as ticket buyer or create new account? <Link to={app_url+'auth/customer/signup'} className='reset-password-link'>Login/Signup</Link></p>
                                 </Link>
                                 <div className="form-group">
                                     {Loader ? (

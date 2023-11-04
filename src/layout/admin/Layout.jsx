@@ -7,9 +7,9 @@ import { Link } from "react-router-dom";
 const Layout = ({ children }) => {
     return (
         <>
-            <div id="main-wrapper">
+            <div id="main-wrapper show">
                 <div className="nav-header">
-                    <Link  className="brand-logo">
+                    <Link className="brand-logo">
                         <img src={Logo} alt="Your Logo" />
                     </Link>
                 </div>

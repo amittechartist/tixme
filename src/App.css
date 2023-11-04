@@ -12,11 +12,14 @@
   border-radius: 12px !important;
 }
 .button-join .bg-style {
-  background: #0047AB !important;
+  background: #0047AB;
   color: #fff !important;
   padding: 12px !important;
   border-radius: 22px !important;
   margin: 0px !important;
+}
+.bg-dark {
+  background: #000 !important;
 }
 .nav-header {
   background-color: #ffffff !important;
@@ -90,6 +93,7 @@ ul#menu span {
   border-radius: 15px;
   overflow: hidden;
   height: 63px;
+  width: fit-content;
 }
 .tab-button-box .tab-button-active{
   background: rgba(0, 71, 171, 1);
@@ -164,4 +168,29 @@ a.page-theme-btn {
 }
 .page-titles{
   position: relative;
+}
+@keyframes placeHolderShimmer{
+  0%{
+      background-position: -468px 0
+  }
+  100%{
+      background-position: 468px 0
+  }
+}
+.linear-background {
+  animation-duration: 1s;
+  animation-fill-mode: forwards;
+  animation-iteration-count: infinite;
+  animation-name: placeHolderShimmer;
+  animation-timing-function: linear;
+  background: #f6f7f8;
+  background: linear-gradient(to right, #eeeeee 8%, #dddddd 18%, #eeeeee 33%);
+  background-size: 1000px 104px;
+  height: 338px;
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+}
+.date-border-redius {
+  border-radius: 0px 10px 10px 0px !important;
 }

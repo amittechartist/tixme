@@ -8,13 +8,13 @@ import { Link,useNavigate } from "react-router-dom";
 import toast from 'react-hot-toast';
 import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content'
-import {apiurl,app_url,isEmail,organizer_url} from '../../../common/Helpers';
+import {apiurl,app_url,isEmail,organizer_url,admin_url} from '../../../common/Helpers';
 const Home = ({ title }) => {
     const navigate = useNavigate();
     const [Username, setUsername] = useState();
     const [LoginPassword, setLoginPassword] = useState();
     const [Loader, setLoader] = useState(false);
-    const HandelOrganizerLogin = async () => {
+    const HandelLogin = async () => {
         try {
             if(!Username){
                 return toast.error('Username is required');
@@ -42,7 +42,7 @@ const Home = ({ title }) => {
                 toast.success('Login successful', {
                     duration: 3000,
                 });
-                navigate(app_url);
+                navigate(admin_url+'dashboard');
                 }else{
                     toast.error(data.message);
                 }
@@ -81,7 +81,7 @@ const Home = ({ title }) => {
                                     {Loader ? (
                                         <Button className='signup-page-btn'>Please wait...</Button>
                                     ) : (
-                                        <Button  className='signup-page-btn' onClick={HandelOrganizerLogin}>Log in</Button>
+                                        <Button  className='signup-page-btn' onClick={HandelLogin}>Log in</Button>
                                     )}
                                 </div>
                             </div>
