@@ -194,3 +194,59 @@ a.page-theme-btn {
 .date-border-redius {
   border-radius: 0px 10px 10px 0px !important;
 }
+.tag-preview-option ul li .delete-button {
+  background: #fff;
+  border: none;
+  padding: 7px 7px;
+  line-height: 10px;
+  border-radius: 50%;
+  margin-left: 13px;
+  font-weight: 300;
+}
+.tag-preview-option ul li {
+  display: inline-block;
+  background: #0047ab;
+  color: #fff;
+  padding: 9px 12px;
+  margin-right: 16px;
+  border-radius: 24px;
+  margin-top: 16px;
+}
+  
+p.ticket-price-p {
+  margin: 0;
+  font-size: 21px;
+  font-weight: 600;
+  color: #0047ab;
+}
+p.ticket-sold-count {
+  font-weight: 500;
+  margin: 0;
+}
+span.ticket-date {
+  color: #000;
+  font-size: 15px;
+}
+span.devide-dot {
+  padding: 0px 12px;
+}
+p.price-title {
+  font-size: 28px;
+  font-weight: 600;
+  color: #0047ab;
+}
+.price-list-box .row {
+  display: flex;
+  justify-content: left;
+  align-items: center;
+}
+.price-list-box .row {
+  border-bottom: 1px solid #e5e5e5;
+}
+p.no_ticket_added {
+  color: #0047ab;
+  font-size: 27px;
+  border: 1px  solid #00000024;
+  border-radius: 12px;
+  padding: 18px 0px;
+}

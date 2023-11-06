@@ -15,7 +15,7 @@ const Sidebar = () => {
             <div className="deznav">
                 <div className="deznav-scroll">
                     <ul className="metismenu" id="menu">
-                        <li><Link to={organizer_url+'event/dashboard'} className="ai-icon" aria-expanded="false">
+                        <li><Link to={organizer_url+'dashboard'} className="ai-icon" aria-expanded="false">
                             <img src={DashboardIcon} alt="Your Logo" />
                             <span className="nav-text">Dashboard</span>
                         </Link>
@@ -26,7 +26,7 @@ const Sidebar = () => {
                                 <span class="nav-text">Event Management</span>
                             </a>
                             <ul aria-expanded="false">
-                                <li><Link className='text-black' to={organizer_url+'event/add-event'}>Add New</Link></li>
+                                <li><Link className='text-black' onClick={() => localStorage.removeItem('eventcreateid')} to={organizer_url+'event/add-event'}>Add New</Link></li>
                                 <li><Link className='text-black' to={organizer_url+'event/add-event-basic-info'}>All Event </Link></li>
                                 {/* <li><Link className='text-black' to={organizer_url+'event/add-event-details'}>Details </Link></li>
                                 <li><Link className='text-black' to={organizer_url+'event/add-event-photos'}>Photos </Link></li> */}

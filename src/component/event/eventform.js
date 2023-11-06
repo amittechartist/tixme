@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import GroupIcon from '../../common/icon/Group.svg';
 import OnlineIcon from '../../common/icon/Host Online.svg';
 import OffliveIcon from '../../common/icon/oflineeventlogo.svg';
@@ -24,6 +24,7 @@ import {
     ModalBody,
     ModalHeader
 } from 'reactstrap'
+
 const Type = ({ title }) => {
     const [Loader, setLoader] = useState(false);
     const [Ticketshow, setTicketshow] = useState(false);
@@ -51,6 +52,12 @@ const Type = ({ title }) => {
     const [categoryList, setcategoryList] = useState([{ value: "", label: "Category" }]);
     const [EventtypecategoryList, setEventtypecategoryList] = useState([{ value: "", label: "Type" }]);
 
+    const [inputValue, setInputValue] = useState('');
+    const [tags, setTags] = useState([]);
+
+    const [IsEventTicket, setIsEventTicket] = useState(true);
+    const [TicketList, setTicketList] = useState([]);
+
     const [Tickettype, setTickettype] = useState(1);
     const [Ticketname, setTicketname] = useState();
     const [Quantity, setQuantity] = useState();
@@ -58,6 +65,14 @@ const Type = ({ title }) => {
     const [TicketEndtdate, setTicketEndtdate] = useState(new Date());
     const [Price, setPrice] = useState();
     const [Pricedisable, setPricedisable] = useState(false);
+
+    const [EditId, setEditId] = useState();
+
+    var check_eventcreateid = localStorage.getItem('eventcreateid');
+    var Editid = '';
+    if (check_eventcreateid !== null) {
+        var Editid = check_eventcreateid;
+    }
 
     const handleIsclockCountdown = (event) => {
         setIsclockCountdown(event.target.checked); // Update state based on checkbox checked status
@@ -98,11 +113,67 @@ const Type = ({ title }) => {
         ticketendtime = toticketgetdate[0].Timeview;
     }
 
+    const handleInputChange = (e) => {
+        setInputValue(e.target.value);
+    };
+    const handleInputKeyDown = (e) => {
+        if (e.key === 'Enter' || e.key === ',') {
+            e.preventDefault();
+            if (inputValue.trim() !== '' && tags.length < 10) {
+                setTags([...tags, inputValue.trim()]);
+                setInputValue('');
+            }
+        }
+    };
+    const handleDeleteTag = (index) => {
+        const newTags = [...tags];
+        newTags.splice(index, 1);
+        setTags(newTags);
+    };
     function CheckBasicInfo() {
         setFormSection(3)
     }
     function CheckEventDesc() {
         setFormSection(4)
+    }
+    console.log("updategoing", Editid);
+    const HandelUpdatedetails = async (updateid) => {
+
+    }
+    const HandelUpdateEventDesc = async (updateid) => {
+        try {
+            setLoader(true);
+            const requestData = {
+                event_desc: Eventdesc,
+                updateid: updateid
+                // event_image: [],
+            };
+            fetch(apiurl + 'event/update/eventdesc', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(requestData),
+            })
+                .then(response => response.json())
+                .then(data => {
+                    setLoader(false);
+                    if (data.success == true) {
+                        toast.success('Updated', {
+                            duration: 3000,
+                        });
+                        setFormSection(4);
+                    } else {
+                        toast.error(data.message);
+                    }
+                })
+                .catch(error => {
+                    setLoader(false);
+                    console.error('Insert error:', error);
+                });
+        } catch (error) {
+            console.error('Login api error:', error);
+        }
     }
     const HandelSubmit = async () => {
         try {
@@ -125,7 +196,7 @@ const Type = ({ title }) => {
                 category_name: Categoryname,
                 eventtypecategory: EventtypeCategoryId,
                 eventtypecategory_name: EventtypeCategoryname,
-                tags: [],
+                tags: tags,
                 visibility: Visibility,
                 location: Location,
                 event_subtype_id: EventSubtype,
@@ -136,8 +207,8 @@ const Type = ({ title }) => {
                 is_clock_countdown: IsclockCountdown,
                 display_start_time: Displaystarttime,
                 display_end_time: Displayendtime,
-                event_desc: Eventdesc,
-                event_image: [],
+                // event_desc: Eventdesc,
+                // event_image: [],
                 organizer_id: 'saasasas',
             };
             fetch(apiurl + 'event/create', {
@@ -151,10 +222,11 @@ const Type = ({ title }) => {
                 .then(data => {
                     setLoader(false);
                     if (data.success == true) {
-                        toast.success('Created successful', {
+                        toast.success('Event Created successful', {
                             duration: 3000,
                         });
-                        emptyField('');
+                        localStorage.setItem('eventcreateid', data.data);
+                        // emptyField('');
                         setFormSection(3);
                     } else {
                         toast.error(data.message);
@@ -186,6 +258,13 @@ const Type = ({ title }) => {
         Eventdesc('');
         setcategoryList({ value: "", label: "Category" });
         setEventtypecategoryList({ value: "", label: "Type" });
+    }
+    function emptyPriceForm() {
+        setTickettype(1);
+        setTicketname('');
+        setQuantity('');
+        setPrice('');
+        setPricedisable(false);
     }
     const selectCategory = (selectedValue) => {
         setCategory(selectedValue);
@@ -223,8 +302,78 @@ const Type = ({ title }) => {
             console.error('Login api error:', error);
         }
     }
-    const handelCreateTicket = async () => {
+    const fetchAllTicket = async () => {
+        try {
+            var check_eventcreateid = localStorage.getItem('eventcreateid');
+            if (check_eventcreateid !== null) {
+                const requestData = {
+                    updateid: check_eventcreateid
+                };
+                fetch(apiurl + 'event/ticket-list', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json', // Set the Content-Type header to JSON
+                    },
+                    body: JSON.stringify(requestData),
+                })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.success == true) {
+                            const fetchdata = data.data.allprice;
+                            setTicketList(fetchdata);
+                            setIsEventTicket(false);
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Insert error:', error);
+                    });
+            }
+        } catch (error) {
+            console.error('Login api error:', error);
+        }
+    }
+    const handelCreateTicket = async (updateid) => {
+        try {
+            const requestData = {
+                updateid: updateid,
+                ticket_type: Tickettype,
+                name: Ticketname,
+                quantity: Quantity,
+                startdate: ticketstartdate,
+                endtdate: ticketenddate,
+                starttime: ticketstarttime,
+                endttime: ticketendtime,
+                price: Price
+            };
+            fetch(apiurl + 'event/update/price', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(requestData),
+            })
+                .then(response => response.json())
+                .then(data => {
+                    setLoader(false);
+                    if (data.success == true) {
+                        toast.success('Updated', {
+                            duration: 3000,
+                        });
+                        setTicketshow(false);
+                        emptyPriceForm();
+                        fetchAllTicket();
+                    } else {
 
+                        toast.error(data.message);
+                    }
+                })
+                .catch(error => {
+                    setLoader(false);
+                    console.error('Insert error:', error);
+                });
+        } catch (error) {
+            console.error('Login api error:', error);
+        }
     }
     const fetchEventtypeCategory = async () => {
         try {
@@ -363,11 +512,30 @@ const Type = ({ title }) => {
                                     <div className="col-md-4 mt-4">
                                         <label htmlFor="">Tags</label>
                                         <p>Improve discoverability of your event by adding tags relevant to subject matter.</p>
-                                        <input type="text" class="form-control input-default " placeholder="Add search keywords to your event" />
-                                        <span className="mt-2">0 / 10 tags.</span>
+                                        <input
+                                            type="text"
+                                            className="form-control input-default"
+                                            placeholder="Add search keywords to your event"
+                                            value={inputValue}
+                                            onChange={handleInputChange}
+                                            onKeyDown={handleInputKeyDown}
+                                        />
+                                        <span className="mt-2">{tags.length} / 10 tags.</span>
+                                        <div className="tag-preview-option my-4">
+                                            <ul>
+                                                {tags.map((tag, index) => (
+                                                    <li key={index}>
+                                                        {tag}
+                                                        <button onClick={() => handleDeleteTag(index)} className="delete-button">
+                                                            X
+                                                        </button>
+                                                    </li>
+                                                ))}
+                                            </ul>
+                                        </div>
                                     </div>
                                     <div className="col-md-8"></div>
-                                    <div className="col-md-4 mt-4">
+                                    <div className="col-md-8 mt-4">
                                         <label htmlFor="">Event Visibility</label>
                                         <div className="tab-button-box">
                                             {/* tab-button-active */}
@@ -375,8 +543,8 @@ const Type = ({ title }) => {
                                             <span onClick={() => setVisibility(2)} className={Visibility === 2 ? "tab-button-active" : ""}><img src={LockIcon} alt="" /> Private</span>
                                         </div>
                                     </div>
-                                    <div className="col-md-8"></div>
-                                    <div className="col-md-6 mt-4">
+
+                                    <div className="col-md-8 mt-4">
                                         <label htmlFor="">Location</label>
                                         <p>Help people in the area discover your event and let attendees know where to show up.</p>
                                         <div className="tab-button-box">
@@ -385,16 +553,17 @@ const Type = ({ title }) => {
                                             <span onClick={() => setEventtype(3)} className={Eventtype === 3 ? "tab-button-active" : ""}>To be announced</span>
                                         </div>
                                     </div>
-                                    <div className="col-md-6"></div>
+
                                     <div className="col-md-6 mt-4">
                                         <label htmlFor="">Venue Location</label>
                                         <div class="input-group mb-3 input-warning-o">
                                             <span class="input-group-text"><img src={Magnify} alt="" /></span>
-                                            <input onClick={() => setLocation(1)} type="text" class="form-control" placeholder="Search for venue or address" />
+                                            <input type="text" class="form-control" onChange={(e) => setLocation(e.target.value)} placeholder="Search for venue or address" />
                                         </div>
                                     </div>
+
                                     <div className="col-md-6"></div>
-                                    <div className="col-md-4 mt-4">
+                                    <div className="col-md-6 mt-4">
                                         <label htmlFor="">Date & Time</label>
                                         <p>Tell event-goers when your event starts and ends so they can make plans to attend.</p>
                                         <div className="tab-button-box">
@@ -402,7 +571,7 @@ const Type = ({ title }) => {
                                             <span onClick={() => setEventSubtype(2)} className={EventSubtype === 2 ? "tab-button-active" : ""}> Recurring Event</span>
                                         </div>
                                     </div>
-                                    <div className="col-md-8 checkout-style-bottom">
+                                    <div className="col-md-6 checkout-style-bottom">
                                         <div className="row checkout-style-element">
                                             <div className="col-md-1">
                                                 <div class="input-group mb-3">
@@ -500,11 +669,19 @@ const Type = ({ title }) => {
                                                     <span className="bg-style bg-dark"><img height={30} width={30} src={whitestar} /></span><span className="bg-dark bg-style bg-title-style">Back</span>
                                                 </span>
                                             </Button>
-                                            <Button variant="link" className="button-join" onClick={() => CheckBasicInfo()}>
-                                                <span>
-                                                    <span className="bg-style"><img height={30} width={30} src={whitestar} /></span><span className="bg-style bg-title-style">Next</span>
-                                                </span>
-                                            </Button>
+                                            {Editid ? (
+                                                <Button variant="link" className="button-join" onClick={() => HandelUpdatedetails(Editid)}>
+                                                    <span>
+                                                        <span className="bg-style"><img height={30} width={30} src={whitestar} /></span><span className="bg-style bg-title-style">Update</span>
+                                                    </span>
+                                                </Button>
+                                            ) : (
+                                                <Button variant="link" className="button-join" onClick={() => HandelSubmit()}>
+                                                    <span>
+                                                        <span className="bg-style"><img height={30} width={30} src={whitestar} /></span><span className="bg-style bg-title-style">Save</span>
+                                                    </span>
+                                                </Button>
+                                            )}
                                         </div>
                                     </div>
                                 </Row>
@@ -546,11 +723,20 @@ const Type = ({ title }) => {
                                                         <span className="bg-style bg-dark"><img height={30} width={30} src={whitestar} /></span><span className="bg-style bg-dark bg-title-style">Back</span>
                                                     </span>
                                                 </Button>
-                                                <Button variant="link" className="button-join" onClick={() => CheckEventDesc()}>
-                                                    <span>
-                                                        <span className="bg-style"><img height={30} width={30} src={whitestar} /></span><span className="bg-style bg-title-style">Next</span>
-                                                    </span>
-                                                </Button>
+                                                {Editid ? (
+                                                    <Button variant="link" className="button-join" onClick={() => HandelUpdateEventDesc(Editid)}>
+                                                        <span>
+                                                            <span className="bg-style"><img height={30} width={30} src={whitestar} /></span><span className="bg-style bg-title-style">Update</span>
+                                                        </span>
+                                                    </Button>
+                                                ) : (
+                                                    <Button variant="link" className="button-join" onClick={() => HandelSubmit()}>
+                                                        <span>
+                                                            <span className="bg-style"><img height={30} width={30} src={whitestar} /></span><span className="bg-style bg-title-style">Save</span>
+                                                        </span>
+                                                    </Button>
+                                                )}
+
                                             </div>
                                         </div>
                                     </div>
@@ -568,6 +754,47 @@ const Type = ({ title }) => {
                                             </span>
                                         </Button>
                                     </Col>
+                                    {IsEventTicket ? (
+                                        <Col md={12} className="mt-5 text-center">
+                                            <p className="no_ticket_added">No ticket added !</p>
+                                        </Col>
+                                    ) : (
+                                        <Col md={12} className="mt-5">
+                                            <div className="price-list-box">
+                                                {TicketList.map((item, index) => (
+                                                    <Row className="">
+                                                        <Col md={3}>
+                                                            <div>
+                                                                <p className="price-title">
+                                                                    {item.name}
+                                                                </p>
+                                                                <p className="price-section-box">
+                                                                    <span class="badge light badge-success">On sale</span> <span className="devide-dot">|</span> <span className="ticket-date">{item.startdate} at {item.starttime}</span>
+                                                                </p>
+                                                            </div>
+                                                        </Col>
+                                                        <Col md={3}>
+                                                            <p className="ticket-sold-count">Sold : 0 / {item.quantity}</p>
+                                                        </Col>
+                                                        <Col md={2}>
+                                                            <p className="ticket-price-p"> $ {item.price}</p>
+                                                        </Col>
+                                                        <Col md={3}>
+                                                            <div class="dropdown">
+                                                                <button type="button" class="btn btn-success light sharp" data-bs-toggle="dropdown">
+                                                                    <svg width="20px" height="20px" viewBox="0 0 24 24" version="1.1"><g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><rect x="0" y="0" width="24" height="24" /><circle fill="#000000" cx="5" cy="12" r="2" /><circle fill="#000000" cx="12" cy="12" r="2" /><circle fill="#000000" cx="19" cy="12" r="2" /></g></svg>
+                                                                </button>
+                                                                <div class="dropdown-menu">
+                                                                    <Button variant="link" class="dropdown-item">Edit</Button>
+                                                                    <Button variant="link" class="dropdown-item">Delete</Button>
+                                                                </div>
+                                                            </div>
+                                                        </Col>
+                                                    </Row>
+                                                ))}
+                                            </div>
+                                        </Col>
+                                    )}
                                     <div className="col-md-12 mt-2">
                                         <div className="button-group mt-10">
                                             <Button variant="link" className="button-join" onClick={() => setFormSection(3)}>
@@ -610,11 +837,11 @@ const Type = ({ title }) => {
                         </Col>
                         <Col md={12} className="mb-2 mt-4">
                             <label htmlFor="" className="text-black">Name</label>
-                            <input type="text" class="form-control input-default" onChange={(e) => setTicketname(e.target.value)} placeholder="Name" />
+                            <input type="text" class="form-control input-default" onChange={(e) => setTicketname(e.target.value)} value={Ticketname} placeholder="Name" />
                         </Col>
                         <Col md={6} className="mb-2">
                             <label htmlFor="" className="text-black">Available quantity</label>
-                            <input type="number" class="form-control input-default" onChange={(e) => setQuantity(e.target.value)} placeholder="Available quantity" />
+                            <input type="number" class="form-control input-default" onChange={(e) => setQuantity(e.target.value)} value={Quantity} placeholder="Available quantity" />
                         </Col>
                         <Col md={6} className="mb-2">
                             <label htmlFor="" className="text-black">Price</label>
@@ -668,11 +895,13 @@ const Type = ({ title }) => {
                             </div>
                         </Col>
                         <Col md={12}>
-                            <Button variant="link" className="button-join p-0" onClick={() => handelCreateTicket()}>
-                                <span>
-                                    <span className="bg-style"><img height={30} width={30} src={whitestar} /></span><span className="bg-style bg-title-style">Add ticket</span>
-                                </span>
-                            </Button>
+                            {Editid ? (
+                                <Button variant="link" className="button-join p-0" onClick={() => handelCreateTicket(Editid)}>
+                                    <span>
+                                        <span className="bg-style"><img height={30} width={30} src={whitestar} /></span><span className="bg-style bg-title-style">Add ticket</span>
+                                    </span>
+                                </Button>
+                            ) : (<></>)}
                         </Col>
                     </Row>
                 </ModalBody>

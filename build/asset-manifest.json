@@ -1,9 +1,11 @@
 {
   "files": {
-    "main.css": "/tixme/static/css/main.e1ceb22a.css",
-    "main.js": "/tixme/static/js/main.910217a5.js",
+    "main.css": "/tixme/static/css/main.1dcf06cd.css",
+    "main.js": "/tixme/static/js/main.bb3aecf4.js",
     "static/js/787.cda612ba.chunk.js": "/tixme/static/js/787.cda612ba.chunk.js",
     "static/media/event1.png": "/tixme/static/media/event1.01f504db838e668b291e.png",
+    "static/media/eventhomebg.png": "/tixme/static/media/eventhomebg.634868da50df3a2a8dd6.png",
+    "static/media/findnearByEvents.png": "/tixme/static/media/findnearByEvents.566f984497b60e5b51a6.png",
     "static/media/Gilroy-Regular.ttf": "/tixme/static/media/Gilroy-Regular.5b89a8df3b17dccdb73f.ttf",
     "static/media/Gilroy-SemiBold.ttf": "/tixme/static/media/Gilroy-SemiBold.07b9100a72fe7d46d20a.ttf",
     "static/media/event.jpg": "/tixme/static/media/event.2e8320a7c07931197a2c.jpg",
@@ -34,6 +36,7 @@
     "index.html": "/tixme/index.html",
     "static/media/date 2.svg": "/tixme/static/media/date 2.a8f38d42c3c878c0f8389a767cdb93df.svg",
     "static/media/Group.svg": "/tixme/static/media/Group.fe8d1d873b3efa8cada9946687a860ce.svg",
+    "static/media/logoicon.svg": "/tixme/static/media/logoicon.0a099c2bb687794ed84d1192db44033e.svg",
     "static/media/share.svg": "/tixme/static/media/share.2de583cdd6edc4689c794f1d50bda299.svg",
     "static/media/facebookicon.svg": "/tixme/static/media/facebookicon.e385b86b8677d989725e53cad68d1283.svg",
     "static/media/youtubeicon.svg": "/tixme/static/media/youtubeicon.1b92f2358430cc00747a104c797bbf0d.svg",
@@ -53,13 +56,14 @@
     "static/media/mail.svg": "/tixme/static/media/mail.a5a2ec40ec6f09931c25bf10e4d851c8.svg",
     "static/media/Rectangle5.svg": "/tixme/static/media/Rectangle5.7e53b2828f41f97e44da.svg",
     "static/media/flag.svg": "/tixme/static/media/flag.f75e3eb165a71fa7dc112088343c6fa0.svg",
+    "static/media/checkbox.svg": "/tixme/static/media/checkbox.d20825d984db9076947f10f7fa6de94b.svg",
     "static/media/Ellipse 5.svg": "/tixme/static/media/Ellipse 5.35617813251673a35b1e329c3401d44f.svg",
-    "main.e1ceb22a.css.map": "/tixme/static/css/main.e1ceb22a.css.map",
-    "main.910217a5.js.map": "/tixme/static/js/main.910217a5.js.map",
+    "main.1dcf06cd.css.map": "/tixme/static/css/main.1dcf06cd.css.map",
+    "main.bb3aecf4.js.map": "/tixme/static/js/main.bb3aecf4.js.map",
     "787.cda612ba.chunk.js.map": "/tixme/static/js/787.cda612ba.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.e1ceb22a.css",
-    "static/js/main.910217a5.js"
+    "static/css/main.1dcf06cd.css",
+    "static/js/main.bb3aecf4.js"
   ]
 }

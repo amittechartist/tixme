@@ -19,7 +19,7 @@ import EventBasicInfo from './pages/organizer/Event/BasicInfo';
 import OrganizerLayout from './layout/organizer/Layout'
 // website auth
 import Signup from './pages/website/auth/Signup';
-import OrganizerSignup from './pages/website/auth/OrganizerSignup';
+import OrganizerLogin from './pages/website/auth/OrganizerLogin';
 import AdminLogin from './pages/website/auth/AdminLogin';
 // website
 import WebsiteLayout from './layout/website/Layout'
@@ -37,7 +37,7 @@ function App() {
       <Routes>
         {/* auth */}
         <Route path={app_url+'auth/customer/signup'} element={<WebsiteLayout> <Signup title={'Tixme'} /> </WebsiteLayout>} />
-        <Route path={app_url+'auth/organizer/login'} element={<WebsiteLayout> <OrganizerSignup title={'Tixme'} /> </WebsiteLayout>} />
+        <Route path={app_url+'auth/organizer/login'} element={<WebsiteLayout> <OrganizerLogin title={'Tixme'} /> </WebsiteLayout>} />
         <Route path={app_url+'auth/admin/login'} element={<WebsiteLayout> <AdminLogin title={'Tixme'} /> </WebsiteLayout>} />
         {/* website */}
         <Route path={app_url} element={<WebsiteLayout> <Home title={'Tixme'} /> </WebsiteLayout>} />
