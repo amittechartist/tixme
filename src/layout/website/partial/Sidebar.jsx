@@ -2,13 +2,13 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import Col from 'react-bootstrap/Col';
 import Locationstart from '../../../common/icon/locationstart.svg';
-import {app_url} from '../../../common/Helpers'
+import { app_url } from '../../../common/Helpers'
 const Sidebar = () => {
     return (
-        <Col md={6} className="pt-3 pb-3">
+        <Col md={10} className="pt-3 pb-3">
             <ul className="website_top_menu float-right">
                 <li className="nav-item">
-                    <Link to={app_url+'event'}>
+                    <Link to={app_url + 'event'}>
                         <span>
                             Events <img src={Locationstart} />
                         </span>
@@ -22,6 +22,27 @@ const Sidebar = () => {
                     </Link>
                 </li>
                 <li className="nav-item">
+                    <Link className="button-join" to={app_url + 'terms-and-conditions'}>
+                        <span>
+                            Terms & conditions
+                        </span>
+                    </Link>
+                </li>
+                <li className="nav-item">
+                    <Link className="button-join" to={app_url + 'privacy-policy'}>
+                        <span>
+                            Privacy policy
+                        </span>
+                    </Link>
+                </li>
+                <li className="nav-item">
+                    <Link className="button-join" to={app_url + 'faq'}>
+                        <span>
+                            FAQ
+                        </span>
+                    </Link>
+                </li>
+                <li className="nav-item">
                     <Link className="button-join" to={'/'}>
                         <span>
                             Contact
@@ -29,7 +50,7 @@ const Sidebar = () => {
                     </Link>
                 </li>
                 <li className="nav-item">
-                    <Link className="button-border" to={app_url+'auth/organizer/login'}>
+                    <Link className="button-border" to={app_url + 'auth/organizer/login'}>
                         <span>
                             List your event
                         </span>

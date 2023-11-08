@@ -48,7 +48,7 @@ const Header = () => {
                                 </li>
                             </ul>
                         </Col>
-                        <Col md={6}>
+                        <Col md={2}>
                             <div className="float-left">
                                 <Link to={app_url}>
                                     <span>
