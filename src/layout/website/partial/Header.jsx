@@ -8,7 +8,7 @@ import PersonIcon from '../../../common/icon/person 1.svg';
 import AppLogo from '../../../common/logo.svg';
 import { Link } from "react-router-dom";
 import Sidebar from './Sidebar'
-import {app_url} from '../../../common/Helpers';
+import { app_url, organizer_url } from '../../../common/Helpers';
 const Header = () => {
     const customer_token = localStorage.getItem('customerauth');
     return (
@@ -19,7 +19,7 @@ const Header = () => {
                         <Col md={12} className="pt-3 pb-3 bg-white">
                             <ul className="website_top_menu float-right">
                                 <li className="nav-item">
-                                <Link to={app_url}><img className="header-logo mobile-screen" src={AppLogo} /></Link>
+                                    <Link to={app_url}><img className="header-logo mobile-screen" src={AppLogo} /></Link>
                                 </li>
                                 <li className="nav-item">
                                     <Link className="button-border" to={'/'}>
@@ -30,25 +30,30 @@ const Header = () => {
                                 </li>
                                 <li className="nav-item">
                                     {customer_token ?
-                                    (
-                                        <Link className="button-join" to={'/'}>
-                                            <span>
-                                                <span className="bg-style"><img height={30} width={30} src={PersonIcon} /></span><span className="bg-style">My Account</span>
-                                            </span>
-                                        </Link>
-                                    ) : 
-                                    (
-                                        <Link className="button-join" to={app_url+'auth/customer/signup'}>
-                                            <span>
-                                                <span className="bg-style"><img height={30} width={30} src={PersonIcon} /></span><span className="bg-style">Login</span>
-                                            </span>
-                                        </Link>
-                                    )
+                                        (
+                                            <Link className="button-join" to={organizer_url + 'dashboard'}>
+                                                <span>
+                                                    <span className="bg-style btn-a"><img height={30} width={30} src={PersonIcon} /></span>
+                                                    <span className="bg-style btn-b">My Account</span>
+                                                    <span className="bg-style btn-c"><img height={30} width={30} src={PersonIcon} /></span>
+                                                </span>
+                                            </Link>
+
+                                        ) :
+                                        (
+                                            <Link className="button-join" to={app_url + 'auth/customer/signup'}>
+                                                <span>
+                                                    <span className="bg-style btn-a"><img height={30} width={30} src={PersonIcon} /></span>
+                                                    <span className="bg-style btn-b">Login</span>
+                                                    <span className="bg-style btn-c"><img height={30} width={30} src={PersonIcon} /></span>
+                                                </span>
+                                            </Link>
+                                        )
                                     }
                                 </li>
                             </ul>
                         </Col>
-                        <Col md={6}>
+                        <Col md={2}>
                             <div className="float-left">
                                 <Link to={app_url}>
                                     <span>
@@ -57,7 +62,7 @@ const Header = () => {
                                 </Link>
                             </div>
                         </Col>
-                        <Sidebar/>
+                        <Sidebar />
                     </Row>
                 </Container>
             </header>

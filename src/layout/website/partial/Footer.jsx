@@ -41,7 +41,9 @@ const Footer = () => {
                                 <div className="subscribe-btn">
                                     <Link className="button-join" to={'/'}>
                                         <span>
-                                            <span className="bg-style"><img height={30} width={30} src={whitestart} /></span><span className="bg-style">Get the latest updates</span>
+                                            <span className="bg-style btn-a"><img height={30} width={30} src={whitestart} /></span>
+                                            <span className="bg-style btn-b">Get the latest updates</span>
+                                            <span className="bg-style btn-c"><img height={30} width={30} src={whitestart} /></span>
                                         </span>
                                     </Link>
                                 </div>
@@ -64,14 +66,18 @@ const Footer = () => {
                                     <li className="nav-item">
                                         <Link className="button-join" to={'/'}>
                                             <span>
-                                                <span className="bg-style-white"><img height={30} width={30} src={BluestarIcon} /></span><span className="bg-style-white">Create Event</span>
+                                                <span className="bg-style-white btn-a"><img height={30} width={30} src={BluestarIcon} /></span>
+                                                <span className="bg-style-white btn-b">Create Event</span>
+                                                <span className="bg-style-white btn-c"><img height={30} width={30} src={BluestarIcon} /></span>
                                             </span>
                                         </Link>
                                     </li>
                                     <li className="nav-item">
                                         <Link className="button-join" to={'/'}>
                                             <span>
-                                                <span className="bg-style-white"><img height={30} width={30} src={BluestarIcon} /></span><span className="bg-style-white">Find Events</span>
+                                                <span className="bg-style-white btn-a"><img height={30} width={30} src={BluestarIcon} /></span>
+                                                <span className="bg-style-white btn-b">Find Events</span>
+                                                <span className="bg-style-white btn-c"><img height={30} width={30} src={BluestarIcon} /></span>
                                             </span>
                                         </Link>
                                     </li>

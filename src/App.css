@@ -1,16 +1,19 @@
 .deznav {
   background-color: #f1f1f1 !important;
 }
+
 .deznav-scroll {
   background: #fff !important;
   margin: 30px 20px !important;
   border-radius: 30px !important;
 }
+
 .button-border {
   border: 1px solid #0047AB;
   padding: 7px 14px !important;
   border-radius: 12px !important;
 }
+
 .button-join .bg-style {
   background: #0047AB;
   color: #fff !important;
@@ -18,24 +21,31 @@
   border-radius: 22px !important;
   margin: 0px !important;
 }
+
 .bg-dark {
   background: #000 !important;
 }
+
 .nav-header {
   background-color: #ffffff !important;
 }
+
 ul#menu span {
   color: #737373 !important;
 }
-[data-sidebar-style="full"][data-layout="vertical"] .deznav .metismenu > li > a {
-  padding: 11px 12px 10px 10px !important; 
+
+[data-sidebar-style="full"][data-layout="vertical"] .deznav .metismenu>li>a {
+  padding: 11px 12px 10px 10px !important;
 }
-.metismenu img{
+
+.metismenu img {
   margin-right: 15px;
 }
-.breadcrumb-item{
+
+.breadcrumb-item {
   text-transform: capitalize;
 }
+
 .event-list-box {
   background: rgba(0, 71, 171, 0.15);
   padding: 16px 30px 10px 30px;
@@ -43,9 +53,11 @@ ul#menu span {
   height: 85px;
   z-index: 1;
 }
+
 .event-list-box p {
   margin: 0px !important;
 }
+
 .event-ticket-box {
   background: rgba(0, 71, 171, 1);
   display: inline-block;
@@ -54,23 +66,28 @@ ul#menu span {
   margin-top: 0px;
   margin-left: 50px;
 }
+
 .gradient-blue {
   background: linear-gradient(180deg, rgba(0, 71, 171, 0.55) 0%, rgba(100, 149, 237, 0) 100%);
 }
-.gradient-grey{
+
+.gradient-grey {
   background: linear-gradient(180deg, rgba(181, 181, 181, 0.55) 0%, rgba(153, 153, 153, 0) 100%);
 }
+
 .event_category_box {
   padding: 80px 40px;
   width: 370px;
   border-radius: 15px;
   position: relative;
 }
+
 .icon_section {
   position: absolute;
   left: 0;
   top: -65px;
 }
+
 .custome-text-area {
   border: 1px solid rgba(184, 185, 185, 1);
   height: 300px;
@@ -78,10 +95,17 @@ ul#menu span {
   padding: 5px 9px;
   border-radius: 15px;
 }
-.deznav .metismenu > li a:hover {
+
+.deznav .metismenu>li a:hover {
   color: #0047AB !important;
 }
-[data-sibebarbg="color_3"][data-theme-version="dark"] .deznav .metismenu a:hover, [data-sibebarbg="color_3"][data-theme-version="dark"] .deznav .metismenu a:focus, [data-sibebarbg="color_3"][data-theme-version="dark"] .deznav .metismenu a.mm-active, [data-sibebarbg="color_3"] .deznav .metismenu a:hover, [data-sibebarbg="color_3"] .deznav .metismenu a:focus, [data-sibebarbg="color_3"] .deznav .metismenu a.mm-active {
+
+[data-sibebarbg="color_3"][data-theme-version="dark"] .deznav .metismenu a:hover,
+[data-sibebarbg="color_3"][data-theme-version="dark"] .deznav .metismenu a:focus,
+[data-sibebarbg="color_3"][data-theme-version="dark"] .deznav .metismenu a.mm-active,
+[data-sibebarbg="color_3"] .deznav .metismenu a:hover,
+[data-sibebarbg="color_3"] .deznav .metismenu a:focus,
+[data-sibebarbg="color_3"] .deznav .metismenu a.mm-active {
   color: #000 !important;
 }
 
@@ -95,14 +119,17 @@ ul#menu span {
   height: 63px;
   width: fit-content;
 }
-.tab-button-box .tab-button-active{
+
+.tab-button-box .tab-button-active {
   background: rgba(0, 71, 171, 1);
   color: #fff !important;
 }
-.tab-button-box .tab-button-grey-active{
+
+.tab-button-box .tab-button-grey-active {
   background: rgba(241, 241, 241, 1);
   color: #000 !important;
 }
+
 .tab-button-box span {
   height: 48px;
   color: #000 !important;
@@ -114,25 +141,33 @@ ul#menu span {
   width: 200px;
   cursor: pointer;
 }
+
 span.input-group-text {
   background: #fff !important;
   border: 1px solid rgba(184, 185, 185, 1) !important;
 }
-[data-theme-version="light"] .input-warning-o .input-group-text, [data-theme-version="dark"] .input-warning-o .input-group-text {
+
+[data-theme-version="light"] .input-warning-o .input-group-text,
+[data-theme-version="dark"] .input-warning-o .input-group-text {
   background-color: transparent;
   border-color: rgba(184, 185, 185, 1);
   color: rgba(184, 185, 185, 1);
 }
-[data-theme-version="light"] .input-warning-o .form-control, [data-theme-version="dark"] .input-warning-o .form-control {
+
+[data-theme-version="light"] .input-warning-o .form-control,
+[data-theme-version="dark"] .input-warning-o .form-control {
   border-color: rgba(184, 185, 185, 1);
 }
+
 .checkout-style-element {
   position: absolute;
   bottom: 0px;
 }
+
 .checkout-style-bottom {
   position: relative;
 }
+
 /* .form-check-input[type="checkbox"] {
   border-radius: 0.25em;
   width: 190px;
@@ -145,38 +180,48 @@ span.input-group-text {
   margin-left: 7px;
   padding: 13px 0px;
 }
+
 .content-body {
   min-height: 100vh;
 }
-.btn-check:focus + .button-join, .button-join:focus {
+
+.btn-check:focus+.button-join,
+.button-join:focus {
   outline: 0;
   box-shadow: none !important;
 }
-.table-responsive{
+
+.table-responsive {
   padding-bottom: 80px;
 }
+
 a.page-theme-btn {
   background: #0047ab;
   color: #fff;
   padding: 10px 20px;
   border-radius: 23px;
 }
-.position-right{
+
+.position-right {
   position: absolute;
   right: 14px;
   top: 6px;
 }
-.page-titles{
+
+.page-titles {
   position: relative;
 }
-@keyframes placeHolderShimmer{
-  0%{
-      background-position: -468px 0
+
+@keyframes placeHolderShimmer {
+  0% {
+    background-position: -468px 0
   }
-  100%{
-      background-position: 468px 0
+
+  100% {
+    background-position: 468px 0
   }
 }
+
 .linear-background {
   animation-duration: 1s;
   animation-fill-mode: forwards;
@@ -191,9 +236,11 @@ a.page-theme-btn {
   overflow: hidden;
   width: 100%;
 }
+
 .date-border-redius {
   border-radius: 0px 10px 10px 0px !important;
 }
+
 .tag-preview-option ul li .delete-button {
   background: #fff;
   border: none;
@@ -203,6 +250,7 @@ a.page-theme-btn {
   margin-left: 13px;
   font-weight: 300;
 }
+
 .tag-preview-option ul li {
   display: inline-block;
   background: #0047ab;
@@ -212,41 +260,48 @@ a.page-theme-btn {
   border-radius: 24px;
   margin-top: 16px;
 }
-  
+
 p.ticket-price-p {
   margin: 0;
   font-size: 21px;
   font-weight: 600;
   color: #0047ab;
 }
+
 p.ticket-sold-count {
   font-weight: 500;
   margin: 0;
 }
+
 span.ticket-date {
   color: #000;
   font-size: 15px;
 }
+
 span.devide-dot {
   padding: 0px 12px;
 }
+
 p.price-title {
   font-size: 28px;
   font-weight: 600;
   color: #0047ab;
 }
+
 .price-list-box .row {
   display: flex;
   justify-content: left;
   align-items: center;
 }
+
 .price-list-box .row {
   border-bottom: 1px solid #e5e5e5;
 }
+
 p.no_ticket_added {
   color: #0047ab;
   font-size: 27px;
-  border: 1px  solid #00000024;
+  border: 1px solid #00000024;
   border-radius: 12px;
   padding: 18px 0px;
 }
