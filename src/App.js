@@ -25,6 +25,14 @@ import AdminLogin from './pages/website/auth/AdminLogin';
 import WebsiteLayout from './layout/website/Layout'
 import Home from './pages/website/Home';
 import Event from './pages/website/Event';
+import Aboutus from './pages/website/aboutus';
+import Terms from './pages/website/Terms';
+import Privacy from './pages/website/Privacy';
+import Faq from './pages/website/Faq';
+import Contact from './pages/website/Contact';
+import Organizers from './pages/website/Organizers';
+import OrganizerDetails from './pages/website/OrganizerDetails';
+
 
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import {app_url, organizer_url,admin_url} from './common/Helpers';
@@ -42,6 +50,13 @@ function App() {
         {/* website */}
         <Route path={app_url} element={<WebsiteLayout> <Home title={'Tixme'} /> </WebsiteLayout>} />
         <Route path={app_url+'event'} element={<WebsiteLayout> <Event title={'Tixme'} /> </WebsiteLayout>} />
+        <Route path={app_url+'aboutus'} element={<WebsiteLayout> <Aboutus title={'About Us'} /> </WebsiteLayout>} />
+        <Route path={app_url+'terms-and-conditions'} element={<WebsiteLayout> <Terms title={'Terms & conditions'} /> </WebsiteLayout>} />
+        <Route path={app_url+'privacy-policy'} element={<WebsiteLayout> <Privacy title={'Privacy policy'} /> </WebsiteLayout>} />
+        <Route path={app_url+'faq'} element={<WebsiteLayout> <Faq title={'FAQ'} /> </WebsiteLayout>} />
+        <Route path={app_url+'contact'} element={<WebsiteLayout> <Contact title={'Contact Us'} /> </WebsiteLayout>} />
+        <Route path={app_url+'organizers'} element={<WebsiteLayout> <Organizers title={'Organizers'} /> </WebsiteLayout>} />
+        <Route path={app_url+'organizer-profile'} element={<WebsiteLayout> <OrganizerDetails title={'Organizer Profile'} /> </WebsiteLayout>} />
         {/* Organizer Admin */}
         <Route path={organizer_url+'dashboard'} element={<OrganizerLayout> <Dashboard title={'dashboard'} /> </OrganizerLayout>} />
         <Route path={organizer_url+'event/add-event'} element={<OrganizerLayout> <EventType title={'Create new event'} /> </OrganizerLayout>} />

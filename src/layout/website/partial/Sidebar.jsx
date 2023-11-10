@@ -43,7 +43,7 @@ const Sidebar = () => {
                     </Link>
                 </li>
                 <li className="nav-item">
-                    <Link className="button-join" to={'/'}>
+                    <Link className="button-join" to={app_url + 'contact'}>
                         <span>
                             Contact
                         </span>

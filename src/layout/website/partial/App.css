@@ -100,6 +100,15 @@ p.banner_shop_desc {
     color: #000;
     font-size: 21px;
 }
+
+p.about_banner_shop_desc {
+    font-family: 'Gilroy-SemiBold', Arial, sans-serif;
+    color: #000;
+    font-size: 21px;
+    line-height: normal;
+    margin-bottom: 0;
+}
+
 .bullet-point::before {
     content: '\2022';
     display: inline-block;
@@ -679,4 +688,314 @@ input.theme-input::placeholder {
 .reset-password-link {
     color: #0150c1;
     font-weight: 600;
+}
+
+.title-banner {
+    background-image: url('../../../common/image/62d5204681dc2.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    border-radius: 15px;
+    margin-top: 30px;
+}
+
+.summernote-content h4 {
+    font-weight: 600;
+    font-size: 25px;
+}
+
+h3.title-banner-h3 {
+    padding: 97px 0px;
+    color: #fff;
+    font-weight: 600;
+    font-size: 52px;
+}
+
+.summernote-content p {
+    color: #747474;
+    font-family: Rubik, sans-serif;
+}
+
+.summernote-content h5 {
+    font-size: 25px;
+    font-weight: 600;
+}
+
+.faq-box span.faq-sl-no {
+    color: #0047ab;
+    font-size: 30px;
+    margin-right: 25px;
+}
+
+.faq-box span.faq-title {
+    color: #000;
+    font-size: 22px;
+}
+
+.faq-box h2.accordion-header {
+    padding: 0;
+    border: 0px;
+
+}
+
+.faq-box .accordion-button {
+    background: none;
+}
+
+.faq-box .accordion-item {
+    border-bottom: 1px solid #0047ab;
+    border-radius: 15px;
+    cursor: pointer;
+}
+
+.faq-box .accordion-item:hover {
+    border-bottom: 1px solid #0047ab;
+    border-radius: 15px;
+    background: rgb(255, 255, 255);
+    background: linear-gradient(125deg, rgba(255, 255, 255, 1) 0%, rgb(0 71 171 / 6%) 43%);
+}
+
+.faq-box .accordion-item:first-of-type .accordion-button {
+    border-top-left-radius: 0px;
+    border-top-right-radius: 0px;
+}
+
+.faq-box .accordion-button:not(.collapsed) {
+
+    box-shadow: none;
+}
+
+.faq-box .accordion-button:focus {
+    z-index: 3;
+    border: none;
+    outline: 0;
+    box-shadow: none;
+}
+
+.faq-box p.faq-text {
+    color: #000;
+    font-size: 17px;
+    padding: 0px 52px;
+}
+
+.our_values_box {
+    background: linear-gradient(#d5e7ff, white) padding-box, linear-gradient(to bottom, #0047AB, #ffffff) border-box;
+    border-radius: 15px;
+    border: 2px solid transparent;
+    padding: 14px 29px;
+}
+
+.our_values_title {
+    color: #0047AB;
+    font-weight: 600;
+    font-size: 28px;
+    margin-bottom: 0;
+    /* border-bottom: 1px solid #6495ED; */
+}
+
+p.our_values_desc {
+    color: #000;
+    height: 110px;
+}
+
+h3.sec-main-title {
+    font-size: 35px;
+    color: #0047ab;
+    margin-left: 10px;
+    margin-bottom: 25px;
+    margin-top: 30px;
+}
+
+img.about2 {
+    height: auto;
+    width: 400px;
+    border-radius: 26px;
+}
+
+.about2_box h3 {
+    font-size: 48px;
+    padding-right: 111px;
+    font-weight: 400;
+    color: #0047ab;
+}
+
+.about2_box p {
+    color: #000;
+    padding-right: 50px;
+    font-size: 19px;
+    margin-top: 35px;
+}
+
+.As_a_leading_sec h3 {
+    font-size: 41px;
+    font-weight: 600;
+    color: #434546;
+    line-height: 60px;
+}
+
+.As_a_leading_sec {
+    padding: 0px 100px;
+    text-align: left;
+}
+
+p.about_banner_text {
+    font-weight: 400;
+    color: #000;
+    font-size: 63px;
+    line-height: 97px;
+    padding-right: 30px;
+}
+
+.about_top_section {
+    position: relative;
+}
+
+p.about_banner_short_text {
+    padding-left: 252px;
+    color: #000;
+    font-size: 15px;
+    position: relative;
+    top: 46px;
+    right: 41px;
+}
+
+img.about11 {
+    height: auto;
+    width: 648px;
+    border-radius: 26px;
+    position: absolute;
+    bottom: -191px;
+    left: 0;
+}
+
+img.about2 {
+    height: auto;
+    width: 400px;
+    border-radius: 26px;
+}
+
+.As_a_leading_sec {
+    padding: 0px 100px;
+    text-align: left;
+    margin-top: 200px;
+}
+
+img.web-icon-about {
+    height: auto;
+    width: 150px;
+    position: absolute;
+    top: 68px;
+    z-index: 1;
+    left: 60px;
+}
+
+/* .button-join:hover .btn-a {
+    transform: translate3d(0px, 0px, 0px) scale3d(0, 0, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg);
+    transform-style: preserve-3d;
+}
+
+.btn-a {
+    transform: translate3d(0px, 0px, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg);
+    transform-style: preserve-3d;
+} */
+
+.button-join span {
+    display: inline-block;
+    transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+}
+
+.button-join:hover .btn-a {
+    transform: scale(0);
+    opacity: 0;
+}
+
+.button-join:hover .btn-b {
+    /* transform: translateX(-39%); */
+    opacity: 1;
+}
+
+.button-join:hover .btn-c {
+    transform: scale(1);
+    transition: transform 0.3s ease-in-out;
+}
+
+.btn-c {
+    transform: scale(0);
+    transition: transform 0.3s ease-in-out;
+}
+
+.organizer-box img.organizer-dp {
+    height: 100px;
+    width: 100px;
+}
+
+.organizer-box .organizer-box-name {
+    font-size: 25px;
+    color: #000;
+    font-weight: 500;
+}
+
+.organizer-box .organizer-box-event-count {
+    font-size: 19px;
+    font-weight: 500;
+}
+
+.organizer-box .organizer-box-link {
+    color: #0047ab;
+    text-transform: uppercase;
+    font-size: 20px;
+}
+
+.organizer-box {
+    background: linear-gradient(#d5e7ff, white) padding-box, linear-gradient(to bottom, #0047AB, #ffffff) border-box;
+    border-radius: 15px;
+    border: 2px solid transparent;
+    padding: 40px 0px;
+}
+
+h3.All-Events-title {
+    font-weight: 600;
+    font-size: 45px;
+}
+
+.event-category-list ul li.active {
+    border-bottom: 2px solid #000;
+}
+
+.event-category-list ul li {
+    margin-right: 20px;
+    font-size: 19px;
+    color: #000;
+    font-weight: 500;
+    border-bottom: 2px solid transparent;
+    cursor: pointer;
+}
+
+.event-category-list ul li:hover {
+    border-bottom: 2px solid #000;
+}
+
+.contact-left-boxes {
+    background: linear-gradient(#d5e7ff, white) padding-box, linear-gradient(to bottom, #0047AB, #ffffff) border-box;
+    border-radius: 15px;
+    border: 2px solid transparent;
+    padding: 26px 6px;
+}
+
+.contact-left-boxes .contact-title {}
+
+.contact-left-boxes img {
+    height: auto;
+    width: 35px;
+    margin-right: 15px;
+}
+
+h4.contact-title {
+    font-size: 25px;
+    font-weight: 600;
+}
+
+.contact-form-box {
+    background: linear-gradient(#d5e7ff, white) padding-box, linear-gradient(to bottom, #0047AB, #ffffff) border-box;
+    border-radius: 15px;
+    border: 2px solid transparent;
 }
