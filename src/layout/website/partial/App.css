@@ -130,17 +130,17 @@ p.banner_text {
 .text-blue {
     color: rgba(0, 71, 171, 1);
 }
-
 .ticket-category-bg {
     position: absolute;
-    top: -59px;
-    right: 28px;
+    top: 10px;
+    right: 52px;
     height: auto;
     width: 98px;
 }
 
 .category-items-box {
     position: relative;
+    padding: 50px 0px;
 }
 
 .find-near-box {
@@ -998,4 +998,14 @@ h4.contact-title {
     background: linear-gradient(#d5e7ff, white) padding-box, linear-gradient(to bottom, #0047AB, #ffffff) border-box;
     border-radius: 15px;
     border: 2px solid transparent;
+}
+
+.banner_text .react-reveal{
+    display: inline;
+}
+.banner_shop_desc .react-reveal{
+    display: inline;
+}
+.category-section {
+    margin: -60px 13px 0px 80px;
 }

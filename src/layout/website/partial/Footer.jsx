@@ -15,12 +15,13 @@ import SubscribeBg from '../../../common/icon/Subscribe.svg';
 import CheckboxIcon from '../../../common/icon/checkbox.svg';
 import LogoIcon from '../../../common/icon/logoicon.svg';
 import { Link } from "react-router-dom";
+import Tada from "react-reveal/Tada";
 const Footer = () => {
     return (
         <>
             <Container>
                 <div className="subsacribe-box">
-                    <img src={LogoIcon} className="LogoIcon-footer" alt="" />
+                <Tada><img src={LogoIcon} className="LogoIcon-footer" alt="" /></Tada>
                     <img src={SubscribeBg} className="SubscribeBg" alt="" />
                     <Row className="subsacribe-content">
                         <Col md={12}>

@@ -4,17 +4,13 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import LocationIcon from "../../common/icon/location.svg";
 import MailIcon from "../../common/icon/mail.svg";
+import BannerComponent from '../../component/BannerTop';
 const Page = ({ title }) => {
   return (
     <>
       <Container>
         <Row>
-          <Col
-            md={12}
-            className="title-banner d-flex justify-content-center py-5"
-          >
-            <h3 className="title-banner-h3">{title}</h3>
-          </Col>
+        <BannerComponent title={title}/>
           <Col md={12} className="p-5 mt-5 mb-5">
             <Row>
               <Col md={4}>
@@ -37,8 +33,7 @@ const Page = ({ title }) => {
                   <div className="d-inline-block">
                     <h4 className="contact-title">Our Email</h4>
                     <p className="contact-desc">
-                      tixme.sg@gmail.com
-                      tixme.india@gmail.com
+                      tixme.sg@gmail.com tixme.india@gmail.com
                       tixme.usa@gmail.com
                     </p>
                   </div>
@@ -56,17 +51,38 @@ const Page = ({ title }) => {
               <Col md={8}>
                 <div className="contact-form-box">
                   <Row>
-                    <Col md={6}>
-                    <input type="text" className="theme-input" placeholder="Enter your first name" />
+                    <Col md={12}>
+                      <div className="right-box-title">
+                        <p>More events from this organiser</p>
+                      </div>
                     </Col>
                     <Col md={6}>
-                    <input type="text" className="theme-input" placeholder="Enter your email" />
+                      <input
+                        type="text"
+                        className="theme-input"
+                        placeholder="Enter your first name"
+                      />
+                    </Col>
+                    <Col md={6}>
+                      <input
+                        type="text"
+                        className="theme-input"
+                        placeholder="Enter your email"
+                      />
                     </Col>
                     <Col md={12}>
-                    <input type="text" className="theme-input" placeholder="Enter email subject" />
+                      <input
+                        type="text"
+                        className="theme-input"
+                        placeholder="Enter email subject"
+                      />
                     </Col>
                     <Col md={12}>
-                    <textarea rows={5} className="theme-input" placeholder="Enter your message"></textarea>
+                      <textarea
+                        rows={5}
+                        className="theme-input"
+                        placeholder="Enter your message"
+                      ></textarea>
                     </Col>
                   </Row>
                 </div>
