@@ -29,7 +29,7 @@ const Footer = () => {
                                 <span>
                                     <img src={EllipseIcon} alt="" />
                                 </span>
-                                <span className="Want-to-receive">Want to receive events &<br />news and updates?</span>
+                                <span className="Want-to-receive"><span> Want to receive events &</span> <span> news and updates?</span></span>
                             </div>
                             <div className="ml-5">
                                 <div className="mt-4 mb-4 subsscribe-form-input-area">

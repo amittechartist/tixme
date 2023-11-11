@@ -617,6 +617,23 @@ input.theme-input {
 input.theme-input::placeholder {
     color: #6495ED;
 }
+.theme-textarea-custome::placeholder {
+    color: #6495ED;
+}
+.theme-input-custome {
+    border: 1px solid #B8B9B9;
+    height: 45px;
+    width: -webkit-fill-available;
+    border-radius: 11px;
+    padding: 0px 15px;
+    background: #ffffff !important;
+    color: #6495ED;
+    margin-bottom: 16px;
+}
+
+.theme-input-custome::placeholder {
+    color: #6495ED;
+}
 
 .event-list-bg {
     background-image: url('../../../common/icon/eventhomebg.png');
@@ -1008,4 +1025,61 @@ h4.contact-title {
 }
 .category-section {
     margin: -60px 13px 0px 80px;
+}
+p.contact-desc {
+    font-size: 15px;
+}
+
+
+
+@keyframes slideIn {
+    from {
+      left: 0;
+    }
+    to {
+      left: -50px;
+    }
+  }
+  @keyframes slideOut {
+    from {
+      left: -50px;
+    }
+    to {
+      left: 0;
+    }
+  }
+
+.button-join:hover .btn-b,
+.button-join:hover .btn-c {
+    position: relative;
+  animation: slideIn 0.3s ease forwards;
+}
+.button-join:not(:hover) .btn-b,
+.button-join:not(:hover) .btn-c {
+    position: relative;
+  animation: slideOut 0.3s ease forwards;
+}
+.contact-2{
+    padding: 0px 30px 0px 10px;
+}
+.contact-1{
+    padding: 0px 10px 0px 30px;
+}
+.contact-3{
+    padding: 0px 30px;
+}
+.contact-4{
+    padding: 0px 30px;
+}
+.contact-5{
+    padding: 10px 30px;
+}
+.Want-to-receive span {
+    display: block;
+}
+.only-mobile{
+    display: none;
+}
+.bm-burger-button {
+    display: none;
 }

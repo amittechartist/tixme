@@ -33,6 +33,31 @@ const Home = ({ title }) => {
     arrows: false,
     speed: 1000,
     cssEase: "linear",
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 3,
+          infinite: true,
+        }
+      },
+      {
+        breakpoint: 600,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 2,
+          initialSlide: 2
+        }
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 2
+        }
+      }
+    ]
   };
   const fetchEvent = async () => {
     try {
@@ -110,7 +135,7 @@ const Home = ({ title }) => {
                   placeholder="Search anything"
                 />
               </Col>
-              <Col md={12} className="mt-5">
+              <Col md={12} className="mt-5 category-box-responsive">
                 <div className="category-section text-center">
                   <Slider {...settings}>
                     <div className=" mx-2">

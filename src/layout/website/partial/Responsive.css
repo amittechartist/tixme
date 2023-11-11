@@ -3,20 +3,24 @@
         font-size: 15px;
         line-height: 25px;
     }
+
     p.banner_text {
         font-size: 23px;
         line-height: 38px;
     }
+
     .find-nearby-section {
         background-image: none;
         border: 1px solid #b9d1f5;
         border-radius: 9px;
         height: auto;
     }
+
     select.theme-dropdown {
         width: 132px;
         margin-bottom: 14px;
     }
+
     input.theme-input {
         border: 1px solid #B8B9B9;
         height: 45px;
@@ -27,89 +31,113 @@
         background: #ffffff !important;
         color: #6495ED;
     }
+
     input.theme-input {
         width: 285px;
     }
+
     .category-items-box {
         margin-top: 4px;
         margin-bottom: 45px;
         padding-bottom: 25px;
     }
+
     .event-title-home img {
         width: 24px;
     }
+
     .event-title-home {
         font-size: 46px;
         position: relative;
     }
+
     .event-box-mobile .event-box-style {
         margin: 0px 14px;
     }
+
     img.organiger-logo {
         height: auto;
         width: 45px;
     }
+
     .organizer-name {
         font-size: 15px;
     }
+
     .event-name span {
         font-size: 21px;
         margin-top: 12px;
         margin-bottom: 0;
     }
+
     .event-name p {
         font-size: 11px;
         margin-bottom: 0;
     }
+
     .location span {
         font-size: 10px;
     }
+
     .price {
         font-size: 23px;
     }
+
     .cut-price {
         font-size: 15px;
     }
+
     .location {
         margin-bottom: 0;
     }
+
     .count-box {
         padding: 20px 16px;
         width: 150px;
         height: 136px;
     }
+
     .count-box-title {
         font-size: 30px;
     }
+
     .count-box-count {
         font-size: 29px;
         margin-right: -7px;
     }
+
     .OurPartnerIcon-title {
         height: auto;
         width: 250px;
     }
+
     .OurPartnerIcon-title-box {
         text-align: center;
     }
+
     .partner-slider img {
         height: auto;
         width: 69px;
         margin-bottom: 24px;
     }
+
     .subsacribe-box {
         height: auto;
         width: 100%;
         margin-top: 0;
         margin-bottom: 50px;
     }
+
     .subsacribe-content {
         padding: 0;
     }
+
     span.Want-to-receive {
         font-size: 13px;
         line-height: 19px;
+        margin-top: 25px;
     }
+
     .footer-input {
         height: 28px;
         width: 135px;
@@ -118,111 +146,141 @@
         display: inline;
         border-radius: 5px;
     }
-    .Find-Near-form{
+
+    .Find-Near-form {
         width: fit-content
     }
+
     .event-list-bg {
         background-image: none;
         padding-top: 0px;
         height: auto;
     }
+
     img.LogoIcon-footer {
         right: 0px;
         top: 0;
         height: 81px;
     }
+
     .subsscribe-box-style {
         position: relative;
-        top: -45px;
+        top: 28px;
+        padding-bottom: 30px;
     }
+
     .subsscribe-form-input-area {
         margin: 6px 1px !important;
     }
+
     .subscribe-btn {
         position: relative;
         top: 18px;
     }
+
     .website_top_menu-footer .nav-item {
-        margin-bottom: 34px;
+        margin-bottom: 18px;
     }
+
     img.footer-logo {
         height: auto;
         width: 111px;
     }
+
     .Welcome_to_text {
         font-size: 12px;
         padding-right: 0;
         line-height: 17px;
     }
+
     .footer-box-style {
         border-radius: 30px;
         padding: 11px;
     }
+
     .left-footer-logo-box {
         padding-right: 20px;
         padding-left: 20px;
         margin-bottom: 20px;
     }
+
     .right-footer-logo-box {
         padding-right: 32px;
         padding-left: 32px;
     }
+
     .footer-short-text {
         position: absolute;
         bottom: -14px;
     }
+
     .event-title {
         font-size: 26px;
         margin: 0 !important;
     }
+
     .event-category-title {
         padding: 8px 21px;
         font-size: 12px;
     }
+
     span.event-duration.d-block {
         font-size: 9px;
     }
+
     span.event-time.d-block {
         font-size: 12px;
     }
+
     .event-time-area {
         margin-bottom: 23px;
     }
+
     .desc-sec p {
         font-size: 10px;
     }
+
     .event-category-title-mobile {
         font-size: 8px;
     }
+
     .right-box-title p {
         font-size: 16px;
     }
+
     .event-view-page .organizer-name-sec {
         height: 30px;
     }
+
     .event-view-page .event-name span {
         font-size: 14px;
         margin-top: 13px;
         margin-bottom: 0;
     }
+
     .button-join .bg-style {
         padding: 10px !important;
         font-size: 9px;
     }
+
     .button-border {
         padding: 6px 8px !important;
         font-size: 11px;
     }
-    .big-screen{
+
+    .big-screen {
         display: none;
     }
+
     ul.website_top_menu li {
         display: inline-block;
         margin: 0px 6px;
     }
-    .mobile-screen{
+
+    .mobile-screen {
         display: block;
     }
+
     .mobile-screen {
         display: block;
         left: -8px;
@@ -232,7 +290,245 @@
         width: 75px;
         margin: 0px -9px !important;
     }
+
     .footer-title {
         font-size: 22px;
+    }
+
+    .category-section {
+        margin: 0px 30px;
+    }
+
+    .category-box-responsive {
+        margin-top: 0px !important;
+    }
+
+    .footer-head .mb-5 {
+        margin-bottom: 0px !important;
+    }
+
+    a.button-join img {
+        height: auto;
+        width: 22px;
+    }
+
+    .header-btn-res a.button-join img {
+        height: auto;
+        width: 16px;
+    }
+
+    .website_top_menu {
+        float: inline-start;
+    }
+
+    img.web-icon-about {
+        display: none;
+    }
+
+    .about_banner_text {
+        font-size: 35px !important;
+        padding: 0px;
+        line-height: 48px !important;
+    }
+
+    .about_banner_short_text {
+        font-size: 15px;
+        position: relative;
+        top: 0px;
+        right: 0px;
+    }
+
+    img.about11 {
+        height: auto;
+        width: -webkit-fill-available;
+        border-radius: 26px;
+        position: relative;
+        bottom: inherit;
+    }
+
+    p.about_banner_short_text {
+        padding-left: 4px;
+        color: #000;
+        font-size: 15px;
+        position: relative;
+        top: inherit;
+        right: initial;
+    }
+
+    .As_a_leading_sec {
+        padding: 0px 0px;
+        text-align: left;
+        margin-top: 0px;
+    }
+
+    .As_a_leading_sec h3 {
+        font-size: 18px;
+        font-weight: 600;
+        color: #434546;
+        line-height: 32px;
+    }
+
+    img.about2 {
+        height: auto;
+        width: -webkit-fill-available;
+        border-radius: 26px;
+    }
+
+    .about2_box h3 {
+        font-size: 30px;
+        padding-right: 0px;
+        font-weight: 400;
+        color: #0047ab;
+        padding-top: 33px;
+    }
+
+    h3.title-banner-h3 {
+        padding: 3px 0px;
+        color: #fff;
+        font-weight: 600;
+        font-size: 29px;
+    }
+
+    .summernote-content h5 {
+        font-size: 18px;
+    }
+
+    .faq-box span.faq-title {
+        font-size: 12px;
+    }
+
+    .faq-box span.faq-sl-no {
+        font-size: 20px;
+        margin-right: 11px;
+    }
+
+    .faq-box p.faq-text {
+        color: #000;
+        font-size: 9px;
+        padding: 0px 0px;
+    }
+
+    .contact-2 {
+        padding: 0px 30px
+    }
+
+    .contact-1 {
+        padding: 0px 30px
+    }
+
+    .contact-3 {
+        padding: 0px 30px
+    }
+
+    .contact-4 {
+        padding: 0px 30px
+    }
+
+    .contact-5 {
+        padding: 0px 30px
+    }
+
+    .contact-title {
+        font-size: 18px;
+    }
+
+    p.contact-desc {
+        font-size: 12px;
+    }
+
+    .Want-to-receive span {
+        display: inline;
+    }
+
+    .subsscribe-box-style img {
+        display: none;
+    }
+
+    /* Position and sizing of burger button */
+    .bm-burger-button {
+        position: absolute;
+        width: 30px;
+        height: 24px;
+        right: 30px;
+        top: 23px;
+    }
+
+    /* Color/shape of burger icon bars */
+    .bm-burger-bars {
+        background: #373a47;
+    }
+
+    /* Color/shape of burger icon bars on hover*/
+    .bm-burger-bars-hover {
+        background: #a90000;
+    }
+
+    /* Position and sizing of clickable cross button */
+    .bm-cross-button {
+        height: 24px;
+        width: 24px;
+    }
+
+    /* Color/shape of close button cross */
+    .bm-cross {
+        background: #bdc3c7;
+    }
+
+    /*
+  Sidebar wrapper styles
+  Note: Beware of modifying this element as it can break the animations - you should not need to touch it in most cases
+  */
+    .bm-menu-wrap {
+        position: fixed;
+        height: 100%;
+    }
+
+    /* General sidebar styles */
+    .bm-menu {
+        background: #fff;
+        padding: 2.5em 1.5em 0;
+        font-size: 1.15em;
+    }
+
+    /* Morph shape necessary with bubble or elastic */
+    .bm-morph-shape {
+        fill: #373a47;
+    }
+
+    /* Wrapper for item list */
+    .bm-item-list {
+        color: #b8b7ad;
+        padding: 0.8em;
+    }
+
+    /* Individual item */
+    .bm-item {
+        display: inline-block;
+    }
+
+    /* Styling of overlay */
+    .bm-overlay {
+        background: rgba(0, 0, 0, 0.3);
+    }
+    .only-mobile{
+        display: initial;
+    }
+    .only-pc{
+        display: none;
+    }
+    .bm-burger-button {
+        display: initial;
+    }
+    .only-mobile .menu-item {
+        color: #0047AB;
+        font-weight: 300;
+        font-size: 20px;
+        padding: 15px 0px;
+    }
+    .signup-page-padding {
+        padding: 43px 32px;
+    }
+    .header-logo-in-sidebar {
+        margin-bottom: 37px;
     }
 }

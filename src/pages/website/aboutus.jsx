@@ -98,7 +98,7 @@ const Page = ({ title }) => {
             <h3 className="sec-main-title">Our values</h3>
           </Col>
           <Col md={4} xs={12} className="mb-3">
-            <Slide top>
+            <Slide bottom>
               <div className="our_values_box mx-2">
                 <p className="our_values_title">Move faster</p>
                 <p className="our_values_desc">
@@ -109,7 +109,7 @@ const Page = ({ title }) => {
             </Slide>
           </Col>
           <Col md={4} xs={12} className="mb-3">
-            <Slide top>
+            <Slide bottom>
               <div className="our_values_box mx-2">
                 <p className="our_values_title">Iterate to better</p>
                 <p className="our_values_desc">
@@ -120,7 +120,7 @@ const Page = ({ title }) => {
             </Slide>
           </Col>
           <Col md={4} xs={12} className="mb-3">
-            <Slide top>
+            <Slide bottom>
               <div className="our_values_box mx-2">
                 <p className="our_values_title">Focus on flow</p>
                 <p className="our_values_desc">

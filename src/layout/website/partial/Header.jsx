@@ -16,6 +16,7 @@ const Header = () => {
             <header>
                 <Container>
                     <Row>
+                        
                         <Col md={12} className="pt-3 pb-3 bg-white">
                             <ul className="website_top_menu float-right">
                                 <li className="nav-item">
@@ -28,7 +29,7 @@ const Header = () => {
                                         </span>
                                     </Link>
                                 </li>
-                                <li className="nav-item">
+                                <li className="nav-item header-btn-res">
                                     {customer_token ?
                                         (
                                             <Link className="button-join" to={organizer_url + 'dashboard'}>
