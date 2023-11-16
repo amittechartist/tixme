@@ -24,12 +24,14 @@ ul.website_top_menu li {
 
 .footer-title {
     font-family: 'Gilroy-Bold', Arial, sans-serif;
-    font-size: 40px;
+    font-size: 70px;
     font-weight: 500;
     line-height: 40px;
     letter-spacing: 0em;
     text-align: left;
     color: #fff;
+    position: relative;
+    top: 17px;
 }
 
 footer.footer-container {
@@ -49,19 +51,19 @@ footer.footer-container {
 .footer-box-style {
     background: #fff;
     border-radius: 30px 30px 0px 0px;
-    padding: 33px 13px 62px 31px;
+    padding: 70px 0px 66px 130px;
     font-family: 'Gilroy-Regular', Arial, sans-serif;
     height: 100%;
 }
 
 .Welcome_to_text {
     font-family: 'Gilroy-Regular', Arial, sans-serif;
-    font-size: 20px;
-    font-weight: 500;
-    line-height: 24px;
+    font-size: 24px;
+    font-weight: 600;
+    line-height: 41px;
     letter-spacing: 0em;
     text-align: left;
-    color: #000;
+    color: #0000008f;
     padding-right: 39px;
 }
 
@@ -77,7 +79,7 @@ span.footer-box-style-title {
 .footer-right-box ul li {
     list-style: disc;
     margin-left: 40px;
-    font-size: 16px;
+    font-size: 25px;
     font-family: 'Gilroy-Regular', Arial, sans-serif;
     font-weight: 600;
     color: #000;
@@ -98,7 +100,7 @@ span.footer-box-style-title {
 p.banner_shop_desc {
     font-family: 'Gilroy-SemiBold', Arial, sans-serif;
     color: #000;
-    font-size: 21px;
+    font-size: 26px;
 }
 
 p.about_banner_shop_desc {
@@ -120,36 +122,45 @@ p.about_banner_shop_desc {
 }
 
 p.banner_text {
-    font-size: 60px;
-    line-height: 84px;
+    font-size: 100px;
+    line-height: 142px;
     font-weight: 800;
     font-family: 'Gilroy-Bold', Arial, sans-serif;
     color: #000;
+    letter-spacing: 2px;
+    padding-bottom: 100px;
 }
 
 .text-blue {
     color: rgba(0, 71, 171, 1);
 }
+
 .ticket-category-bg {
     position: absolute;
-    top: 10px;
-    right: 52px;
+    top: 0;
+    left: 26px;
     height: auto;
-    width: 98px;
+    width: 115px;
+    right: auto;
+}
+
+.category-section {
+    margin-top: 30px;
+    margin-left: 200px;
 }
 
 .category-items-box {
     position: relative;
-    padding: 50px 0px;
+    padding: 50px 0px 0px 0px;
 }
 
 .find-near-box {
     font-family: 'Gilroy-Bold', Arial, sans-serif;
     color: rgba(0, 71, 171, 1);
     font-weight: 600;
-    font-size: 30px;
-    padding-left: 30px;
-    padding-top: 10px;
+    font-size: 36px;
+    padding-left: 60px;
+    padding-top: 35px;
 }
 
 .find-nearby-section {
@@ -157,11 +168,12 @@ p.banner_text {
 }
 
 .find-nearby-section {
-    background-size: 100% 360px;
+    background-size: 100% 420px;
     background-repeat: no-repeat;
     background-position: unset;
-    height: 375px;
     width: auto;
+    position: relative;
+    height: 420px;
 }
 
 .count-box-title {
@@ -169,7 +181,7 @@ p.banner_text {
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
-    font-size: 48px;
+    font-size: 70px;
     font-family: 'Gilroy-Bold', Arial, sans-serif;
     font-weight: 600;
 }
@@ -179,38 +191,31 @@ p.banner_text {
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
-    font-size: 48px;
+    font-size: 67px;
     font-family: 'Gilroy-Bold', Arial, sans-serif;
     font-weight: 800;
     float: right;
-    margin-right: 33px;
+    margin-right: 0px;
 }
+
+
 
 .count-box {
     background-image: url('../../../common/icon/Rectangle5.svg');
-    background-size: contain;
+    background-size: 291px 350px;
     padding: 32px 30px;
     background-repeat: no-repeat;
     background-position: right;
-    height: 171px;
-    width: 300px;
+    height: 280px;
+    width: 359px;
 }
 
-.count-box {
-    background-image: url('../../../common/icon/Rectangle5.svg');
-    background-size: contain;
-    padding: 32px 30px;
-    background-repeat: no-repeat;
-    background-position: right;
-    height: 171px;
-    width: 220px;
-}
 
 .organizer-name {
     color: rgba(0, 71, 171, 1);
     font-family: 'Gilroy-Bold', Arial, sans-serif;
     font-weight: 600;
-    font-size: 24px;
+    font-size: 17px;
 }
 
 .event-box-style {
@@ -220,6 +225,7 @@ p.banner_text {
     box-shadow: 1px 3px 5px 0px rgba(217, 217, 217, 0.75);
     -webkit-box-shadow: 1px 3px 5px 0px rgba(217, 217, 217, 0.75);
     -moz-box-shadow: 1px 3px 5px 0px rgba(217, 217, 217, 0.75);
+    margin: 0px 40px;
 }
 
 .event-duration {
@@ -241,15 +247,15 @@ p.banner_text {
 
 .event-name span {
     color: #000;
-    font-size: 23px;
+    font-size: 21px;
     font-weight: 600;
     display: block;
-    margin-top: 23px;
+    margin-top: 4px;
     margin-bottom: 12px;
 }
 
 .event-name p {
-    font-size: 15px;
+    font-size: 12px;
     color: #000;
 }
 
@@ -270,13 +276,15 @@ p.banner_text {
 .price-section p {
     color: #000;
     font-weight: 600;
-    margin-bottom: 0px;
+    margin-bottom: -9px;
+    font-size: 23px;
 }
 
 .price {
     color: rgba(0, 71, 171, 1);
-    font-size: 23px;
+    font-size: 30px;
     font-weight: 600;
+    margin-right: 10px;
 }
 
 .cut-price {
@@ -294,7 +302,7 @@ p.banner_text {
 
 img.ticket-bg {
     width: auto;
-    height: 70px;
+    height: 90px;
 }
 
 .event-image {
@@ -309,6 +317,8 @@ img.ticket-bg {
     position: absolute;
     left: 10px;
     top: 13px;
+    font-size: 24px;
+    font-weight: 600;
 }
 
 .event-image-part {
@@ -318,7 +328,21 @@ img.ticket-bg {
 .on-img-date {
     position: absolute;
     bottom: -4px;
-    right: 10px;
+    right: 24px;
+}
+
+span.on-img-date img {
+    height: auto;
+    width: 35px;
+    margin-right: 8px;
+}
+
+span.on-img-date-val {
+    font-weight: 600;
+    color: #0047ab;
+    font-size: 22px;
+    position: relative;
+    top: 4px;
 }
 
 .event-title {
@@ -449,7 +473,7 @@ p.time-box-date {
 }
 
 .font-13 {
-    font-size: 13px;
+    font-size: 20px;
 }
 
 p.Ticket-title {
@@ -515,10 +539,13 @@ p.Ticket-title {
 }
 
 .ticket-price-area-bg {
-    background-size: contain;
+    background-size: 100% 389px;
     background-repeat: no-repeat;
     background-position: bottom;
     overflow: hidden;
+    padding-bottom: 33px;
+    padding-left: 20px;
+    padding-right: 10px;
 }
 
 .subsacribe-box {
@@ -598,7 +625,7 @@ select.theme-dropdown {
     border-radius: 11px;
     margin-right: 20px;
     padding-left: 9px;
-    background: #ffffff !important;
+    background-color: #ffffff !important;
     color: #6495ED;
     position: relative;
 }
@@ -617,9 +644,11 @@ input.theme-input {
 input.theme-input::placeholder {
     color: #6495ED;
 }
+
 .theme-textarea-custome::placeholder {
     color: #6495ED;
 }
+
 .theme-input-custome {
     border: 1px solid #B8B9B9;
     height: 45px;
@@ -635,6 +664,7 @@ input.theme-input::placeholder {
     color: #6495ED;
 }
 
+
 .event-list-bg {
     background-image: url('../../../common/icon/eventhomebg.png');
 }
@@ -642,25 +672,25 @@ input.theme-input::placeholder {
 .event-list-bg {
     background-position: left;
     background-size: 100% 100%;
-    height: 1437px;
+    height: 1760px;
     background-repeat: no-repeat;
-    padding-top: 93px;
+    padding-top: 180px;
     position: relative;
 }
 
 .event-title-home img {
     height: auto;
-    width: 8px;
+    width: 21px;
     margin-right: 5px;
 }
 
 .event-title-home {
     color: #0047AB;
     font-weight: 600;
-    font-size: 29px;
+    font-size: 46px;
     position: absolute;
-    top: 13px;
-    left: 63px;
+    top: 4px;
+    left: 114px;
 }
 
 .left-footer-logo-box {
@@ -693,7 +723,11 @@ input.theme-input::placeholder {
 }
 
 .login-area {
-    background: #F1F2F4;
+    background: #fff;
+}
+
+.signup-area {
+    background: #f9f9f9;
 }
 
 .signup-page-btn {
@@ -804,7 +838,7 @@ h3.title-banner-h3 {
 .our_values_title {
     color: #0047AB;
     font-weight: 600;
-    font-size: 28px;
+    font-size: 45px;
     margin-bottom: 0;
     /* border-bottom: 1px solid #6495ED; */
 }
@@ -812,14 +846,16 @@ h3.title-banner-h3 {
 p.our_values_desc {
     color: #000;
     height: 110px;
+    font-size: 21px;
 }
 
 h3.sec-main-title {
-    font-size: 35px;
+    font-size: 59px;
     color: #0047ab;
     margin-left: 10px;
     margin-bottom: 25px;
     margin-top: 30px;
+    font-weight: 600;
 }
 
 img.about2 {
@@ -857,7 +893,7 @@ img.about2 {
 p.about_banner_text {
     font-weight: 400;
     color: #000;
-    font-size: 63px;
+    font-size: 72px;
     line-height: 97px;
     padding-right: 30px;
 }
@@ -867,9 +903,9 @@ p.about_banner_text {
 }
 
 p.about_banner_short_text {
-    padding-left: 252px;
+    padding-left: 182px;
     color: #000;
-    font-size: 15px;
+    font-size: 23px;
     position: relative;
     top: 46px;
     right: 41px;
@@ -877,16 +913,16 @@ p.about_banner_short_text {
 
 img.about11 {
     height: auto;
-    width: 648px;
+    width: 803px;
     border-radius: 26px;
     position: absolute;
-    bottom: -191px;
+    top: 160px;
     left: 0;
 }
 
 img.about2 {
     height: auto;
-    width: 400px;
+    width: 600px;
     border-radius: 26px;
 }
 
@@ -1017,15 +1053,14 @@ h4.contact-title {
     border: 2px solid transparent;
 }
 
-.banner_text .react-reveal{
+.banner_text .react-reveal {
     display: inline;
 }
-.banner_shop_desc .react-reveal{
+
+.banner_shop_desc .react-reveal {
     display: inline;
 }
-.category-section {
-    margin: -60px 13px 0px 80px;
-}
+
 p.contact-desc {
     font-size: 15px;
 }
@@ -1034,52 +1069,158 @@ p.contact-desc {
 
 @keyframes slideIn {
     from {
-      left: 0;
+        left: 0;
     }
+
     to {
-      left: -50px;
+        left: -50px;
     }
-  }
-  @keyframes slideOut {
+}
+
+@keyframes slideOut {
     from {
-      left: -50px;
+        left: -50px;
     }
+
     to {
-      left: 0;
+        left: 0;
     }
-  }
+}
 
 .button-join:hover .btn-b,
 .button-join:hover .btn-c {
     position: relative;
-  animation: slideIn 0.3s ease forwards;
+    animation: slideIn 0.3s ease forwards;
 }
+
 .button-join:not(:hover) .btn-b,
 .button-join:not(:hover) .btn-c {
     position: relative;
-  animation: slideOut 0.3s ease forwards;
+    animation: slideOut 0.3s ease forwards;
 }
-.contact-2{
+
+.contact-2 {
     padding: 0px 30px 0px 10px;
 }
-.contact-1{
+
+.contact-1 {
     padding: 0px 10px 0px 30px;
 }
-.contact-3{
+
+.contact-3 {
     padding: 0px 30px;
 }
-.contact-4{
+
+.contact-4 {
     padding: 0px 30px;
 }
-.contact-5{
+
+.contact-5 {
     padding: 10px 30px;
 }
+
 .Want-to-receive span {
     display: block;
 }
-.only-mobile{
+
+.only-mobile {
     display: none;
 }
+
 .bm-burger-button {
     display: none;
+}
+
+.rectangle_bg {
+    position: absolute;
+    left: 0;
+    z-index: 0;
+    width: -webkit-fill-available;
+    top: 25px;
+    margin: 0px 50px;
+}
+
+.website_top_menu {
+    position: relative;
+}
+
+.header-logo {
+    position: relative;
+    left: 144px;
+    height: auto;
+    width: 250px;
+    top: -43px;
+}
+
+.container-fluid {
+    padding-left: 70px;
+    padding-right: 70px;
+}
+
+.website_top_menu .nav-item {
+    font-size: 20px;
+    font-weight: 500;
+}
+
+.home_banner {
+    padding: 0px 100px;
+}
+
+.Find-Near-form {
+    margin: 15px 52px 0px 52px;
+}
+
+.event-box-mobile {
+    margin: 0px 100px;
+}
+
+.organizer-by {
+    font-size: 12px;
+}
+
+.location-name {
+    position: relative;
+    left: 30px;
+    top: 12px;
+}
+
+.partner-slider img {
+    height: auto;
+    width: 201px;
+    margin: 0px 70px;
+}
+
+.content-data {
+    position: relative;
+    z-index: 1;
+}
+
+.content-data-event {
+    padding: 0px 128px;
+}
+
+.content-data-about {
+    padding: 0px 140px;
+}
+
+.dropdown-custome {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url('../../../common/icon/select-area.png') !important;
+    background-size: 14px; /* Adjust the size of the icon as needed */
+    background-repeat: no-repeat;
+    background-position: right center;
+    padding-right: 20px; /* Adjust the padding to make room for the icon */
+  }
+
+  .dropdown-custome::-ms-expand {
+    display: none; /* Remove the default arrow in IE */
+  }
+  p.category-title {
+    font-weight: 600;
+    color: #0047ab;
+    font-size: 19px;
+    position: relative;
+    right: 31px;
 }

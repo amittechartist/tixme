@@ -20,7 +20,7 @@ const Page = ({ title }) => {
     }
   };
   return (
-    <>
+    <div className="content-data">
       <Container>
         <Row>
         <BannerComponent title={title}/>
@@ -220,7 +220,7 @@ const Page = ({ title }) => {
           </Col>
         </Row>
       </Container>
-    </>
+    </div>
   );
 };
 export default Page;

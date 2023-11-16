@@ -7,6 +7,7 @@
     p.banner_text {
         font-size: 23px;
         line-height: 38px;
+        padding-bottom: 0px;
     }
 
     .find-nearby-section {
@@ -14,6 +15,8 @@
         border: 1px solid #b9d1f5;
         border-radius: 9px;
         height: auto;
+        padding-left: 17px;
+        padding-top: 16px;
     }
 
     select.theme-dropdown {
@@ -43,9 +46,11 @@
     }
 
     .event-title-home img {
-        width: 24px;
+        width: 18px;
     }
-
+    .event-box-mobile {
+        margin: 0px 00px;
+    }
     .event-title-home {
         font-size: 46px;
         position: relative;
@@ -92,15 +97,19 @@
     }
 
     .count-box {
-        padding: 20px 16px;
-        width: 150px;
-        height: 136px;
+        padding: 44px 30px;
+        width: auto;
+        height: auto;
     }
 
     .count-box-title {
         font-size: 30px;
+        position: relative;
+        top: -18px;
     }
-
+    .footer-right-box ul li {
+        font-size: 14px;
+    }
     .count-box-count {
         font-size: 29px;
         margin-right: -7px;
@@ -344,6 +353,7 @@
         border-radius: 26px;
         position: relative;
         bottom: inherit;
+        top: 0;
     }
 
     p.about_banner_short_text {
@@ -530,5 +540,81 @@
     }
     .header-logo-in-sidebar {
         margin-bottom: 37px;
+    }
+    .rectangle_bg{
+        display: none;
+    }
+    .container-fluid {
+        padding-left: 0px;
+        padding-right: 0px;
+    }
+    .home_banner {
+        padding: 0px 20px;
+    }
+    .container-fluid {
+        padding-left: 10px !important;
+        padding-right: 10px !important;
+    }
+    img.ticket-bg {
+        width: auto;
+        height: 60px;
+    }
+    .ticket-category-bg {
+        top: 9px;
+        left: 19px;
+        height: auto;
+        width: 72px;
+        right: auto;
+    }
+    .find-near-box {
+        font-size: 26px;
+        padding-left: 45px;
+        padding-top: 18px;
+        
+    }
+    .Find-Near-form {
+        margin: 16px 34px 0px 34px;
+    }
+    img.footer-star-icon {
+        height: auto;
+        width: 45px;
+    }
+    .footer-title {
+        top: 1px;
+    }
+    .content-data-event {
+        padding: 0px 10px;
+    }
+    .price-section p {
+        font-size: 15px;
+    }
+    .ticket-price-area-bg {
+        background-position: 0px 36px;
+    }
+    .bg-style-white {
+        font-size: 12px;
+        padding: 9px 12px !important;
+    }
+    .content-data-about {
+        padding: 0px 10px;
+    }
+    .our_values_title {
+        font-size: 30px;
+    }
+    .about2_box p {
+        padding-right: 0;
+        font-size: 14px;
+        margin-top: 0;
+    }
+    h3.sec-main-title {
+        font-size: 51px;
+        color: #0047ab;
+        margin-left: 10px;
+        margin-bottom: 4px;
+        margin-top: 0;
+        font-weight: 600;
+    }
+    p.our_values_desc {
+        font-size: 15px;
     }
 }

@@ -2,7 +2,8 @@ import React from "react";
 import Eventlogo from "../../common/icon/eventlogo.svg";
 import LocationIcon from "../../common/icon/location.svg";
 import MailIcon from "../../common/icon/mail.svg";
-const Type = ({ id }) => {
+const Type = ({ data }) => {
+  console.log(data);
   return (
     <div className="organised-by-box eventpage-box-style">
       <div className="organizer-name-sec d-flex align-items-center px-2 py-2">

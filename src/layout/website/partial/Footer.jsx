@@ -55,13 +55,13 @@ const Footer = () => {
             </Container>
             <footer className="footer-container">
                 <div className="footer-head">
-                    <Container>
+                    <Container fluid>
                         <Row className="mb-5">
                             <Col md={12} className="">
                                 <ul className="website_top_menu website_top_menu-footer text-center ">
                                     <li className="nav-item">
                                         <span className="">
-                                            <img src={Whitestart} alt="" /> <span className="footer-title">Ready to host events ?</span>
+                                            <img src={Whitestart} className="footer-star-icon" alt="" /> <span className="footer-title">Ready to host events ?</span>
                                         </span>
                                     </li>
                                     <li className="nav-item">
@@ -86,7 +86,7 @@ const Footer = () => {
                             </Col>
                         </Row>
                     </Container>
-                    <Container>
+                    <Container fluid>
                         <Row className="footer-bottom-container">
                             <Col className="left-footer-logo-box" md={5}>
                                 <div className="footer-left-box footer-box-style">

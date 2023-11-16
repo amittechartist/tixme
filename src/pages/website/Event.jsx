@@ -22,9 +22,9 @@ import Slide from "react-reveal/Slide";
 import CountUp from "react-countup";
 const Page = ({ title }) => {
   return (
-    <>
+    <div className="content-data content-data-event">
       <div className="event-page-header mt-5 mb-5">
-        <Container>
+        <Container fluid>
           <div className="mt-5">
             <Flip>
               <span className="event-category-title">NIGHTLIFE</span>
@@ -94,9 +94,9 @@ const Page = ({ title }) => {
         </Container>
       </div>
       <div className="event-desc">
-        <Container>
+        <Container fluid>
           <Row>
-            <Col md={8}>
+            <Col md={9}>
               <div className="desc-sec">
                 <span className="sec-title">
                   <Fade bottom>Description</Fade>
@@ -379,7 +379,7 @@ const Page = ({ title }) => {
                 </Col>
               </Row>
             </Col>
-            <Col md={4}>
+            <Col md={3}>
               <div className="start-in-box eventpage-box-style mb-5">
                 <div className="right-box-title">
                   <p><Flip left cascade>Starts In</Flip></p>
@@ -575,11 +575,11 @@ const Page = ({ title }) => {
           </Row>
         </Container>
       </div>
-      <div className="event-category-section mb-5">
-        <Container className="">
+      <div className="event-category-section mb-5 in-event-page">
+        <Container fluid className="">
           <Row className="event-box-mobile">
             <Col md={4} className="mb-3">
-            <Flip left>
+            <Fade bottom>
               <div className="event-box-style">
                 <div className="event-image-part">
                   <img className="event-image" src={Eventimg} alt="" />
@@ -651,10 +651,10 @@ const Page = ({ title }) => {
                   </Row>
                 </div>
               </div>
-              </Flip>
+              </Fade>
             </Col>
             <Col md={4} className="mb-3">
-            <Flip left>
+            <Fade bottom>
               <div className="event-box-style">
                 <div className="event-image-part">
                   <img className="event-image" src={Eventimg} alt="" />
@@ -726,10 +726,10 @@ const Page = ({ title }) => {
                   </Row>
                 </div>
               </div>
-              </Flip>
+              </Fade>
             </Col>
             <Col md={4} className="mb-3">
-                <Flip left>
+                <Fade bottom>
               <div className="event-box-style">
                 <div className="event-image-part">
                   <img className="event-image" src={Eventimg} alt="" />
@@ -801,12 +801,12 @@ const Page = ({ title }) => {
                   </Row>
                 </div>
               </div>
-              </Flip>
+              </Fade>
             </Col>
           </Row>
         </Container>
       </div>
-    </>
+    </div>
   );
 };
 export default Page;

@@ -3,9 +3,10 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import LocationsIcon from '../../../common/icon/locations.svg';
-import Locationstart from '../../../common/icon/locationstart.svg';
+import Locationstart from '../../../common/icon/whitestart.svg';
 import PersonIcon from '../../../common/icon/person 1.svg';
 import AppLogo from '../../../common/logo.svg';
+import Rectangle from '../../../common/image/Rectangle.png';
 import { Link } from "react-router-dom";
 import Sidebar from './Sidebar'
 import { app_url, organizer_url } from '../../../common/Helpers';
@@ -14,18 +15,22 @@ const Header = () => {
     return (
         <>
             <header>
-                <Container>
-                    <Row>
-                        
+                <Container fluid className="rectangle_bg_pos">
+                    <Row className="">
+                        <Col md={12}>
+                            <img className='rectangle_bg' src={Rectangle} alt="" />
+                        </Col>
                         <Col md={12} className="pt-3 pb-3 bg-white">
                             <ul className="website_top_menu float-right">
                                 <li className="nav-item">
                                     <Link to={app_url}><img className="header-logo mobile-screen" src={AppLogo} /></Link>
                                 </li>
                                 <li className="nav-item">
-                                    <Link className="button-border" to={'/'}>
+                                    <Link className="button-join" to={organizer_url + 'dashboard'}>
                                         <span>
-                                            <img src={LocationsIcon} /> Location <img src={Locationstart} />
+                                            <span className="bg-style btn-a"><img height={30} width={30} src={Locationstart} /></span>
+                                            <span className="bg-style btn-b">Location</span>
+                                            <span className="bg-style btn-c"><img height={30} width={30} src={Locationstart} /></span>
                                         </span>
                                     </Link>
                                 </li>
@@ -63,7 +68,7 @@ const Header = () => {
                                 </Link>
                             </div>
                         </Col>
-                        <Sidebar />
+                        <Sidebar className='header-sidebar-style' />
                     </Row>
                 </Container>
             </header>

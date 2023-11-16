@@ -12,10 +12,10 @@ import Zoom from "react-reveal/Zoom";
 import Slide from "react-reveal/Slide";
 const Page = ({ title }) => {
   return (
-    <>
-      <Container>
+    <div className="content-data content-data-about">
+      <Container fluid>
         <Row className="about_top_section">
-          <Col md={5}>
+          <Col md={7}>
             <Tada>
               <img src={LogoIcon} className="web-icon-about" alt="" />
             </Tada>
@@ -23,7 +23,7 @@ const Page = ({ title }) => {
               <img className="about11" src={about11} alt="" />
             </Zoom>
           </Col>
-          <Col md={7}>
+          <Col md={5}>
             <Slide top cascade>
               <p className="about_banner_shop_desc">
                 <span className="bullet-point"></span> Meet Cut the Code
@@ -35,12 +35,14 @@ const Page = ({ title }) => {
               </p>
             </Slide>
             <Slide top cascade>
-              <p className="about_banner_short_text">
-                The digital world? It changes fast. Keeping up with it takes
-                time and knowledge that not all brands have. But that all of
-                them need. We believe that being at the forefront starts with a
-                different approach to digital creation.
-              </p>
+              <div>
+                <p className="about_banner_short_text">
+                  The digital world? It changes fast. Keeping up with it takes
+                  time and knowledge that not all brands have. But that all of
+                  them need. We believe that being at the forefront starts with a
+                  different approach to digital creation.
+                </p>
+              </div>
             </Slide>
           </Col>
         </Row>
@@ -48,11 +50,13 @@ const Page = ({ title }) => {
           <Col md={12} className="my-5">
             <div className="As_a_leading_sec">
               <Slide bottom cascade>
-                <h3 className="mb-5">
-                  As a leading no-code agency, we’re here to help brands unlock
-                  the power of no-code through digital creation. Move faster,
-                  build smarter, scale more, code less.
-                </h3>
+                <div>
+                  <h3 className="mb-5">
+                    As a leading no-code agency, we’re here to help brands unlock
+                    the power of no-code through digital creation. Move faster,
+                    build smarter, scale more, code less.
+                  </h3>
+                </div>
               </Slide>
               <Link className="button-join" to={"/"}>
                 <span>
@@ -77,18 +81,21 @@ const Page = ({ title }) => {
           <Col md={7}>
             <div className="about2_box">
               <Slide bottom cascade>
-                <h3>Cutting the complex to drive progress</h3>
+                <div><h3>Cutting the complex to drive progress</h3></div>
               </Slide>
               <Slide bottom cascade>
-                <p>
-                  By simplifying the process of building for the web, we have
-                  more room for the strategic and creative stuff. Producing
-                  beautiful, scalable projects designed to bring our clients the
-                  most value. Our approach is to always strive for more of the
-                  new, and less of the same. Always open to change, and never
-                  closed off to new possibilities. That’s the mindset behind
-                  everything that we do.
-                </p>
+                <div>
+
+                  <p>
+                    By simplifying the process of building for the web, we have
+                    more room for the strategic and creative stuff. Producing
+                    beautiful, scalable projects designed to bring our clients the
+                    most value. Our approach is to always strive for more of the
+                    new, and less of the same. Always open to change, and never
+                    closed off to new possibilities. That’s the mindset behind
+                    everything that we do.
+                  </p>
+                </div>
               </Slide>
             </div>
           </Col>
@@ -132,7 +139,7 @@ const Page = ({ title }) => {
           </Col>
         </Row>
       </Container>
-    </>
+    </div>
   );
 };
 export default Page;
