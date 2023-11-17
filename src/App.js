@@ -12,10 +12,7 @@ import PendingOrganizer from './pages/admin/organizer/PendingOrganizer';
 import AdminLayout from './layout/admin/Layout'
 // Organizer Admin
 import Dashboard from './pages/organizer/Dashboard';
-import EventType from './pages/organizer/Event/Type';
-import EventDetails from './pages/organizer/Event/EventDetails';
-import EventPhotos from './pages/organizer/Event/Photo';
-import EventBasicInfo from './pages/organizer/Event/BasicInfo';
+import EventType from './pages/organizer/Event/EventCreateForm';
 import OrganizerLayout from './layout/organizer/Layout'
 // website auth
 import Signup from './pages/website/auth/Signup';
@@ -60,9 +57,6 @@ function App() {
         {/* Organizer Admin */}
         <Route path={organizer_url+'dashboard'} element={<OrganizerLayout> <Dashboard title={'dashboard'} /> </OrganizerLayout>} />
         <Route path={organizer_url+'event/add-event'} element={<OrganizerLayout> <EventType title={'Create new event'} /> </OrganizerLayout>} />
-        <Route path={organizer_url+'event/add-event-basic-info'} element={<OrganizerLayout> <EventBasicInfo title={'Basic Info'} /> </OrganizerLayout>} />
-        <Route path={organizer_url+'event/add-event-details'} element={<OrganizerLayout> <EventDetails title={'Event Details'} /> </OrganizerLayout>} />        
-        <Route path={organizer_url+'event/add-event-photos'} element={<OrganizerLayout> <EventPhotos title={'Photos'} /> </OrganizerLayout>} />        
         {/* Admin */}
         <Route path={admin_url+'dashboard'} element={<AdminLayout> <AdminDashboard title={'dashboard'} /> </AdminLayout>} />
         <Route path={admin_url+'add-category'} element={<AdminLayout> <AddCategory title={'Add Category'} /> </AdminLayout>} />

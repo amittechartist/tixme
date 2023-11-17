@@ -41,6 +41,16 @@ const Home = ({ title }) => {
     cssEase: "linear",
     responsive: [
       {
+        breakpoint: 1300,
+        settings: {
+          slidesToShow: 4,
+          slidesToScroll: 1,
+          infinite: true,
+          speed: 1000,
+          cssEase: "linear",
+        }
+      },
+      {
         breakpoint: 1024,
         settings: {
           slidesToShow: 3,
@@ -132,7 +142,7 @@ const Home = ({ title }) => {
                   <select name="" id="" className="theme-dropdown dropdown-custome">
                     <option value="">Category</option>
                   </select>
-                  <select name="" id="" className="theme-dropdown">
+                  <select name="" id="" className="theme-dropdown dropdown-custome">
                     <option value="">Location</option>
                   </select>
                   <input

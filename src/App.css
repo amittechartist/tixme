@@ -301,7 +301,32 @@ p.price-title {
 p.no_ticket_added {
   color: #0047ab;
   font-size: 27px;
-  border: 1px solid #00000024;
   border-radius: 12px;
   padding: 18px 0px;
+}
+.no-data-found {
+  border: 1px solid #00000024;
+  border-radius: 13px;
+}
+
+.flatpickr-day.selected, .flatpickr-day.startRange, .flatpickr-day.endRange, .flatpickr-day.selected.inRange, .flatpickr-day.startRange.inRange, .flatpickr-day.endRange.inRange, .flatpickr-day.selected:focus, .flatpickr-day.startRange:focus, .flatpickr-day.endRange:focus, .flatpickr-day.selected:hover, .flatpickr-day.startRange:hover, .flatpickr-day.endRange:hover, .flatpickr-day.selected.prevMonthDay, .flatpickr-day.startRange.prevMonthDay, .flatpickr-day.endRange.prevMonthDay, .flatpickr-day.selected.nextMonthDay, .flatpickr-day.startRange.nextMonthDay, .flatpickr-day.endRange.nextMonthDay {
+  background: #0047ab !important;
+  border-color: #0047ab !important;
+}
+.flatpickr-weekdays {
+  background: #0047ab !important;
+}
+span.flatpickr-weekday {
+  background: #0047ab !important;
+  color: #fff !important;
+}
+.flatpickr-months .flatpickr-month {
+  background: #0047ab !important;
+}
+.flatpickr-current-month .flatpickr-monthDropdown-months {
+  appearance: menulist;
+  background: #0047ab !important;
+}
+.flatpickr-current-month .flatpickr-monthDropdown-months .flatpickr-monthDropdown-month {
+  background-color: #0047ab !important;
 }

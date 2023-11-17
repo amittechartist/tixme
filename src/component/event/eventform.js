@@ -14,9 +14,13 @@ import { Button, Col, Row } from "react-bootstrap";
 import Card from 'react-bootstrap/Card';
 import { Link } from "react-router-dom";
 import toast from 'react-hot-toast';
+import Swal from 'sweetalert2';
+import withReactContent from 'sweetalert2-react-content';
 import Select from 'react-select'
 import Flatpickr from "react-flatpickr";
 import "flatpickr/dist/themes/material_green.css";
+import Lottie from "lottie-react";
+import TicketLotte from '../../lotte/ticketanimation.json';
 import { organizer_url, apiurl, get_date_time } from '../../common/Helpers';
 import {
     Modal,
@@ -26,7 +30,9 @@ import {
 } from 'reactstrap'
 
 const Type = ({ title }) => {
+    const MySwal = withReactContent(Swal);
     const [Loader, setLoader] = useState(false);
+    const [Apiloader, setApiloader] = useState(false);
     const [Ticketshow, setTicketshow] = useState(false);
     const [FormSection, setFormSection] = useState(1);
     const [Eventtype, setEventtype] = useState();
@@ -67,7 +73,54 @@ const Type = ({ title }) => {
     const [Pricedisable, setPricedisable] = useState(false);
 
     const [EditId, setEditId] = useState();
+    const lottewidth = {
+        width: '100%',
+        height: '200px'
+    }
+    function CheckDelete(editid, pricename) {
+        MySwal.fire({
+            title: 'Are you sure you want to remove?',
+            showDenyButton: true,
+            showCancelButton: false,
+            confirmButtonText: 'Yes',
+        }).then((result) => {
+            /* Read more about isConfirmed, isDenied below */
+            if (result.isConfirmed) {
+                TicketDelete(editid, pricename)
+            } else if (result.isDenied) {
 
+            }
+        })
+    }
+    const TicketDelete = async (editid, pricename) => {
+        try {
+            const requestData = {
+                updateid: editid,
+                nameToRemove: pricename
+            };
+            fetch(apiurl + 'event/remove/price', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json', // Set the Content-Type header to JSON
+                },
+                body: JSON.stringify(requestData),
+            })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success == true) {
+                        toast.success('Removed successfully');
+                        fetchAllTicket();
+                    } else {
+
+                    }
+                })
+                .catch(error => {
+                    console.error('Insert error:', error);
+                });
+        } catch (error) {
+            console.error('Login api error:', error);
+        }
+    }
     var check_eventcreateid = localStorage.getItem('eventcreateid');
     var Editid = '';
     if (check_eventcreateid !== null) {
@@ -136,7 +189,6 @@ const Type = ({ title }) => {
     function CheckEventDesc() {
         setFormSection(4)
     }
-    console.log("updategoing", Editid);
     const HandelUpdatedetails = async (updateid) => {
 
     }
@@ -306,6 +358,7 @@ const Type = ({ title }) => {
         try {
             var check_eventcreateid = localStorage.getItem('eventcreateid');
             if (check_eventcreateid !== null) {
+                setApiloader(true);
                 const requestData = {
                     updateid: check_eventcreateid
                 };
@@ -318,14 +371,23 @@ const Type = ({ title }) => {
                 })
                     .then(response => response.json())
                     .then(data => {
+
                         if (data.success == true) {
                             const fetchdata = data.data.allprice;
                             setTicketList(fetchdata);
-                            setIsEventTicket(false);
+                            setApiloader(false);
+                            if (fetchdata.length > 0) {
+                                setIsEventTicket(false);
+                            } else {
+                                setIsEventTicket(true);
+                            }
                         }
                     })
                     .catch(error => {
                         console.error('Insert error:', error);
+
+                        setApiloader(false);
+
                     });
             }
         } catch (error) {
@@ -334,6 +396,18 @@ const Type = ({ title }) => {
     }
     const handelCreateTicket = async (updateid) => {
         try {
+            if (!Tickettype) {
+                return toast.error('Select ticket type');
+            }
+            if (!Ticketname) {
+                return toast.error('Enter ticket name');
+            }
+            if (!Quantity) {
+                return toast.error('Enter ticket quantity');
+            }
+            if (!Price) {
+                return toast.error('Enter ticket price');
+            }
             const requestData = {
                 updateid: updateid,
                 ticket_type: Tickettype,
@@ -423,12 +497,21 @@ const Type = ({ title }) => {
             <Row className="pb-2">
                 <Col md={2} className="event-create-nav-bg">
                     <div className="event-create-nav">
-                        <ul aria-expanded="false">
-                            <li className={FormSection === 1 ? "active-event-form" : ''}><p variant="link" className='text-black'>Add New</p></li>
-                            <li className={FormSection === 2 ? "active-event-form" : ''}><p variant="link" className='text-black'>Basic Info</p></li>
-                            <li className={FormSection === 3 ? "active-event-form" : ''}><p variant="link" className='text-black'>Details</p></li>
-                            <li onClick={() => setFormSection(4)} className={FormSection === 4 ? "active-event-form" : ''}><p variant="link" className='text-black'>Price</p></li>
-                        </ul>
+                        {Editid ? (
+                            <ul aria-expanded="false">
+                                <li className={FormSection === 1 ? "active-event-form" : ''}><p variant="link" className='text-black'>Add New</p></li>
+                                <li onClick={() => setFormSection(2)} className={FormSection === 2 ? "active-event-form" : ''}><p variant="link" className='text-black'>Basic Info</p></li>
+                                <li onClick={() => setFormSection(3)} className={FormSection === 3 ? "active-event-form" : ''}><p variant="link" className='text-black'>Details</p></li>
+                                <li onClick={() => setFormSection(4)} className={FormSection === 4 ? "active-event-form" : ''}><p variant="link" className='text-black'>Price</p></li>
+                            </ul>
+                        ) : (
+                            <ul aria-expanded="false">
+                                <li className={FormSection === 1 ? "active-event-form" : ''}><p variant="link" className='text-black'>Add New</p></li>
+                                <li className={FormSection === 2 ? "active-event-form" : ''}><p variant="link" className='text-black'>Basic Info</p></li>
+                                <li className={FormSection === 3 ? "active-event-form" : ''}><p variant="link" className='text-black'>Details</p></li>
+                                <li className={FormSection === 4 ? "active-event-form" : ''}><p variant="link" className='text-black'>Price</p></li>
+                            </ul>
+                        )}
                     </div>
                 </Col>
                 <Col md={10}>
@@ -489,6 +572,7 @@ const Type = ({ title }) => {
                                         <input type="text" class="form-control input-default " onChange={(e) => setDisplayname(e.target.value)} placeholder="Enter Event Display Name" />
                                     </div>
                                     <div className="col-md-2 mt-4">
+                                        <label htmlFor="" className="text-black">Select Type</label>
                                         <Select
                                             isClearable={false}
                                             options={EventtypeCategoryOption}
@@ -499,6 +583,7 @@ const Type = ({ title }) => {
                                         />
                                     </div>
                                     <div className="col-md-2 mt-4">
+                                        <label htmlFor="" className="text-black">Select Category</label>
                                         <Select
                                             isClearable={false}
                                             options={CategoryOption}
@@ -754,46 +839,62 @@ const Type = ({ title }) => {
                                             </span>
                                         </Button>
                                     </Col>
-                                    {IsEventTicket ? (
-                                        <Col md={12} className="mt-5 text-center">
-                                            <p className="no_ticket_added">No ticket added !</p>
-                                        </Col>
+                                    {Apiloader ? (
+                                        <div className="linear-background w-100"> </div>
                                     ) : (
-                                        <Col md={12} className="mt-5">
-                                            <div className="price-list-box">
-                                                {TicketList.map((item, index) => (
-                                                    <Row className="">
-                                                        <Col md={3}>
-                                                            <div>
-                                                                <p className="price-title">
-                                                                    {item.name}
-                                                                </p>
-                                                                <p className="price-section-box">
-                                                                    <span class="badge light badge-success">On sale</span> <span className="devide-dot">|</span> <span className="ticket-date">{item.startdate} at {item.starttime}</span>
-                                                                </p>
-                                                            </div>
-                                                        </Col>
-                                                        <Col md={3}>
-                                                            <p className="ticket-sold-count">Sold : 0 / {item.quantity}</p>
-                                                        </Col>
-                                                        <Col md={2}>
-                                                            <p className="ticket-price-p"> $ {item.price}</p>
-                                                        </Col>
-                                                        <Col md={3}>
-                                                            <div class="dropdown">
-                                                                <button type="button" class="btn btn-success light sharp" data-bs-toggle="dropdown">
-                                                                    <svg width="20px" height="20px" viewBox="0 0 24 24" version="1.1"><g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><rect x="0" y="0" width="24" height="24" /><circle fill="#000000" cx="5" cy="12" r="2" /><circle fill="#000000" cx="12" cy="12" r="2" /><circle fill="#000000" cx="19" cy="12" r="2" /></g></svg>
-                                                                </button>
-                                                                <div class="dropdown-menu">
-                                                                    <Button variant="link" class="dropdown-item">Edit</Button>
-                                                                    <Button variant="link" class="dropdown-item">Delete</Button>
-                                                                </div>
-                                                            </div>
-                                                        </Col>
-                                                    </Row>
-                                                ))}
-                                            </div>
-                                        </Col>
+                                        <>
+                                            {
+                                                IsEventTicket ? (
+                                                    <Col md={12} className="mt-5 text-center" >
+                                                        <div className="no-data-found">
+                                                            <Lottie animationData={TicketLotte} style={lottewidth} />
+                                                            <p className="no_ticket_added">Ticket has not been added yet !</p>
+                                                        </div>
+                                                    </Col>
+                                                ) : (
+
+                                                    <Col md={12} className="mt-5">
+                                                        <div className="price-list-box">
+                                                            {TicketList.map((item, index) => (
+                                                                <Row className="">
+                                                                    <Col md={12}>
+                                                                        <p className="price-title">
+                                                                            {item.name}
+                                                                        </p>
+                                                                    </Col>
+                                                                    <Col md={1}>
+                                                                        <span class="badge light badge-success">On sale</span>
+                                                                    </Col>
+                                                                    <Col md={3}>
+                                                                        <div>
+                                                                            <p className="price-section-box" style={{marginBottom:'0px'}}>
+                                                                                <span className="devide-dot">|</span> <span className="ticket-date">{item.startdate} at {item.starttime}</span>
+                                                                            </p>
+                                                                        </div>
+                                                                    </Col>
+                                                                    <Col md={3}>
+                                                                        <p className="ticket-sold-count">Sold : 0 / {item.quantity}</p>
+                                                                    </Col>
+                                                                    <Col md={1}>
+                                                                        <p className="ticket-price-p"> $ {item.price}</p>
+                                                                    </Col>
+                                                                    <Col md={2}>
+                                                                        <div class="dropdown">
+                                                                            <button type="button" class="btn btn-success light sharp" data-bs-toggle="dropdown">
+                                                                                <svg width="20px" height="20px" viewBox="0 0 24 24" version="1.1"><g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><rect x="0" y="0" width="24" height="24" /><circle fill="#000000" cx="5" cy="12" r="2" /><circle fill="#000000" cx="12" cy="12" r="2" /><circle fill="#000000" cx="19" cy="12" r="2" /></g></svg>
+                                                                            </button>
+                                                                            <div class="dropdown-menu">
+                                                                                <Button variant="link" class="dropdown-item">Edit</Button>
+                                                                                <Button variant="link" onClick={() => CheckDelete(Editid, item.name)} class="dropdown-item">Delete</Button>
+                                                                            </div>
+                                                                        </div>
+                                                                    </Col>
+                                                                </Row>
+                                                            ))}
+                                                        </div>
+                                                    </Col>
+                                                )}
+                                        </>
                                     )}
                                     <div className="col-md-12 mt-2">
                                         <div className="button-group mt-10">
@@ -811,7 +912,7 @@ const Type = ({ title }) => {
                                             ) : (
                                                 <Button variant="link" className="button-join" onClick={HandelSubmit}>
                                                     <span>
-                                                        <span className="bg-style"><img height={30} width={30} src={whitestar} /></span><span className="bg-style bg-title-style">Submit</span>
+                                                        <span className="bg-style"><img height={30} width={30} src={whitestar} /></span><span className="bg-style bg-title-style">Complete</span>
                                                     </span>
                                                 </Button>
                                             )}
@@ -822,7 +923,7 @@ const Type = ({ title }) => {
                         </Card.Body>
                     </Card>
                 </Col>
-            </Row>
+            </Row >
             <Modal isOpen={Ticketshow} toggle={() => setTicketshow(!Ticketshow)} className='modal-dialog-centered modal-lg'>
                 <ModalHeader className='bg-transparent' toggle={() => setTicketshow(!Ticketshow)}>Create new ticket</ModalHeader>
                 <ModalBody className=''>

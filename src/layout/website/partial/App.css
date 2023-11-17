@@ -207,7 +207,7 @@ p.banner_text {
     background-repeat: no-repeat;
     background-position: right;
     height: 280px;
-    width: 359px;
+    width: 290px;
 }
 
 
@@ -672,7 +672,7 @@ input.theme-input::placeholder {
 .event-list-bg {
     background-position: left;
     background-size: 100% 100%;
-    height: 1760px;
+    height: 1520px;
     background-repeat: no-repeat;
     padding-top: 180px;
     position: relative;
@@ -690,7 +690,7 @@ input.theme-input::placeholder {
     font-size: 46px;
     position: absolute;
     top: 4px;
-    left: 114px;
+    left: 99px;
 }
 
 .left-footer-logo-box {
@@ -1146,7 +1146,7 @@ p.contact-desc {
 
 .header-logo {
     position: relative;
-    left: 144px;
+    left: 118px;
     height: auto;
     width: 250px;
     top: -43px;
@@ -1187,7 +1187,7 @@ p.contact-desc {
 .partner-slider img {
     height: auto;
     width: 201px;
-    margin: 0px 70px;
+    margin: 0px 20px;
 }
 
 .content-data {
@@ -1210,7 +1210,7 @@ p.contact-desc {
     background-image: url('../../../common/icon/select-area.png') !important;
     background-size: 14px; /* Adjust the size of the icon as needed */
     background-repeat: no-repeat;
-    background-position: right center;
+    background-position: 94% center;
     padding-right: 20px; /* Adjust the padding to make room for the icon */
   }
 
@@ -1220,7 +1220,7 @@ p.contact-desc {
   p.category-title {
     font-weight: 600;
     color: #0047ab;
-    font-size: 19px;
+    font-size: 14px;
     position: relative;
     right: 31px;
 }

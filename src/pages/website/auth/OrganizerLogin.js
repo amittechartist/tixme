@@ -35,7 +35,7 @@ const Home = ({ title }) => {
             fetch(apiurl + 'auth/organizer/login', {
                 method: 'POST',
                 headers: {
-                    'Content-Type': 'application/json', // Set the Content-Type header to JSON
+                    'Content-Type': 'application/json',
                 },
                 body: JSON.stringify(requestData),
             })
@@ -44,10 +44,11 @@ const Home = ({ title }) => {
                     setLoader(false);
                     if (data.success == true) {
                         localStorage.setItem('customerauth', data.token);
+                        localStorage.setItem('customerauth_role', data.roleid);
                         toast.success('Login successful', {
                             duration: 3000,
                         });
-                        navigate(app_url);
+                        navigate(organizer_url+'dashboard');
                     } else {
                         toast.error(data.message);
                     }

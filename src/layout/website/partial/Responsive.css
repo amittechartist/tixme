@@ -1,11 +1,21 @@
-@media only screen and (max-width: 767px) {
+@media only screen and (max-width: 900px) {
     p.banner_shop_desc {
-        font-size: 15px;
-        line-height: 25px;
+        font-size: 9px;
+        line-height: 11px;
+    }
+
+    p.category-title {
+        font-size: 9px;
+        right: 18px;
+    }
+
+    .event-title-home {
+        top: -17px;
+        left: 27px;
     }
 
     p.banner_text {
-        font-size: 23px;
+        font-size: 15px;
         line-height: 38px;
         padding-bottom: 0px;
     }
@@ -48,9 +58,32 @@
     .event-title-home img {
         width: 18px;
     }
+
+    .event-category-img {
+
+        font-size: 10px;
+    }
+
+    span.on-img-date-val {
+        top: 2px;
+    }
+
+    span.on-img-date img {
+        height: auto;
+        width: 19px;
+        margin-right: 8px;
+    }
+
+    .location-name {
+
+        left: 15px;
+        top: 7px;
+    }
+
     .event-box-mobile {
         margin: 0px 00px;
     }
+
     .event-title-home {
         font-size: 46px;
         position: relative;
@@ -70,7 +103,7 @@
     }
 
     .event-name span {
-        font-size: 21px;
+        font-size: 13px;
         margin-top: 12px;
         margin-bottom: 0;
     }
@@ -78,6 +111,24 @@
     .event-name p {
         font-size: 11px;
         margin-bottom: 0;
+    }
+
+    .More-events .ticket-price-area-bg {
+        background-position: 0px 73px;
+    }
+
+    span.on-img-date-val {
+        top: 4px;
+    }
+
+    .on-img-date {
+        right: 11px;
+    }
+
+    .More-events .event-name p {
+        font-size: 12px !important;
+        color: #000;
+        padding-bottom: 24px;
     }
 
     .location span {
@@ -97,9 +148,10 @@
     }
 
     .count-box {
-        padding: 44px 30px;
+        padding: 32px 36px;
         width: auto;
         height: auto;
+        margin-bottom: 10px;
     }
 
     .count-box-title {
@@ -107,12 +159,15 @@
         position: relative;
         top: -18px;
     }
+
     .footer-right-box ul li {
         font-size: 14px;
     }
+
     .count-box-count {
-        font-size: 29px;
+        font-size: 25px;
         margin-right: -7px;
+        margin-top: -15px;
     }
 
     .OurPartnerIcon-title {
@@ -122,12 +177,18 @@
 
     .OurPartnerIcon-title-box {
         text-align: center;
+        margin: 0px !important;
     }
 
     .partner-slider img {
         height: auto;
-        width: 69px;
+        width: 55px;
         margin-bottom: 24px;
+    }
+
+    .partner-slider img {
+
+        margin: 0px 0px !important;
     }
 
     .subsacribe-box {
@@ -142,9 +203,13 @@
     }
 
     span.Want-to-receive {
-        font-size: 13px;
+        font-size: 9px;
         line-height: 19px;
         margin-top: 25px;
+    }
+
+    .button-join .bg-style-white {
+        padding: 4px 8px !important;
     }
 
     .footer-input {
@@ -305,7 +370,7 @@
     }
 
     .category-section {
-        margin: 0px 30px;
+        margin: 0px 10px;
     }
 
     .category-box-responsive {
@@ -318,7 +383,16 @@
 
     a.button-join img {
         height: auto;
-        width: 22px;
+        width: 12px;
+    }
+
+    .mob-sc-css-head-btn {
+        margin-left: -25px;
+    }
+
+    li.nav-item.mob-sc-css-head-btn-mar {
+        margin-left: 45px;
+        margin-right: -23px;
     }
 
     .header-btn-res a.button-join img {
@@ -520,45 +594,57 @@
     .bm-overlay {
         background: rgba(0, 0, 0, 0.3);
     }
-    .only-mobile{
+
+    .only-mobile {
         display: initial;
     }
-    .only-pc{
+
+    .only-pc {
         display: none;
     }
+
     .bm-burger-button {
         display: initial;
     }
+
     .only-mobile .menu-item {
         color: #0047AB;
         font-weight: 300;
         font-size: 20px;
         padding: 15px 0px;
     }
+
     .signup-page-padding {
         padding: 43px 32px;
     }
+
     .header-logo-in-sidebar {
         margin-bottom: 37px;
     }
-    .rectangle_bg{
+
+    .rectangle_bg {
         display: none;
     }
+
     .container-fluid {
         padding-left: 0px;
         padding-right: 0px;
     }
+
     .home_banner {
         padding: 0px 20px;
     }
+
     .container-fluid {
         padding-left: 10px !important;
         padding-right: 10px !important;
     }
+
     img.ticket-bg {
         width: auto;
         height: 60px;
     }
+
     .ticket-category-bg {
         top: 9px;
         left: 19px;
@@ -566,46 +652,57 @@
         width: 72px;
         right: auto;
     }
+
     .find-near-box {
         font-size: 26px;
-        padding-left: 45px;
-        padding-top: 18px;
-        
+        padding-left: 0;
+        padding-top: 0;
     }
+
     .Find-Near-form {
-        margin: 16px 34px 0px 34px;
+        margin: 0;
     }
+
     img.footer-star-icon {
         height: auto;
         width: 45px;
     }
+
     .footer-title {
         top: 1px;
     }
+
     .content-data-event {
         padding: 0px 10px;
     }
+
     .price-section p {
-        font-size: 15px;
+        font-size: 11px;
     }
+
     .ticket-price-area-bg {
         background-position: 0px 36px;
     }
+
     .bg-style-white {
         font-size: 12px;
         padding: 9px 12px !important;
     }
+
     .content-data-about {
         padding: 0px 10px;
     }
+
     .our_values_title {
         font-size: 30px;
     }
+
     .about2_box p {
         padding-right: 0;
         font-size: 14px;
         margin-top: 0;
     }
+
     h3.sec-main-title {
         font-size: 51px;
         color: #0047ab;
@@ -614,6 +711,369 @@
         margin-top: 0;
         font-weight: 600;
     }
+
+    p.our_values_desc {
+        font-size: 15px;
+    }
+    
+}
+
+@media only screen and (max-width: 800px) and (min-width: 766px) {
+    p.banner_text {
+        font-size: 30px;
+        line-height: 42px;
+        padding-bottom: 0;
+    }
+    .category-section {
+        margin-top: 0;
+        margin-left: 65px;
+    }
+    img.ticket-bg {
+        width: auto;
+        height: 71px;
+    }
+    .ticket-category-bg {
+        top: 20px;
+        width: 76px;
+    }
+    p.category-title {
+        font-size: 10px;
+        right: 28px;
+    }
+    select.theme-dropdown {
+        width: 174px;
+        margin-bottom: 10px;
+    }
+    input.theme-input {
+        width: 171px;
+    }
+    .event-list-bg {
+        background-image: none;
+    }
+    .header-logo {
+        position: relative;
+        left: 26px;
+        height: auto;
+        width: 100px;
+        top: -4px;
+    }
+    .rectangle_bg {
+        top: 64px;
+    }
+    .home_banner {
+        padding: 0px 5px;
+    }
+    p.banner_shop_desc {
+        font-size: 18px;
+    }
+    
+    /* Position and sizing of burger button */
+    .bm-burger-button {
+        position: absolute;
+        width: 30px;
+        height: 24px;
+        right: 30px;
+        top: 23px;
+    }
+
+    /* Color/shape of burger icon bars */
+    .bm-burger-bars {
+        background: #373a47;
+    }
+
+    /* Color/shape of burger icon bars on hover*/
+    .bm-burger-bars-hover {
+        background: #a90000;
+    }
+
+    /* Position and sizing of clickable cross button */
+    .bm-cross-button {
+        height: 24px;
+        width: 24px;
+    }
+
+    /* Color/shape of close button cross */
+    .bm-cross {
+        background: #bdc3c7;
+    }
+
+    /*
+  Sidebar wrapper styles
+  Note: Beware of modifying this element as it can break the animations - you should not need to touch it in most cases
+  */
+    .bm-menu-wrap {
+        position: fixed;
+        height: 100%;
+    }
+
+    /* General sidebar styles */
+    .bm-menu {
+        background: #fff;
+        padding: 2.5em 1.5em 0;
+        font-size: 1.15em;
+    }
+
+    /* Morph shape necessary with bubble or elastic */
+    .bm-morph-shape {
+        fill: #373a47;
+    }
+
+    /* Wrapper for item list */
+    .bm-item-list {
+        color: #b8b7ad;
+        padding: 0.8em;
+    }
+
+    /* Individual item */
+    .bm-item {
+        display: inline-block;
+    }
+
+    /* Styling of overlay */
+    .bm-overlay {
+        background: rgba(0, 0, 0, 0.3);
+    }
+
+    .only-mobile {
+        display: initial;
+    }
+
+    .only-pc {
+        display: none;
+    }
+
+    .bm-burger-button {
+        display: initial;
+    }
+}
+
+@media only screen and (min-width: 1280px) and (max-width: 800px) {
+    p.banner_text {
+        font-size: 60px;
+        line-height: 94px;
+        padding-bottom: 13px;
+    }
+
+    .rectangle_bg {
+        top: 52px;
+    }
+
+    .website_top_menu .nav-item {
+        font-size: 16px;
+    }
+
+    .header-logo {
+        left: 70px;
+        width: 150px;
+        top: -6px;
+    }
+
+    p.category-title {
+        font-weight: 600;
+        color: #0047ab;
+        font-size: 14px;
+        position: relative;
+        right: 31px;
+    }
+
+    .event-box-mobile {
+        margin: 0px 20px;
+    }
+
+    .event-box-style {
+        margin: 0px 5px;
+    }
+
+    span.on-img-date img {
+        width: 23px;
+    }
+
+    span.on-img-date-val {
+        font-size: 17px;
+    }
+
+    .on-img-date {
+        right: 14px;
+    }
+
+    .event-category-img {
+        font-size: 13px;
+    }
+
+    .price-section p {
+        font-size: 16px;
+    }
+
+    .price {
+        font-size: 23px;
+    }
+
+    .event-title-home {
+        font-size: 28px;
+        top: 21px;
+        left: 57px;
+    }
+
+    .event-list-bg {
+        padding-top: 125px;
+        height: 1295px;
+    }
+
+    .count-box {
+        background-size: 100%;
+        height: 181px;
+        width: 210px;
+        background-size: 100% 100%;
+    }
+
+    .partner-slider .mx-3 {
+        margin: 5px !important;
+    }
+
+    .count-box-title {
+        font-size: 45px;
+    }
+
+    .count-box-count {
+        font-size: 39px;
+    }
+
+    .partner-slider img {
+        width: 160px;
+        margin: 0px 10px;
+    }
+
+    img.LogoIcon-footer {
+        right: -42px;
+        top: -150px;
+        height: 457px;
+    }
+
+    .Want-to-receive span {
+        display: inline;
+    }
+
+    span.Want-to-receive {
+        font-size: 30px;
+    }
+
+    .footer-title {
+        font-size: 41px;
+        top: 10px;
+    }
+
+    img.footer-star-icon {
+        height: auto;
+        width: 42px;
+    }
+
+    .footer-box-style {
+        padding: 20px 0px 60px 30px;
+    }
+
+    .footer-right-box ul li {
+        font-size: 21px;
+    }
+
+    .content-data-event {
+        padding: 0px 10px;
+    }
+
+    .eventpage-box-style {
+        padding: 14px 3px;
+    }
+
+    p.time-box-date {
+        font-size: 21px;
+        margin: 0px 8px;
+        height: 44px;
+        width: 44px;
+    }
+
+    .time-box-text {
+        font-size: 9px;
+        margin-top: 5px;
+    }
+
+    .event-page-organizer-deta.d-block {
+        font-size: 10px;
+    }
+
+    .event-page-ticket .right-box-con {
+        padding: 0px 21px;
+    }
+
+    .event-page-ticket .cart-increment-button {
+        position: relative;
+        top: -20px;
+        left: -7px;
+        width: max-content;
+    }
+
+    .event-page-ticket .d-flex {
+        display: inline-flex !important;
+    }
+
+    .event-page-ticket .event-time {
+        color: #000;
+        font-size: 10px;
+    }
+
+    .event-page-ticket .event-duration {
+        font-size: 9px !important;
+    }
+
+    .event-page-ticket .main-title {
+        font-size: 15px;
+        margin: 0px 9px;
+    }
+
+    .paynow-btn-box {
+        margin: 11px !important;
+    }
+
+    .ticket-price-area-bg {
+        background-position: 0px -13px;
+    }
+
+    img.web-icon-about {
+        top: 68px;
+        left: 30px;
+    }
+
+    p.about_banner_text {
+        font-weight: 500;
+        font-size: 34px;
+    }
+
+    p.about_banner_short_text {
+        padding-left: 26px;
+        font-size: 19px;
+    }
+
+    .As_a_leading_sec {
+        padding: 0px 50px;
+        text-align: left;
+        margin-top: 50px;
+    }
+
+    img.about2 {
+        width: 300px;
+    }
+
+    .about2_box h3 {
+        font-size: 48px;
+    }
+
+    .about2_box p {
+        padding-right: 0;
+        font-size: 14px;
+    }
+
+    .our_values_title {
+        font-size: 23px;
+    }
+
     p.our_values_desc {
         font-size: 15px;
     }

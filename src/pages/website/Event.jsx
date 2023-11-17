@@ -175,7 +175,7 @@ const Page = ({ title }) => {
               </Row>
               <Row>
                 <Col md={12}>
-                  <div className="start-in-box eventpage-box-style mb-5">
+                  <div className="start-in-box eventpage-box-style mb-5 More-events">
                     <Row>
                       <Col md={8}>
                         <div className="right-box-title">
@@ -454,7 +454,7 @@ const Page = ({ title }) => {
                   </div>
                 </div>
               </div>
-              <div className="start-in-box eventpage-box-style mb-5 my-5">
+              <div className="start-in-box eventpage-box-style mb-5 my-5 event-page-ticket">
                 <div className="right-box-title">
                   <p><Flip left cascade>Tickets</Flip></p>
                 </div>
@@ -560,7 +560,7 @@ const Page = ({ title }) => {
                   <span className="main-title">Total Price :</span>{" "}
                   <span className="float-right main-title">$ 95.00</span>
                 </div>
-                <div className="mt-5">
+                <div className="mt-5 paynow-btn-box">
                   <Link className="button-join" to={"/"}>
                     <span>
                       <span className="bg-style">

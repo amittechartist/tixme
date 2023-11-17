@@ -321,7 +321,13 @@ const Home = ({ title }) => {
                                             </div>
                                         ) : (
                                             <div className="form-group">
-                                                <Button className='signup-page-btn' onClick={HandelOrganizersignup}>Create Account</Button>
+                                                <Button variant="link" className="button-join" onClick={HandelOrganizersignup}>
+                                                    <span>
+                                                        <span className="bg-style btn-a"><img height={30} width={30} src={PersonIcon} /></span>
+                                                        <span className="bg-style btn-b">Create Account</span>
+                                                        <span className="bg-style btn-c"><img height={30} width={30} src={PersonIcon} /></span>
+                                                    </span>
+                                                </Button>
                                             </div>
                                         )}
                                     </div>
