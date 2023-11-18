@@ -42,6 +42,7 @@ const Sidebar = () => {
                                 <span className="nav-text">Event Type</span>
                             </Link>
                         </li>
+
                         <li>
                             <a class="ai-icon" href="javascript:void(0);" aria-expanded="false">
                                 <img src={EventIcon} alt="Your Logo" />
@@ -51,6 +52,12 @@ const Sidebar = () => {
                                 <li><Link className='text-black' to={admin_url + 'active-organizer'}>Active</Link></li>
                                 <li><Link className='text-black' to={admin_url + 'pending-organizer'}>Pending</Link></li>
                             </ul>
+                        </li>
+                        <li>
+                            <Link to={admin_url + 'support-tickets'} className="ai-icon" aria-expanded="false">
+                                <img src={DashboardIcon} alt="Your Logo" />
+                                <span className="nav-text">Support</span>
+                            </Link>
                         </li>
                         <li>
                             <div onClick={Logout} className="ai-icon cursor-pointer" aria-expanded="false">

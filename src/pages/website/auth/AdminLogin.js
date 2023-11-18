@@ -40,6 +40,7 @@ const Home = ({ title }) => {
                     setLoader(false);
                     if (data.success == true) {
                         localStorage.setItem('adminauth', data.token);
+                        localStorage.setItem('admin_role', 1);
                         toast.success('Login successful', {
                             duration: 3000,
                         });

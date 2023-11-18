@@ -68,7 +68,8 @@ const Home = ({ title }) => {
                 .then(data => {
                     setLoader(false);
                     if (data.success == true) {
-                        localStorage.setItem('customerauth', data.token);
+                        localStorage.setItem('organizer_roleauth', data.token);
+                        localStorage.setItem('organizer_role', 1);
                         toast.success('Login successful', {
                             duration: 3000,
                         });

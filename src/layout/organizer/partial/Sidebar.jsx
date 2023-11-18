@@ -7,27 +7,33 @@ import scannerIcon from '../../../common/icon/scanner 1.svg';
 import MenuIcon from '../../../common/icon/Menu sidebar.svg';
 import peopleIcon from '../../../common/icon/people 1.svg';
 import supportIcon from '../../../common/icon/support.svg';
-import { Link } from 'react-router-dom';
-import {organizer_url} from '../../../common/Helpers';
+import { Link, useNavigate } from 'react-router-dom';
+import { organizer_url,app_url } from '../../../common/Helpers';
 const Sidebar = () => {
+    const navigate = useNavigate();
+    function Logout() {
+        localStorage.removeItem('organizertoken');
+        localStorage.removeItem('organizer_role');
+        navigate(app_url);
+    }
     return (
         <>
             <div className="deznav">
                 <div className="deznav-scroll">
                     <ul className="metismenu" id="menu">
-                        <li><Link to={organizer_url+'dashboard'} className="ai-icon" aria-expanded="false">
+                        <li><Link to={organizer_url + 'dashboard'} className="ai-icon" aria-expanded="false">
                             <img src={DashboardIcon} alt="Your Logo" />
                             <span className="nav-text">Dashboard</span>
                         </Link>
                         </li>
                         <li>
                             <a href="javascript:void(0);" class="has-arrow ai-icon" aria-expanded="false">
-                            <img src={EventIcon} alt="Your Logo" />
+                                <img src={EventIcon} alt="Your Logo" />
                                 <span class="nav-text">Event Management</span>
                             </a>
                             <ul aria-expanded="false">
-                                <li><Link className='text-black' onClick={() => localStorage.removeItem('eventcreateid')} to={organizer_url+'event/add-event'}>Add New</Link></li>
-                                <li><Link className='text-black' to={organizer_url+'event/add-event-basic-info'}>All Event </Link></li>
+                                <li><Link className='text-black' onClick={() => localStorage.removeItem('eventcreateid')} to={organizer_url + 'event/add-event'}>Add New</Link></li>
+                                <li><Link className='text-black' to={organizer_url + 'event/add-event-basic-info'}>All Event </Link></li>
                                 {/* <li><Link className='text-black' to={organizer_url+'event/add-event-details'}>Details </Link></li>
                                 <li><Link className='text-black' to={organizer_url+'event/add-event-photos'}>Photos </Link></li> */}
                             </ul>
@@ -62,6 +68,12 @@ const Sidebar = () => {
                             <img src={supportIcon} alt="Your Logo" />
                             <span className="nav-text">Support</span>
                         </Link>
+                        </li>
+                        <li>
+                            <div onClick={Logout} className="ai-icon cursor-pointer" aria-expanded="false">
+                                <img src={DashboardIcon} alt="Your Logo" />
+                                <span className="nav-text">Logout</span>
+                            </div>
                         </li>
                     </ul>
                 </div>

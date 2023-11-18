@@ -951,31 +951,6 @@ img.web-icon-about {
     transform-style: preserve-3d;
 } */
 
-.button-join span {
-    display: inline-block;
-    transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
-}
-
-.button-join:hover .btn-a {
-    transform: scale(0);
-    opacity: 0;
-}
-
-.button-join:hover .btn-b {
-    /* transform: translateX(-39%); */
-    opacity: 1;
-}
-
-.button-join:hover .btn-c {
-    transform: scale(1);
-    transition: transform 0.3s ease-in-out;
-}
-
-.btn-c {
-    transform: scale(0);
-    transition: transform 0.3s ease-in-out;
-}
-
 .organizer-box img.organizer-dp {
     height: 100px;
     width: 100px;

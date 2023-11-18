@@ -11,7 +11,7 @@ import { Link } from "react-router-dom";
 import Sidebar from './Sidebar'
 import { app_url, organizer_url } from '../../../common/Helpers';
 const Header = () => {
-    const customer_token = localStorage.getItem('customerauth');
+    const customer_token = localStorage.getItem('organizertoken');
     return (
         <>
             <header>
@@ -26,12 +26,14 @@ const Header = () => {
                                     <Link to={app_url}><img className="header-logo mobile-screen" src={AppLogo} /></Link>
                                 </li>
                                 <li className="nav-item mob-sc-css-head-btn-mar">
-                                    <Link className="button-join" to={organizer_url + 'dashboard'}>
-                                        <span className="mob-sc-css-head-btn">
-                                            <span className="bg-style btn-a"><img height={30} width={30} src={Locationstart} /></span>
-                                            <span className="bg-style btn-b">Location</span>
-                                            <span className="bg-style btn-c"><img height={30} width={30} src={Locationstart} /></span>
-                                        </span>
+                                    <Link to={organizer_url + 'dashboard'}>
+                                        <div className="button-join">
+                                            <span className="mob-sc-css-head-btn">
+                                                <span className="bg-style btn-a"><img height={30} width={30} src={Locationstart} /></span>
+                                                <span className="bg-style btn-b">Location</span>
+                                                <span className="bg-style btn-c"><img height={30} width={30} src={Locationstart} /></span>
+                                            </span>
+                                        </div>
                                     </Link>
                                 </li>
                                 <li className="nav-item header-btn-res">

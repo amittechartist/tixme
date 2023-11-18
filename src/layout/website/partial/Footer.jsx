@@ -16,6 +16,7 @@ import CheckboxIcon from '../../../common/icon/checkbox.svg';
 import LogoIcon from '../../../common/icon/logoicon.svg';
 import { Link } from "react-router-dom";
 import Tada from "react-reveal/Tada";
+import { app_url } from '../../../common/Helpers';
 const Footer = () => {
     return (
         <>
@@ -120,6 +121,7 @@ const Footer = () => {
                                         <ul>
                                             <li>Browse Online Events</li>
                                             <li>Get the Eventbrite App</li>
+                                            <li><Link to={app_url+'raise-ticket'}>Customer support</Link></li>
                                         </ul>
                                     </Col>
                                     <Col md={6}>
