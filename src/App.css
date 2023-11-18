@@ -388,3 +388,6 @@ span.flatpickr-weekday {
   transform: scale(0);
   transition: transform 0.3s ease-in-out;
 }
+.overflow-y-scroll{
+  overflow-y: auto !important;
+}

@@ -157,6 +157,94 @@ const Dashboard = ({ title }) => {
                                     <h4 className="text-black">Message</h4>
                                     <p class="mb-0">{Message}</p>
                                 </Col>
+                                <Col md={12}>
+                                    <div id="DZ_W_TimeLine" class="widget-timeline dz-scroll px-4 height370 overflow-y-scroll">
+                                        <ul class="timeline">
+                                            <li>
+                                                <div class="timeline-badge primary"></div>
+                                                <a class="timeline-panel text-muted" href="javascript:void(0);">
+                                                    <span>10 minutes ago</span>
+                                                    <h6 class="mb-0">Youtube, a video-sharing website, goes live <strong class="text-primary">$500</strong>.</h6>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <div class="timeline-badge info">
+                                                </div>
+                                                <a class="timeline-panel text-muted" href="javascript:void(0);">
+                                                    <span>20 minutes ago</span>
+                                                    <h6 class="mb-0">New order placed <strong class="text-info">#XF-2356.</strong></h6>
+                                                    <p class="mb-0">Quisque a consequat ante Sit amet magna at volutapt...</p>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <div class="timeline-badge info">
+                                                </div>
+                                                <a class="timeline-panel text-muted" href="javascript:void(0);">
+                                                    <span>20 minutes ago</span>
+                                                    <h6 class="mb-0">New order placed <strong class="text-info">#XF-2356.</strong></h6>
+                                                    <p class="mb-0">Quisque a consequat ante Sit amet magna at volutapt...</p>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <div class="timeline-badge info">
+                                                </div>
+                                                <a class="timeline-panel text-muted" href="javascript:void(0);">
+                                                    <span>20 minutes ago</span>
+                                                    <h6 class="mb-0">New order placed <strong class="text-info">#XF-2356.</strong></h6>
+                                                    <p class="mb-0">Quisque a consequat ante Sit amet magna at volutapt...</p>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <div class="timeline-badge info">
+                                                </div>
+                                                <a class="timeline-panel text-muted" href="javascript:void(0);">
+                                                    <span>20 minutes ago</span>
+                                                    <h6 class="mb-0">New order placed <strong class="text-info">#XF-2356.</strong></h6>
+                                                    <p class="mb-0">Quisque a consequat ante Sit amet magna at volutapt...</p>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <div class="timeline-badge info">
+                                                </div>
+                                                <a class="timeline-panel text-muted" href="javascript:void(0);">
+                                                    <span>20 minutes ago</span>
+                                                    <h6 class="mb-0">New order placed <strong class="text-info">#XF-2356.</strong></h6>
+                                                    <p class="mb-0">Quisque a consequat ante Sit amet magna at volutapt...</p>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <div class="timeline-badge info">
+                                                </div>
+                                                <a class="timeline-panel text-muted" href="javascript:void(0);">
+                                                    <span>20 minutes ago</span>
+                                                    <h6 class="mb-0">New order placed <strong class="text-info">#XF-2356.</strong></h6>
+                                                    <p class="mb-0">Quisque a consequat ante Sit amet magna at volutapt...</p>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <div class="timeline-badge info">
+                                                </div>
+                                                <a class="timeline-panel text-muted" href="javascript:void(0);">
+                                                    <span>20 minutes ago</span>
+                                                    <h6 class="mb-0">New order placed <strong class="text-info">#XF-2356.</strong></h6>
+                                                    <p class="mb-0">Quisque a consequat ante Sit amet magna at volutapt...</p>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <div class="timeline-badge info">
+                                                </div>
+                                                <a class="timeline-panel text-muted" href="javascript:void(0);">
+                                                    <span>20 minutes ago</span>
+                                                    <h6 class="mb-0">New order placed <strong class="text-info">#XF-2356.</strong></h6>
+                                                    <p class="mb-0">Quisque a consequat ante Sit amet magna at volutapt...</p>
+                                                </a>
+                                            </li>
+
+
+                                           
+                                        </ul>
+                                    </div>
+                                </Col>
                                 <Col md={12} className="mt-3">
                                     <div className="form-group">
                                         <p>Message <span className="text-danger">*</span></p>
