@@ -30,3 +30,5 @@ Mahaveer Sawant1:41 PM
 https://www.cutthecode.com/about-us
 Mahaveer Sawant1:50 PM
 https://www.cutthecode.com/no-code-development#faq
+
+https://redux.js.org/introduction/examples#shopping-cart

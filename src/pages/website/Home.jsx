@@ -43,9 +43,9 @@ const Home = ({ title }) => {
     cssEase: "linear",
     responsive: [
       {
-        breakpoint: 1300,
+        breakpoint: 1600,
         settings: {
-          slidesToShow: 4,
+          slidesToShow: 5,
           slidesToScroll: 1,
           infinite: true,
           speed: 1000,

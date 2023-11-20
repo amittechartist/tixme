@@ -1199,3 +1199,8 @@ p.contact-desc {
     position: relative;
     right: 31px;
 }
+.phone-number-with-code .form-control  {
+    height: 42px;
+    width: -webkit-fill-available;
+    border-radius: 5px;
+}

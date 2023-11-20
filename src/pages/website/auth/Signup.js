@@ -8,6 +8,8 @@ import { Link, useNavigate } from "react-router-dom";
 import toast from 'react-hot-toast';
 import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content'
+import PhoneInput from 'react-phone-input-2';
+import 'react-phone-input-2/lib/style.css';
 import PersonIcon from '../../../common/icon/person 1.svg';
 import { apiurl, app_url, isEmail, organizer_url } from '../../../common/Helpers';
 const Home = ({ title }) => {
@@ -35,12 +37,15 @@ const Home = ({ title }) => {
     const [Loader, setLoader] = useState(false);
     const [SignupUseroption, setSignupUseroption] = useState({ value: '2', label: "Ticket buyer" });
     const [SignupUseroptionid, setSignupUseroptionid] = useState(2);
-    const handlePhoneChange = (event) => {
-        const inputValue = event.target.value;
-        const numericValue = inputValue.replace(/\D/g, "");
-        const limitedValue = numericValue.slice(0, 10);
-        setPhonenumber(limitedValue);
+    const handlePhoneChange = (newPhone) => {
+        setPhonenumber(newPhone);
     };
+    // const handlePhoneChange = (event) => {
+    //     const inputValue = event.target.value;
+    //     const numericValue = inputValue.replace(/\D/g, "");
+    //     const limitedValue = numericValue.slice(0, 10);
+    //     setPhonenumber(limitedValue);
+    // };
     const HandelCustomerLogin = async () => {
         try {
             if (!LoginEmail) {
@@ -310,7 +315,16 @@ const Home = ({ title }) => {
                                         </div>
                                         <div className="form-group">
                                             <p>Phone number <span className="text-danger">*</span></p>
-                                            <input pattern="[0-9]{10}" maxLength={10} className="form-control" type="number" placeholder="Phone number" value={Phonenumber} onChange={handlePhoneChange}></input>
+                                            {/* <input pattern="[0-9]{10}" maxLength={10} className="form-control" type="number" placeholder="Phone number" value={Phonenumber} onChange={handlePhoneChange}></input> */}
+                                            <PhoneInput
+                                                country={'us'}
+                                                className="phone-number-with-code"
+                                                enableSearch={true}
+                                                placeholder={'Phone number'}
+                                                autoFormat={true}
+                                                value={Phonenumber}
+                                                onChange={handlePhoneChange}
+                                            />
                                         </div>
                                         <div className="form-group">
                                             <p>Message</p>
@@ -352,7 +366,16 @@ const Home = ({ title }) => {
                                         </div>
                                         <div className="form-group">
                                             <p>Phone number <span className="text-danger">*</span></p>
-                                            <input className="form-control" type="number" placeholder="Phone number" value={Phonenumber} onChange={handlePhoneChange}></input>
+                                            {/* <input className="form-control" type="number" placeholder="Phone number" value={Phonenumber} onChange={handlePhoneChange}></input> */}
+                                            <PhoneInput
+                                                country={'us'}
+                                                className="phone-number-with-code"
+                                                enableSearch={true}
+                                                placeholder={'Phone number'}
+                                                autoFormat={true}
+                                                value={Phonenumber}
+                                                onChange={handlePhoneChange}
+                                            />
                                         </div>
                                         <div className="form-group">
                                             <p>Password <span className="text-danger">*</span></p>
