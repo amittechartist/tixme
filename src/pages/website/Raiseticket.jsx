@@ -26,10 +26,10 @@ const Page = ({ title }) => {
                 return toast.error('Enter valid email address');
             }
             if (!Title) {
-                return toast.error('Email is required');
+                return toast.error('Title is required');
             }
             if (!Message) {
-                return toast.error('Email is required');
+                return toast.error('Message is required');
             }
             const requestData = {
                 email: Email,

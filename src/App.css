@@ -194,8 +194,10 @@ span.input-group-text {
 .table-responsive {
   padding-bottom: 80px;
 }
-
-a.page-theme-btn {
+.page-theme-btn:hover {
+  color: #fff;
+}
+.page-theme-btn {
   background: #0047ab;
   color: #fff;
   padding: 10px 20px;

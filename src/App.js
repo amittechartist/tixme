@@ -11,9 +11,14 @@ import ActiveOrganizer from './pages/admin/organizer/ActiveOrganizer';
 import PendingOrganizer from './pages/admin/organizer/PendingOrganizer';
 import Supportlist from './pages/admin/support/Supportlist';
 import AdminLayout from './layout/admin/Layout'
+// Customer Admin
+import CustomerDashboard from './pages/customer/Dashboard';
+import CustomerSupportlist from './pages/customer/support/Supportlist';
+import CustomerLayout from './layout/customer/Layout'
 // Organizer Admin
 import Dashboard from './pages/organizer/Dashboard';
 import EventType from './pages/organizer/Event/EventCreateForm';
+import EventList from './pages/organizer/Event/List';
 import OrganizerLayout from './layout/organizer/Layout'
 // website auth
 import Signup from './pages/website/auth/Signup';
@@ -34,7 +39,7 @@ import Raiseticket from './pages/website/Raiseticket';
 
 
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { app_url, organizer_url, admin_url } from './common/Helpers';
+import { app_url, organizer_url, admin_url, customer_url } from './common/Helpers';
 import { Toaster } from 'react-hot-toast'
 function App() {
   return (
@@ -48,7 +53,7 @@ function App() {
           <Route path={app_url + 'auth/admin/login'} element={<WebsiteLayout> <AdminLogin title={'Tixme'} /> </WebsiteLayout>} />
           {/* website */}
           <Route path={app_url} element={<WebsiteLayout> <Home title={'Tixme'} /> </WebsiteLayout>} />
-          <Route path={app_url + 'event'} element={<WebsiteLayout> <Event title={'Tixme'} /> </WebsiteLayout>} />
+          <Route path={`${app_url}event/:id/:name`} element={<WebsiteLayout> <Event title={'Tixme'} /> </WebsiteLayout>} />
           <Route path={app_url + 'aboutus'} element={<WebsiteLayout> <Aboutus title={'About Us'} /> </WebsiteLayout>} />
           <Route path={app_url + 'terms-and-conditions'} element={<WebsiteLayout> <Terms title={'Terms & conditions'} /> </WebsiteLayout>} />
           <Route path={app_url + 'privacy-policy'} element={<WebsiteLayout> <Privacy title={'Privacy policy'} /> </WebsiteLayout>} />
@@ -57,9 +62,13 @@ function App() {
           <Route path={app_url + 'organizers'} element={<WebsiteLayout> <Organizers title={'Organizers'} /> </WebsiteLayout>} />
           <Route path={app_url + 'raise-ticket'} element={<WebsiteLayout> <Raiseticket title={'Raise Ticket'} /> </WebsiteLayout>} />
           <Route path={`${app_url}organizer-profile/:id/:name`} element={<WebsiteLayout> <OrganizerDetails title={'Organizer Profile'} /> </WebsiteLayout>} />
+          {/* Customer Admin */}
+          <Route path={customer_url + 'dashboard'} element={<CustomerLayout> <CustomerDashboard title={'dashboard'} /> </CustomerLayout>} />
+          <Route path={customer_url + 'support-tickets'} element={<CustomerLayout> <CustomerSupportlist title={'Support Tickets'} /> </CustomerLayout>} />
           {/* Organizer Admin */}
           <Route path={organizer_url + 'dashboard'} element={<OrganizerLayout> <Dashboard title={'dashboard'} /> </OrganizerLayout>} />
           <Route path={organizer_url + 'event/add-event'} element={<OrganizerLayout> <EventType title={'Create new event'} /> </OrganizerLayout>} />
+          <Route path={organizer_url + 'event/all-event-list'} element={<OrganizerLayout> <EventList title={'All event list'} /> </OrganizerLayout>} />
           {/* Admin */}
           <Route path={admin_url + 'dashboard'} element={<AdminLayout> <AdminDashboard title={'dashboard'} /> </AdminLayout>} />
           <Route path={admin_url + 'add-category'} element={<AdminLayout> <AddCategory title={'Add Category'} /> </AdminLayout>} />

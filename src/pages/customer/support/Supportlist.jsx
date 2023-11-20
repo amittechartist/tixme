@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Button, Col, Row } from "react-bootstrap";
 import Card from 'react-bootstrap/Card';
-import { apiurl, admin_url } from '../../../common/Helpers';
+import { apiurl, admin_url, isEmail } from '../../../common/Helpers';
 import WhiteButton from '../../../component/Whitestarbtn';
 import { Link } from "react-router-dom";
 import Swal from 'sweetalert2'
@@ -10,7 +10,12 @@ import withReactContent from 'sweetalert2-react-content'
 import { Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 const Dashboard = ({ title }) => {
     const MySwal = withReactContent(Swal)
+
+    const [newTitle, setnewTitle] = useState();
+    const [newMessage, setnewMessage] = useState();
+
     const [modal, setModal] = useState(false);
+    const [newmodal, setNewModal] = useState(false);
     const [Btnloader, setBtnloader] = useState(false);
     const [Loader, setLoader] = useState(false);
     const [apiLoader, setapiLoader] = useState(false);
@@ -24,18 +29,17 @@ const Dashboard = ({ title }) => {
     const [Messagelog, setMessagelog] = useState([]);
 
     const [ReplyMessage, setReplyMessage] = useState();
-    const [Isclosestatus, setIsclosestatus] = useState();
     const fetchList = async () => {
         try {
-            // const requestData = {
-            //     isclose: 0
-            // };
-            fetch(apiurl + 'admin/support/list', {
+            const requestData = {
+                email: "amit@gmail.com"
+            };
+            fetch(apiurl + 'website/support/list', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json', // Set the Content-Type header to JSON
                 },
-                // body: JSON.stringify(requestData)
+                body: JSON.stringify(requestData)
             })
                 .then(response => response.json())
                 .then(data => {
@@ -54,17 +58,63 @@ const Dashboard = ({ title }) => {
         }
 
     }
+    const Handelform = async () => {
+        try {
+            if (!newTitle) {
+                return toast.error('Title is required');
+            }
+            if (!newMessage) {
+                return toast.error('Message is required');
+            }
+            const newemail = "amit@gmail.com";
+            const requestData = {
+                email: newemail,
+                title: newTitle,
+                message: newMessage
+            };
+            setLoader(true);
+            fetch(apiurl + 'website/support/insert', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(requestData),
+            }).then(response => response.json()).then(data => {
+                setLoader(false);
+                if (data.success == true) {
+                    MySwal.fire({
+                        text: "Support ticket submitted successfully!",
+                        icon: "success"
+                    });
+                    setNewModal(!newmodal)
+                    setnewTitle('');
+                    setnewMessage('');
+                    fetchList();
+                } else {
+                    toast.error(data.message);
+                }
+                setLoader(false);
+            }).catch(error => {
+                setLoader(false);
+                toast.error('Insert error: ' + error.message);
+                console.error('Insert error:', error);
+            });
+
+        } catch (error) {
+
+        }
+    };
     const HandelReplyapi = async () => {
-        if (!ReplyMessage && Isclosestatus === 0) {
+        if (!ReplyMessage) {
             return toast.error('Reply message is required');
         }
         try {
+            setBtnloader(true)
             const requestData = {
                 replymessage: ReplyMessage,
-                id: Updatid,
-                closestatus: Isclosestatus
+                id: Updatid
             };
-            fetch(apiurl + 'admin/support/store-replay', {
+            fetch(apiurl + 'website/support/store-replay', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json', // Set the Content-Type header to JSON
@@ -75,29 +125,26 @@ const Dashboard = ({ title }) => {
                 .then(data => {
                     if (data.success == true) {
                         toast.success(data.data);
-                        console.log("hii", Isclosestatus);
-                        if (Isclosestatus == 1) {
-                            setModal(!modal);
-                            fetchList();
-                        } else {
-                            Handelviewmodal(Updatid)
-                        }
+                        Handelviewmodal(Updatid)
                         setReplyMessage('');
-                        // setapiLoader(false)
                     } else {
-                        // setModal(false)
-                        // setapiLoader(false)
+
                     }
+                    setBtnloader(false)
                 })
                 .catch(error => {
                     console.error('Insert error:', error);
-                    // setModal(false)
-                    // setapiLoader(false)
+                    setBtnloader(false)
+
                 });
         } catch (error) {
             console.error('Login api error:', error);
             setModal(false)
+            setBtnloader(false)
         }
+    }
+    const Handelnewmodal = async () => {
+        setNewModal(true)
     }
     const Handelviewmodal = async (id) => {
         try {
@@ -120,7 +167,6 @@ const Dashboard = ({ title }) => {
                         setEmail(data.data.email);
                         setTitle(data.data.title);
                         setIsopen(data.data.isclose);
-                        setIsclosestatus(data.data.isclose);
                         setMessage(data.data.message);
                         setMessagelog(data.data.messagelog);
                         setapiLoader(false)
@@ -207,13 +253,6 @@ const Dashboard = ({ title }) => {
                                                 <p>Message <span className="text-danger">*</span></p>
                                                 <textarea placeholder="Type your message" class="form-control" rows="3" value={ReplyMessage} onChange={(e) => setReplyMessage(e.target.value)}></textarea>
                                             </div>
-                                            <div className="form-group">
-                                                <p>Support status</p>
-                                                <select className="form-control" onChange={(e) => setIsclosestatus(e.target.value)}>
-                                                    <option selected={Isopen === '0' ? true : false} value="0">Open</option>
-                                                    <option selected={Isopen === '1' ? true : false} value="1">Close</option>
-                                                </select>
-                                            </div>
                                         </Col>
                                         <Col md={12}>
                                             <div className="form-group">
@@ -236,10 +275,35 @@ const Dashboard = ({ title }) => {
                     </Button>
                 </ModalFooter>
             </Modal>
+            <Modal isOpen={newmodal} toggle={() => setNewModal(!newmodal)}>
+                <ModalHeader toggle={!newmodal}>Raise new ticket</ModalHeader>
+                <ModalBody>
+                    <div className="form-group">
+                        <p>Title <span className="text-danger">*</span></p>
+                        <input className="form-control" type="text" value={newTitle} placeholder="Enter title" onChange={(e) => setnewTitle(e.target.value)}></input>
+                    </div>
+                    <div className="form-group">
+                        <p>Message <span className="text-danger">*</span></p>
+                        <textarea class="form-control" rows="3" value={newMessage} onChange={(e) => setnewMessage(e.target.value)}></textarea>
+                    </div>
+                    <div className="form-group">
+                        {Loader ? (
+                            <Button className='signup-page-btn'>Please wait...</Button>
+                        ) : (
+                            <span onClick={Handelform}><WhiteButton title={'Submit'} /></span>
+                        )}
+                    </div>
+                </ModalBody>
+                <ModalFooter>
+                    <Button color="secondary" onClick={() => setNewModal(!newmodal)}>
+                        Cancel
+                    </Button>
+                </ModalFooter>
+            </Modal>
             <div className="content-body" style={{ background: '#F1F1F1' }}>
                 <div className="container-fluid">
                     <div className="page-titles">
-                        <Link className="page-theme-btn position-right" to={admin_url + 'active-organizers'}>View organizer</Link>
+                        <Button variant="link" className="page-theme-btn position-right" onClick={() => Handelnewmodal()}>Raise new ticket</Button>
                         <ol className="breadcrumb">
                             <li className="breadcrumb-item">{title}</li>
                         </ol>

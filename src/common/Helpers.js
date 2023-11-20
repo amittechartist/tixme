@@ -1,3 +1,5 @@
+import React from 'react';
+
 export const app_url = '/';
 export const admin_url = app_url + 'admin/';
 export const organizer_url = app_url + 'organizer/';
@@ -18,6 +20,14 @@ export const get_date_time = (date) => {
 
     return [{ Dateview, Timeview }];
 };
+export const shortPer = (paragraph, maxLength) => {
+    if (paragraph.length <= maxLength) {
+        return paragraph; // No need to truncate if the text is already short
+    } else {
+        const truncatedText = paragraph.substring(0, maxLength).trim();
+        return truncatedText + '...';
+    }
+}
 export const onlyDayMonth = (dateString) => {
     const dateArray = dateString.split(' ');
     if (dateArray.length === 3) {

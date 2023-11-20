@@ -26,9 +26,11 @@ import Slider from "react-slick";
 import CountUp from "react-countup";
 import Fade from "react-reveal/Fade";
 import Zoom from 'react-reveal/Zoom';
-import { apiurl } from "../../common/Helpers";
+import { Link, useNavigate } from "react-router-dom";
+import { apiurl,onlyDayMonth,shortPer,app_url } from "../../common/Helpers";
 const Home = ({ title }) => {
   const [Eventlist, setEventlist] = useState([]);
+  const navigate = useNavigate();
   const settings = {
     dots: false,
     infinite: true,
@@ -75,10 +77,12 @@ const Home = ({ title }) => {
       }
     ]
   };
-
+  const viewEvent = async (id,name) => {
+    navigate(`${app_url}event/${id}/${name}`)
+  }
   const fetchEvent = async () => {
     try {
-      fetch(apiurl + "website/ticket-list", {
+      fetch(apiurl + "website/all-events-list", {
         method: "POST",
         headers: {
           "Content-Type": "application/json", // Set the Content-Type header to JSON
@@ -255,529 +259,94 @@ const Home = ({ title }) => {
               <img src={EllipseIcon} alt="" /> Events
             </span>
             <Row className="event-box-mobile">
-              {/* {Eventlist.map((item, index) => ( */}
-              <Col md={4} className="mb-5">
-                <Fade bottom>
-                  <div className="event-box-style">
-                    <div className="event-image-part">
-                      <img className="event-image" src={Eventimg} alt="" />
-                      <span className="event-category-img">Party</span>
-                      <span className="on-img-date">
-                        <img src={DateIcon} alt="" />
-                        <span className="on-img-date-val">12 Nov</span>
-                      </span>
-                    </div>
-                    <div className="organizer-name-sec d-flex align-items-center px-2 py-2">
-                      <div className="d-inline-block mr-3">
-                        <img
-                          height={50}
-                          width={50}
-                          src={Eventlogo}
-                          alt=""
-                          className="organiger-logo"
-                        />
+              {Eventlist.map((item, index) => (
+                <Col md={4} className="mb-5 cursor-pointer" title="View" onClick={() => viewEvent(item._id,item.name)}>
+                  <Fade bottom>
+                    <div className="event-box-style">
+                      <div className="event-image-part">
+                        <img className="event-image" src={Eventimg} alt="" />
+                        <span className="event-category-img">{item.category_name}</span>
+                        <span className="on-img-date">
+                          <img src={DateIcon} alt="" />
+                          <span className="on-img-date-val">{onlyDayMonth(item.start_date)}</span>
+                        </span>
                       </div>
-                      <div className="d-inline-block">
-                        <span className="organizer-by d-block">Organised by</span>
-                        <span className="organizer-name d-block">By KING</span>
-                      </div>
-                    </div>
-                    <div className="organizer-name-sec px-2 py-2">
-                      <div className="d-inline-flex align-items-center border-right event-time-area">
-                        <div className="d-inline-block mr-1">
-                          <img height={30} width={30} src={Timelogo} alt="" />
-                        </div>
-                        <div className="d-inline-block">
-                          <span className="event-duration d-block">
-                            Event Time
-                          </span>
-                          <span className="event-time d-block">12:23 AM</span>
-                        </div>
-                      </div>
-                      <div className="d-inline-flex align-items-center">
-                        <div className="d-inline-block mr-1">
+                      <div className="organizer-name-sec d-flex align-items-center px-2 py-2">
+                        <div className="d-inline-block mr-3">
                           <img
-                            height={30}
-                            width={30}
-                            src={Hourglasslogo}
+                            height={50}
+                            width={50}
+                            src={Eventlogo}
                             alt=""
+                            className="organiger-logo"
                           />
                         </div>
                         <div className="d-inline-block">
-                          <span className="event-duration d-block">
-                            Event Duration
-                          </span>
-                          <span className="event-time d-block">2Hr 11Min</span>
+                          <span className="organizer-by d-block">Organised by</span>
+                          <span className="organizer-name d-block">{item.organizer_name}</span>
                         </div>
                       </div>
-                      <div className="event-name">
-                        <span>Lorem ipsum</span>
-                        <p>
-                          Lorem ipsum is a pseudo-Latin text used in web design,
-                          typography, layout..
-                        </p>
-                      </div>
-                    </div>
-                    <div className="ticket-price-area mt-3">
-                      <Row>
-                        <Col md={7} xs={7} className="border-top-doted">
-                          <div className="d-flex align-items-center text-center location-name">
+                      <div className="organizer-name-sec px-2 py-2">
+                        <div className="d-inline-flex align-items-center border-right event-time-area">
+                          <div className="d-inline-block mr-1">
+                            <img height={30} width={30} src={Timelogo} alt="" />
+                          </div>
+                          <div className="d-inline-block">
+                            <span className="event-duration d-block">
+                              Event Time
+                            </span>
+                            <span className="event-time d-block">{item.start_time}</span>
+                          </div>
+                        </div>
+                        <div className="d-inline-flex align-items-center">
+                          <div className="d-inline-block mr-1">
                             <img
                               height={30}
                               width={30}
-                              src={LocationIcon}
+                              src={Hourglasslogo}
                               alt=""
-                            />{" "}
-                            <span>USA</span>
+                            />
                           </div>
-                        </Col>
-                        <Col md={5} xs={5}>
-                          <div className="price-section text-center">
-                            <p>Ticket Price</p>
-                            <span className="price">$99</span>
-                            <span className="cut-price">$100</span>
+                          <div className="d-inline-block">
+                            <span className="event-duration d-block">
+                              Event Duration
+                            </span>
+                            <span className="event-time d-block">2Hr 11Min</span>
                           </div>
-                        </Col>
-                      </Row>
-                    </div>
-                  </div>
-                </Fade>
-              </Col>
-              <Col md={4} className="mb-5">
-                <Fade bottom>
-                  <div className="event-box-style">
-                    <div className="event-image-part">
-                      <img className="event-image" src={Eventimg} alt="" />
-                      <span className="event-category-img">Party</span>
-                      <span className="on-img-date">
-                        <img src={DateIcon} alt="" />
-                        <span className="on-img-date-val">12 Nov</span>
-                      </span>
-                    </div>
-                    <div className="organizer-name-sec d-flex align-items-center px-2 py-2">
-                      <div className="d-inline-block mr-3">
-                        <img
-                          height={50}
-                          width={50}
-                          src={Eventlogo}
-                          alt=""
-                          className="organiger-logo"
-                        />
-                      </div>
-                      <div className="d-inline-block">
-                        <span className="organizer-by d-block">Organised by</span>
-                        <span className="organizer-name d-block">By KING</span>
-                      </div>
-                    </div>
-                    <div className="organizer-name-sec px-2 py-2">
-                      <div className="d-inline-flex align-items-center border-right event-time-area">
-                        <div className="d-inline-block mr-1">
-                          <img height={30} width={30} src={Timelogo} alt="" />
                         </div>
-                        <div className="d-inline-block">
-                          <span className="event-duration d-block">
-                            Event Time
-                          </span>
-                          <span className="event-time d-block">12:23 AM</span>
+                        <div className="event-name">
+                          <span>{item.display_name}</span>
+                          <p>
+                            {shortPer(item.event_desc, 100)}
+                          </p>
                         </div>
                       </div>
-                      <div className="d-inline-flex align-items-center">
-                        <div className="d-inline-block mr-1">
-                          <img
-                            height={30}
-                            width={30}
-                            src={Hourglasslogo}
-                            alt=""
-                          />
-                        </div>
-                        <div className="d-inline-block">
-                          <span className="event-duration d-block">
-                            Event Duration
-                          </span>
-                          <span className="event-time d-block">2Hr 11Min</span>
-                        </div>
-                      </div>
-                      <div className="event-name">
-                        <span>Lorem ipsum</span>
-                        <p>
-                          Lorem ipsum is a pseudo-Latin text used in web design,
-                          typography, layout..
-                        </p>
-                      </div>
-                    </div>
-                    <div className="ticket-price-area mt-3">
-                      <Row>
-                        <Col md={7} xs={7} className="border-top-doted">
-                          <div className="d-flex align-items-center text-center location-name">
-                            <img
-                              height={30}
-                              width={30}
-                              src={LocationIcon}
-                              alt=""
-                            />{" "}
-                            <span>USA</span>
-                          </div>
-                        </Col>
-                        <Col md={5} xs={5}>
-                          <div className="price-section text-center">
-                            <p>Ticket Price</p>
-                            <span className="price">$99</span>
-                            <span className="cut-price">$100</span>
-                          </div>
-                        </Col>
-                      </Row>
-                    </div>
-                  </div>
-                </Fade>
-              </Col>
-              <Col md={4} className="mb-5">
-                <Fade bottom>
-                  <div className="event-box-style">
-                    <div className="event-image-part">
-                      <img className="event-image" src={Eventimg} alt="" />
-                      <span className="event-category-img">Party</span>
-                      <span className="on-img-date">
-                        <img src={DateIcon} alt="" />
-                        <span className="on-img-date-val">12 Nov</span>
-                      </span>
-                    </div>
-                    <div className="organizer-name-sec d-flex align-items-center px-2 py-2">
-                      <div className="d-inline-block mr-3">
-                        <img
-                          height={50}
-                          width={50}
-                          src={Eventlogo}
-                          alt=""
-                          className="organiger-logo"
-                        />
-                      </div>
-                      <div className="d-inline-block">
-                        <span className="organizer-by d-block">Organised by</span>
-                        <span className="organizer-name d-block">By KING</span>
+                      <div className="ticket-price-area mt-3">
+                        <Row>
+                          <Col md={7} xs={7} className="border-top-doted">
+                            <div className="d-flex align-items-center text-center location-name">
+                              <img
+                                height={30}
+                                width={30}
+                                src={LocationIcon}
+                                alt=""
+                              />{" "}
+                              <span>{item.location}</span>
+                            </div>
+                          </Col>
+                          <Col md={5} xs={5}>
+                            <div className="price-section text-center">
+                              <p>Ticket Price</p>
+                              <span className="price">${item.displayprice}</span>
+                              <span className="cut-price">${item.displaycutprice}</span>
+                            </div>
+                          </Col>
+                        </Row>
                       </div>
                     </div>
-                    <div className="organizer-name-sec px-2 py-2">
-                      <div className="d-inline-flex align-items-center border-right event-time-area">
-                        <div className="d-inline-block mr-1">
-                          <img height={30} width={30} src={Timelogo} alt="" />
-                        </div>
-                        <div className="d-inline-block">
-                          <span className="event-duration d-block">
-                            Event Time
-                          </span>
-                          <span className="event-time d-block">12:23 AM</span>
-                        </div>
-                      </div>
-                      <div className="d-inline-flex align-items-center">
-                        <div className="d-inline-block mr-1">
-                          <img
-                            height={30}
-                            width={30}
-                            src={Hourglasslogo}
-                            alt=""
-                          />
-                        </div>
-                        <div className="d-inline-block">
-                          <span className="event-duration d-block">
-                            Event Duration
-                          </span>
-                          <span className="event-time d-block">2Hr 11Min</span>
-                        </div>
-                      </div>
-                      <div className="event-name">
-                        <span>Lorem ipsum</span>
-                        <p>
-                          Lorem ipsum is a pseudo-Latin text used in web design,
-                          typography, layout..
-                        </p>
-                      </div>
-                    </div>
-                    <div className="ticket-price-area mt-3">
-                      <Row>
-                        <Col md={7} xs={7} className="border-top-doted">
-                          <div className="d-flex align-items-center text-center location-name">
-                            <img
-                              height={30}
-                              width={30}
-                              src={LocationIcon}
-                              alt=""
-                            />{" "}
-                            <span>USA</span>
-                          </div>
-                        </Col>
-                        <Col md={5} xs={5}>
-                          <div className="price-section text-center">
-                            <p>Ticket Price</p>
-                            <span className="price">$99</span>
-                            <span className="cut-price">$100</span>
-                          </div>
-                        </Col>
-                      </Row>
-                    </div>
-                  </div>
-                </Fade>
-              </Col>
-              <Col md={4} className="mb-5">
-                <Fade bottom>
-                  <div className="event-box-style">
-                    <div className="event-image-part">
-                      <img className="event-image" src={Eventimg} alt="" />
-                      <span className="event-category-img">Party</span>
-                      <span className="on-img-date">
-                        <img src={DateIcon} alt="" />
-                        <span className="on-img-date-val">12 Nov</span>
-                      </span>
-                    </div>
-                    <div className="organizer-name-sec d-flex align-items-center px-2 py-2">
-                      <div className="d-inline-block mr-3">
-                        <img
-                          height={50}
-                          width={50}
-                          src={Eventlogo}
-                          alt=""
-                          className="organiger-logo"
-                        />
-                      </div>
-                      <div className="d-inline-block">
-                        <span className="organizer-by d-block">Organised by</span>
-                        <span className="organizer-name d-block">By KING</span>
-                      </div>
-                    </div>
-                    <div className="organizer-name-sec px-2 py-2">
-                      <div className="d-inline-flex align-items-center border-right event-time-area">
-                        <div className="d-inline-block mr-1">
-                          <img height={30} width={30} src={Timelogo} alt="" />
-                        </div>
-                        <div className="d-inline-block">
-                          <span className="event-duration d-block">
-                            Event Time
-                          </span>
-                          <span className="event-time d-block">12:23 AM</span>
-                        </div>
-                      </div>
-                      <div className="d-inline-flex align-items-center">
-                        <div className="d-inline-block mr-1">
-                          <img
-                            height={30}
-                            width={30}
-                            src={Hourglasslogo}
-                            alt=""
-                          />
-                        </div>
-                        <div className="d-inline-block">
-                          <span className="event-duration d-block">
-                            Event Duration
-                          </span>
-                          <span className="event-time d-block">2Hr 11Min</span>
-                        </div>
-                      </div>
-                      <div className="event-name">
-                        <span>Lorem ipsum</span>
-                        <p>
-                          Lorem ipsum is a pseudo-Latin text used in web design,
-                          typography, layout..
-                        </p>
-                      </div>
-                    </div>
-                    <div className="ticket-price-area mt-3">
-                      <Row>
-                        <Col md={7} xs={7} className="border-top-doted">
-                          <div className="d-flex align-items-center text-center location-name">
-                            <img
-                              height={30}
-                              width={30}
-                              src={LocationIcon}
-                              alt=""
-                            />{" "}
-                            <span>USA</span>
-                          </div>
-                        </Col>
-                        <Col md={5} xs={5}>
-                          <div className="price-section text-center">
-                            <p>Ticket Price</p>
-                            <span className="price">$99</span>
-                            <span className="cut-price">$100</span>
-                          </div>
-                        </Col>
-                      </Row>
-                    </div>
-                  </div>
-                </Fade>
-              </Col>
-              <Col md={4} className="mb-5">
-                <Fade bottom>
-                  <div className="event-box-style">
-                    <div className="event-image-part">
-                      <img className="event-image" src={Eventimg} alt="" />
-                      <span className="event-category-img">Party</span>
-                      <span className="on-img-date">
-                        <img src={DateIcon} alt="" />
-                        <span className="on-img-date-val">12 Nov</span>
-                      </span>
-                    </div>
-                    <div className="organizer-name-sec d-flex align-items-center px-2 py-2">
-                      <div className="d-inline-block mr-3">
-                        <img
-                          height={50}
-                          width={50}
-                          src={Eventlogo}
-                          alt=""
-                          className="organiger-logo"
-                        />
-                      </div>
-                      <div className="d-inline-block">
-                        <span className="organizer-by d-block">Organised by</span>
-                        <span className="organizer-name d-block">By KING</span>
-                      </div>
-                    </div>
-                    <div className="organizer-name-sec px-2 py-2">
-                      <div className="d-inline-flex align-items-center border-right event-time-area">
-                        <div className="d-inline-block mr-1">
-                          <img height={30} width={30} src={Timelogo} alt="" />
-                        </div>
-                        <div className="d-inline-block">
-                          <span className="event-duration d-block">
-                            Event Time
-                          </span>
-                          <span className="event-time d-block">12:23 AM</span>
-                        </div>
-                      </div>
-                      <div className="d-inline-flex align-items-center">
-                        <div className="d-inline-block mr-1">
-                          <img
-                            height={30}
-                            width={30}
-                            src={Hourglasslogo}
-                            alt=""
-                          />
-                        </div>
-                        <div className="d-inline-block">
-                          <span className="event-duration d-block">
-                            Event Duration
-                          </span>
-                          <span className="event-time d-block">2Hr 11Min</span>
-                        </div>
-                      </div>
-                      <div className="event-name">
-                        <span>Lorem ipsum</span>
-                        <p>
-                          Lorem ipsum is a pseudo-Latin text used in web design,
-                          typography, layout..
-                        </p>
-                      </div>
-                    </div>
-                    <div className="ticket-price-area mt-3">
-                      <Row>
-                        <Col md={7} xs={7} className="border-top-doted">
-                          <div className="d-flex align-items-center text-center location-name">
-                            <img
-                              height={30}
-                              width={30}
-                              src={LocationIcon}
-                              alt=""
-                            />{" "}
-                            <span>USA</span>
-                          </div>
-                        </Col>
-                        <Col md={5} xs={5}>
-                          <div className="price-section text-center">
-                            <p>Ticket Price</p>
-                            <span className="price">$99</span>
-                            <span className="cut-price">$100</span>
-                          </div>
-                        </Col>
-                      </Row>
-                    </div>
-                  </div>
-                </Fade>
-              </Col>
-              <Col md={4} className="mb-5">
-                <Fade bottom>
-                  <div className="event-box-style">
-                    <div className="event-image-part">
-                      <img className="event-image" src={Eventimg} alt="" />
-                      <span className="event-category-img">Party</span>
-                      <span className="on-img-date">
-                        <img src={DateIcon} alt="" />
-                        <span className="on-img-date-val">12 Nov</span>
-                      </span>
-                    </div>
-                    <div className="organizer-name-sec d-flex align-items-center px-2 py-2">
-                      <div className="d-inline-block mr-3">
-                        <img
-                          height={50}
-                          width={50}
-                          src={Eventlogo}
-                          alt=""
-                          className="organiger-logo"
-                        />
-                      </div>
-                      <div className="d-inline-block">
-                        <span className="organizer-by d-block">Organised by</span>
-                        <span className="organizer-name d-block">By KING</span>
-                      </div>
-                    </div>
-                    <div className="organizer-name-sec px-2 py-2">
-                      <div className="d-inline-flex align-items-center border-right event-time-area">
-                        <div className="d-inline-block mr-1">
-                          <img height={30} width={30} src={Timelogo} alt="" />
-                        </div>
-                        <div className="d-inline-block">
-                          <span className="event-duration d-block">
-                            Event Time
-                          </span>
-                          <span className="event-time d-block">12:23 AM</span>
-                        </div>
-                      </div>
-                      <div className="d-inline-flex align-items-center">
-                        <div className="d-inline-block mr-1">
-                          <img
-                            height={30}
-                            width={30}
-                            src={Hourglasslogo}
-                            alt=""
-                          />
-                        </div>
-                        <div className="d-inline-block">
-                          <span className="event-duration d-block">
-                            Event Duration
-                          </span>
-                          <span className="event-time d-block">2Hr 11Min</span>
-                        </div>
-                      </div>
-                      <div className="event-name">
-                        <span>Lorem ipsum</span>
-                        <p>
-                          Lorem ipsum is a pseudo-Latin text used in web design,
-                          typography, layout..
-                        </p>
-                      </div>
-                    </div>
-                    <div className="ticket-price-area mt-3">
-                      <Row>
-                        <Col md={7} xs={7} className="border-top-doted">
-                          <div className="d-flex align-items-center text-center location-name">
-                            <img
-                              height={30}
-                              width={30}
-                              src={LocationIcon}
-                              alt=""
-                            />{" "}
-                            <span>USA</span>
-                          </div>
-                        </Col>
-                        <Col md={5} xs={5}>
-                          <div className="price-section text-center">
-                            <p>Ticket Price</p>
-                            <span className="price">$99</span>
-                            <span className="cut-price">$100</span>
-                          </div>
-                        </Col>
-                      </Row>
-                    </div>
-                  </div>
-                </Fade>
-              </Col>
+                  </Fade>
+                </Col>
+              ))}
             </Row>
           </div>
         </div>

@@ -9,9 +9,10 @@ import AppLogo from '../../../common/logo.svg';
 import Rectangle from '../../../common/image/Rectangle.png';
 import { Link } from "react-router-dom";
 import Sidebar from './Sidebar'
-import { app_url, organizer_url } from '../../../common/Helpers';
+import { app_url, organizer_url, customer_url } from '../../../common/Helpers';
 const Header = () => {
-    const customer_token = localStorage.getItem('organizertoken');
+    const customer_token = localStorage.getItem('userauth');
+    const organizer_token = localStorage.getItem('organizerauth');
     return (
         <>
             <header>
@@ -37,16 +38,32 @@ const Header = () => {
                                     </Link>
                                 </li>
                                 <li className="nav-item header-btn-res">
-                                    {customer_token ?
+                                    {customer_token || organizer_token ?
                                         (
-                                            <Link className="button-join" to={organizer_url + 'dashboard'}>
-                                                <span>
-                                                    <span className="bg-style btn-a"><img height={30} width={30} src={PersonIcon} /></span>
-                                                    <span className="bg-style btn-b">My Account</span>
-                                                    <span className="bg-style btn-c"><img height={30} width={30} src={PersonIcon} /></span>
-                                                </span>
-                                            </Link>
-
+                                            <>
+                                                {customer_token ? (
+                                                    <Link className="button-join" to={customer_url + 'dashboard'} >
+                                                        <span>
+                                                            <span className="bg-style btn-a"><img height={30} width={30} src={PersonIcon} /></span>
+                                                            <span className="bg-style btn-b">My Account</span>
+                                                            <span className="bg-style btn-c"><img height={30} width={30} src={PersonIcon} /></span>
+                                                        </span>
+                                                    </Link>
+                                                ) : (
+                                                    <></>
+                                                )}
+                                                {organizer_token ? (
+                                                    <Link className="button-join" to={organizer_url + 'dashboard'} >
+                                                        <span>
+                                                            <span className="bg-style btn-a"><img height={30} width={30} src={PersonIcon} /></span>
+                                                            <span className="bg-style btn-b">My Account</span>
+                                                            <span className="bg-style btn-c"><img height={30} width={30} src={PersonIcon} /></span>
+                                                        </span>
+                                                    </Link>
+                                                ) : (
+                                                    <></>
+                                                )}
+                                            </>
                                         ) :
                                         (
                                             <Link className="button-join" to={app_url + 'auth/customer/signup'}>
@@ -73,7 +90,7 @@ const Header = () => {
                         <Sidebar className='header-sidebar-style' />
                     </Row>
                 </Container>
-            </header>
+            </header >
         </>
     )
 }

@@ -12,7 +12,7 @@ import DateIcon from "../../common/icon/date 1.svg";
 import TimeIcon from "../../common/icon/time 1.svg";
 import { Button, Col, Row } from "react-bootstrap";
 import Card from 'react-bootstrap/Card';
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import toast from 'react-hot-toast';
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
@@ -31,6 +31,7 @@ import {
 
 const Type = ({ title }) => {
     const MySwal = withReactContent(Swal);
+    const navigate = useNavigate();
     const [Loader, setLoader] = useState(false);
     const [Apiloader, setApiloader] = useState(false);
     const [Ticketshow, setTicketshow] = useState(false);
@@ -38,6 +39,10 @@ const Type = ({ title }) => {
     const [Eventtype, setEventtype] = useState();
     const [Name, setName] = useState();
     const [Displayname, setDisplayname] = useState();
+
+    const [Displayprice, setDisplayprice] = useState();
+    const [Displaycutprice, setDisplaycutprice] = useState();
+
     const [Type, setType] = useState(1);
     const [Category, setCategory] = useState();
     const [CategoryId, setCategoryId] = useState();
@@ -73,6 +78,7 @@ const Type = ({ title }) => {
     const [Pricedisable, setPricedisable] = useState(false);
 
     const [EditId, setEditId] = useState();
+    const organizerid = localStorage.getItem('organizerid')
     const lottewidth = {
         width: '100%',
         height: '200px'
@@ -239,6 +245,8 @@ const Type = ({ title }) => {
             const requestData = {
                 isdelete: 0,
                 status: 0,
+                displayprice: Displayprice,
+                displaycutprice: Displaycutprice,
                 eventtype: Eventtype,
                 event_type_name: event_type_name,
                 name: Name,
@@ -261,7 +269,7 @@ const Type = ({ title }) => {
                 display_end_time: Displayendtime,
                 // event_desc: Eventdesc,
                 // event_image: [],
-                organizer_id: 'saasasas',
+                organizer_id: organizerid,
             };
             fetch(apiurl + 'event/create', {
                 method: 'POST',
@@ -394,6 +402,12 @@ const Type = ({ title }) => {
             console.error('Login api error:', error);
         }
     }
+    
+    const HandelPriceform = async () => {
+        toast.success("Event created successful");
+        localStorage.removeItem('eventcreateid');
+        navigate(organizer_url + 'event/all-event-list');
+    }
     const handelCreateTicket = async (updateid) => {
         try {
             if (!Tickettype) {
@@ -405,7 +419,7 @@ const Type = ({ title }) => {
             if (!Quantity) {
                 return toast.error('Enter ticket quantity');
             }
-            if (!Price) {
+            if (!Price && Tickettype == 1) {
                 return toast.error('Enter ticket price');
             }
             const requestData = {
@@ -565,11 +579,11 @@ const Type = ({ title }) => {
                                     </Col>
                                     <div className="col-md-6">
                                         <label htmlFor="" className="text-black">Event Name</label>
-                                        <input type="text" class="form-control input-default" onChange={(e) => setName(e.target.value)} placeholder="Enter Event Name" />
+                                        <input type="text" class="form-control input-default" value={Name} onChange={(e) => setName(e.target.value)} placeholder="Enter Event Name" />
                                     </div>
                                     <div className="col-md-6">
                                         <label htmlFor="" className="text-black">Event Display Name <img src={InfoIcon} /></label>
-                                        <input type="text" class="form-control input-default " onChange={(e) => setDisplayname(e.target.value)} placeholder="Enter Event Display Name" />
+                                        <input type="text" class="form-control input-default " value={Displayname} onChange={(e) => setDisplayname(e.target.value)} placeholder="Enter Event Display Name" />
                                     </div>
                                     <div className="col-md-2 mt-4">
                                         <label htmlFor="" className="text-black">Select Type</label>
@@ -593,7 +607,14 @@ const Type = ({ title }) => {
                                             value={Category}
                                         />
                                     </div>
-                                    <div className="col-md-8"></div>
+                                    <div className="col-md-4 mt-4">
+                                        <label htmlFor="" className="text-black">Display price</label>
+                                        <input type="text" class="form-control input-default" value={Displayprice} onChange={(e) => setDisplayprice(e.target.value)} placeholder="Enter Amount" />
+                                    </div>
+                                    <div className="col-md-4  mt-4">
+                                        <label htmlFor="" className="text-black">Display cut price</label>
+                                        <input type="text" class="form-control input-default" value={Displaycutprice} onChange={(e) => setDisplaycutprice(e.target.value)} placeholder="Enter Amount" />
+                                    </div>
                                     <div className="col-md-4 mt-4">
                                         <label htmlFor="">Tags</label>
                                         <p>Improve discoverability of your event by adding tags relevant to subject matter.</p>
@@ -749,7 +770,7 @@ const Type = ({ title }) => {
                                     </div>
                                     <div className="col-md-12 mt-2">
                                         <div className="button-group mt-10">
-                                            <Button variant="link" className="button-join" onClick={() => setFormSection(1)}>
+                                            <Button variant="link" className="button-join  mx-2" onClick={() => setFormSection(1)}>
                                                 <span>
                                                     <span className="bg-style bg-dark"><img height={30} width={30} src={whitestar} /></span><span className="bg-dark bg-style bg-title-style">Back</span>
                                                 </span>
@@ -867,7 +888,7 @@ const Type = ({ title }) => {
                                                                     </Col>
                                                                     <Col md={3}>
                                                                         <div>
-                                                                            <p className="price-section-box" style={{marginBottom:'0px'}}>
+                                                                            <p className="price-section-box" style={{ marginBottom: '0px' }}>
                                                                                 <span className="devide-dot">|</span> <span className="ticket-date">{item.startdate} at {item.starttime}</span>
                                                                             </p>
                                                                         </div>
@@ -876,7 +897,7 @@ const Type = ({ title }) => {
                                                                         <p className="ticket-sold-count">Sold : 0 / {item.quantity}</p>
                                                                     </Col>
                                                                     <Col md={1}>
-                                                                        <p className="ticket-price-p"> $ {item.price}</p>
+                                                                        <p className="ticket-price-p"> {item.price ? (<>$ {item.price}</>) : ('')} </p>
                                                                     </Col>
                                                                     <Col md={2}>
                                                                         <div class="dropdown">
@@ -898,7 +919,7 @@ const Type = ({ title }) => {
                                     )}
                                     <div className="col-md-12 mt-2">
                                         <div className="button-group mt-10">
-                                            <Button variant="link" className="button-join" onClick={() => setFormSection(3)}>
+                                            <Button variant="link" className="button-join mr-2" onClick={() => setFormSection(3)}>
                                                 <span>
                                                     <span className="bg-style bg-dark"><img height={30} width={30} src={whitestar} /></span><span className="bg-style bg-dark bg-title-style">Back</span>
                                                 </span>
@@ -910,7 +931,7 @@ const Type = ({ title }) => {
                                                     </span>
                                                 </Button>
                                             ) : (
-                                                <Button variant="link" className="button-join" onClick={HandelSubmit}>
+                                                <Button variant="link" className="button-join" onClick={HandelPriceform}>
                                                     <span>
                                                         <span className="bg-style"><img height={30} width={30} src={whitestar} /></span><span className="bg-style bg-title-style">Complete</span>
                                                     </span>

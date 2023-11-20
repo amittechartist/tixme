@@ -12,7 +12,8 @@ import { organizer_url,app_url } from '../../../common/Helpers';
 const Sidebar = () => {
     const navigate = useNavigate();
     function Logout() {
-        localStorage.removeItem('organizertoken');
+        localStorage.removeItem('organizerauth');
+        localStorage.removeItem('organizerid');
         localStorage.removeItem('organizer_role');
         navigate(app_url);
     }
@@ -33,7 +34,7 @@ const Sidebar = () => {
                             </a>
                             <ul aria-expanded="false">
                                 <li><Link className='text-black' onClick={() => localStorage.removeItem('eventcreateid')} to={organizer_url + 'event/add-event'}>Add New</Link></li>
-                                <li><Link className='text-black' to={organizer_url + 'event/add-event-basic-info'}>All Event </Link></li>
+                                <li><Link className='text-black' to={organizer_url + 'event/all-event-list'}>All Event </Link></li>
                                 {/* <li><Link className='text-black' to={organizer_url+'event/add-event-details'}>Details </Link></li>
                                 <li><Link className='text-black' to={organizer_url+'event/add-event-photos'}>Photos </Link></li> */}
                             </ul>
