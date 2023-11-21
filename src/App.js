@@ -36,6 +36,7 @@ import Contact from './pages/website/Contact';
 import Organizers from './pages/website/Organizers';
 import OrganizerDetails from './pages/website/OrganizerDetails';
 import Raiseticket from './pages/website/Raiseticket';
+import CartDetails from './pages/website/CartDetails';
 
 
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
@@ -53,7 +54,7 @@ function App() {
           <Route path={app_url + 'auth/admin/login'} element={<WebsiteLayout> <AdminLogin title={'Tixme'} /> </WebsiteLayout>} />
           {/* website */}
           <Route path={app_url} element={<WebsiteLayout> <Home title={'Tixme'} /> </WebsiteLayout>} />
-          <Route path={`${app_url}event/:id/:name`} element={<WebsiteLayout> <Event title={'Tixme'} /> </WebsiteLayout>} />
+          <Route path={`${app_url}event/:id/:name`} element={<Event title={'Tixme'} />} />
           <Route path={app_url + 'aboutus'} element={<WebsiteLayout> <Aboutus title={'About Us'} /> </WebsiteLayout>} />
           <Route path={app_url + 'terms-and-conditions'} element={<WebsiteLayout> <Terms title={'Terms & conditions'} /> </WebsiteLayout>} />
           <Route path={app_url + 'privacy-policy'} element={<WebsiteLayout> <Privacy title={'Privacy policy'} /> </WebsiteLayout>} />
@@ -62,6 +63,7 @@ function App() {
           <Route path={app_url + 'organizers'} element={<WebsiteLayout> <Organizers title={'Organizers'} /> </WebsiteLayout>} />
           <Route path={app_url + 'raise-ticket'} element={<WebsiteLayout> <Raiseticket title={'Raise Ticket'} /> </WebsiteLayout>} />
           <Route path={`${app_url}organizer-profile/:id/:name`} element={<WebsiteLayout> <OrganizerDetails title={'Organizer Profile'} /> </WebsiteLayout>} />
+          <Route path={app_url + 'cart-details'} element={<WebsiteLayout> <CartDetails title={'Your Cart'} /> </WebsiteLayout>} />
           {/* Customer Admin */}
           <Route path={customer_url + 'dashboard'} element={<CustomerLayout> <CustomerDashboard title={'dashboard'} /> </CustomerLayout>} />
           <Route path={customer_url + 'support-tickets'} element={<CustomerLayout> <CustomerSupportlist title={'Support Tickets'} /> </CustomerLayout>} />

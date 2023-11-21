@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import AppLogo from '../../../common/logo.svg';
 import Whitestart from '../../../common/icon/whitestart.svg';
 import Container from 'react-bootstrap/Container';
@@ -14,15 +14,41 @@ import EllipseIcon from '../../../common/icon/Ellipse 5.svg';
 import SubscribeBg from '../../../common/icon/Subscribe.svg';
 import CheckboxIcon from '../../../common/icon/checkbox.svg';
 import LogoIcon from '../../../common/icon/logoicon.svg';
-import { Link } from "react-router-dom";
 import Tada from "react-reveal/Tada";
+import Lottie from "lottie-react";
+import TicketCart from '../../../lotte/ticketcart.json';
+import { Link, useNavigate } from "react-router-dom";
 import { app_url } from '../../../common/Helpers';
 const Footer = () => {
+    const navigate = useNavigate();
+    const lottewidth = {
+        width: 'auto',
+        height: '120px'
+    }
+    const [ShowCart, setShowCart] = useState(false);
+    function checkCart() {
+        const cartCheck = localStorage.getItem('cart');
+        if(cartCheck){
+            const { items, quantities } = JSON.parse(cartCheck);
+            if(items.length > 0){
+                setShowCart(true)
+            }else{
+                setShowCart(false)
+            }
+        }else{
+            setShowCart(false)
+        }
+    }
+    setInterval(checkCart, 1000);
+    function viewcart(){
+        navigate(app_url + 'cart-details');
+    }
     return (
         <>
+            {ShowCart ? (<Lottie className="cart-box-show" onClick={() => viewcart()} title="View Cart" animationData={TicketCart} style={lottewidth} />) : ''}
             <Container>
                 <div className="subsacribe-box">
-                <Tada><img src={LogoIcon} className="LogoIcon-footer" alt="" /></Tada>
+                    <Tada><img src={LogoIcon} className="LogoIcon-footer" alt="" /></Tada>
                     <img src={SubscribeBg} className="SubscribeBg" alt="" />
                     <Row className="subsacribe-content">
                         <Col md={12}>
@@ -121,7 +147,7 @@ const Footer = () => {
                                         <ul>
                                             <li>Browse Online Events</li>
                                             <li>Get the Eventbrite App</li>
-                                            <li><Link to={app_url+'raise-ticket'}>Customer support</Link></li>
+                                            <li><Link to={app_url + 'raise-ticket'}>Customer support</Link></li>
                                         </ul>
                                     </Col>
                                     <Col md={6}>

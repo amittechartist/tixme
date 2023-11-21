@@ -233,6 +233,14 @@ p.banner_text {
     font-weight: 600;
 }
 
+.in-event-page-cart-sec .event-duration {
+    font-size: 12px;
+}
+
+.in-event-page-cart-sec .price-section {
+    min-width: 120px;
+}
+
 .event-time {
     color: #000;
 }
@@ -328,7 +336,7 @@ img.ticket-bg {
 .on-img-date {
     position: absolute;
     bottom: -4px;
-    right: 24px;
+    right: 13px;
 }
 
 span.on-img-date img {
@@ -1183,24 +1191,72 @@ p.contact-desc {
     -webkit-appearance: none;
     -moz-appearance: none;
     background-image: url('../../../common/icon/select-area.png') !important;
-    background-size: 14px; /* Adjust the size of the icon as needed */
+    background-size: 14px;
+    /* Adjust the size of the icon as needed */
     background-repeat: no-repeat;
     background-position: 94% center;
-    padding-right: 20px; /* Adjust the padding to make room for the icon */
-  }
+    padding-right: 20px;
+    /* Adjust the padding to make room for the icon */
+}
 
-  .dropdown-custome::-ms-expand {
-    display: none; /* Remove the default arrow in IE */
-  }
-  p.category-title {
+.dropdown-custome::-ms-expand {
+    display: none;
+    /* Remove the default arrow in IE */
+}
+
+p.category-title {
     font-weight: 600;
     color: #0047ab;
     font-size: 14px;
     position: relative;
     right: 31px;
 }
-.phone-number-with-code .form-control  {
+
+.phone-number-with-code .form-control {
     height: 42px;
     width: -webkit-fill-available;
     border-radius: 5px;
+}
+
+.cart-minus,
+.cart-number,
+.cart-plus {
+    user-select: none;
+    -moz-user-select: none;
+    /* Firefox */
+    -ms-user-select: none;
+    /* Internet Explorer/Edge */
+    -webkit-user-select: none;
+    /* Safari */
+}
+
+.cart-box-show {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1000;
+    cursor: pointer;
+}
+
+.cart-box-show rect {
+    fill: #ffffff38;
+}
+
+.event-box-mobile-home {
+    margin: 0px 80px;
+}
+
+span.cart-price {
+    color: #0047ab;
+    font-weight: 600;
+    font-size: 24px;
+}
+
+.cart-ticket-name {
+    color: #0047ab;
+    font-weight: 500;
+    font-size: 16px;
+}
+.font-600{
+    font-weight: 600;
 }

@@ -82,11 +82,16 @@ const Home = ({ title }) => {
   }
   const fetchEvent = async () => {
     try {
+      const requestData = {
+        limit:10,
+        organizerid:null
+      }
       fetch(apiurl + "website/all-events-list", {
         method: "POST",
         headers: {
           "Content-Type": "application/json", // Set the Content-Type header to JSON
         },
+        body: JSON.stringify(requestData),
       })
         .then((response) => response.json())
         .then((data) => {
@@ -258,7 +263,7 @@ const Home = ({ title }) => {
             <span className="event-title-home">
               <img src={EllipseIcon} alt="" /> Events
             </span>
-            <Row className="event-box-mobile">
+            <Row className="event-box-mobile event-box-mobile-home">
               {Eventlist.map((item, index) => (
                 <Col md={4} className="mb-5 cursor-pointer" title="View" onClick={() => viewEvent(item._id,item.name)}>
                   <Fade bottom>

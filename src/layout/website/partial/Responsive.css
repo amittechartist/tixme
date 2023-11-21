@@ -3,7 +3,9 @@
         font-size: 9px;
         line-height: 11px;
     }
-
+    .in-event-page-cart-sec .price-section {
+        max-width: 60px;
+    }
     p.category-title {
         font-size: 9px;
         right: 18px;
