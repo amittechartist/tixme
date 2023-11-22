@@ -32,7 +32,7 @@ const Page = ({ title }) => {
   const navigate = useNavigate();
   const [Apiloader, setApiloader] = useState(true);
   const [Eventdata, setEventdata] = useState();
-  const [Paynowbtnstatus, setPaynowbtnstatus] = useState(false);
+  const [Paynowbtnstatus, setPaynowbtnstatus] = useState(true);
   const [Eventlist, setEventlist] = useState([]);
   const [OrganizerData, setOrganizerData] = useState();
   const [OrganizerEventlist, setOrganizerEventlist] = useState([]);
@@ -266,14 +266,14 @@ const Page = ({ title }) => {
     if(eventTotal > 0){
       setPaynowbtnstatus(true)
     }else{
-      setPaynowbtnstatus(false)
+      setPaynowbtnstatus(true)
     }
   };
 
   const saveCartToLocalStorage = () => {
     // Save cart items and local quantities to localStorage
     localStorage.setItem('cart', JSON.stringify({ items: cartItems, quantities: localQuantities }));
-    navigate(app_url + 'cart-details');
+    // navigate(app_url + 'cart-details');
   };
 
 
@@ -289,10 +289,6 @@ const Page = ({ title }) => {
       }
     }
   };
-
-
-
-
   return (
     <>
       <Mobilemenu />

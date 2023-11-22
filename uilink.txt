@@ -32,3 +32,60 @@ Mahaveer Sawant1:50 PM
 https://www.cutthecode.com/no-code-development#faq
 
 https://redux.js.org/introduction/examples#shopping-cart
+
+
+
+item arraw
+user id
+amount 
+
+{
+    ** order table  = 
+    ------
+    total price (donation + original price)
+    user id 
+    user name
+    user email 
+    date 
+    time
+    min date
+    min time
+    pay_cheker_id = (future status check)
+    payment_method = name of gatway
+    payment_status = 0 = pending | 1 = success  | 2 = failed
+    currency
+    session_data = object
+    total qty
+
+    blank field = 
+    payment id
+    location
+}
+------------------
+
+order detils table = 
+main order table insert id
+eventid
+
+event ticket name
+event ticket price = price | 00 | donaton amount
+
+userid
+user name
+user email
+user id
+new user email = (for tranfer)
+new user name  = (for tranfer)
+new user id = (for tranfer)
+date
+time
+mindate
+mintime
+status = (0 = not scaned | 1 for scan)
+isvalid = (0 = yes | 1 no)
+
+
+
+
+
+
