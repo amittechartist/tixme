@@ -26,6 +26,11 @@ const Sidebar = () => {
                             <span className="nav-text">Dashboard</span>
                         </Link>
                         </li>
+                        <li><Link to={customer_url+ 'my-order-list'} className="ai-icon" aria-expanded="false">
+                            <img src={supportIcon} alt="Your Logo" />
+                            <span className="nav-text">My order</span>
+                        </Link>
+                        </li>
                         <li><Link to={customer_url+ 'support-tickets'} className="ai-icon" aria-expanded="false">
                             <img src={supportIcon} alt="Your Logo" />
                             <span className="nav-text">Support</span>

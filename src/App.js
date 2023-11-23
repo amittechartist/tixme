@@ -14,6 +14,7 @@ import AdminLayout from './layout/admin/Layout'
 // Customer Admin
 import CustomerDashboard from './pages/customer/Dashboard';
 import CustomerSupportlist from './pages/customer/support/Supportlist';
+import CustomerOrderlist from './pages/customer/Orderlist';
 import CustomerLayout from './layout/customer/Layout'
 // Organizer Admin
 import Dashboard from './pages/organizer/Dashboard';
@@ -27,6 +28,7 @@ import AdminLogin from './pages/website/auth/AdminLogin';
 // website
 import WebsiteLayout from './layout/website/Layout'
 import Home from './pages/website/Home';
+import Scaner from './pages/website/Scaner';
 import Event from './pages/website/Event';
 import Aboutus from './pages/website/aboutus';
 import Terms from './pages/website/Terms';
@@ -37,6 +39,8 @@ import Organizers from './pages/website/Organizers';
 import OrganizerDetails from './pages/website/OrganizerDetails';
 import Raiseticket from './pages/website/Raiseticket';
 import CartDetails from './pages/website/CartDetails';
+import OrderSuccessful from './pages/website/OrderSuccessful';
+import OrderFailed from './pages/website/OrderFailed';
 
 
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
@@ -64,9 +68,15 @@ function App() {
           <Route path={app_url + 'raise-ticket'} element={<WebsiteLayout> <Raiseticket title={'Raise Ticket'} /> </WebsiteLayout>} />
           <Route path={`${app_url}organizer-profile/:id/:name`} element={<WebsiteLayout> <OrganizerDetails title={'Organizer Profile'} /> </WebsiteLayout>} />
           <Route path={app_url + 'cart-details'} element={<WebsiteLayout> <CartDetails title={'Your Cart'} /> </WebsiteLayout>} />
+          <Route path={app_url + 'order-successful-page'} element={<WebsiteLayout> <OrderSuccessful title={'Payment status'} /> </WebsiteLayout>} />
+          <Route path={app_url + 'order-failed-page'} element={<WebsiteLayout> <OrderFailed title={'Payment status'} /> </WebsiteLayout>} />
+          <Route path={app_url + 'scanner'} element={<WebsiteLayout> <Scaner title={'Payment status'} /> </WebsiteLayout>} />
+          
+
           {/* Customer Admin */}
           <Route path={customer_url + 'dashboard'} element={<CustomerLayout> <CustomerDashboard title={'dashboard'} /> </CustomerLayout>} />
           <Route path={customer_url + 'support-tickets'} element={<CustomerLayout> <CustomerSupportlist title={'Support Tickets'} /> </CustomerLayout>} />
+          <Route path={customer_url + 'my-order-list'} element={<CustomerLayout> <CustomerOrderlist title={'All Order List'} /> </CustomerLayout>} />
           {/* Organizer Admin */}
           <Route path={organizer_url + 'dashboard'} element={<OrganizerLayout> <Dashboard title={'dashboard'} /> </OrganizerLayout>} />
           <Route path={organizer_url + 'event/add-event'} element={<OrganizerLayout> <EventType title={'Create new event'} /> </OrganizerLayout>} />

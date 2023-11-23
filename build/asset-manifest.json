@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/tixme/static/css/main.1add2232.css",
-    "main.js": "/tixme/static/js/main.9b5ca80e.js",
+    "main.css": "/tixme/static/css/main.3735913c.css",
+    "main.js": "/tixme/static/js/main.cf582bcb.js",
     "static/js/787.cda612ba.chunk.js": "/tixme/static/js/787.cda612ba.chunk.js",
     "static/media/user.png": "/tixme/static/media/user.cfe9f79c746ba3002568.png",
     "static/media/event1.png": "/tixme/static/media/event1.01f504db838e668b291e.png",
@@ -65,12 +65,12 @@
     "static/media/flag.svg": "/tixme/static/media/flag.f75e3eb165a71fa7dc112088343c6fa0.svg",
     "static/media/checkbox.svg": "/tixme/static/media/checkbox.d20825d984db9076947f10f7fa6de94b.svg",
     "static/media/Ellipse 5.svg": "/tixme/static/media/Ellipse 5.35617813251673a35b1e329c3401d44f.svg",
-    "main.1add2232.css.map": "/tixme/static/css/main.1add2232.css.map",
-    "main.9b5ca80e.js.map": "/tixme/static/js/main.9b5ca80e.js.map",
+    "main.3735913c.css.map": "/tixme/static/css/main.3735913c.css.map",
+    "main.cf582bcb.js.map": "/tixme/static/js/main.cf582bcb.js.map",
     "787.cda612ba.chunk.js.map": "/tixme/static/js/787.cda612ba.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.1add2232.css",
-    "static/js/main.9b5ca80e.js"
+    "static/css/main.3735913c.css",
+    "static/js/main.cf582bcb.js"
   ]
 }

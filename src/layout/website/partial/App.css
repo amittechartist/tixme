@@ -38,6 +38,7 @@ footer.footer-container {
     background: rgba(0, 71, 171, 1);
     border-radius: 50px 50px 0px 0px;
     padding-top: 50px;
+    position: relative;
 }
 
 .button-join .bg-style-white {
@@ -1259,4 +1260,17 @@ span.cart-price {
 }
 .font-600{
     font-weight: 600;
+}
+.payment-page-title {
+    font-weight: 500;
+    font-size: 30px;
+}
+.data-value {
+    font-weight: 500;
+    color: #000;
+}
+.amount-desc {
+    font-size: 21px;
+    font-weight: 500;
+    color: #000;
 }

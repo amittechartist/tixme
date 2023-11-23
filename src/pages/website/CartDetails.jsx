@@ -7,8 +7,14 @@ import Card from 'react-bootstrap/Card';
 import Whitestarbtn from "../../component/Whitestarbtn";
 import { apiurl, app_url, isEmail, organizer_url } from '../../common/Helpers';
 import { useState, useEffect } from "react";
+import toast from "react-hot-toast";
+import Button from 'react-bootstrap/Button';
+import { useNavigate } from "react-router-dom";
 const Page = ({ title }) => {
+    const Beartoken = localStorage.getItem('userauth');
+    const navigate = useNavigate();
     const [cartItems, setCartItems] = useState([]);
+    const [ApiLoader, setApiLoader] = useState(false);
     const [allItemsTotalPrice, setAllItemsTotalPrice] = useState(0);
     const [eventTotalPrice, setEventTotalPrice] = useState(0);
     const [localQuantities, setLocalQuantities] = useState({});
@@ -60,7 +66,6 @@ const Page = ({ title }) => {
         });
 
     };
-
     const calculateTotalPrice = () => {
         if (!cartItems || cartItems.length === 0) {
             setAllItemsTotalPrice(0);
@@ -74,40 +79,49 @@ const Page = ({ title }) => {
 
         setAllItemsTotalPrice(total);
     };
-
-
     const saveCartToLocalStorage = async () => {
         // Save cart items and local quantities to localStorage
         localStorage.setItem('cart', JSON.stringify({ items: cartItems, quantities: localQuantities }));
         try {
+            if(!Beartoken){
+                toast.error("Login to your account");
+                navigate(app_url + 'auth/customer/signup');
+                return;
+            }
+            setApiLoader(true);
             const requestData = {
-                totalamount: 300,
-                userid: '653fa8c104458ab533270d54',
+                totalamount: allItemsTotalPrice,
                 cartitem: cartItems,
-                gatway_name: "Strip",
+                gatway_name: "Stripe",
                 location: "India"
             }
             fetch(apiurl + 'order/stripe/checkout', {
                 method: 'POST',
                 headers: {
-                    'Content-Type': 'application/json', // Set the Content-Type header to JSON
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${Beartoken}`, // Set the Content-Type header to JSON
                 },
-                body:JSON.stringify(requestData),
+                body: JSON.stringify(requestData),
             })
                 .then(response => response.json())
                 .then(data => {
                     if (data.success == true) {
-                        console.warn("check",data);
-                        // window.location.href = data.url;
+                        localStorage.removeItem('cart')
+                        localStorage.setItem("paymentid_token",data.payment_id)
+                        window.location.href = data.url;
                     } else {
+                        toast.error(data.data);
                         console.warn(data);
                     }
+                    setApiLoader(false);
                 })
                 .catch(error => {
                     console.error('Insert error:', error);
+                    setApiLoader(false);
                 });
         } catch (error) {
             console.error('Login api error:', error);
+            setApiLoader(false);
         }
 
     };
@@ -187,11 +201,15 @@ const Page = ({ title }) => {
                                                     <h3 className="cart-amount-small-amount theme-color font-600">${allItemsTotalPrice}</h3>
                                                 </Col>
                                                 <Col md={12}>
-                                                    <div className="mt-3 paynow-btn-box">
-                                                        <span onClick={() => saveCartToLocalStorage()}>
-                                                            <Whitestarbtn title={'Pay now'} />
-                                                        </span>
-                                                    </div>
+                                                    {ApiLoader ? (
+                                                        <Button className='signup-page-btn'>Please wait...</Button>
+                                                    ) : (
+                                                        <div className="mt-3 paynow-btn-box">
+                                                            <span onClick={() => saveCartToLocalStorage()}>
+                                                                <Whitestarbtn title={'Pay now'} />
+                                                            </span>
+                                                        </div>
+                                                    )}
                                                 </Col>
                                             </Row>
                                         </Card.Body>

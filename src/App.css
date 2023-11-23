@@ -238,6 +238,19 @@ span.input-group-text {
   overflow: hidden;
   width: 100%;
 }
+.l-background {
+  animation-duration: 1s;
+  animation-fill-mode: forwards;
+  animation-iteration-count: infinite;
+  animation-name: placeHolderShimmer;
+  animation-timing-function: linear;
+  background: #f6f7f8;
+  background: linear-gradient(to right, #eeeeee 8%, #dddddd 18%, #eeeeee 33%);
+  background-size: 1000px 104px;
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+}
 
 .date-border-redius {
   border-radius: 0px 10px 10px 0px !important;
@@ -392,4 +405,29 @@ span.flatpickr-weekday {
 }
 .overflow-y-scroll{
   overflow-y: auto !important;
+}
+.ticket-box {
+  background: #fff;
+  padding: 30px 20px;
+  border-radius: 10px;
+  margin: 0px 40px;
+}
+.ticket-qr {
+  padding-bottom: 40px;
+}
+.ticket-view-title {
+  margin-bottom: 0px;
+  font-size: 14px;
+}
+.ticket-view-data {
+  font-weight: 600;
+  color: #000;
+  font-size: 17px;
+}
+.ticket-list-row {
+  overflow-y: auto;
+  height: 500px;
+}
+.modal-dialog.ticket-view-page .modal-content {
+  background: #eee;
 }
