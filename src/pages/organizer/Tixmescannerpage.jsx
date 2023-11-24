@@ -7,7 +7,7 @@ import Whitebtn from '../../component/Whitestarbtn';
 import { admin_url, app_url, apiurl, customer_url,organizer_url } from '../../common/Helpers';
 import { useNavigate } from 'react-router-dom';
 const Dashboard = ({ title }) => {
-    const [openQrcode, setopenQrcode] = useState(false);
+    const [openQrcode, setopenQrcode] = useState(true);
     const [scanLocation, setScanLocation] = useState('');
     const intervalRef = useRef(null); // Ref to hold the interval
     const navigate = useNavigate();
@@ -18,8 +18,7 @@ const Dashboard = ({ title }) => {
         return () => clearInterval(intervalRef.current); // Clean up interval on component unmount
     }, []);
     const openscanner = () => {
-        // setopenQrcode(true)
-        navigate(organizer_url + 'tixme-scanner-page')
+        setopenQrcode(true)
     }
     const reloadOneTime = () => {
         if (!window.location.hash) {
@@ -101,7 +100,7 @@ const Dashboard = ({ title }) => {
                                             <h2 className="">{title}</h2>
                                             <Lottie className="py-2" animationData={QrcodeLotte} style={lottewidth} />
                                             <span className="ml-5" onClick={() => openscanner()}>
-                                                <Whitebtn title={'Scan QR'} />
+                                                <Whitebtn title={'Scan Item'} />
                                             </span>
                                         </div>
                                     </Card.Body>
