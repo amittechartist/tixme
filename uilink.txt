@@ -89,3 +89,14 @@ isvalid = (0 = yes | 1 no)
 
 
 
+https://konaxtechnologies.in/tixme/auth/admin/login
+id : super
+password : 12345
+
+https://konaxtechnologies.in/tixme/auth/customer/signup
+id : amitmajumder559@gmail.com
+password : 12345678
+
+https://konaxtechnologies.in/tixme/auth/organizer/login
+amitmajumder559@gmail.com
+12345678

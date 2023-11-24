@@ -20,6 +20,7 @@ import CustomerLayout from './layout/customer/Layout'
 import Dashboard from './pages/organizer/Dashboard';
 import EventType from './pages/organizer/Event/EventCreateForm';
 import EventList from './pages/organizer/Event/List';
+import Tixmescanner from './pages/organizer/Tixmescanner';
 import OrganizerLayout from './layout/organizer/Layout'
 // website auth
 import Signup from './pages/website/auth/Signup';
@@ -70,8 +71,7 @@ function App() {
           <Route path={app_url + 'cart-details'} element={<WebsiteLayout> <CartDetails title={'Your Cart'} /> </WebsiteLayout>} />
           <Route path={app_url + 'order-successful-page'} element={<WebsiteLayout> <OrderSuccessful title={'Payment status'} /> </WebsiteLayout>} />
           <Route path={app_url + 'order-failed-page'} element={<WebsiteLayout> <OrderFailed title={'Payment status'} /> </WebsiteLayout>} />
-          <Route path={app_url + 'scanner'} element={<WebsiteLayout> <Scaner title={'Payment status'} /> </WebsiteLayout>} />
-          
+          <Route path={app_url + 'scanner'} element={<Scaner title={'Payment status'} />} />
 
           {/* Customer Admin */}
           <Route path={customer_url + 'dashboard'} element={<CustomerLayout> <CustomerDashboard title={'dashboard'} /> </CustomerLayout>} />
@@ -81,6 +81,7 @@ function App() {
           <Route path={organizer_url + 'dashboard'} element={<OrganizerLayout> <Dashboard title={'dashboard'} /> </OrganizerLayout>} />
           <Route path={organizer_url + 'event/add-event'} element={<OrganizerLayout> <EventType title={'Create new event'} /> </OrganizerLayout>} />
           <Route path={organizer_url + 'event/all-event-list'} element={<OrganizerLayout> <EventList title={'All event list'} /> </OrganizerLayout>} />
+          <Route path={organizer_url + 'tixme-scanner'} element={<OrganizerLayout> <Tixmescanner title={'Tixme scanner'} /> </OrganizerLayout>} />
           {/* Admin */}
           <Route path={admin_url + 'dashboard'} element={<AdminLayout> <AdminDashboard title={'dashboard'} /> </AdminLayout>} />
           <Route path={admin_url + 'add-category'} element={<AdminLayout> <AddCategory title={'Add Category'} /> </AdminLayout>} />

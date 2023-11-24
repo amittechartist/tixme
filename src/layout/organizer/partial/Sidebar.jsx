@@ -50,7 +50,7 @@ const Sidebar = () => {
                             <span className="nav-text">Finance</span>
                         </Link>
                         </li>
-                        <li><Link href="reports.html" className="ai-icon" aria-expanded="false">
+                        <li><Link to={organizer_url + 'tixme-scanner'} className="ai-icon" aria-expanded="false">
                             <img src={scannerIcon} alt="Your Logo" />
                             <span className="nav-text">Tixme Scanner</span>
                         </Link>
