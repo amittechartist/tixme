@@ -7,7 +7,7 @@ import Whitebtn from '../../component/Whitestarbtn';
 import { admin_url, app_url, apiurl, customer_url } from '../../common/Helpers';
 import { useNavigate } from 'react-router-dom';
 const Dashboard = ({ title }) => {
-    const [openQrcode, setopenQrcode] = useState(false);
+    const [openQrcode, setopenQrcode] = useState(true);
     const [scanLocation, setScanLocation] = useState('');
     const intervalRef = useRef(null); // Ref to hold the interval
     const navigate = useNavigate();
@@ -18,7 +18,7 @@ const Dashboard = ({ title }) => {
         return () => clearInterval(intervalRef.current); // Clean up interval on component unmount
     }, []);
     const openscanner = () => {
-        setopenQrcode(true)
+        // setopenQrcode(true)
     }
     const reloadOneTime = () => {
         if (!window.location.hash) {
@@ -52,7 +52,7 @@ const Dashboard = ({ title }) => {
                         </ol>
                     </div>
 
-                    {openQrcode ? (
+
                         <Row className="justify-content-center">
                             <Col md={6}>
                                 <div>{scanLocation}</div>
@@ -92,7 +92,7 @@ const Dashboard = ({ title }) => {
                                 </Card>
                             </Col>
                         </Row>
-                    ) : (
+
                         <Row className="justify-content-center">
                             <Col md={6}>
                                 <Card>
@@ -109,7 +109,7 @@ const Dashboard = ({ title }) => {
                                 </Card>
                             </Col>
                         </Row>
-                    )}
+
                 </div>
             </div>
 
