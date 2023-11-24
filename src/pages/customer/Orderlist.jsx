@@ -84,6 +84,9 @@ const Dashboard = ({ title }) => {
             setModal(false)
         }
     }
+    const generateRandomNumber = () => {
+        return Math.floor(10000 + Math.random() * 90000); // Generates a random 5-digit number
+    };
     useEffect(() => {
         fetchList();
     }, []);
@@ -104,7 +107,7 @@ const Dashboard = ({ title }) => {
                                         {/* <img src={QR} style={{ height: "auto", width: "100px" }} alt="" /> */}
                                         <div className="ticket-box">
                                             <div className="ticket-qr text-center">
-                                                <QRCode style={{ height: "auto", width: "150px" }} value={JSON.stringify(item)} />
+                                                <QRCode style={{ height: "auto", width: "150px" }} value={JSON.stringify({ id: item._id, time: generateRandomNumber(), index:index })} />
                                             </div>
                                             <div className="ticket-data">
                                                 <p className="ticket-view-title">Event Name</p>

@@ -18,7 +18,7 @@ const Dashboard = ({ title }) => {
         return () => clearInterval(intervalRef.current); // Clean up interval on component unmount
     }, []);
     const openscanner = () => {
-        // setopenQrcode(true)
+        setopenQrcode(true)
     }
     const reloadOneTime = () => {
         if (!window.location.hash) {
@@ -30,7 +30,7 @@ const Dashboard = ({ title }) => {
     const checkForResult = () => {
         const resultElement = document.getElementById('camera-result');
         if (resultElement && resultElement.textContent.trim() !== '') {
-            let maintext = resultElement.textContent.trim();
+            let maintext = JSON.parse(resultElement.textContent.trim());
             localStorage.setItem('scanlocation', maintext)
             // navigate(app_url + 'homepage');
             setScanLocation(maintext);
@@ -52,7 +52,7 @@ const Dashboard = ({ title }) => {
                         </ol>
                     </div>
 
-
+                    {openQrcode ? (
                         <Row className="justify-content-center">
                             <Col md={6}>
                                 <div>{scanLocation}</div>
@@ -92,7 +92,7 @@ const Dashboard = ({ title }) => {
                                 </Card>
                             </Col>
                         </Row>
-
+                    ) : (
                         <Row className="justify-content-center">
                             <Col md={6}>
                                 <Card>
@@ -109,7 +109,7 @@ const Dashboard = ({ title }) => {
                                 </Card>
                             </Col>
                         </Row>
-
+                    )}
                 </div>
             </div>
 
