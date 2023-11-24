@@ -3,10 +3,10 @@ import { Button, Col, Row } from "react-bootstrap";
 import Card from 'react-bootstrap/Card';
 import QrcodeLotte from '../../lotte/qr-code-scaner-gif.json'
 import Lottie from "lottie-react";
-import FailedLotte from '../../lotte/pay-falil.json';
+import FailedLotte from '../../lotte/faild.json';
 import Whitebtn from '../../component/Whitestarbtn';
 import toast from "react-hot-toast";
-import SuccessLotte from '../../lotte/pay-success.json';
+import SuccessLotte from '../../lotte/qrsuccess.json';
 import { admin_url, app_url, apiurl, customer_url, organizer_url } from '../../common/Helpers';
 import { Link, useNavigate } from 'react-router-dom';
 const Dashboard = ({ title }) => {
@@ -14,13 +14,14 @@ const Dashboard = ({ title }) => {
     const [Apiloader, setApiloader] = useState(true);
     const [Failedloader, setFailedloader] = useState(false);
     const [Failed, setFailed] = useState(false);
+    const [Failedmessage, setFailedmessage] = useState('');
     const organizerid = localStorage.getItem('organizerid');
     const navigate = useNavigate();
     const checkQR = async () => {
         try {
             if (!id || !organizerid) {
-                navigate(organizer_url + 'tixme-scanner');
-                return;
+                // navigate(organizer_url + 'tixme-scanner');
+                // return;
             }
             const requestData = {
                 id: id,
@@ -41,8 +42,9 @@ const Dashboard = ({ title }) => {
                         setApiloader(false)
                     } else {
                         toast.error(data.data)
+                        setFailedmessage(data.data)
                         setFailed(false)
-                        setFailedloader(true)
+                        // setFailedloader(true)
                         setApiloader(false)
                     }
                     localStorage.removeItem('scandata');
@@ -90,18 +92,21 @@ const Dashboard = ({ title }) => {
                                     <Card.Body className="text-center">
                                         {Failedloader ? (
                                             <div>
-                                                <p className="text-success payment-page-title">Failed !</p>
+                                                <p className="text-warning payment-page-title">{Failedmessage}</p>
                                                 <Lottie className="py-3" animationData={FailedLotte} style={lottewidth} />
                                             </div>
                                         ) : (
                                             <div>
-                                                <p className="text-success payment-page-title">Ticket scanned successfully !</p>
+                                                <p className="text-success payment-page-title">Successfully</p>
                                                 <Lottie animationData={SuccessLotte} style={Successlottewidth} />
                                             </div>
                                         )}
-                                        <div>
-                                            <Link to={organizer_url + 'tixme-scanner'}>
+                                        <div className='text-center'>
+                                            <Link to={organizer_url + 'tixme-scanner-page'}>
                                                 <Whitebtn title={'Scan again'} />
+                                            </Link>
+                                            <Link to={organizer_url + 'tixme-scanner'}>
+                                                <Whitebtn title={'Back'} />
                                             </Link>
                                         </div>
                                     </Card.Body>

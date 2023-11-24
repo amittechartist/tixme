@@ -10,6 +10,16 @@ import supportIcon from '../../../common/icon/support.svg';
 import { Link, useNavigate } from 'react-router-dom';
 import { organizer_url, app_url, customer_url } from '../../../common/Helpers';
 const Sidebar = () => {
+    function d() {
+        const mainWrapperView = document.getElementById('main-wrapper view');
+        const xyx = document.getElementsByClassName('hamburger');
+        if (mainWrapperView) {
+            mainWrapperView.classList.remove('show', 'menu-toggle');
+            for (let i = 0; i < xyx.length; i++) {
+                xyx[i].classList.remove('is-active');
+            }
+        }
+    }
     const navigate = useNavigate();
     function Logout() {
         localStorage.removeItem('userauth');
@@ -21,22 +31,22 @@ const Sidebar = () => {
             <div className="deznav">
                 <div className="deznav-scroll">
                     <ul className="metismenu" id="menu">
-                        <li><Link to={organizer_url + 'dashboard'} className="ai-icon" aria-expanded="false">
+                        <li onClick={() => d()}><Link to={organizer_url + 'dashboard'} className="ai-icon" aria-expanded="false">
                             <img src={DashboardIcon} alt="Your Logo" />
                             <span className="nav-text">Dashboard</span>
                         </Link>
                         </li>
-                        <li><Link to={customer_url+ 'my-order-list'} className="ai-icon" aria-expanded="false">
+                        <li onClick={() => d()}><Link to={customer_url+ 'my-order-list'} className="ai-icon" aria-expanded="false">
                             <img src={supportIcon} alt="Your Logo" />
                             <span className="nav-text">My order</span>
                         </Link>
                         </li>
-                        <li><Link to={customer_url+ 'support-tickets'} className="ai-icon" aria-expanded="false">
+                        <li onClick={() => d()}><Link to={customer_url+ 'support-tickets'} className="ai-icon" aria-expanded="false">
                             <img src={supportIcon} alt="Your Logo" />
                             <span className="nav-text">Support</span>
                         </Link>
                         </li>
-                        <li>
+                        <li onClick={() => d()}>
                             <div onClick={Logout} className="ai-icon cursor-pointer" aria-expanded="false">
                                 <img src={DashboardIcon} alt="Your Logo" />
                                 <span className="nav-text">Logout</span>

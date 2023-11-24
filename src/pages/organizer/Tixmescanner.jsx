@@ -11,32 +11,10 @@ const Dashboard = ({ title }) => {
     const [scanLocation, setScanLocation] = useState('');
     const intervalRef = useRef(null); // Ref to hold the interval
     const navigate = useNavigate();
-    useEffect(() => {
-        reloadOneTime();
-        intervalRef.current = setInterval(checkForResult, 1000); // Run checkForResult every second
-
-        return () => clearInterval(intervalRef.current); // Clean up interval on component unmount
-    }, []);
     const openscanner = () => {
         // setopenQrcode(true)
         navigate(organizer_url + 'tixme-scanner-page')
     }
-    const reloadOneTime = () => {
-        if (!window.location.hash) {
-            window.location = window.location + '##';
-            window.location.reload();
-        }
-    };
-
-    const checkForResult = () => {
-        const resultElement = document.getElementById('camera-result');
-        if (resultElement && resultElement.textContent.trim() !== '') {
-            let maintext = JSON.parse(resultElement.textContent.trim());
-            localStorage.setItem('scandata', maintext.id)
-            window.location.href = organizer_url + 'tixme-validate';
-            clearInterval(intervalRef.current); // Stop the interval
-        }
-    };
     const lottewidth = {
         width: 'auto',
         height: '400px'

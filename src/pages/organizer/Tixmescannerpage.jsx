@@ -2,9 +2,10 @@ import React, { useState, useEffect, useRef } from 'react';
 import { Button, Col, Row } from "react-bootstrap";
 import Card from 'react-bootstrap/Card';
 import QrcodeLotte from '../../lotte/qr-code-scaner-gif.json'
+import NocameraLotte from '../../lotte/nocamera.json'
 import Lottie from "lottie-react";
 import Whitebtn from '../../component/Whitestarbtn';
-import { admin_url, app_url, apiurl, customer_url,organizer_url } from '../../common/Helpers';
+import { admin_url, app_url, apiurl, customer_url, organizer_url } from '../../common/Helpers';
 import { useNavigate } from 'react-router-dom';
 const Dashboard = ({ title }) => {
     const [openQrcode, setopenQrcode] = useState(true);
@@ -38,7 +39,7 @@ const Dashboard = ({ title }) => {
     };
     const lottewidth = {
         width: 'auto',
-        height: '400px'
+        height: '200px'
     }
     return (
         <>
@@ -64,13 +65,26 @@ const Dashboard = ({ title }) => {
                                                     </div>
                                                     <div className="col-12">
                                                         <div className="camera-off">
-                                                            <p id="message-denied">
-                                                                Please allow camera access to scan QR codes.
-                                                            </p>
-                                                            <p id="message-off" style={{ display: 'none' }}>
-                                                                Could not find a usable camera on this device to scan QR codes.
-                                                                Prefer using this site on your mobile phone.
-                                                            </p>
+                                                            <div id="message-denied">
+                                                                <Lottie className="" animationData={NocameraLotte} style={lottewidth} />
+
+                                                                <div class="alert alert-primary alert-dismissible fade show">
+                                                                    <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="me-2"><circle cx="12" cy="12" r="10"></circle><path d="M8 14s1.5 2 4 2 4-2 4-2"></path><line x1="9" y1="9" x2="9.01" y2="9"></line><line x1="15" y1="9" x2="15.01" y2="9"></line></svg>
+                                                                    <strong>Welcome!</strong> Please allow camera access to scan QR codes.
+                                                                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="btn-close">
+                                                                    </button>
+                                                                </div>
+                                                            </div>
+                                                            <div id="message-off" style={{ display: 'none' }}>
+                                                                <Lottie className="" animationData={NocameraLotte} style={lottewidth} />
+                                                                <div class="alert alert-warning alert-dismissible fade show">
+                                                                    <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="me-2"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
+                                                                    <strong>No!</strong> camera found !
+                                                                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="btn-close">
+                                                                    </button>
+                                                                </div>
+                                                            </div>
+
                                                         </div>
                                                         <div className="camera-on" style={{ display: 'none' }}>
                                                             <div id="camera-preview"></div>

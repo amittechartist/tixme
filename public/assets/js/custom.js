@@ -396,4 +396,5 @@ jQuery(window).on('resize',function () {
 	'use strict'; 
 	Tixia.resize();
 });
+  
 /*  Window Resize END */

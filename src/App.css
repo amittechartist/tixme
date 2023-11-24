@@ -194,9 +194,11 @@ span.input-group-text {
 .table-responsive {
   padding-bottom: 80px;
 }
+
 .page-theme-btn:hover {
   color: #fff;
 }
+
 .page-theme-btn {
   background: #0047ab;
   color: #fff;
@@ -238,6 +240,7 @@ span.input-group-text {
   overflow: hidden;
   width: 100%;
 }
+
 .l-background {
   animation-duration: 1s;
   animation-fill-mode: forwards;
@@ -403,31 +406,58 @@ span.flatpickr-weekday {
   transform: scale(0);
   transition: transform 0.3s ease-in-out;
 }
-.overflow-y-scroll{
+
+.overflow-y-scroll {
   overflow-y: auto !important;
 }
+
 .ticket-box {
   background: #fff;
   padding: 30px 20px;
   border-radius: 10px;
   margin: 0px 40px;
 }
+
 .ticket-qr {
   padding-bottom: 40px;
 }
+
 .ticket-view-title {
   margin-bottom: 0px;
   font-size: 14px;
 }
+
 .ticket-view-data {
   font-weight: 600;
   color: #000;
   font-size: 17px;
 }
+
 .ticket-list-row {
   overflow-y: auto;
   height: 500px;
 }
+
 .modal-dialog.ticket-view-page .modal-content {
   background: #eee;
+}
+
+@media only screen and (max-width: 900px) {
+  .admin-panel-logo {
+    height: auto;
+    width: 60px;
+  }
+
+  [data-sidebar-style="overlay"] .deznav .metismenu>li>a {
+    font-size: 16px;
+    padding: 11px 0px 10px 0px;
+    color: #7f7184;
+    border-radius: 2.75rem;
+    -webkit-transition: all 0.5s;
+    -ms-transition: all 0.5s;
+    transition: all 0.5s;
+  }
+  [data-sibebarbg="color_3"][data-theme-version="dark"] .menu-toggle .deznav .metismenu li > ul, [data-sibebarbg="color_3"] .menu-toggle .deznav .metismenu li > ul {
+    background: #fff !important;
+}
 }

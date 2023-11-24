@@ -100,3 +100,6 @@ password : 12345678
 https://konaxtechnologies.in/tixme/auth/organizer/login
 amitmajumder559@gmail.com
 12345678
+
+nitishchandra@essane.in
+Xitish@123

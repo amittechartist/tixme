@@ -8,7 +8,7 @@ import MenuIcon from '../../../common/icon/Menu sidebar.svg';
 import peopleIcon from '../../../common/icon/people 1.svg';
 import supportIcon from '../../../common/icon/support.svg';
 import { Link, useNavigate } from 'react-router-dom';
-import { organizer_url,app_url } from '../../../common/Helpers';
+import { organizer_url, app_url } from '../../../common/Helpers';
 const Sidebar = () => {
     const navigate = useNavigate();
     function Logout() {
@@ -17,17 +17,27 @@ const Sidebar = () => {
         localStorage.removeItem('organizer_role');
         navigate(app_url);
     }
+    function d() {
+        const mainWrapperView = document.getElementById('main-wrapper view');
+        const xyx = document.getElementsByClassName('hamburger');
+        if (mainWrapperView) {
+            mainWrapperView.classList.remove('show', 'menu-toggle');
+            for (let i = 0; i < xyx.length; i++) {
+                xyx[i].classList.remove('is-active');
+            }
+        }
+    }
     return (
         <>
             <div className="deznav">
                 <div className="deznav-scroll">
                     <ul className="metismenu" id="menu">
-                        <li><Link to={organizer_url + 'dashboard'} className="ai-icon" aria-expanded="false">
+                        <li onClick={() => d()}><Link to={organizer_url + 'dashboard'} className="ai-icon" aria-expanded="false">
                             <img src={DashboardIcon} alt="Your Logo" />
                             <span className="nav-text">Dashboard</span>
                         </Link>
                         </li>
-                        <li>
+                        <li onClick={() => d()}>
                             <a href="javascript:void(0);" class="has-arrow ai-icon" aria-expanded="false">
                                 <img src={EventIcon} alt="Your Logo" />
                                 <span class="nav-text">Event Management</span>
@@ -50,7 +60,7 @@ const Sidebar = () => {
                             <span className="nav-text">Finance</span>
                         </Link>
                         </li>
-                        <li><Link to={organizer_url + 'tixme-scanner'} className="ai-icon" aria-expanded="false">
+                        <li onClick={() => d()}><Link to={organizer_url + 'tixme-scanner'} className="ai-icon" aria-expanded="false">
                             <img src={scannerIcon} alt="Your Logo" />
                             <span className="nav-text">Tixme Scanner</span>
                         </Link>
@@ -70,7 +80,7 @@ const Sidebar = () => {
                             <span className="nav-text">Support</span>
                         </Link>
                         </li>
-                        <li>
+                        <li onClick={() => d()}>
                             <div onClick={Logout} className="ai-icon cursor-pointer" aria-expanded="false">
                                 <img src={DashboardIcon} alt="Your Logo" />
                                 <span className="nav-text">Logout</span>
