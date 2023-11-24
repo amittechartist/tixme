@@ -46,7 +46,6 @@ const Dashboard = ({ title }) => {
                         setApiloader(false)
                     }
                     localStorage.removeItem('scandata');
-                    localStorage.removeItem('organizerid')
                 })
                 .catch(error => {
                     console.error('error:', error);
