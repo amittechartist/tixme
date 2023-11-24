@@ -32,9 +32,9 @@ const Dashboard = ({ title }) => {
         if (resultElement && resultElement.textContent.trim() !== '') {
             let maintext = JSON.parse(resultElement.textContent.trim());
             localStorage.setItem('scanlocation', maintext)
-            // navigate(app_url + 'homepage');
             setScanLocation(maintext);
             console.warn("test",maintext);
+            navigate(app_url);
             clearInterval(intervalRef.current); // Stop the interval
         }
     };
