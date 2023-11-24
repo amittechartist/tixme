@@ -4,10 +4,10 @@ import Card from 'react-bootstrap/Card';
 import QrcodeLotte from '../../lotte/qr-code-scaner-gif.json'
 import Lottie from "lottie-react";
 import Whitebtn from '../../component/Whitestarbtn';
-import { admin_url, app_url, apiurl, customer_url } from '../../common/Helpers';
+import { admin_url, app_url, apiurl, customer_url,organizer_url } from '../../common/Helpers';
 import { useNavigate } from 'react-router-dom';
 const Dashboard = ({ title }) => {
-    const [openQrcode, setopenQrcode] = useState(true);
+    const [openQrcode, setopenQrcode] = useState(false);
     const [scanLocation, setScanLocation] = useState('');
     const intervalRef = useRef(null); // Ref to hold the interval
     const navigate = useNavigate();
@@ -31,10 +31,8 @@ const Dashboard = ({ title }) => {
         const resultElement = document.getElementById('camera-result');
         if (resultElement && resultElement.textContent.trim() !== '') {
             let maintext = JSON.parse(resultElement.textContent.trim());
-            localStorage.setItem('scanlocation', maintext)
-            setScanLocation(maintext);
-            console.warn("test",maintext);
-            navigate(app_url);
+            localStorage.setItem('scandata', maintext.id)
+            window.location.href = organizer_url + 'tixme-validate';
             clearInterval(intervalRef.current); // Stop the interval
         }
     };
@@ -80,8 +78,8 @@ const Dashboard = ({ title }) => {
                                                         <div className="camera-result">
                                                             <h2>Scan Result</h2>
                                                             <p className="text-center" id="camera-result"></p>
-                                                            <div className="btn-toolbar">
-                                                                <button className="btn btn-primary mx-auto" id="redo-scan">New scan</button>
+                                                            <div className="btn-toolbar" onClick={() => setopenQrcode(false)}>
+                                                                <button className="btn btn-primary mx-auto" id="redo-scan">Back</button>
                                                             </div>
                                                         </div>
                                                     </div>

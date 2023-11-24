@@ -21,6 +21,7 @@ import Dashboard from './pages/organizer/Dashboard';
 import EventType from './pages/organizer/Event/EventCreateForm';
 import EventList from './pages/organizer/Event/List';
 import Tixmescanner from './pages/organizer/Tixmescanner';
+import Qrvalidation from './pages/organizer/Qrvalidation';
 import OrganizerLayout from './layout/organizer/Layout'
 // website auth
 import Signup from './pages/website/auth/Signup';
@@ -82,6 +83,7 @@ function App() {
           <Route path={organizer_url + 'event/add-event'} element={<OrganizerLayout> <EventType title={'Create new event'} /> </OrganizerLayout>} />
           <Route path={organizer_url + 'event/all-event-list'} element={<OrganizerLayout> <EventList title={'All event list'} /> </OrganizerLayout>} />
           <Route path={organizer_url + 'tixme-scanner'} element={<OrganizerLayout> <Tixmescanner title={'Tixme scanner'} /> </OrganizerLayout>} />
+          <Route path={organizer_url + 'tixme-validate'} element={<OrganizerLayout> <Qrvalidation title={'QR validate'} /> </OrganizerLayout>} />
           {/* Admin */}
           <Route path={admin_url + 'dashboard'} element={<AdminLayout> <AdminDashboard title={'dashboard'} /> </AdminLayout>} />
           <Route path={admin_url + 'add-category'} element={<AdminLayout> <AddCategory title={'Add Category'} /> </AdminLayout>} />
