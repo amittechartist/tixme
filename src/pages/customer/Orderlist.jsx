@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Button, Col, Row } from "react-bootstrap";
 import Card from 'react-bootstrap/Card';
 import { apiurl, admin_url, isEmail, app_url } from '../../common/Helpers';
+import QRsuccess from '../../common/icon/qr-code-pay.png';
 import QR from '../../common/image/qr.png'
 import WhiteButton from '../../component/Whitestarbtn';
 import { Link } from "react-router-dom";
@@ -103,11 +104,13 @@ const Dashboard = ({ title }) => {
                             <Row className="ticket-list-row">
                                 {Ticketlist.map((item, index) => (
                                     <Col md={12} className="mb-4">
-                                        {/* <QRCode style={{ height: "200px", width: "200px" }} value={JSON.stringify(item)} /> */}
-                                        {/* <img src={QR} style={{ height: "auto", width: "100px" }} alt="" /> */}
                                         <div className="ticket-box">
                                             <div className="ticket-qr text-center">
-                                                <QRCode style={{ height: "auto", width: "150px" }} value={JSON.stringify({ id: item._id, time: generateRandomNumber(), index:index })} />
+                                                {item.scan_status == 0 ? (
+                                                    <QRCode style={{ height: "auto", width: "150px" }} value={JSON.stringify({ id: item._id, time: generateRandomNumber(), index:index })} />
+                                                ) : (
+                                                    <img style={{ height: "auto", width: "150px" }} src={QRsuccess} className="qr-scanner-success" alt="" />
+                                                )}
                                             </div>
                                             <div className="ticket-data">
                                                 <p className="ticket-view-title">Event Name</p>
@@ -118,9 +121,11 @@ const Dashboard = ({ title }) => {
                                                 <p className="ticket-view-data">{item.eventdata.start_date} {item.eventdata.start_time}</p>
                                                 <p className="ticket-view-title">Created by</p>
                                                 <p className="ticket-view-data">{item.owner_email}</p>
-                                                <div>
+                                                {item.scan_status == 0 && item.isvalid == 0 ? (
+                                                    <div>
                                                     <button className="btn btn-success w-100">Transfer</button>
                                                 </div>
+                                                ) : ''}
                                             </div>
                                         </div>
                                     </Col>

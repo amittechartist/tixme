@@ -31,7 +31,7 @@ const Sidebar = () => {
             <div className="deznav">
                 <div className="deznav-scroll">
                     <ul className="metismenu" id="menu">
-                        <li onClick={() => d()}><Link to={organizer_url + 'dashboard'} className="ai-icon" aria-expanded="false">
+                        <li onClick={() => d()}><Link to={customer_url + 'dashboard'} className="ai-icon" aria-expanded="false">
                             <img src={DashboardIcon} alt="Your Logo" />
                             <span className="nav-text">Dashboard</span>
                         </Link>
@@ -44,6 +44,11 @@ const Sidebar = () => {
                         <li onClick={() => d()}><Link to={customer_url+ 'support-tickets'} className="ai-icon" aria-expanded="false">
                             <img src={supportIcon} alt="Your Logo" />
                             <span className="nav-text">Support</span>
+                        </Link>
+                        </li>
+                        <li onClick={() => d()}><Link to={customer_url+ 'my-profile'} className="ai-icon" aria-expanded="false">
+                            <img src={supportIcon} alt="Your Logo" />
+                            <span className="nav-text">Profile Managment</span>
                         </Link>
                         </li>
                         <li onClick={() => d()}>

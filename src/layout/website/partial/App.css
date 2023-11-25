@@ -1274,3 +1274,13 @@ span.cart-price {
     font-weight: 500;
     color: #000;
 }
+.login-with-btn img {
+    height: auto;
+    width: 30px;
+}
+.login-with-btn {
+    padding: 7px 27px;
+    border: 2px solid #0047ab;
+    background: none;
+    border-radius: 10px;
+}

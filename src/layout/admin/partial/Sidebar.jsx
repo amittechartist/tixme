@@ -70,6 +70,12 @@ const Sidebar = () => {
                             </Link>
                         </li >
                         <li onClick={() => d()}>
+                            <Link to={admin_url + 'contact-us'} className="ai-icon" aria-expanded="false">
+                                <img src={DashboardIcon} alt="Your Logo" />
+                                <span className="nav-text">Contact us</span>
+                            </Link>
+                        </li >
+                        <li onClick={() => d()}>
                             <div onClick={Logout} className="ai-icon cursor-pointer" aria-expanded="false">
                                 <img src={DashboardIcon} alt="Your Logo" />
                                 <span className="nav-text">Logout</span>

@@ -10,7 +10,11 @@ import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content'
 import PhoneInput from 'react-phone-input-2';
 import 'react-phone-input-2/lib/style.css';
+import { auth, googleProvider,facebookProvider  } from '../../../firebase';
+import { signInWithPopup } from 'firebase/auth';
 import PersonIcon from '../../../common/icon/person 1.svg';
+import GoogleLogo from '../../../common/icon/google.png';
+import FacebookLogo from '../../../common/icon/facebook.png';
 import { apiurl, app_url, isEmail, organizer_url } from '../../../common/Helpers';
 const Home = ({ title }) => {
     const navigate = useNavigate();
@@ -223,6 +227,66 @@ const Home = ({ title }) => {
             console.error('Login api error:', error);
         }
     }
+    
+    const handleFacebookLogin = async () => {
+        toast.error("Contact your developer");
+    }
+    const handleGoogleLogin = async () => {
+        try {
+            const result = await signInWithPopup(auth, googleProvider);
+            const user = result.user;
+
+            // Access user information
+            const email = user.email;
+            const displayName = user.displayName;
+            const uid = user.uid;
+            const photoURL = user.photoURL;
+
+            if (email) {
+                try {
+                    setLoader(true);
+                    const requestData = {
+                        email: email,
+                        name: displayName,
+                        profilepic: photoURL
+                    };
+                    fetch(apiurl + 'auth/customer/login-google', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json', // Set the Content-Type header to JSON
+                        },
+                        body: JSON.stringify(requestData),
+                    })
+                        .then(response => response.json())
+                        .then(data => {
+                            setLoader(false);
+                            if (data.success == true) {
+                                localStorage.setItem('userauth', data.token);
+                                localStorage.setItem('user_role', 1);
+                                toast.success('Login successful', {
+                                    duration: 3000,
+                                });
+                                navigate(app_url);
+                            } else {
+                                toast.error(data.message);
+                            }
+                        })
+                        .catch(error => {
+                            setLoader(false);
+                            // toast.error('Insert error: ' + error.message);
+                            console.error('Insert error:', error);
+                        });
+                } catch (error) {
+                    console.error('Login api error:', error);
+                }
+            } else {
+                toast.error("Something wrong!");
+            }
+
+        } catch (error) {
+            console.error(error.message);
+        }
+    };
     const userOption = [
         {
             options: [
@@ -273,6 +337,19 @@ const Home = ({ title }) => {
                                             </span>
                                         </Button>
                                     )}
+                                </div>
+                                <div className="border-bottom py-2"></div>
+                                <div className="text-center">
+                                    <p className="reset-password-link text-center">Login with</p>
+                                </div>
+                                <div className="text-center">
+                                    <Row>
+                                        <Col md={12}>
+                                            <button className="login-with-btn mx-1" onClick={handleGoogleLogin}><img src={GoogleLogo}></img></button>
+                                            <button className="login-with-btn mx-1" onClick={handleFacebookLogin}><img src={FacebookLogo}></img></button>
+                                        </Col>
+                                        
+                                    </Row>
                                 </div>
                             </div>
                         </Col>
@@ -428,7 +505,7 @@ const Home = ({ title }) => {
                     </Row>
                 </Container>
             </div>
-        </div>
+        </div >
     )
 }
 export default Home;
