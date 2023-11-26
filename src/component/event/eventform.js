@@ -16,6 +16,7 @@ import { Link, useNavigate } from "react-router-dom";
 import toast from 'react-hot-toast';
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
+import WhitestarBtn from '../Whitestarbtn';
 import Select from 'react-select'
 import Flatpickr from "react-flatpickr";
 import "flatpickr/dist/themes/material_green.css";
@@ -29,7 +30,7 @@ import {
     ModalHeader
 } from 'reactstrap'
 
-const Type = ({ title }) => {
+const Type = ({ title, editid }) => {
     const MySwal = withReactContent(Swal);
     const navigate = useNavigate();
     const [Loader, setLoader] = useState(false);
@@ -189,12 +190,6 @@ const Type = ({ title }) => {
         newTags.splice(index, 1);
         setTags(newTags);
     };
-    function CheckBasicInfo() {
-        setFormSection(3)
-    }
-    function CheckEventDesc() {
-        setFormSection(4)
-    }
     const HandelUpdatedetails = async (updateid) => {
 
     }
@@ -402,7 +397,7 @@ const Type = ({ title }) => {
             console.error('Login api error:', error);
         }
     }
-    
+
     const HandelPriceform = async () => {
         toast.success("Event created successful");
         localStorage.removeItem('eventcreateid');
@@ -502,9 +497,65 @@ const Type = ({ title }) => {
     function HandelCreateticket() {
         setTicketshow(true);
     }
+    const getEditdata = async (editid) => {
+        try {
+            setApiloader(true);
+            const requestData = {
+                id: editid
+            };
+            fetch(apiurl + 'event/get-details', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json', // Set the Content-Type header to JSON
+                },
+                body: JSON.stringify(requestData),
+            })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success == true) {
+                        setFormSection(2)
+                        setName(data.data.name)
+                        setDisplayname(data.data.display_name)
+                        setType(data.data.eventtype)
+                        setEventtype(data.data.eventtype)
+                        setEventtypeCategory([{ value: data.data.category, label: data.data.category_name }])
+                        setCategoryId(data.data.category)
+                        setCategoryname(data.data.category_name)
+                        setCategory([{ value: data.data.eventtypecategory, label: data.data.eventtypecategory_name }])
+                        setEventtypeCategoryId(data.data.eventtypecategory)
+                        setEventtypeCategoryname(data.data.eventtypecategory_name)
+                        setVisibility(data.data.visibility)
+                        setLocation(data.data.location)
+                        setEventSubtype(data.data.event_subtype_id)
+                        var startdate = data.data.start_date;
+                        var starttime = data.data.start_time;
+                        var Enddate = data.data.end_date;
+                        var Rndtime = data.data.end_time;
+                        setIsclockCountdown(data.data.is_clock_countdown)
+                        setDisplaystarttime(data.data.display_start_time)
+                        setDisplayendtime(data.data.display_end_time)
+                        setEventdesc(data.data.event_desc)
+                        setDisplayprice(data.data.displayprice)
+                        setDisplaycutprice(data.data.displaycutprice)
+                        setTags(data.data.tags)
+                    }
+                })
+                .catch(error => {
+                    console.error('Insert error:', error);
+                    setApiloader(false);
+                });
+
+        } catch (error) {
+            console.error('Login api error:', error);
+        }
+    }
+    console.log("sss",Visibility)
     useEffect(() => {
         fetchCategory();
         fetchEventtypeCategory();
+        if (editid) {
+            getEditdata(editid)
+        }
     }, []);
     return (
         <>
@@ -542,11 +593,9 @@ const Type = ({ title }) => {
                                             <div className="event_category_box gradient-blue text-center float-right">
                                                 <h3 className="event-category-title theme-color">Online Event</h3>
                                                 <p className="event-category-desc text-black mb-4">Host online events using  Zoom, Google Meet, YouTube Live etc</p>
-                                                <Button variant="link" className="button-join" onClick={() => { setEventtype(1); setFormSection(2); }}>
-                                                    <span>
-                                                        <span className="bg-style"><img height={30} width={30} src={whitestar} /></span><span className="bg-style">Create Event</span>
-                                                    </span>
-                                                </Button>
+                                                <span onClick={() => { setEventtype(1); setFormSection(2); }}>
+                                                    <WhitestarBtn title={'Create Event'} />
+                                                </span>
                                                 <div className="icon_section">
                                                     <img src={GroupIcon} />
                                                     <img src={OnlineIcon} />
@@ -558,11 +607,9 @@ const Type = ({ title }) => {
                                                 <h3 className="event-category-title theme-color">Physical Event</h3>
                                                 <p className="event-category-desc text-black mb-4">Host in-person or outdoor events using our event management platform</p>
                                                 <div className="button-group">
-                                                    <Button variant="link" className="button-join" onClick={() => { setEventtype(2); setFormSection(2); }}>
-                                                        <span>
-                                                            <span className="bg-style"><img height={30} width={30} src={whitestar} /></span><span className="bg-style">Create Event</span>
-                                                        </span>
-                                                    </Button>
+                                                    <span onClick={() => { setEventtype(2); setFormSection(2); }}>
+                                                        <WhitestarBtn title={'Create Event'} />
+                                                    </span>
                                                 </div>
                                                 <div className="icon_section">
                                                     <img src={GroupIcon} />
@@ -585,7 +632,7 @@ const Type = ({ title }) => {
                                         <label htmlFor="" className="text-black">Event Display Name <img src={InfoIcon} /></label>
                                         <input type="text" class="form-control input-default " value={Displayname} onChange={(e) => setDisplayname(e.target.value)} placeholder="Enter Event Display Name" />
                                     </div>
-                                    <div className="col-md-2 mt-4">
+                                    <div className="col-md-4 mt-4">
                                         <label htmlFor="" className="text-black">Select Type</label>
                                         <Select
                                             isClearable={false}
@@ -596,7 +643,7 @@ const Type = ({ title }) => {
                                             value={EventtypeCategory}
                                         />
                                     </div>
-                                    <div className="col-md-2 mt-4">
+                                    <div className="col-md-4 mt-4">
                                         <label htmlFor="" className="text-black">Select Category</label>
                                         <Select
                                             isClearable={false}
@@ -607,15 +654,15 @@ const Type = ({ title }) => {
                                             value={Category}
                                         />
                                     </div>
-                                    <div className="col-md-4 mt-4">
+                                    <div className="col-md-6 mt-4">
                                         <label htmlFor="" className="text-black">Display price</label>
                                         <input type="text" class="form-control input-default" value={Displayprice} onChange={(e) => setDisplayprice(e.target.value)} placeholder="Enter Amount" />
                                     </div>
-                                    <div className="col-md-4  mt-4">
+                                    <div className="col-md-6  mt-4">
                                         <label htmlFor="" className="text-black">Display cut price</label>
                                         <input type="text" class="form-control input-default" value={Displaycutprice} onChange={(e) => setDisplaycutprice(e.target.value)} placeholder="Enter Amount" />
                                     </div>
-                                    <div className="col-md-4 mt-4">
+                                    <div className="col-md-12 mt-4">
                                         <label htmlFor="">Tags</label>
                                         <p>Improve discoverability of your event by adding tags relevant to subject matter.</p>
                                         <input
@@ -664,7 +711,7 @@ const Type = ({ title }) => {
                                         <label htmlFor="">Venue Location</label>
                                         <div class="input-group mb-3 input-warning-o">
                                             <span class="input-group-text"><img src={Magnify} alt="" /></span>
-                                            <input type="text" class="form-control" onChange={(e) => setLocation(e.target.value)} placeholder="Search for venue or address" />
+                                            <input type="text" class="form-control" value={Location} onChange={(e) => setLocation(e.target.value)} placeholder="Search for venue or address" />
                                         </div>
                                     </div>
 
@@ -678,13 +725,13 @@ const Type = ({ title }) => {
                                         </div>
                                     </div>
                                     <div className="col-md-6 checkout-style-bottom">
-                                        <div className="row checkout-style-element">
-                                            <div className="col-md-1">
+                                        <div className="row checkout-style-element Display-date-time-tic">
+                                            <div className="col-md-2">
                                                 <div class="input-group mb-3">
                                                     <input checked={IsclockCountdown} onChange={handleIsclockCountdown} type="checkbox" class="form-check-input" />
                                                 </div>
                                             </div>
-                                            <div className="col-md-11">
+                                            <div className="col-md-10">
                                                 <p className="mb-0">Clock Timer ( Countdown )</p>
                                                 <p className="mb-0">Clock timer of your event will be displayed to attendess.</p>
                                             </div>
@@ -696,10 +743,10 @@ const Type = ({ title }) => {
                                     <div className="col-md-12">
                                         <p>Event Starts</p>
                                     </div>
-                                    <div className="col-md-2">
+                                    <div className="col-md-4">
                                         <div class="input-group mb-3 input-warning-o" style={{ position: 'relative' }}>
                                             <span class="input-group-text"><img src={DateIcon} alt="" /></span>
-                                            <input type="text" class="form-control date-border-redius" placeholder="" readOnly value={startdate} />
+                                            <input type="text" class="form-control date-border-redius date-border-redius-input" placeholder="" readOnly value={startdate} />
                                             <div className="date-style-picker">
                                                 <Flatpickr
                                                     value={Startdateselect}
@@ -712,20 +759,20 @@ const Type = ({ title }) => {
                                         </div>
 
                                     </div>
-                                    <div className="col-md-2">
+                                    <div className="col-md-4">
                                         <div class="input-group mb-3 input-warning-o">
                                             <span class="input-group-text"><img src={TimeIcon} alt="" /></span>
-                                            <input type="text" class="form-control" placeholder="" readOnly value={starttime} />
+                                            <input type="text" class="form-control date-border-redius-input" placeholder="" readOnly value={starttime} />
                                         </div>
                                     </div>
-                                    <div className="col-md-8 checkout-style-bottom">
+                                    <div className="col-md-4 checkout-style-bottom">
                                         <div className="row checkout-style-element">
-                                            <div className="col-md-1">
+                                            <div className="col-md-2 col-2">
                                                 <div class="input-group mb-3">
                                                     <input checked={Displaystarttime} onChange={handleDisplaystarttime} type="checkbox" class="form-check-input" />
                                                 </div>
                                             </div>
-                                            <div className="col-md-11">
+                                            <div className="col-md-10 col-10 Display-date-time-tic">
                                                 <p className="mb-0">Display start time.</p>
                                                 <p className="mb-0">The start time of your event will be displayed to attendess.</p>
                                             </div>
@@ -734,10 +781,10 @@ const Type = ({ title }) => {
                                     <div className="col-md-12 mt-4">
                                         <p>Event Ends</p>
                                     </div>
-                                    <div className="col-md-2">
+                                    <div className="col-md-4">
                                         <div class="input-group mb-3 input-warning-o" style={{ position: 'relative' }}>
                                             <span class="input-group-text"><img src={DateIcon} alt="" /></span>
-                                            <input type="text" class="form-control date-border-redius" placeholder="" readOnly value={Enddate} />
+                                            <input type="text" class="form-control date-border-redius date-border-redius-input" placeholder="" readOnly value={Enddate} />
                                             <div className="date-style-picker">
                                                 <Flatpickr
                                                     value={Enddateselect}
@@ -749,20 +796,20 @@ const Type = ({ title }) => {
                                             </div>
                                         </div>
                                     </div>
-                                    <div className="col-md-2">
+                                    <div className="col-md-4">
                                         <div class="input-group mb-3 input-warning-o">
                                             <span class="input-group-text"><img src={TimeIcon} alt="" /></span>
-                                            <input type="text" class="form-control" placeholder="" readOnly value={Rndtime} />
+                                            <input type="text" class="form-control date-border-redius-input" placeholder="" readOnly value={Rndtime} />
                                         </div>
                                     </div>
-                                    <div className="col-md-8 checkout-style-bottom">
+                                    <div className="col-md-4 checkout-style-bottom">
                                         <div className="row checkout-style-element">
-                                            <div className="col-md-1">
+                                            <div className="col-md-2">
                                                 <div class="input-group mb-3">
                                                     <input checked={Displayendtime} onChange={handleDisplayendtime} type="checkbox" class="form-check-input" />
                                                 </div>
                                             </div>
-                                            <div className="col-md-11">
+                                            <div className="col-md-10 Display-date-time-tic">
                                                 <p className="mb-0">Display end time.</p>
                                                 <p className="mb-0">The end time of your event will be displayed to attendess.</p>
                                             </div>
@@ -770,23 +817,18 @@ const Type = ({ title }) => {
                                     </div>
                                     <div className="col-md-12 mt-2">
                                         <div className="button-group mt-10">
-                                            <Button variant="link" className="button-join  mx-2" onClick={() => setFormSection(1)}>
-                                                <span>
-                                                    <span className="bg-style bg-dark"><img height={30} width={30} src={whitestar} /></span><span className="bg-dark bg-style bg-title-style">Back</span>
-                                                </span>
-                                            </Button>
+                                            <span onClick={() => setFormSection(1)}>
+                                                <WhitestarBtn title={'Back'} />
+                                            </span>
                                             {Editid ? (
-                                                <Button variant="link" className="button-join" onClick={() => HandelUpdatedetails(Editid)}>
-                                                    <span>
-                                                        <span className="bg-style"><img height={30} width={30} src={whitestar} /></span><span className="bg-style bg-title-style">Update</span>
-                                                    </span>
-                                                </Button>
+                                                <span onClick={() => HandelUpdatedetails(Editid)}>
+                                                    <WhitestarBtn title={'Update'} />
+                                                </span>
+
                                             ) : (
-                                                <Button variant="link" className="button-join" onClick={() => HandelSubmit()}>
-                                                    <span>
-                                                        <span className="bg-style"><img height={30} width={30} src={whitestar} /></span><span className="bg-style bg-title-style">Save</span>
-                                                    </span>
-                                                </Button>
+                                                <span onClick={() => HandelSubmit()}>
+                                                    <WhitestarBtn title={'Save'} />
+                                                </span>
                                             )}
                                         </div>
                                     </div>
@@ -824,23 +866,18 @@ const Type = ({ title }) => {
                                     <div className="col-md-12 mt-2">
                                         <div className="col-md-12 mt-2">
                                             <div className="button-group mt-10">
-                                                <Button variant="link" className="button-join" onClick={() => setFormSection(2)}>
-                                                    <span>
-                                                        <span className="bg-style bg-dark"><img height={30} width={30} src={whitestar} /></span><span className="bg-style bg-dark bg-title-style">Back</span>
-                                                    </span>
-                                                </Button>
+
+                                                <span onClick={() => setFormSection(2)}>
+                                                    <WhitestarBtn title={'Back'} />
+                                                </span>
                                                 {Editid ? (
-                                                    <Button variant="link" className="button-join" onClick={() => HandelUpdateEventDesc(Editid)}>
-                                                        <span>
-                                                            <span className="bg-style"><img height={30} width={30} src={whitestar} /></span><span className="bg-style bg-title-style">Update</span>
-                                                        </span>
-                                                    </Button>
+                                                    <span onClick={() => HandelUpdateEventDesc(Editid)}>
+                                                        <WhitestarBtn title={'Update'} />
+                                                    </span>
                                                 ) : (
-                                                    <Button variant="link" className="button-join" onClick={() => HandelSubmit()}>
-                                                        <span>
-                                                            <span className="bg-style"><img height={30} width={30} src={whitestar} /></span><span className="bg-style bg-title-style">Save</span>
-                                                        </span>
-                                                    </Button>
+                                                    <span onClick={() => HandelSubmit()}>
+                                                        <WhitestarBtn title={'Save'} />
+                                                    </span>
                                                 )}
 
                                             </div>
@@ -919,23 +956,17 @@ const Type = ({ title }) => {
                                     )}
                                     <div className="col-md-12 mt-2">
                                         <div className="button-group mt-10">
-                                            <Button variant="link" className="button-join mr-2" onClick={() => setFormSection(3)}>
-                                                <span>
-                                                    <span className="bg-style bg-dark"><img height={30} width={30} src={whitestar} /></span><span className="bg-style bg-dark bg-title-style">Back</span>
-                                                </span>
-                                            </Button>
+                                            <span onClick={() => setFormSection(3)}>
+                                                <WhitestarBtn title={'Back'} />
+                                            </span>
                                             {Loader ? (
-                                                <Button variant="link" className="button-join" type="button">
-                                                    <span>
-                                                        <span className="bg-style"><img height={30} width={30} src={whitestar} /></span><span className="bg-style bg-title-style">Please wait...</span>
-                                                    </span>
-                                                </Button>
+                                                <span onClick={HandelPriceform}>
+                                                    <WhitestarBtn title={'Please wait...'} />
+                                                </span>
                                             ) : (
-                                                <Button variant="link" className="button-join" onClick={HandelPriceform}>
-                                                    <span>
-                                                        <span className="bg-style"><img height={30} width={30} src={whitestar} /></span><span className="bg-style bg-title-style">Complete</span>
-                                                    </span>
-                                                </Button>
+                                                <span onClick={HandelPriceform}>
+                                                    <WhitestarBtn title={'Complete'} />
+                                                </span>
                                             )}
                                         </div>
                                     </div>
@@ -973,7 +1004,7 @@ const Type = ({ title }) => {
                             <label htmlFor="" className="text-black">Start date</label>
                             <div class="input-group mb-3 input-warning-o" style={{ position: 'relative' }}>
                                 <span class="input-group-text"><img src={DateIcon} alt="" /></span>
-                                <input type="text" class="form-control date-border-redius" placeholder="" readOnly value={ticketstartdate} />
+                                <input type="text" class="form-control date-border-redius date-border-redius-input" placeholder="" readOnly value={ticketstartdate} />
                                 <div className="date-style-picker">
                                     <Flatpickr
                                         value={TicketStartdate}
@@ -989,7 +1020,7 @@ const Type = ({ title }) => {
                             <label htmlFor="" className="text-black">Start time</label>
                             <div class="input-group mb-3 input-warning-o">
                                 <span class="input-group-text"><img src={TimeIcon} alt="" /></span>
-                                <input type="text" class="form-control" placeholder="" readOnly value={ticketstarttime} />
+                                <input type="text" class="form-control date-border-redius-input" placeholder="" readOnly value={ticketstarttime} />
                             </div>
                         </Col>
                         <Col md={12} className="mb-2"></Col>
@@ -997,7 +1028,7 @@ const Type = ({ title }) => {
                             <label htmlFor="" className="text-black">End date</label>
                             <div class="input-group mb-3 input-warning-o" style={{ position: 'relative' }}>
                                 <span class="input-group-text"><img src={DateIcon} alt="" /></span>
-                                <input type="text" class="form-control date-border-redius" placeholder="" readOnly value={ticketenddate} />
+                                <input type="text" class="form-control date-border-redius date-border-redius-input" placeholder="" readOnly value={ticketenddate} />
                                 <div className="date-style-picker">
                                     <Flatpickr
                                         value={TicketEndtdate}
@@ -1013,16 +1044,14 @@ const Type = ({ title }) => {
                             <label htmlFor="" className="text-black">End time</label>
                             <div class="input-group mb-3 input-warning-o">
                                 <span class="input-group-text"><img src={TimeIcon} alt="" /></span>
-                                <input type="text" class="form-control" placeholder="" readOnly value={ticketendtime} />
+                                <input type="text" class="form-control date-border-redius-input" placeholder="" readOnly value={ticketendtime} />
                             </div>
                         </Col>
                         <Col md={12}>
                             {Editid ? (
-                                <Button variant="link" className="button-join p-0" onClick={() => handelCreateTicket(Editid)}>
-                                    <span>
-                                        <span className="bg-style"><img height={30} width={30} src={whitestar} /></span><span className="bg-style bg-title-style">Add ticket</span>
-                                    </span>
-                                </Button>
+                                <span onClick={() => handelCreateTicket(Editid)}>
+                                    <WhitestarBtn title={'Add ticket'} />
+                                </span>
                             ) : (<></>)}
                         </Col>
                     </Row>

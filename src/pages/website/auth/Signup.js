@@ -8,9 +8,10 @@ import { Link, useNavigate } from "react-router-dom";
 import toast from 'react-hot-toast';
 import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content'
+import WhitestarBtn from '../../../component/Whitestarbtn';
 import PhoneInput from 'react-phone-input-2';
 import 'react-phone-input-2/lib/style.css';
-import { auth, googleProvider,facebookProvider  } from '../../../firebase';
+import { auth, googleProvider, facebookProvider } from '../../../firebase';
 import { signInWithPopup } from 'firebase/auth';
 import PersonIcon from '../../../common/icon/person 1.svg';
 import GoogleLogo from '../../../common/icon/google.png';
@@ -227,7 +228,7 @@ const Home = ({ title }) => {
             console.error('Login api error:', error);
         }
     }
-    
+
     const handleFacebookLogin = async () => {
         toast.error("Contact your developer");
     }
@@ -326,21 +327,18 @@ const Home = ({ title }) => {
 
                                 <div className="form-group">
                                     {Loader ? (
-                                        <Button className='signup-page-btn'>Please wait...</Button>
+                                        <span>
+                                            <WhitestarBtn title={'Please wait...'} />
+                                        </span>
                                     ) : (
-
-                                        <Button variant="link" className="button-join" onClick={HandelCustomerLogin}>
-                                            <span>
-                                                <span className="bg-style btn-a"><img height={30} width={30} src={PersonIcon} /></span>
-                                                <span className="bg-style btn-b">Log in</span>
-                                                <span className="bg-style btn-c"><img height={30} width={30} src={PersonIcon} /></span>
-                                            </span>
-                                        </Button>
+                                        <span onClick={HandelCustomerLogin}>
+                                            <WhitestarBtn title={'Login'} />
+                                        </span>
                                     )}
                                 </div>
                                 <div className="border-bottom py-2"></div>
                                 <div className="text-center">
-                                    <p className="reset-password-link text-center">Login with</p>
+                                    <p className="reset-password-link text-center pt-3">Login with</p>
                                 </div>
                                 <div className="text-center">
                                     <Row>
@@ -348,7 +346,7 @@ const Home = ({ title }) => {
                                             <button className="login-with-btn mx-1" onClick={handleGoogleLogin}><img src={GoogleLogo}></img></button>
                                             <button className="login-with-btn mx-1" onClick={handleFacebookLogin}><img src={FacebookLogo}></img></button>
                                         </Col>
-                                        
+
                                     </Row>
                                 </div>
                             </div>
@@ -408,18 +406,14 @@ const Home = ({ title }) => {
                                             <textarea class="form-control" rows="3" value={Message} onChange={(e) => setMessage(e.target.value)}></textarea>
                                         </div>
                                         {Loader ? (
-                                            <div className="form-group">
-                                                <Button className='signup-page-btn'>Please wait...</Button>
-                                            </div>
+                                            <WhitestarBtn title={'Please wait...'} />
                                         ) : (
                                             <div className="form-group">
-                                                <Button variant="link" className="button-join" onClick={HandelOrganizersignup}>
-                                                    <span>
-                                                        <span className="bg-style btn-a"><img height={30} width={30} src={PersonIcon} /></span>
-                                                        <span className="bg-style btn-b">Create Account</span>
-                                                        <span className="bg-style btn-c"><img height={30} width={30} src={PersonIcon} /></span>
+                                                <div className="form-group">
+                                                    <span onClick={HandelOrganizersignup}>
+                                                        <WhitestarBtn title={'Create Account'} />
                                                     </span>
-                                                </Button>
+                                                </div>
                                             </div>
                                         )}
                                     </div>
@@ -484,18 +478,12 @@ const Home = ({ title }) => {
                                             <label class="form-check-label" for="exampleCheck2">Agree to receive marketing</label>
                                         </div>
                                         {Loader ? (
-                                            <div className="form-group">
-                                                <Button className='signup-page-btn'>Please wait...</Button>
-                                            </div>
+                                            <WhitestarBtn title={'Please wait...'} />
                                         ) : (
                                             <div className="form-group">
-                                                <Button variant="link" className="button-join" onClick={HandelCustomersignup}>
-                                                    <span>
-                                                        <span className="bg-style btn-a"><img height={30} width={30} src={PersonIcon} /></span>
-                                                        <span className="bg-style btn-b">Create Account</span>
-                                                        <span className="bg-style btn-c"><img height={30} width={30} src={PersonIcon} /></span>
-                                                    </span>
-                                                </Button>
+                                                <span onClick={HandelCustomersignup}>
+                                                    <WhitestarBtn title={'Create Account'} />
+                                                </span>
                                             </div>
                                         )}
                                     </div>

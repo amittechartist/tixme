@@ -3,6 +3,7 @@ import DashboardIcon from '../../../common/icon/dashboardicon.svg';
 import LocationsIcon from '../../../common/icon/locations.svg';
 import Locationstart from '../../../common/icon/locationstart.svg';
 import PersonIcon from '../../../common/icon/person 1.svg';
+import WhitestarBtn from '../../../component/Whitestarbtn';
 import { Link } from "react-router-dom";
 import { organizer_url, app_url, customer_url } from '../../../common/Helpers';
 const Header = () => {
@@ -16,22 +17,9 @@ const Header = () => {
 
                             </div>
                             <ul className="navbar-nav header-right">
-
                                 <li className="nav-item dropdown notification_dropdown">
-                                <Link to={'/'}><span className=""> <img src={DashboardIcon} alt="Your Logo" /> Dashboard</span></Link>
-                                </li>
-                                <li className="nav-item dropdown notification_dropdown">
-                                    <Link className="button-border" to={'/'}>
-                                        <span>
-                                            <img src={LocationsIcon}/> Location <img src={Locationstart}/>
-                                        </span>
-                                    </Link>
-                                </li>
-                                <li className="nav-item dropdown notification_dropdown">
-                                    <Link className="button-join" to={app_url}>
-                                        <span>
-                                             <span className="bg-style"><img height={30} width={30} src={PersonIcon}/></span><span className="bg-style">Website</span>
-                                        </span>
+                                    <Link to={app_url}>
+                                        <WhitestarBtn title={'Website'} />
                                     </Link>
                                 </li>
                             </ul>

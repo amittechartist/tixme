@@ -20,13 +20,13 @@ const Dashboard = ({ title }) => {
     const [Ticketlist, setTicketlist] = useState([]);
     const [apiLoader, setapiLoader] = useState(false);
     const [modal, setModal] = useState(false);
+    const [TransferModal, setTransferModal] = useState(false);
+
+    const [TransferName, setTransferName] = useState();
+    const [TransferEmail, setTransferEmail] = useState();
+    const [TransferId, setTransferId] = useState();
     const fetchList = async () => {
         try {
-            if (!Beartoken) {
-                toast.error("Login to your account");
-                navigate(app_url + 'auth/customer/signup');
-                return;
-            }
             fetch(apiurl + 'order/customer/list', {
                 method: 'POST',
                 headers: {
@@ -50,6 +50,60 @@ const Dashboard = ({ title }) => {
             console.error('Login api error:', error);
         }
 
+    }
+    const handelTransferModal = async (id) => {
+        try {
+            setModal(false)
+            setTransferModal(true)
+            setTransferId(id)
+        } catch (error) {
+            console.error('Login api error:', error);
+            setModal(false)
+        }
+    }
+    const handelTransferTickets = async () => {
+        try {
+            if (!TransferName) {
+                return toast.error("Name is require");
+            }
+            if (!TransferEmail) {
+                return toast.error("Email is require");
+            }
+            const requestData = {
+                id: TransferId,
+                email: TransferEmail,
+                name: TransferName,
+            };
+            fetch(apiurl + 'order/tickets-transfer', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${Beartoken}`
+                },
+                body: JSON.stringify(requestData),
+            })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success == true) {
+                        toast.success(data.message);
+                        setTransferName('');
+                        setTransferEmail('');
+                        setTransferId('');
+                        setTransferModal(false)
+                    } else {
+                        toast.error(data.message);
+                    }
+                })
+                .catch(error => {
+                    toast.error(error.message);
+                    console.error('Insert error:', error);
+                    setTransferModal(false)
+                });
+        } catch (error) {
+            toast.error(error.message);
+            console.error('Login api error:', error);
+            setTransferModal(false)
+        }
     }
     const Handelviewmodal = async (id) => {
         try {
@@ -89,9 +143,13 @@ const Dashboard = ({ title }) => {
         return Math.floor(10000 + Math.random() * 90000); // Generates a random 5-digit number
     };
     useEffect(() => {
+        if (!Beartoken) {
+            toast.error("Login to your account");
+            navigate(app_url + 'auth/customer/signup');
+            return;
+        }
         fetchList();
     }, []);
-
     return (
         <>
             <Modal className="ticket-view-page" isOpen={modal} toggle={() => setModal(!modal)}>
@@ -106,10 +164,21 @@ const Dashboard = ({ title }) => {
                                     <Col md={12} className="mb-4">
                                         <div className="ticket-box">
                                             <div className="ticket-qr text-center">
-                                                {item.scan_status == 0 ? (
-                                                    <QRCode style={{ height: "auto", width: "150px" }} value={JSON.stringify({ id: item._id, time: generateRandomNumber(), index:index })} />
+                                                {item.is_transfer == 1 ? (
+                                                    <div class="alert alert-primary alert-dismissible fade show">
+                                                        <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="me-2"><circle cx="12" cy="12" r="10"></circle><path d="M8 14s1.5 2 4 2 4-2 4-2"></path><line x1="9" y1="9" x2="9.01" y2="9"></line><line x1="15" y1="9" x2="15.01" y2="9"></line></svg>
+                                                        Transferred to <span className="font-capitalize"> {item.owner_name} </span>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="btn-close">
+                                                        </button>
+                                                    </div>
                                                 ) : (
-                                                    <img style={{ height: "auto", width: "150px" }} src={QRsuccess} className="qr-scanner-success" alt="" />
+                                                    <>
+                                                        {item.scan_status == 0 ? (
+                                                            <QRCode style={{ height: "auto", width: "150px" }} value={JSON.stringify({ id: item._id, time: generateRandomNumber(), index: index })} />
+                                                        ) : (
+                                                            <img style={{ height: "auto", width: "150px" }} src={QRsuccess} className="qr-scanner-success" alt="" />
+                                                        )}
+                                                    </>
                                                 )}
                                             </div>
                                             <div className="ticket-data">
@@ -120,12 +189,16 @@ const Dashboard = ({ title }) => {
                                                 <p className="ticket-view-title">event data</p>
                                                 <p className="ticket-view-data">{item.eventdata.start_date} {item.eventdata.start_time}</p>
                                                 <p className="ticket-view-title">Created by</p>
-                                                <p className="ticket-view-data">{item.owner_email}</p>
-                                                {item.scan_status == 0 && item.isvalid == 0 ? (
-                                                    <div>
-                                                    <button className="btn btn-success w-100">Transfer</button>
-                                                </div>
-                                                ) : ''}
+                                                <p className="ticket-view-data">{item.user_email}</p>
+                                                {item.is_transfer ? '' : (
+                                                    <>
+                                                        {item.scan_status == 0 && item.isvalid == 0 ? (
+                                                            <div>
+                                                                <button onClick={() => handelTransferModal(item._id)} className="btn btn-success w-100">Transfer</button>
+                                                            </div>
+                                                        ) : ''}
+                                                    </>
+                                                )}
                                             </div>
                                         </div>
                                     </Col>
@@ -137,6 +210,33 @@ const Dashboard = ({ title }) => {
                 </ModalBody>
                 <ModalFooter>
                     <Button color="secondary" onClick={() => setModal(!modal)}>
+                        Cancel
+                    </Button>
+                </ModalFooter>
+            </Modal>
+            <Modal className="" isOpen={TransferModal} toggle={() => setTransferModal(!TransferModal)}>
+                <ModalHeader toggle={!TransferModal}>Transfer tickets</ModalHeader>
+                <ModalBody>
+                    {apiLoader ? (
+                        <div className="linear-background w-100"> </div>
+                    ) : (
+                        <>
+                            <div className="form-group">
+                                <p>Name <span className="text-danger">*</span></p>
+                                <input placeholder="Enter name" class="form-control" value={TransferName} onChange={(e) => setTransferName(e.target.value)}></input>
+                            </div>
+                            <div className="form-group">
+                                <p>Email <span className="text-danger">*</span></p>
+                                <input placeholder="Enter email" class="form-control" value={TransferEmail} onChange={(e) => setTransferEmail(e.target.value)}></input>
+                            </div>
+                            <div>
+                                <button onClick={() => handelTransferTickets()} className="btn btn-success w-100">Transfer</button>
+                            </div>
+                        </>
+                    )}
+                </ModalBody>
+                <ModalFooter>
+                    <Button color="secondary" onClick={() => setTransferModal(!TransferModal)}>
                         Cancel
                     </Button>
                 </ModalFooter>

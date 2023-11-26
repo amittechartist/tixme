@@ -41,15 +41,18 @@ const Dashboard = ({ title }) => {
                         toast.success(data.data);
                         setApiloader(false)
                     } else {
-                        toast.error(data.data)
                         setFailedmessage(data.data)
                         setFailed(false)
-                        // setFailedloader(true)
+                        setFailedloader(true)
                         setApiloader(false)
                     }
                     localStorage.removeItem('scandata');
                 })
                 .catch(error => {
+                    setFailedloader(true)                    
+                    setFailedmessage(error.data)
+                    setFailed(false)
+                    setApiloader(false)
                     console.error('error:', error);
 
                 });
@@ -67,7 +70,6 @@ const Dashboard = ({ title }) => {
     const Successlottewidth = {
         width: 'auto',
         height: '200px'
-
     }
     return (
         <>
@@ -97,7 +99,7 @@ const Dashboard = ({ title }) => {
                                             </div>
                                         ) : (
                                             <div>
-                                                <p className="text-success payment-page-title">Successfully</p>
+                                                <p className="text-success payment-page-title">Scanned successful</p>
                                                 <Lottie animationData={SuccessLotte} style={Successlottewidth} />
                                             </div>
                                         )}

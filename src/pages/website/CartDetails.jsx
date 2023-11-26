@@ -26,6 +26,7 @@ const Page = ({ title }) => {
     useEffect(() => {
         // Load cart and local quantities from localStorage when component mounts
         loadCartFromLocalStorage();
+        window.scrollTo(0, 0);
     }, []);
 
     const addToCart = (item) => {

@@ -9,6 +9,7 @@ import { Link, useNavigate } from "react-router-dom";
 import toast from 'react-hot-toast';
 import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content'
+import WhitestarBtn from '../../../component/Whitestarbtn';
 import { apiurl, app_url, isEmail, organizer_url } from '../../../common/Helpers';
 const Home = ({ title }) => {
     const navigate = useNavigate();
@@ -95,13 +96,9 @@ const Home = ({ title }) => {
                                             {Loader ? (
                                                 <Button className='signup-page-btn'>Please wait...</Button>
                                             ) : (
-                                                <Button variant="link" className="button-join" onClick={HandelOrganizerLogin}>
-                                                    <span>
-                                                        <span className="bg-style btn-a"><img height={30} width={30} src={PersonIcon} /></span>
-                                                        <span className="bg-style btn-b">Log in</span>
-                                                        <span className="bg-style btn-c"><img height={30} width={30} src={PersonIcon} /></span>
-                                                    </span>
-                                                </Button>
+                                                <span onClick={HandelOrganizerLogin}>
+                                                    <WhitestarBtn title={'Login'} />
+                                                </span>
                                             )}
                                         </div>
                                     </div>

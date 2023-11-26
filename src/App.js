@@ -21,6 +21,7 @@ import CustomerLayout from './layout/customer/Layout'
 // Organizer Admin
 import Dashboard from './pages/organizer/Dashboard';
 import EventType from './pages/organizer/Event/EventCreateForm';
+import EditEvent from './pages/organizer/Event/EditEvent';
 import EventList from './pages/organizer/Event/List';
 import Tixmescanner from './pages/organizer/Tixmescanner';
 import Tixmescannerpage from './pages/organizer/Tixmescannerpage';
@@ -87,6 +88,7 @@ function App() {
           {/* Organizer Admin */}
           <Route path={organizer_url + 'dashboard'} element={<OrganizerLayout> <Dashboard title={'dashboard'} /> </OrganizerLayout>} />
           <Route path={organizer_url + 'event/add-event'} element={<OrganizerLayout> <EventType title={'Create new event'} /> </OrganizerLayout>} />
+          <Route path={`${organizer_url}event/edit-event/:id/:name`} element={<OrganizerLayout> <EditEvent title={'Edit event'} /> </OrganizerLayout>} />
           <Route path={organizer_url + 'event/all-event-list'} element={<OrganizerLayout> <EventList title={'All event list'} /> </OrganizerLayout>} />
           <Route path={organizer_url + 'tixme-scanner'} element={<OrganizerLayout> <Tixmescanner title={'Tixme scanner'} /> </OrganizerLayout>} />
           <Route path={organizer_url + 'tixme-scanner-page'} element={<OrganizerLayout> <Tixmescannerpage title={'Tixme scanner'} /> </OrganizerLayout>} />

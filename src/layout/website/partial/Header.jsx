@@ -6,6 +6,8 @@ import LocationsIcon from '../../../common/icon/locations.svg';
 import Locationstart from '../../../common/icon/whitestart.svg';
 import PersonIcon from '../../../common/icon/person 1.svg';
 import AppLogo from '../../../common/logo.svg';
+import WhitestarBtn from '../../../component/Whitestarbtn';
+import WhipersonBtn from '../../../component/Whiteuserbtn';
 import Rectangle from '../../../common/image/Rectangle.png';
 import { Link } from "react-router-dom";
 import Sidebar from './Sidebar'
@@ -28,13 +30,7 @@ const Header = () => {
                                 </li>
                                 <li className="nav-item mob-sc-css-head-btn-mar">
                                     <Link to={organizer_url + 'dashboard'}>
-                                        <div className="button-join">
-                                            <span className="mob-sc-css-head-btn">
-                                                <span className="bg-style btn-a"><img height={30} width={30} src={Locationstart} /></span>
-                                                <span className="bg-style btn-b">Location</span>
-                                                <span className="bg-style btn-c"><img height={30} width={30} src={Locationstart} /></span>
-                                            </span>
-                                        </div>
+                                        <WhitestarBtn title={'Location'} />
                                     </Link>
                                 </li>
                                 <li className="nav-item header-btn-res">
@@ -43,22 +39,14 @@ const Header = () => {
                                             <>
                                                 {customer_token ? (
                                                     <Link className="button-join" to={customer_url + 'dashboard'} >
-                                                        <span>
-                                                            <span className="bg-style btn-a"><img height={30} width={30} src={PersonIcon} /></span>
-                                                            <span className="bg-style btn-b">My Account</span>
-                                                            <span className="bg-style btn-c"><img height={30} width={30} src={PersonIcon} /></span>
-                                                        </span>
+                                                        <WhipersonBtn title={'My Account'} />
                                                     </Link>
                                                 ) : (
                                                     <></>
                                                 )}
                                                 {organizer_token ? (
                                                     <Link className="button-join" to={organizer_url + 'dashboard'} >
-                                                        <span>
-                                                            <span className="bg-style btn-a"><img height={30} width={30} src={PersonIcon} /></span>
-                                                            <span className="bg-style btn-b">My Account</span>
-                                                            <span className="bg-style btn-c"><img height={30} width={30} src={PersonIcon} /></span>
-                                                        </span>
+                                                        <WhipersonBtn title={'My Account'} />
                                                     </Link>
                                                 ) : (
                                                     <></>
@@ -67,11 +55,7 @@ const Header = () => {
                                         ) :
                                         (
                                             <Link className="button-join" to={app_url + 'auth/customer/signup'}>
-                                                <span>
-                                                    <span className="bg-style btn-a"><img height={30} width={30} src={PersonIcon} /></span>
-                                                    <span className="bg-style btn-b">Login</span>
-                                                    <span className="bg-style btn-c"><img height={30} width={30} src={PersonIcon} /></span>
-                                                </span>
+                                                <WhipersonBtn title={'Login'} />
                                             </Link>
                                         )
                                     }

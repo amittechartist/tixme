@@ -14,6 +14,7 @@ import EllipseIcon from '../../../common/icon/Ellipse 5.svg';
 import SubscribeBg from '../../../common/icon/Subscribe.svg';
 import CheckboxIcon from '../../../common/icon/checkbox.svg';
 import LogoIcon from '../../../common/icon/logoicon.svg';
+import Whitestarbtn from '../../../component/Whitestarbtn';
 import Tada from "react-reveal/Tada";
 import Lottie from "lottie-react";
 import TicketCart from '../../../lotte/ticketcart.json';
@@ -28,19 +29,19 @@ const Footer = () => {
     const [ShowCart, setShowCart] = useState(false);
     function checkCart() {
         const cartCheck = localStorage.getItem('cart');
-        if(cartCheck){
+        if (cartCheck) {
             const { items, quantities } = JSON.parse(cartCheck);
-            if(items.length > 0){
+            if (items.length > 0) {
                 setShowCart(true)
-            }else{
+            } else {
                 setShowCart(false)
             }
-        }else{
+        } else {
             setShowCart(false)
         }
     }
     setInterval(checkCart, 1000);
-    function viewcart(){
+    function viewcart() {
         navigate(app_url + 'cart-details');
     }
     return (
@@ -68,11 +69,7 @@ const Footer = () => {
                                 </div>
                                 <div className="subscribe-btn">
                                     <Link className="button-join" to={'/'}>
-                                        <span>
-                                            <span className="bg-style btn-a"><img height={30} width={30} src={whitestart} /></span>
-                                            <span className="bg-style btn-b">Get the latest updates</span>
-                                            <span className="bg-style btn-c"><img height={30} width={30} src={whitestart} /></span>
-                                        </span>
+                                        <Whitestarbtn title={'Get the latest updates'} />
                                     </Link>
                                 </div>
                             </div>

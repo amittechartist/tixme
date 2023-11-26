@@ -139,6 +139,7 @@ const Page = ({ title }) => {
             setEventdata(data.data);
             if (data.data.organizer_id) {
               fetchOrganizerEvent(data.data.organizer_id);
+              window.scrollTo(0, 0);
             }
             if (data.data) {
               setApiloader(false)
@@ -185,8 +186,10 @@ const Page = ({ title }) => {
   useEffect(() => {
     fetchData();
     fetchEvent();
-    window.scrollTo(0, 0);
   }, []);
+  useEffect(() => {
+    
+  }, [Eventlist]);
   const [cartItems, setCartItems] = useState([]);
   const [allItemsTotalPrice, setAllItemsTotalPrice] = useState(0);
   const [eventTotalPrice, setEventTotalPrice] = useState(0);

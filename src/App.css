@@ -1,3 +1,6 @@
+.font-capitalize{
+  text-transform: capitalize;
+}
 .deznav {
   background-color: #f1f1f1 !important;
 }
@@ -119,7 +122,12 @@ ul#menu span {
   height: 63px;
   width: fit-content;
 }
-
+.Display-date-time-tic p{
+  font-size: 12px;
+}
+.date-border-redius-input {
+  height: auto;
+}
 .tab-button-box .tab-button-active {
   background: rgba(0, 71, 171, 1);
   color: #fff !important;
@@ -135,10 +143,9 @@ ul#menu span {
   color: #000 !important;
   display: inline-block;
   text-align: center;
-  padding: 11px 0px;
+  padding: 11px 30px;
   margin: 6px;
   border-radius: 10px;
-  width: 200px;
   cursor: pointer;
 }
 

@@ -6,7 +6,7 @@ import NocameraLotte from '../../lotte/nocamera.json'
 import Lottie from "lottie-react";
 import Whitebtn from '../../component/Whitestarbtn';
 import { admin_url, app_url, apiurl, customer_url, organizer_url } from '../../common/Helpers';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 const Dashboard = ({ title }) => {
     const [openQrcode, setopenQrcode] = useState(true);
     const [scanLocation, setScanLocation] = useState('');
@@ -26,6 +26,9 @@ const Dashboard = ({ title }) => {
             window.location = window.location + '##';
             window.location.reload();
         }
+    };
+    const Goback = () => {
+        window.location.href = organizer_url + 'tixme-scanner';
     };
 
     const checkForResult = () => {
@@ -90,12 +93,13 @@ const Dashboard = ({ title }) => {
                                                             <div id="camera-preview"></div>
                                                         </div>
                                                         <div className="camera-result">
-                                                            <h2>Scan Result</h2>
-                                                            <p className="text-center" id="camera-result"></p>
-                                                            <div className="btn-toolbar" onClick={() => setopenQrcode(false)}>
-                                                                <button className="btn btn-primary mx-auto" id="redo-scan">Back</button>
-                                                            </div>
+                                                            
                                                         </div>
+                                                    </div>
+                                                    <div className='col-12 mt-5'>
+                                                        <span   className='' onClick={() => Goback()}>
+                                                            <Whitebtn title={'Back'} />
+                                                        </span>
                                                     </div>
                                                 </div>
                                             </div>

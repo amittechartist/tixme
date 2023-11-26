@@ -3,9 +3,11 @@
         font-size: 9px;
         line-height: 11px;
     }
+
     .in-event-page-cart-sec .price-section {
         max-width: 60px;
     }
+
     p.category-title {
         font-size: 9px;
         right: 18px;
@@ -335,8 +337,13 @@
     }
 
     .button-join .bg-style {
-        padding: 10px !important;
+        padding: 10px 14px !important;
         font-size: 9px;
+    }
+
+    .whitestar-icon img {
+        height: auto;
+        width: 15px;
     }
 
     .button-border {
@@ -717,7 +724,7 @@
     p.our_values_desc {
         font-size: 15px;
     }
-    
+
 }
 
 @media only screen and (max-width: 800px) and (min-width: 766px) {
@@ -726,32 +733,40 @@
         line-height: 42px;
         padding-bottom: 0;
     }
+
     .category-section {
         margin-top: 0;
         margin-left: 65px;
     }
+
     img.ticket-bg {
         width: auto;
         height: 71px;
     }
+
     .ticket-category-bg {
         top: 20px;
         width: 76px;
     }
+
     p.category-title {
         font-size: 10px;
         right: 28px;
     }
+
     select.theme-dropdown {
         width: 174px;
         margin-bottom: 10px;
     }
+
     input.theme-input {
         width: 171px;
     }
+
     .event-list-bg {
         background-image: none;
     }
+
     .header-logo {
         position: relative;
         left: 26px;
@@ -759,16 +774,19 @@
         width: 100px;
         top: -4px;
     }
+
     .rectangle_bg {
         top: 64px;
     }
+
     .home_banner {
         padding: 0px 5px;
     }
+
     p.banner_shop_desc {
         font-size: 18px;
     }
-    
+
     /* Position and sizing of burger button */
     .bm-burger-button {
         position: absolute;
@@ -857,7 +875,7 @@
     }
 
     .rectangle_bg {
-        top: 52px;
+        top: 35px;
     }
 
     .website_top_menu .nav-item {
@@ -866,8 +884,8 @@
 
     .header-logo {
         left: 70px;
-        width: 150px;
-        top: -6px;
+        width: 170px;
+        top: -20px;
     }
 
     p.category-title {
@@ -912,8 +930,8 @@
 
     .event-title-home {
         font-size: 28px;
-        top: 21px;
-        left: 57px;
+        top: 14px;
+        left: 66px;
     }
 
     .event-list-bg {
