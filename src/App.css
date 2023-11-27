@@ -1,3 +1,6 @@
+.nav-control {
+  display: none;
+}
 .font-capitalize{
   text-transform: capitalize;
 }
@@ -454,7 +457,9 @@ span.flatpickr-weekday {
     height: auto;
     width: 60px;
   }
-
+  .nav-control {
+    display: inline;
+  }
   [data-sidebar-style="overlay"] .deznav .metismenu>li>a {
     font-size: 16px;
     padding: 11px 0px 10px 0px;
@@ -467,4 +472,8 @@ span.flatpickr-weekday {
   [data-sibebarbg="color_3"][data-theme-version="dark"] .menu-toggle .deznav .metismenu li > ul, [data-sibebarbg="color_3"] .menu-toggle .deznav .metismenu li > ul {
     background: #fff !important;
 }
+}
+
+.cursor-pointre {
+  cursor: pointer;
 }

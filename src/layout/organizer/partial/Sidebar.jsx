@@ -45,8 +45,7 @@ const Sidebar = () => {
                             <ul aria-expanded="false">
                                 <li><Link className='text-black' onClick={() => localStorage.removeItem('eventcreateid')} to={organizer_url + 'event/add-event'}>Add New</Link></li>
                                 <li><Link className='text-black' to={organizer_url + 'event/all-event-list'}>All Event </Link></li>
-                                {/* <li><Link className='text-black' to={organizer_url+'event/add-event-details'}>Details </Link></li>
-                                <li><Link className='text-black' to={organizer_url+'event/add-event-photos'}>Photos </Link></li> */}
+
                             </ul>
                         </li>
 

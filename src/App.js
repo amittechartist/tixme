@@ -11,8 +11,9 @@ import ActiveOrganizer from './pages/admin/organizer/ActiveOrganizer';
 import PendingOrganizer from './pages/admin/organizer/PendingOrganizer';
 import Supportlist from './pages/admin/support/Supportlist';
 import Contactlist from './pages/admin/contact/Contactlist';
+import AllEventlist from './pages/admin/event/AllEventlist';
 import AdminLayout from './layout/admin/Layout'
-// Customer Admin
+// Customer
 import CustomerDashboard from './pages/customer/Dashboard';
 import CustomerSupportlist from './pages/customer/support/Supportlist';
 import CustomerOrderlist from './pages/customer/Orderlist';
@@ -80,12 +81,12 @@ function App() {
           <Route path={app_url + 'order-failed-page'} element={<WebsiteLayout> <OrderFailed title={'Payment status'} /> </WebsiteLayout>} />
           <Route path={app_url + 'scanner'} element={<Scaner title={'Payment status'} />} />
 
-          {/* Customer Admin */}
+          {/* Customer */}
           <Route path={customer_url + 'dashboard'} element={<CustomerLayout> <CustomerDashboard title={'dashboard'} /> </CustomerLayout>} />
           <Route path={customer_url + 'support-tickets'} element={<CustomerLayout> <CustomerSupportlist title={'Support Tickets'} /> </CustomerLayout>} />
           <Route path={customer_url + 'my-order-list'} element={<CustomerLayout> <CustomerOrderlist title={'All Order List'} /> </CustomerLayout>} />
           <Route path={customer_url + 'my-profile'} element={<CustomerLayout> <CustomerProfile title={'My profile'} /> </CustomerLayout>} />
-          {/* Organizer Admin */}
+          {/* Organizer */}
           <Route path={organizer_url + 'dashboard'} element={<OrganizerLayout> <Dashboard title={'dashboard'} /> </OrganizerLayout>} />
           <Route path={organizer_url + 'event/add-event'} element={<OrganizerLayout> <EventType title={'Create new event'} /> </OrganizerLayout>} />
           <Route path={`${organizer_url}event/edit-event/:id/:name`} element={<OrganizerLayout> <EditEvent title={'Edit event'} /> </OrganizerLayout>} />
@@ -99,6 +100,8 @@ function App() {
           <Route path={admin_url + 'all-category'} element={<AdminLayout> <AllCategory title={'All Category'} /> </AdminLayout>} />
           <Route path={admin_url + 'add-event-type'} element={<AdminLayout> <AddEventtype title={'Add Event Type'} /> </AdminLayout>} />
           <Route path={admin_url + 'all-event-type'} element={<AdminLayout> <AllEventtype title={'All Event Type'} /> </AdminLayout>} />
+          <Route path={admin_url + 'all-events-list'} element={<AdminLayout> <AllEventlist title={'All Events'} /> </AdminLayout>} />
+          <Route path={`${admin_url}event/edit-event/:id/:name`} element={<AdminLayout> <EditEvent title={'Edit event'} /> </AdminLayout>} />
           <Route path={admin_url + 'all-customers'} element={<AdminLayout> <AllCustomers title={'All Customers'} /> </AdminLayout>} />
           <Route path={admin_url + 'active-organizer'} element={<AdminLayout> <ActiveOrganizer title={'Active Organizer'} /> </AdminLayout>} />
           <Route path={admin_url + 'pending-organizer'} element={<AdminLayout> <PendingOrganizer title={'Pending Organizer'} /> </AdminLayout>} />

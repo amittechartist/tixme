@@ -52,7 +52,12 @@ const Sidebar = () => {
                                 <span className="nav-text">Event Type</span>
                             </Link>
                         </li>
-
+                        <li onClick={() => d()}>
+                            <Link to={admin_url + 'all-events-list'} className="ai-icon" aria-expanded="false">
+                                <img src={DashboardIcon} alt="Your Logo" />
+                                <span className="nav-text">All Event</span>
+                            </Link>
+                        </li>
                         <li onClick={() => d()}>
                             <a class="ai-icon" href="javascript:void(0);" aria-expanded="false">
                                 <img src={EventIcon} alt="Your Logo" />

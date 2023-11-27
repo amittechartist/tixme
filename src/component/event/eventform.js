@@ -63,7 +63,6 @@ const Type = ({ title, editid }) => {
     const [Eventdesc, setEventdesc] = useState();
     const [categoryList, setcategoryList] = useState([{ value: "", label: "Category" }]);
     const [EventtypecategoryList, setEventtypecategoryList] = useState([{ value: "", label: "Type" }]);
-
     const [inputValue, setInputValue] = useState('');
     const [tags, setTags] = useState([]);
 
@@ -190,8 +189,71 @@ const Type = ({ title, editid }) => {
         newTags.splice(index, 1);
         setTags(newTags);
     };
-    const HandelUpdatedetails = async (updateid) => {
-
+    const HandelUpdatedetails = async () => {
+        try {
+            setLoader(true);
+            var event_type_name = '';
+            if (Eventtype == 1) {
+                var event_type_name = 'Online Event';
+            } else {
+                var event_type_name = 'Offline Event';
+            }
+            const requestData = {
+                updateid: EditId,
+                isdelete: 0,
+                status: 0,
+                displayprice: Displayprice,
+                displaycutprice: Displaycutprice,
+                eventtype: Eventtype,
+                event_type_name: event_type_name,
+                name: Name,
+                display_name: Displayname,
+                type: Type,
+                category: CategoryId,
+                category_name: Categoryname,
+                eventtypecategory: EventtypeCategoryId,
+                eventtypecategory_name: EventtypeCategoryname,
+                tags: tags,
+                visibility: Visibility,
+                location: Location,
+                event_subtype_id: EventSubtype,
+                start_date: startdate,
+                start_time: starttime,
+                end_date: Enddate,
+                end_time: Rndtime,
+                start_data_min: Startdateselect,
+                end_data_min: Enddateselect,
+                is_clock_countdown: IsclockCountdown,
+                display_start_time: Displaystarttime,
+                display_end_time: Displayendtime,
+                organizer_id: organizerid,
+            };
+            fetch(apiurl + 'event/update', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(requestData),
+            })
+                .then(response => response.json())
+                .then(data => {
+                    setLoader(false);
+                    if (data.success == true) {
+                        toast.success('Event updated successful', {
+                            duration: 3000,
+                        });
+                        setFormSection(3);
+                    } else {
+                        toast.error(data.message);
+                    }
+                })
+                .catch(error => {
+                    setLoader(false);
+                    console.error('Insert error:', error);
+                });
+        } catch (error) {
+            console.error('Login api error:', error);
+        }
     }
     const HandelUpdateEventDesc = async (updateid) => {
         try {
@@ -215,6 +277,7 @@ const Type = ({ title, editid }) => {
                         toast.success('Updated', {
                             duration: 3000,
                         });
+                        fetchAllTicket();
                         setFormSection(4);
                     } else {
                         toast.error(data.message);
@@ -259,6 +322,8 @@ const Type = ({ title, editid }) => {
                 start_time: starttime,
                 end_date: Enddate,
                 end_time: Rndtime,
+                start_data_min: Startdateselect,
+                end_data_min: Enddateselect,
                 is_clock_countdown: IsclockCountdown,
                 display_start_time: Displaystarttime,
                 display_end_time: Displayendtime,
@@ -280,8 +345,7 @@ const Type = ({ title, editid }) => {
                         toast.success('Event Created successful', {
                             duration: 3000,
                         });
-                        localStorage.setItem('eventcreateid', data.data);
-                        // emptyField('');
+                        setEditId(data.data)
                         setFormSection(3);
                     } else {
                         toast.error(data.message);
@@ -359,11 +423,9 @@ const Type = ({ title, editid }) => {
     }
     const fetchAllTicket = async () => {
         try {
-            var check_eventcreateid = localStorage.getItem('eventcreateid');
-            if (check_eventcreateid !== null) {
                 setApiloader(true);
                 const requestData = {
-                    updateid: check_eventcreateid
+                    updateid: EditId
                 };
                 fetch(apiurl + 'event/ticket-list', {
                     method: 'POST',
@@ -378,13 +440,13 @@ const Type = ({ title, editid }) => {
                         if (data.success == true) {
                             const fetchdata = data.data.allprice;
                             setTicketList(fetchdata);
-                            setApiloader(false);
                             if (fetchdata.length > 0) {
                                 setIsEventTicket(false);
                             } else {
                                 setIsEventTicket(true);
                             }
                         }
+                        setApiloader(false);
                     })
                     .catch(error => {
                         console.error('Insert error:', error);
@@ -392,16 +454,16 @@ const Type = ({ title, editid }) => {
                         setApiloader(false);
 
                     });
-            }
+            
         } catch (error) {
             console.error('Login api error:', error);
+            setApiloader(false);
         }
     }
 
     const HandelPriceform = async () => {
-        toast.success("Event created successful");
-        localStorage.removeItem('eventcreateid');
-        navigate(organizer_url + 'event/all-event-list');
+        toast.success("Updated successfully");
+        // navigate(organizer_url + 'event/all-event-list');
     }
     const handelCreateTicket = async (updateid) => {
         try {
@@ -515,22 +577,21 @@ const Type = ({ title, editid }) => {
                     if (data.success == true) {
                         setFormSection(2)
                         setName(data.data.name)
+                        setEditId(data.data._id)
                         setDisplayname(data.data.display_name)
                         setType(data.data.eventtype)
                         setEventtype(data.data.eventtype)
-                        setEventtypeCategory([{ value: data.data.category, label: data.data.category_name }])
+                        setEventtypeCategory([{ value: data.data.eventtypecategory, label: data.data.eventtypecategory_name }])
                         setCategoryId(data.data.category)
                         setCategoryname(data.data.category_name)
-                        setCategory([{ value: data.data.eventtypecategory, label: data.data.eventtypecategory_name }])
+                        setCategory([{ value: data.data.category, label: data.data.category_name }])
                         setEventtypeCategoryId(data.data.eventtypecategory)
                         setEventtypeCategoryname(data.data.eventtypecategory_name)
                         setVisibility(data.data.visibility)
                         setLocation(data.data.location)
                         setEventSubtype(data.data.event_subtype_id)
-                        var startdate = data.data.start_date;
-                        var starttime = data.data.start_time;
-                        var Enddate = data.data.end_date;
-                        var Rndtime = data.data.end_time;
+                        setStartdateselect(data.data.start_data_min[0])
+                        setEnddateselect(data.data.end_data_min[0])
                         setIsclockCountdown(data.data.is_clock_countdown)
                         setDisplaystarttime(data.data.display_start_time)
                         setDisplayendtime(data.data.display_end_time)
@@ -538,6 +599,10 @@ const Type = ({ title, editid }) => {
                         setDisplayprice(data.data.displayprice)
                         setDisplaycutprice(data.data.displaycutprice)
                         setTags(data.data.tags)
+                        if (data.data.event_desc) {
+                            setEventdesc(data.data.event_desc)
+                        }
+                        fetchAllTicket()
                     }
                 })
                 .catch(error => {
@@ -549,7 +614,6 @@ const Type = ({ title, editid }) => {
             console.error('Login api error:', error);
         }
     }
-    console.log("sss",Visibility)
     useEffect(() => {
         fetchCategory();
         fetchEventtypeCategory();
@@ -562,12 +626,11 @@ const Type = ({ title, editid }) => {
             <Row className="pb-2">
                 <Col md={2} className="event-create-nav-bg">
                     <div className="event-create-nav">
-                        {Editid ? (
+                        {EditId ? (
                             <ul aria-expanded="false">
-                                <li className={FormSection === 1 ? "active-event-form" : ''}><p variant="link" className='text-black'>Add New</p></li>
-                                <li onClick={() => setFormSection(2)} className={FormSection === 2 ? "active-event-form" : ''}><p variant="link" className='text-black'>Basic Info</p></li>
-                                <li onClick={() => setFormSection(3)} className={FormSection === 3 ? "active-event-form" : ''}><p variant="link" className='text-black'>Details</p></li>
-                                <li onClick={() => setFormSection(4)} className={FormSection === 4 ? "active-event-form" : ''}><p variant="link" className='text-black'>Price</p></li>
+                                <li onClick={() => setFormSection(2)} className={FormSection === 2 ? "active-event-form" : ''}><p variant="link" className='text-black cursor-pointre'>Basic Info</p></li>
+                                <li onClick={() => setFormSection(3)} className={FormSection === 3 ? "active-event-form" : ''}><p variant="link" className='text-black  cursor-pointre'>Details</p></li>
+                                <li onClick={() => setFormSection(4)} className={FormSection === 4 ? "active-event-form" : ''}><p variant="link" className='text-black  cursor-pointre'>Price</p></li>
                             </ul>
                         ) : (
                             <ul aria-expanded="false">
@@ -692,8 +755,8 @@ const Type = ({ title, editid }) => {
                                         <label htmlFor="">Event Visibility</label>
                                         <div className="tab-button-box">
                                             {/* tab-button-active */}
-                                            <span onClick={() => setVisibility(1)} className={Visibility === 1 ? "tab-button-active" : ""}><img src={WorldIcon} alt="" /> Public</span>
-                                            <span onClick={() => setVisibility(2)} className={Visibility === 2 ? "tab-button-active" : ""}><img src={LockIcon} alt="" /> Private</span>
+                                            <span onClick={() => setVisibility(1)} className={Visibility == 1 ? "tab-button-active" : ""}><img src={WorldIcon} alt="" /> Public</span>
+                                            <span onClick={() => setVisibility(2)} className={Visibility == 2 ? "tab-button-active" : ""}><img src={LockIcon} alt="" /> Private</span>
                                         </div>
                                     </div>
 
@@ -701,9 +764,9 @@ const Type = ({ title, editid }) => {
                                         <label htmlFor="">Location</label>
                                         <p>Help people in the area discover your event and let attendees know where to show up.</p>
                                         <div className="tab-button-box">
-                                            <span onClick={() => setEventtype(1)} className={Eventtype === 1 ? "tab-button-active" : "tab-button-grey-active"}>Venue</span>
-                                            <span onClick={() => setEventtype(2)} className={Eventtype === 2 ? "tab-button-active" : "tab-button-grey-active"}> Online Event</span>
-                                            <span onClick={() => setEventtype(3)} className={Eventtype === 3 ? "tab-button-active" : ""}>To be announced</span>
+                                            <span onClick={() => setEventtype(1)} className={Eventtype == 1 ? "tab-button-active" : "tab-button-grey-active"}>Venue</span>
+                                            <span onClick={() => setEventtype(2)} className={Eventtype == 2 ? "tab-button-active" : "tab-button-grey-active"}> Online Event</span>
+                                            <span onClick={() => setEventtype(3)} className={Eventtype == 3 ? "tab-button-active" : ""}>To be announced</span>
                                         </div>
                                     </div>
 
@@ -720,8 +783,8 @@ const Type = ({ title, editid }) => {
                                         <label htmlFor="">Date & Time</label>
                                         <p>Tell event-goers when your event starts and ends so they can make plans to attend.</p>
                                         <div className="tab-button-box">
-                                            <span onClick={() => setEventSubtype(1)} className={EventSubtype === 1 ? "tab-button-active" : ""}>Single Event</span>
-                                            <span onClick={() => setEventSubtype(2)} className={EventSubtype === 2 ? "tab-button-active" : ""}> Recurring Event</span>
+                                            <span onClick={() => setEventSubtype(1)} className={EventSubtype == 1 ? "tab-button-active" : ""}>Single Event</span>
+                                            <span onClick={() => setEventSubtype(2)} className={EventSubtype == 2 ? "tab-button-active" : ""}> Recurring Event</span>
                                         </div>
                                     </div>
                                     <div className="col-md-6 checkout-style-bottom">
@@ -820,8 +883,8 @@ const Type = ({ title, editid }) => {
                                             <span onClick={() => setFormSection(1)}>
                                                 <WhitestarBtn title={'Back'} />
                                             </span>
-                                            {Editid ? (
-                                                <span onClick={() => HandelUpdatedetails(Editid)}>
+                                            {EditId ? (
+                                                <span onClick={() => HandelUpdatedetails()}>
                                                     <WhitestarBtn title={'Update'} />
                                                 </span>
 
@@ -853,7 +916,7 @@ const Type = ({ title, editid }) => {
                                     </Col>
                                     <div className="col-md-12">
                                         <h4 className="mb-2">About this event</h4>
-                                        <textarea className="custome-text-area" placeholder="Description" onChange={(e) => setEventdesc(e.target.value)}></textarea>
+                                        <textarea className="custome-text-area" placeholder="Description" value={Eventdesc} onChange={(e) => setEventdesc(e.target.value)}></textarea>
 
                                     </div>
                                     <div className="col-md-12 mt-2">
@@ -870,8 +933,8 @@ const Type = ({ title, editid }) => {
                                                 <span onClick={() => setFormSection(2)}>
                                                     <WhitestarBtn title={'Back'} />
                                                 </span>
-                                                {Editid ? (
-                                                    <span onClick={() => HandelUpdateEventDesc(Editid)}>
+                                                {EditId ? (
+                                                    <span onClick={() => HandelUpdateEventDesc(EditId)}>
                                                         <WhitestarBtn title={'Update'} />
                                                     </span>
                                                 ) : (
@@ -965,7 +1028,7 @@ const Type = ({ title, editid }) => {
                                                 </span>
                                             ) : (
                                                 <span onClick={HandelPriceform}>
-                                                    <WhitestarBtn title={'Complete'} />
+                                                    <WhitestarBtn title={'Update'} />
                                                 </span>
                                             )}
                                         </div>
