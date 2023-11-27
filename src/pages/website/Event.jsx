@@ -3,6 +3,7 @@ import Container from "react-bootstrap/Container";
 import { useParams } from 'react-router-dom';
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
+import TimerComponent from '../../component/event/timer';
 import Eventlogo from "../../common/icon/eventlogo.svg";
 import Timelogo from "../../common/icon/time 1.svg";
 import Hourglasslogo from "../../common/icon/hourglass.svg";
