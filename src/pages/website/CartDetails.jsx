@@ -10,25 +10,47 @@ import { useState, useEffect } from "react";
 import toast from "react-hot-toast";
 import Button from 'react-bootstrap/Button';
 import { useNavigate } from "react-router-dom";
+import Lottie from "lottie-react";
 const Page = ({ title }) => {
     const Beartoken = localStorage.getItem('userauth');
     const navigate = useNavigate();
     const [cartItems, setCartItems] = useState([]);
     const [ApiLoader, setApiLoader] = useState(false);
     const [allItemsTotalPrice, setAllItemsTotalPrice] = useState(0);
+    const [DiscountPer, setDiscountPer] = useState(0);
+    const [DiscountAmount, setDiscountAmount] = useState(0);
     const [eventTotalPrice, setEventTotalPrice] = useState(0);
     const [localQuantities, setLocalQuantities] = useState({});
     useEffect(() => {
-        // Calculate total price when cart items change
         calculateTotalPrice();
-        // saveCartToLocalStorage();
+        getUserdata();
     }, [cartItems]);
     useEffect(() => {
-        // Load cart and local quantities from localStorage when component mounts
         loadCartFromLocalStorage();
         window.scrollTo(0, 0);
     }, []);
-
+    const getUserdata = async () => {
+        if (Beartoken) {
+            try {
+                fetch(apiurl + 'website/get-user-details', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${Beartoken}`, // Set the Content-Type header to JSON
+                    }
+                })
+                    .then(response => response.json())
+                    .then(data => {
+                        
+                    })
+                    .catch(error => {
+                        console.error('Insert error:', error);
+                    });
+            } catch (error) {
+                console.error('Error:', error);
+            }
+        }
+    }
     const addToCart = (item) => {
         // Initialize cartItems as an empty array if it's undefined
         const existingItem = cartItems.find((cartItem) => cartItem.name === item.name);
@@ -51,7 +73,6 @@ const Page = ({ title }) => {
         });
 
     };
-
     const removeFromCart = (itemName, quantity) => {
         const updatedCart = cartItems.map((cartItem) =>
             cartItem.name === itemName ? { ...cartItem, quantity: cartItem.quantity > 0 ? cartItem.quantity - 1 : 0 } : cartItem
@@ -84,7 +105,7 @@ const Page = ({ title }) => {
         // Save cart items and local quantities to localStorage
         localStorage.setItem('cart', JSON.stringify({ items: cartItems, quantities: localQuantities }));
         try {
-            if(!Beartoken){
+            if (!Beartoken) {
                 toast.error("Login to your account");
                 navigate(app_url + 'auth/customer/signup');
                 return;
@@ -108,7 +129,7 @@ const Page = ({ title }) => {
                 .then(data => {
                     if (data.success == true) {
                         localStorage.removeItem('cart')
-                        localStorage.setItem("paymentid_token",data.payment_id)
+                        localStorage.setItem("paymentid_token", data.payment_id)
                         window.location.href = data.url;
                     } else {
                         toast.error(data.data);
@@ -146,78 +167,103 @@ const Page = ({ title }) => {
                         <h2 className="Your-cart-text font-weight-bold">Your cart</h2>
                     </Col>
                     <Col md={12}>
-                        <Row>
-                            <Col md={8}>
-                                {cartItems.map((item, index) => (
-                                    <div>
-                                        <Card>
-                                            <Card.Body>
-                                                <div className="cart-details-box">
-                                                    <div className="right-box-con in-event-page-cart-sec">
-                                                        <Row>
-                                                            <Col md={12}>
-                                                                <p className="Ticket-title">{item.event.display_name} | <span><img height={20} width={20} src={Timelogo} alt="" /></span>Event Time - {item.event.start_time}</p>
-                                                            </Col>
-                                                            <Col md={4}>
-                                                                <p className="mb-0 cart-ticket-name">{item.name}</p>
-                                                            </Col>
-                                                            <Col md={4}>
-                                                                <span className="cart-price">Price : ${item.price}</span>
-                                                            </Col>
-                                                            <Col md={4}>
-                                                                <div className="d-inline-block">
-                                                                    <span>
-                                                                        <span className="cart-minus cart-btn" onClick={() => removeFromCart(item.name, localQuantities[item.name] || 0)}>-</span>
-                                                                        <span className="cart-number">{localQuantities[item.name] || item.quantity}</span>
-                                                                        <span className="cart-plus cart-btn" onClick={() => addToCart(item.ticket)}>+</span>
+                        {cartItems.length > 0 ? (
+                            <>
+                                <Row>
+                                    <Col md={8}>
+                                        {cartItems.map((item, index) => (
+                                            <div>
+                                                <Card>
+                                                    <Card.Body>
+                                                        <div className="cart-details-box">
+                                                            <div className="right-box-con in-event-page-cart-sec">
+                                                                <Row>
+                                                                    <Col md={12}>
+                                                                        <p className="Ticket-title">{item.event.display_name} | <span><img height={20} width={20} src={Timelogo} alt="" /></span>Event Time - {item.event.start_time}</p>
+                                                                    </Col>
+                                                                    <Col md={4}>
+                                                                        <p className="mb-0 cart-ticket-name">{item.name}</p>
+                                                                    </Col>
+                                                                    <Col md={4}>
+                                                                        <span className="cart-price">Price : ${item.price}</span>
+                                                                    </Col>
+                                                                    <Col md={4}>
+                                                                        <div className="d-inline-block">
+                                                                            <span>
+                                                                                <span className="cart-minus cart-btn" onClick={() => removeFromCart(item.name, localQuantities[item.name] || 0)}>-</span>
+                                                                                <span className="cart-number">{localQuantities[item.name] || item.quantity}</span>
+                                                                                <span className="cart-plus cart-btn" onClick={() => addToCart(item.ticket)}>+</span>
+                                                                            </span>
+                                                                        </div>
+                                                                    </Col>
+                                                                </Row>
+                                                            </div>
+                                                        </div>
+                                                    </Card.Body>
+                                                </Card>
+                                            </div>
+                                        ))}
+                                    </Col>
+                                    <Col md={4}>
+                                        <div className="cart-amount-box">
+                                            <Card>
+                                                <Card.Body>
+                                                    <Row>
+                                                        <Col md={6} className="my-2">
+                                                            <h5 className="cart-amount-small-title">Subtotal</h5>
+                                                        </Col>
+                                                        <Col md={6} className="my-2 text-end">
+                                                            <h5 className="cart-amount-small-amount">{allItemsTotalPrice}</h5>
+                                                        </Col>
+                                                        <Col md={6} className="my-2">
+                                                            <h5 className="cart-amount-small-title">Discount</h5>
+                                                        </Col>
+                                                        <Col md={6} className="my-2 text-end">
+                                                            <h5 className="cart-amount-small-amount">{allItemsTotalPrice}</h5>
+                                                        </Col>
+                                                        <Col md={12} className="py-3">
+                                                            <div className="border-bottom"></div>
+                                                        </Col>
+                                                        <Col md={6}>
+                                                            <h3 className="cart-amount-small-title theme-color font-600">Total</h3>
+                                                        </Col>
+                                                        <Col md={6} className="text-end">
+                                                            <h3 className="cart-amount-small-amount theme-color font-600">{allItemsTotalPrice}</h3>
+                                                        </Col>
+                                                        <Col md={12}>
+                                                            {ApiLoader ? (
+                                                                <Button className='signup-page-btn'>Please wait...</Button>
+                                                            ) : (
+                                                                <div className="mt-3 paynow-btn-box">
+                                                                    <span onClick={() => saveCartToLocalStorage()}>
+                                                                        <Whitestarbtn title={'Pay now'} />
                                                                     </span>
                                                                 </div>
-                                                            </Col>
-                                                        </Row>
-                                                    </div>
-                                                </div>
-                                            </Card.Body>
-                                        </Card>
-                                    </div>
-                                ))}
-                            </Col>
-                            <Col md={4}>
-                                <div className="cart-amount-box">
+                                                            )}
+                                                        </Col>
+                                                    </Row>
+                                                </Card.Body>
+                                            </Card>
+                                        </div>
+                                    </Col>
+                                </Row>
+                            </>
+                        ) : (
+                            <Row>
+                                <Col md={12}>
                                     <Card>
                                         <Card.Body>
-                                            <Row>
-                                                <Col md={6} className="my-2">
-                                                    <h5 className="cart-amount-small-title">Subtotal</h5>
-                                                </Col>
-                                                <Col md={6} className="my-2 text-end">
-                                                    <h5 className="cart-amount-small-amount">${allItemsTotalPrice}</h5>
-                                                </Col>
-                                                <Col md={12} className="py-3">
-                                                    <div className="border-bottom"></div>
-                                                </Col>
-                                                <Col md={6}>
-                                                    <h3 className="cart-amount-small-title theme-color font-600">Total</h3>
-                                                </Col>
-                                                <Col md={6} className="text-end">
-                                                    <h3 className="cart-amount-small-amount theme-color font-600">${allItemsTotalPrice}</h3>
-                                                </Col>
-                                                <Col md={12}>
-                                                    {ApiLoader ? (
-                                                        <Button className='signup-page-btn'>Please wait...</Button>
-                                                    ) : (
-                                                        <div className="mt-3 paynow-btn-box">
-                                                            <span onClick={() => saveCartToLocalStorage()}>
-                                                                <Whitestarbtn title={'Pay now'} />
-                                                            </span>
-                                                        </div>
-                                                    )}
-                                                </Col>
-                                            </Row>
+                                            <div class="alert alert-danger solid alert-dismissible fade show">
+                                                <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="me-2"><circle cx="12" cy="12" r="10"></circle><path d="M8 14s1.5 2 4 2 4-2 4-2"></path><line x1="9" y1="9" x2="9.01" y2="9"></line><line x1="15" y1="9" x2="15.01" y2="9"></line></svg>
+                                                Your cart is empty !
+                                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="btn-close">
+                                                </button>
+                                            </div>
                                         </Card.Body>
                                     </Card>
-                                </div>
-                            </Col>
-                        </Row>
+                                </Col>
+                            </Row>
+                        )}
                     </Col>
                 </Row>
             </Container>

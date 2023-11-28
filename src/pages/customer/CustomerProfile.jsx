@@ -13,10 +13,31 @@ const Dashboard = ({ title }) => {
     const [Loader, setLoader] = useState(false);
     const [ApiLoader, setApiLoader] = useState(false);
 
+    const [inputValue, setInputValue] = useState('');
+    const [tags, setTags] = useState([]);
+    const handleInputChange = (e) => {
+        setInputValue(e.target.value);
+    };
+    const handleInputKeyDown = (e) => {
+        if (e.key === 'Enter' || e.key === ',') {
+            e.preventDefault();
+            if (inputValue.trim() !== '' && tags.length < 10) {
+                setTags([...tags, inputValue.trim()]);
+                setInputValue('');
+            }
+        }
+    };
+    const handleDeleteTag = (index) => {
+        const newTags = [...tags];
+        newTags.splice(index, 1);
+        setTags(newTags);
+    };
+
     const [name, setname] = useState();
     const [fname, setfname] = useState();
     const [lname, setlname] = useState();
     const [email, setemail] = useState();
+    const [badge, setbadge] = useState();
     const [phone_number, setphone_number] = useState();
     const [whatsapp_number, setwhatsapp_number] = useState();
     const [address, setaddress] = useState();
@@ -162,6 +183,7 @@ const Dashboard = ({ title }) => {
                         setcountry(data.data.country);
                         setpincode(data.data.pincode);
                         setpicture(data.data.picture);
+                        setbadge(data.data.plan_name);
 
                         setufname(data.data.first_name);
                         setulname(data.data.last_name);
@@ -223,6 +245,14 @@ const Dashboard = ({ title }) => {
                                                         <h4 className="text-muted mb-0">{email}</h4>
                                                         <p>Email</p>
                                                     </div>
+                                                    {badge ? (
+                                                        <>
+                                                            <div className="profile-email px-2 pt-2">
+                                                                <span class="badge badge-pill badge-warning">{badge}</span>
+                                                                <p>My badge</p>
+                                                            </div>
+                                                        </>
+                                                    ) : ''}
                                                 </>
                                             )}
                                         </div>
@@ -345,10 +375,31 @@ const Dashboard = ({ title }) => {
                                                                                     </div>
                                                                                 </div>
                                                                                 <div className="col-md-6">
-
                                                                                     <div className="form-group">
                                                                                         <p>Pincode</p>
                                                                                         <input className="form-control" type="text" placeholder="Pincode" value={upincode} onChange={(e) => setupincode(e.target.value)}></input>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div className="col-md-12">
+                                                                                    <div className="form-group">
+                                                                                        <p>Hobbies</p>
+                                                                                        <input className="form-control" type="text" placeholder="Add hobbies"
+                                                                                            value={inputValue}
+                                                                                            onChange={handleInputChange}
+                                                                                            onKeyDown={handleInputKeyDown}
+                                                                                        ></input>
+                                                                                        <div className="tag-preview-option my-4">
+                                                                                            <ul>
+                                                                                                {tags.map((tag, index) => (
+                                                                                                    <li key={index}>
+                                                                                                        {tag}
+                                                                                                        <button onClick={() => handleDeleteTag(index)} className="delete-button">
+                                                                                                            X
+                                                                                                        </button>
+                                                                                                    </li>
+                                                                                                ))}
+                                                                                            </ul>
+                                                                                        </div>
                                                                                     </div>
                                                                                 </div>
                                                                             </div>

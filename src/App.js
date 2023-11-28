@@ -12,6 +12,7 @@ import PendingOrganizer from './pages/admin/organizer/PendingOrganizer';
 import Supportlist from './pages/admin/support/Supportlist';
 import Contactlist from './pages/admin/contact/Contactlist';
 import AllEventlist from './pages/admin/event/AllEventlist';
+import Membership from './pages/admin/membership/Membership';
 import AdminLayout from './layout/admin/Layout'
 // Customer
 import CustomerDashboard from './pages/customer/Dashboard';
@@ -19,7 +20,7 @@ import CustomerSupportlist from './pages/customer/support/Supportlist';
 import CustomerOrderlist from './pages/customer/Orderlist';
 import CustomerProfile from './pages/customer/CustomerProfile';
 import CustomerLayout from './layout/customer/Layout'
-// Organizer Admin
+// Organizer
 import Dashboard from './pages/organizer/Dashboard';
 import EventType from './pages/organizer/Event/EventCreateForm';
 import EditEvent from './pages/organizer/Event/EditEvent';
@@ -28,7 +29,7 @@ import Tixmescanner from './pages/organizer/Tixmescanner';
 import Tixmescannerpage from './pages/organizer/Tixmescannerpage';
 import Qrvalidation from './pages/organizer/Qrvalidation';
 import OrganizerLayout from './layout/organizer/Layout'
-// website auth
+// auth
 import Signup from './pages/website/auth/Signup';
 import OrganizerLogin from './pages/website/auth/OrganizerLogin';
 import AdminLogin from './pages/website/auth/AdminLogin';
@@ -107,6 +108,7 @@ function App() {
           <Route path={admin_url + 'pending-organizer'} element={<AdminLayout> <PendingOrganizer title={'Pending Organizer'} /> </AdminLayout>} />
           <Route path={admin_url + 'support-tickets'} element={<AdminLayout> <Supportlist title={'Support Tickets'} /> </AdminLayout>} />
           <Route path={admin_url + 'contact-us'} element={<AdminLayout> <Contactlist title={'Contact us list'} /> </AdminLayout>} />
+          <Route path={admin_url + 'membership'} element={<AdminLayout> <Membership title={'Membership'} /> </AdminLayout>} />
         </Routes>
       </BrowserRouter>
     </>

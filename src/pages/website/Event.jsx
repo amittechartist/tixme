@@ -693,7 +693,7 @@ const Page = ({ title }) => {
                       {Paynowbtnstatus ? (
                         <div className="mt-5 paynow-btn-box">
                           <span onClick={() => saveCartToLocalStorage()}>
-                            <Whitestarbtn title={'Pay now'} />
+                            <Whitestarbtn title={'Add to cart'} />
                           </span>
                         </div>
                       ) : ''}

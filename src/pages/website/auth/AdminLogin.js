@@ -5,6 +5,7 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Select from 'react-select'
 import Button from 'react-bootstrap/Button';
+import Whitestarbtn from '../../../component/Whitestarbtn';
 import { Link, useNavigate } from "react-router-dom";
 import toast from 'react-hot-toast';
 import Swal from 'sweetalert2'
@@ -83,14 +84,9 @@ const Home = ({ title }) => {
                                             {Loader ? (
                                                 <Button className='signup-page-btn'>Please wait...</Button>
                                             ) : (
-                                                <Button variant="link" className="button-join" onClick={HandelLogin}>
-                                                    <span>
-                                                        <span className="bg-style btn-a"><img height={30} width={30} src={PersonIcon} /></span>
-                                                        <span className="bg-style btn-b">Log in</span>
-                                                        <span className="bg-style btn-c"><img height={30} width={30} src={PersonIcon} /></span>
-                                                    </span>
-                                                </Button>
-
+                                                <span onClick={HandelLogin}>
+                                                    <Whitestarbtn title={'Login'} />
+                                                </span>
                                             )}
                                         </div>
                                     </div>
