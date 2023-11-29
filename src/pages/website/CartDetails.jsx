@@ -15,24 +15,39 @@ const Page = ({ title }) => {
     const Beartoken = localStorage.getItem('userauth');
     const navigate = useNavigate();
     const [cartItems, setCartItems] = useState([]);
+    const [isFirstRender, setIsFirstRender] = useState(false);
     const [ApiLoader, setApiLoader] = useState(false);
+    const [amountLoader, setamountLoader] = useState(false);
+    const [moneyLoader, setmoneyLoader] = useState(false);
     const [allItemsTotalPrice, setAllItemsTotalPrice] = useState(0);
     const [DiscountPer, setDiscountPer] = useState(0);
     const [DiscountAmount, setDiscountAmount] = useState(0);
+    const [Subtotal, setSubtotal] = useState(0);
+    const [userPlan, setuserPlan] = useState([]);
     const [eventTotalPrice, setEventTotalPrice] = useState(0);
     const [localQuantities, setLocalQuantities] = useState({});
+    const [totalPrice, setTotalPrice] = useState(0);
     useEffect(() => {
-        calculateTotalPrice();
-        getUserdata();
+        if (moneyLoader) {
+            calculateTotalPrice();
+        }
+    }, [cartItems, moneyLoader]);
+    useEffect(() => {
+        if (isFirstRender) {
+            localStorage.setItem('cart', JSON.stringify({ items: cartItems, quantities: localQuantities }));
+        }
     }, [cartItems]);
     useEffect(() => {
+        getUserdata()
         loadCartFromLocalStorage();
         window.scrollTo(0, 0);
     }, []);
+
     const getUserdata = async () => {
+
         if (Beartoken) {
             try {
-                fetch(apiurl + 'website/get-user-details', {
+                fetch(apiurl + 'website/get-user-package', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -41,16 +56,28 @@ const Page = ({ title }) => {
                 })
                     .then(response => response.json())
                     .then(data => {
-                        
+                        if (data.success == true) {
+                            setuserPlan(data.data)
+                            setDiscountPer(data.data.discount_amount)
+                            setamountLoader(false)
+                            setmoneyLoader(true)
+                        } else {
+                            setmoneyLoader(true)
+                        }
                     })
                     .catch(error => {
                         console.error('Insert error:', error);
+                        setamountLoader(false)
+                        setmoneyLoader(true)
                     });
             } catch (error) {
                 console.error('Error:', error);
+                setamountLoader(false)
+                setmoneyLoader(true)
             }
         }
     }
+
     const addToCart = (item) => {
         // Initialize cartItems as an empty array if it's undefined
         const existingItem = cartItems.find((cartItem) => cartItem.name === item.name);
@@ -61,9 +88,8 @@ const Page = ({ title }) => {
                 cartItem.name === item.name ? { ...cartItem, quantity: cartItem.quantity + 1 } : cartItem
             );
             setCartItems(updatedCart);
-            localStorage.setItem('cart', JSON.stringify({ items: updatedCart, quantities: localQuantities }));
         } else {
-            // If item is not in cart, add it with quantity 1 and eventId
+
         }
 
         // Update local quantity state
@@ -71,7 +97,7 @@ const Page = ({ title }) => {
             ...localQuantities,
             [item.name]: (localQuantities[item.name] || 0) + 1,
         });
-
+        setIsFirstRender(true);
     };
     const removeFromCart = (itemName, quantity) => {
         const updatedCart = cartItems.map((cartItem) =>
@@ -86,7 +112,7 @@ const Page = ({ title }) => {
             ...localQuantities,
             [itemName]: quantity > 0 ? quantity - 1 : 0,
         });
-
+        setIsFirstRender(true);
     };
     const calculateTotalPrice = () => {
         if (!cartItems || cartItems.length === 0) {
@@ -94,16 +120,35 @@ const Page = ({ title }) => {
             setEventTotalPrice(0);
             return;
         }
-
         const total = cartItems.reduce((accumulator, currentItem) => {
             return accumulator + currentItem.price * currentItem.quantity;
         }, 0);
+        if (DiscountPer) {
+            // Calculate discount amount
+            const discountAmount = (total * DiscountPer) / 100;
 
-        setAllItemsTotalPrice(total);
+            // Calculate subtotal after discount
+            const subtotal = total - discountAmount;
+
+            // Round the subtotal to the nearest whole number
+            const roundedSubtotal = Math.round(subtotal);
+
+            // Set the total price with the rounded subtotal
+            setAllItemsTotalPrice(total);
+
+            // You may want to set the discount amount and subtotal in state as well if needed
+            setDiscountAmount(discountAmount);
+            setSubtotal(roundedSubtotal);
+        } else {
+            // If no discount, set the total directly
+            setAllItemsTotalPrice(total);
+
+            // Reset discount amount and subtotal if needed
+            setDiscountAmount(0);
+            setSubtotal(total);
+        }
     };
     const saveCartToLocalStorage = async () => {
-        // Save cart items and local quantities to localStorage
-        localStorage.setItem('cart', JSON.stringify({ items: cartItems, quantities: localQuantities }));
         try {
             if (!Beartoken) {
                 toast.error("Login to your account");
@@ -112,7 +157,7 @@ const Page = ({ title }) => {
             }
             setApiLoader(true);
             const requestData = {
-                totalamount: allItemsTotalPrice,
+                totalamount: Subtotal,
                 cartitem: cartItems,
                 gatway_name: "Stripe",
                 location: "India"
@@ -191,7 +236,7 @@ const Page = ({ title }) => {
                                                                         <div className="d-inline-block">
                                                                             <span>
                                                                                 <span className="cart-minus cart-btn" onClick={() => removeFromCart(item.name, localQuantities[item.name] || 0)}>-</span>
-                                                                                <span className="cart-number">{localQuantities[item.name] || item.quantity}</span>
+                                                                                <span className="cart-number">{item.quantity}</span>
                                                                                 <span className="cart-plus cart-btn" onClick={() => addToCart(item.ticket)}>+</span>
                                                                             </span>
                                                                         </div>
@@ -205,46 +250,54 @@ const Page = ({ title }) => {
                                         ))}
                                     </Col>
                                     <Col md={4}>
-                                        <div className="cart-amount-box">
-                                            <Card>
-                                                <Card.Body>
-                                                    <Row>
-                                                        <Col md={6} className="my-2">
-                                                            <h5 className="cart-amount-small-title">Subtotal</h5>
-                                                        </Col>
-                                                        <Col md={6} className="my-2 text-end">
-                                                            <h5 className="cart-amount-small-amount">{allItemsTotalPrice}</h5>
-                                                        </Col>
-                                                        <Col md={6} className="my-2">
-                                                            <h5 className="cart-amount-small-title">Discount</h5>
-                                                        </Col>
-                                                        <Col md={6} className="my-2 text-end">
-                                                            <h5 className="cart-amount-small-amount">{allItemsTotalPrice}</h5>
-                                                        </Col>
-                                                        <Col md={12} className="py-3">
-                                                            <div className="border-bottom"></div>
-                                                        </Col>
-                                                        <Col md={6}>
-                                                            <h3 className="cart-amount-small-title theme-color font-600">Total</h3>
-                                                        </Col>
-                                                        <Col md={6} className="text-end">
-                                                            <h3 className="cart-amount-small-amount theme-color font-600">{allItemsTotalPrice}</h3>
-                                                        </Col>
-                                                        <Col md={12}>
-                                                            {ApiLoader ? (
-                                                                <Button className='signup-page-btn'>Please wait...</Button>
-                                                            ) : (
-                                                                <div className="mt-3 paynow-btn-box">
-                                                                    <span onClick={() => saveCartToLocalStorage()}>
-                                                                        <Whitestarbtn title={'Pay now'} />
-                                                                    </span>
-                                                                </div>
-                                                            )}
-                                                        </Col>
-                                                    </Row>
-                                                </Card.Body>
-                                            </Card>
-                                        </div>
+                                        {amountLoader ? (
+                                            <div className="linear-background w-100"> </div>
+                                        ) : (
+                                            <div className="cart-amount-box">
+                                                <Card>
+                                                    <Card.Body>
+                                                        <Row>
+                                                            <Col md={6} className="my-2">
+                                                                <h5 className="cart-amount-small-title">Subtotal</h5>
+                                                            </Col>
+                                                            <Col md={6} className="my-2 text-end">
+                                                                <h5 className="cart-amount-small-amount">Rs. {allItemsTotalPrice}</h5>
+                                                            </Col>
+                                                            {DiscountAmount ? (
+                                                                <>
+                                                                    <Col md={6} className="my-2">
+                                                                        <h5 className="cart-amount-small-title">Discount</h5>
+                                                                    </Col>
+                                                                    <Col md={6} className="my-2 text-end">
+                                                                        <h5 className="cart-amount-small-amount">{DiscountAmount} ({DiscountPer}%)</h5>
+                                                                    </Col>
+                                                                </>
+                                                            ) : ''}
+                                                            <Col md={12} className="py-3">
+                                                                <div className="border-bottom"></div>
+                                                            </Col>
+                                                            <Col md={6}>
+                                                                <h3 className="cart-amount-small-title theme-color font-600">Total</h3>
+                                                            </Col>
+                                                            <Col md={6} className="text-end">
+                                                                <h3 className="cart-amount-small-amount theme-color font-600">Rs. {Subtotal}</h3>
+                                                            </Col>
+                                                            <Col md={12}>
+                                                                {ApiLoader ? (
+                                                                    <Button className='signup-page-btn'>Please wait...</Button>
+                                                                ) : (
+                                                                    <div className="mt-3 paynow-btn-box">
+                                                                        <span onClick={() => saveCartToLocalStorage()}>
+                                                                            <Whitestarbtn title={'Pay now'} />
+                                                                        </span>
+                                                                    </div>
+                                                                )}
+                                                            </Col>
+                                                        </Row>
+                                                    </Card.Body>
+                                                </Card>
+                                            </div>
+                                        )}
                                     </Col>
                                 </Row>
                             </>

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
@@ -39,18 +39,15 @@ const Home = ({ title }) => {
     const [Terms, setTerms] = useState(1);
     const [Marketing, setMarketing] = useState(1);
 
+    const [Hobby, setHobby] = useState([]);
+    const [selectedHobbies, setSelectedHobbies] = useState([]);
+
     const [Loader, setLoader] = useState(false);
     const [SignupUseroption, setSignupUseroption] = useState({ value: '2', label: "Ticket buyer" });
     const [SignupUseroptionid, setSignupUseroptionid] = useState(2);
     const handlePhoneChange = (newPhone) => {
         setPhonenumber(newPhone);
     };
-    // const handlePhoneChange = (event) => {
-    //     const inputValue = event.target.value;
-    //     const numericValue = inputValue.replace(/\D/g, "");
-    //     const limitedValue = numericValue.slice(0, 10);
-    //     setPhonenumber(limitedValue);
-    // };
     const HandelCustomerLogin = async () => {
         try {
             if (!LoginEmail) {
@@ -182,12 +179,18 @@ const Home = ({ title }) => {
             } else {
                 return toast.error('Password and confirm password not match');
             }
+            if (selectedHobbies.length > 0) {
+
+            } else {
+                return toast.error('Select hobbies');
+            }
             setLoader(true);
             const requestData = {
                 first_name: Firstname,
                 last_name: Lastname,
                 email: Email,
                 phone_number: Phonenumber,
+                hobbies:selectedHobbies,
                 area_code: "+91",
                 whatsapp_no: WhatsappNumber ? WhatsappNumber : '',
                 address: Address1 ? Address1 : '',
@@ -300,6 +303,47 @@ const Home = ({ title }) => {
         setSignupUseroption(selectedValue);
         setSignupUseroptionid(selectedValue.value);
     };
+    const fetchHobby = async () => {
+        try {
+            fetch(apiurl + 'website/hobby/list', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json', // Set the Content-Type header to JSON
+                }
+            })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success == true) {
+                        setHobby(data.data)
+                    }
+                })
+                .catch(error => {
+                    setLoader(false);
+                    // toast.error('Insert error: ' + error.message);
+                    console.error('Insert error:', error);
+                });
+        } catch (error) {
+            console.error(error.message);
+        }
+    }
+    const toggleHobby = (id) => {
+        const updatedHobbies = [...selectedHobbies];
+
+        if (updatedHobbies.includes(id)) {
+            // Hobby is already selected, remove it
+            const index = updatedHobbies.indexOf(id);
+            updatedHobbies.splice(index, 1);
+        } else {
+            // Hobby is not selected, add it
+            updatedHobbies.push(id);
+        }
+
+        setSelectedHobbies(updatedHobbies);
+    };
+
+    useEffect(() => {
+        fetchHobby();
+    }, []);
     return (
         <div className="content-data">
             <div className="signup-form-section mt-5 mb-5">
@@ -467,6 +511,18 @@ const Home = ({ title }) => {
                                         <div className="form-group">
                                             <p>Pincode</p>
                                             <input className="form-control" type="text" placeholder="Pincode" value={Pincode} onChange={(e) => setPincode(e.target.value)}></input>
+                                        </div>
+                                        <div className="form-group">
+                                            <p>Select hobby</p>
+                                            {Hobby.map((item, index) => (
+                                                <span
+                                                    key={item.name}
+                                                    className={`hobby-box ${selectedHobbies.includes(item.name) ? 'hobby-active' : ''}`}
+                                                    onClick={() => toggleHobby(item.name)}
+                                                >
+                                                    {item.name}
+                                                </span>
+                                            ))}
                                         </div>
                                         <div class="form-check">
                                             <input type="checkbox" class="form-check-input" id="exampleCheck1" onChange={(e) => setTerms(e.target.value)} />

@@ -12,8 +12,8 @@ import SuccessLotte from '../../lotte/pay-success.json';
 import Lottie from "lottie-react";
 import { useState } from "react";
 import toast from "react-hot-toast";
-import { useNavigate } from "react-router-dom";
-import { admin_url, app_url, apiurl } from '../../common/Helpers';
+import { Link, useNavigate } from "react-router-dom";
+import { admin_url, app_url, customer_url, apiurl } from '../../common/Helpers';
 const Page = ({ title }) => {
     const navigate = useNavigate();
     const lottewidth = {
@@ -34,12 +34,12 @@ const Page = ({ title }) => {
                                             <Lottie className="py-3" animationData={FailedLotte} style={lottewidth} />
                                         </Col>
                                         <Col md={12} className="mt-4">
-                                            <span>
+                                            <Link to={customer_url + 'my-order-list'}>
                                                 <Whitebtn title={'View Order'} />
-                                            </span>
-                                            <span>
+                                            </Link>
+                                            <Link to={app_url}>
                                                 <Whitebtn title={'Home'} />
-                                            </span>
+                                            </Link>
                                         </Col>
                                 </Row>
                             </Card.Body>

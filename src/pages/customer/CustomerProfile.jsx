@@ -53,9 +53,13 @@ const Dashboard = ({ title }) => {
     const [uwhatsapp_number, setuwhatsapp_number] = useState();
     const [uaddress, setuaddress] = useState();
     const [upincode, setupincode] = useState();
+    const [userHobbies, setuserHobbies] = useState([]);
 
     const [password, setpassword] = useState();
     const [confirmpassword, setconfirmpassword] = useState();
+
+    const [Hobby, setHobby] = useState([]);
+    const [selectedHobbies, setSelectedHobbies] = useState([]);
 
     const Handelprofileupdate = async () => {
         try {
@@ -72,7 +76,8 @@ const Dashboard = ({ title }) => {
                 email: uemail,
                 whatsapp_no: uwhatsapp_number,
                 address: uaddress,
-                pincode: upincode
+                pincode: upincode,
+                hobbies: selectedHobbies
             }
             fetch(apiurl + 'website/update-user-details', {
                 method: 'POST',
@@ -191,6 +196,7 @@ const Dashboard = ({ title }) => {
                         setuwhatsapp_number(data.data.whatsapp_no);
                         setuaddress(data.data.address);
                         setupincode(data.data.pincode);
+                        setSelectedHobbies(data.data.hobbies)
                     }
                     setApiLoader(false)
                 })
@@ -203,7 +209,43 @@ const Dashboard = ({ title }) => {
             setApiLoader(false)
         }
     }
+    const fetchHobby = async () => {
+        try {
+            fetch(apiurl + 'website/hobby/list', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json', // Set the Content-Type header to JSON
+                }
+            })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success == true) {
+                        setHobby(data.data)
+                    }
+                })
+                .catch(error => {
+                    setLoader(false);
+                    // toast.error('Insert error: ' + error.message);
+                    console.error('Insert error:', error);
+                });
+        } catch (error) {
+            console.error(error.message);
+        }
+    }
+    const toggleHobby = (id) => {
+        const updatedHobbies = [...selectedHobbies];
+    
+        if (updatedHobbies.includes(id)) {
+            // Hobby is already selected, remove it
+            const index = updatedHobbies.indexOf(id);
+            updatedHobbies.splice(index, 1);
+        } else {
+            // Hobby is not selected, add it
+            updatedHobbies.push(id);
+        }
 
+        setSelectedHobbies(updatedHobbies);
+    };
     useEffect(() => {
         if (!Beartoken) {
             toast.error("Login to your account");
@@ -211,6 +253,7 @@ const Dashboard = ({ title }) => {
             return;
         }
         fetchData();
+        fetchHobby();
     }, []);
 
     return (
@@ -370,36 +413,28 @@ const Dashboard = ({ title }) => {
                                                                                 <div className="col-md-6">
 
                                                                                     <div className="form-group">
-                                                                                        <p>Address Line 1 </p>
+                                                                                        <p>Address <span className="text-danger">*</span></p>
                                                                                         <input className="form-control" type="text" placeholder="Address" value={uaddress} onChange={(e) => setuaddress(e.target.value)}></input>
                                                                                     </div>
                                                                                 </div>
                                                                                 <div className="col-md-6">
                                                                                     <div className="form-group">
-                                                                                        <p>Pincode</p>
+                                                                                        <p>Pincode <span className="text-danger">*</span></p>
                                                                                         <input className="form-control" type="text" placeholder="Pincode" value={upincode} onChange={(e) => setupincode(e.target.value)}></input>
                                                                                     </div>
                                                                                 </div>
-                                                                                <div className="col-md-12">
+                                                                                <div className="col-md-12 pb-3">
                                                                                     <div className="form-group">
                                                                                         <p>Hobbies</p>
-                                                                                        <input className="form-control" type="text" placeholder="Add hobbies"
-                                                                                            value={inputValue}
-                                                                                            onChange={handleInputChange}
-                                                                                            onKeyDown={handleInputKeyDown}
-                                                                                        ></input>
-                                                                                        <div className="tag-preview-option my-4">
-                                                                                            <ul>
-                                                                                                {tags.map((tag, index) => (
-                                                                                                    <li key={index}>
-                                                                                                        {tag}
-                                                                                                        <button onClick={() => handleDeleteTag(index)} className="delete-button">
-                                                                                                            X
-                                                                                                        </button>
-                                                                                                    </li>
-                                                                                                ))}
-                                                                                            </ul>
-                                                                                        </div>
+                                                                                        {Hobby.map((item, index) => (
+                                                                                            <span
+                                                                                                key={item.name}
+                                                                                                className={`hobby-box ${selectedHobbies.includes(item.name) || userHobbies.includes(item.name) ? 'hobby-active' : ''}`}
+                                                                                                onClick={() => toggleHobby(item.name)}
+                                                                                            >
+                                                                                                {item.name}
+                                                                                            </span>
+                                                                                        ))}
                                                                                     </div>
                                                                                 </div>
                                                                             </div>

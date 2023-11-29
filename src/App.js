@@ -22,6 +22,7 @@ import CustomerProfile from './pages/customer/CustomerProfile';
 import CustomerLayout from './layout/customer/Layout'
 // Organizer
 import Dashboard from './pages/organizer/Dashboard';
+import Analytics from './pages/organizer/analytics';
 import EventType from './pages/organizer/Event/EventCreateForm';
 import EditEvent from './pages/organizer/Event/EditEvent';
 import EventList from './pages/organizer/Event/List';
@@ -95,6 +96,7 @@ function App() {
           <Route path={organizer_url + 'tixme-scanner'} element={<OrganizerLayout> <Tixmescanner title={'Tixme scanner'} /> </OrganizerLayout>} />
           <Route path={organizer_url + 'tixme-scanner-page'} element={<OrganizerLayout> <Tixmescannerpage title={'Tixme scanner'} /> </OrganizerLayout>} />
           <Route path={organizer_url + 'tixme-validate'} element={<OrganizerLayout> <Qrvalidation title={'QR validate'} /> </OrganizerLayout>} />
+          <Route path={organizer_url + 'analytics'} element={<OrganizerLayout> <Analytics title={'Analytics'} /> </OrganizerLayout>} />
           {/* Admin */}
           <Route path={admin_url + 'dashboard'} element={<AdminLayout> <AdminDashboard title={'dashboard'} /> </AdminLayout>} />
           <Route path={admin_url + 'add-category'} element={<AdminLayout> <AddCategory title={'Add Category'} /> </AdminLayout>} />

@@ -32,6 +32,7 @@ const Page = ({ title }) => {
   const { id, name } = useParams();
   const navigate = useNavigate();
   const [Apiloader, setApiloader] = useState(true);
+  const [isFirstRender, setIsFirstRender] = useState(false);
   const [Eventdata, setEventdata] = useState();
   const [Paynowbtnstatus, setPaynowbtnstatus] = useState(true);
   const [Eventlist, setEventlist] = useState([]);
@@ -189,7 +190,7 @@ const Page = ({ title }) => {
     fetchEvent();
   }, []);
   useEffect(() => {
-    
+
   }, [Eventlist]);
   const [cartItems, setCartItems] = useState([]);
   const [allItemsTotalPrice, setAllItemsTotalPrice] = useState(0);
@@ -201,7 +202,11 @@ const Page = ({ title }) => {
     // Calculate total price when cart items change
     calculateTotalPrice();
   }, [cartItems]);
-
+  useEffect(() => {
+    if (isFirstRender) {
+      localStorage.setItem('cart', JSON.stringify({ items: cartItems, quantities: localQuantities }));
+    }
+  }, [cartItems]);
   useEffect(() => {
     // Load cart and local quantities from localStorage when component mounts
     loadCartFromLocalStorage();
@@ -227,8 +232,8 @@ const Page = ({ title }) => {
       ...localQuantities,
       [item.name]: (localQuantities[item.name] || 0) + 1,
     });
-    
-    
+
+    setIsFirstRender(true)
   };
 
   const removeFromCart = (itemName, quantity) => {
@@ -244,7 +249,7 @@ const Page = ({ title }) => {
       ...localQuantities,
       [itemName]: quantity > 0 ? quantity - 1 : 0,
     });
-    
+    setIsFirstRender(true)
   };
 
   const calculateTotalPrice = () => {
@@ -267,17 +272,15 @@ const Page = ({ title }) => {
     }, 0);
 
     setEventTotalPrice(eventTotal);
-    if(eventTotal > 0){
+    if (eventTotal > 0) {
       setPaynowbtnstatus(true)
-    }else{
+    } else {
       setPaynowbtnstatus(true)
     }
   };
 
   const saveCartToLocalStorage = () => {
-    // Save cart items and local quantities to localStorage
-    localStorage.setItem('cart', JSON.stringify({ items: cartItems, quantities: localQuantities }));
-    // navigate(app_url + 'cart-details');
+    navigate(app_url + 'cart-details');
   };
 
 
@@ -693,7 +696,7 @@ const Page = ({ title }) => {
                       {Paynowbtnstatus ? (
                         <div className="mt-5 paynow-btn-box">
                           <span onClick={() => saveCartToLocalStorage()}>
-                            <Whitestarbtn title={'Add to cart'} />
+                            <Whitestarbtn title={'Pay now'} />
                           </span>
                         </div>
                       ) : ''}
