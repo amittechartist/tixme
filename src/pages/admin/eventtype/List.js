@@ -7,8 +7,9 @@ import toast from 'react-hot-toast';
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
 import { apiurl,admin_url } from '../../../common/Helpers';
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 const Dashboard = ({ title }) => {
+    const navigate = useNavigate();
     const [Loader, setLoader] = useState(false);
     const [Listitems, setListitems] = useState([]);
     const MySwal = withReactContent(Swal);
@@ -56,7 +57,10 @@ const Dashboard = ({ title }) => {
             console.error('Login api error:', error);
         }
     }
-    const fetchCategory = async () => {
+    const handelEventList = async () => {
+        navigate(admin_url + 'all-events-list');
+    }
+        const fetchCategory = async () => {
         try {
             fetch(apiurl + 'category/get-event-type-list', {
                 method: 'POST',
@@ -79,6 +83,7 @@ const Dashboard = ({ title }) => {
             console.error('Login api error:', error);
         }
     }
+
     useEffect(() => {
         fetchCategory();
     }, []);
@@ -93,48 +98,86 @@ const Dashboard = ({ title }) => {
                         </ol>
                     </div>
                     <Row className="justify-content-center">
-                        <Col md={12}>
-                            <Card className="py-4">
-                                <Card.Body>
-                                    <Row className="justify-content-center">
-                                        <Col md={12}>
-                                            <div class="table-responsive">
-                                                <table class="table table-responsive-md">
-                                                    <thead>
-                                                        <tr>
-                                                            <th style={{ width: '80px' }}><strong>#</strong></th>
-                                                            <th><strong>Name</strong></th>
-                                                            <th><strong>Status</strong></th>
-                                                            <th></th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                        {Listitems.map((item, index) => (
-                                                            <tr>
-                                                                <td><strong>{index + 1}</strong></td>
-                                                                <td>{item.name}</td>
-                                                                <td><span class="badge light badge-success">Active</span></td>
-                                                                <td>
-                                                                    <div class="dropdown">
-                                                                        <button type="button" class="btn btn-success light sharp" data-bs-toggle="dropdown">
-                                                                            <svg width="20px" height="20px" viewBox="0 0 24 24" version="1.1"><g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><rect x="0" y="0" width="24" height="24" /><circle fill="#000000" cx="5" cy="12" r="2" /><circle fill="#000000" cx="12" cy="12" r="2" /><circle fill="#000000" cx="19" cy="12" r="2" /></g></svg>
-                                                                        </button>
-                                                                        <div class="dropdown-menu">
-                                                                            <Button variant="link" class="dropdown-item">Edit</Button>
-                                                                            <Button onClick={() => CheckDelete(item._id)} variant="link" class="dropdown-item">Delete</Button>
-                                                                        </div>
-                                                                    </div>
-                                                                </td>
-                                                            </tr>
-                                                        ))}
-                                                    </tbody>
-                                                </table>
-                                            </div>
-                                        </Col>
-                                    </Row>
-                                </Card.Body>
-                            </Card>
-                        </Col>
+                    <div class="col-xl-6" >
+                            <div class="card cursor-pointer" onClick={() => handelEventList()}>
+                                <div class="card-body">
+                                    <div class="media align-items-center">
+                                        <span class="me-4">
+                                            <svg class="primary-icon" width="50" height="53" viewBox="0 0 50 53" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <rect width="7.11688" height="52.1905" rx="3" transform="matrix(-1 0 0 1 49.8184 0)" fill="var(--primary)"></rect>
+                                                <rect width="7.11688" height="37.9567" rx="3" transform="matrix(-1 0 0 1 35.585 14.2338)" fill="var(--primary)"></rect>
+                                                <rect width="7.11688" height="16.6061" rx="3" transform="matrix(-1 0 0 1 21.3516 35.5844)" fill="var(--primary)"></rect>
+                                                <rect width="8.0293" height="32.1172" rx="3" transform="matrix(-1 0 0 1 8.0293 20.0732)" fill="var(--primary)"></rect>
+                                            </svg>
+                                        </span>
+                                        <div class="media-body ms-1">
+                                            <p class="mb-2">Online event happening</p>
+                                            <h3 class="mb-0 text-black font-w600">0</h3>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-6">
+                            <div class="card  cursor-pointer" onClick={() => handelEventList()}>
+                                <div class="card-body">
+                                    <div class="media align-items-center">
+                                        <span class="me-4">
+                                            <svg class="primary-icon" width="50" height="53" viewBox="0 0 50 53" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <rect width="7.11688" height="52.1905" rx="3" transform="matrix(-1 0 0 1 49.8184 0)" fill="var(--primary)"></rect>
+                                                <rect width="7.11688" height="37.9567" rx="3" transform="matrix(-1 0 0 1 35.585 14.2338)" fill="var(--primary)"></rect>
+                                                <rect width="7.11688" height="16.6061" rx="3" transform="matrix(-1 0 0 1 21.3516 35.5844)" fill="var(--primary)"></rect>
+                                                <rect width="8.0293" height="32.1172" rx="3" transform="matrix(-1 0 0 1 8.0293 20.0732)" fill="var(--primary)"></rect>
+                                            </svg>
+                                        </span>
+                                        <div class="media-body ms-1">
+                                            <p class="mb-2">Online event happened</p>
+                                            <h3 class="mb-0 text-black font-w600">0</h3>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-6">
+                            <div class="card  cursor-pointer" onClick={() => handelEventList()}>
+                                <div class="card-body">
+                                    <div class="media align-items-center">
+                                        <span class="me-4">
+                                            <svg class="primary-icon" width="50" height="53" viewBox="0 0 50 53" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <rect width="7.11688" height="52.1905" rx="3" transform="matrix(-1 0 0 1 49.8184 0)" fill="var(--primary)"></rect>
+                                                <rect width="7.11688" height="37.9567" rx="3" transform="matrix(-1 0 0 1 35.585 14.2338)" fill="var(--primary)"></rect>
+                                                <rect width="7.11688" height="16.6061" rx="3" transform="matrix(-1 0 0 1 21.3516 35.5844)" fill="var(--primary)"></rect>
+                                                <rect width="8.0293" height="32.1172" rx="3" transform="matrix(-1 0 0 1 8.0293 20.0732)" fill="var(--primary)"></rect>
+                                            </svg>
+                                        </span>
+                                        <div class="media-body ms-1">
+                                            <p class="mb-2">Physical event happening</p>
+                                            <h3 class="mb-0 text-black font-w600">0</h3>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-6">
+                            <div class="card  cursor-pointer" onClick={() => handelEventList()}>
+                                <div class="card-body">
+                                    <div class="media align-items-center">
+                                        <span class="me-4">
+                                            <svg class="primary-icon" width="50" height="53" viewBox="0 0 50 53" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <rect width="7.11688" height="52.1905" rx="3" transform="matrix(-1 0 0 1 49.8184 0)" fill="var(--primary)"></rect>
+                                                <rect width="7.11688" height="37.9567" rx="3" transform="matrix(-1 0 0 1 35.585 14.2338)" fill="var(--primary)"></rect>
+                                                <rect width="7.11688" height="16.6061" rx="3" transform="matrix(-1 0 0 1 21.3516 35.5844)" fill="var(--primary)"></rect>
+                                                <rect width="8.0293" height="32.1172" rx="3" transform="matrix(-1 0 0 1 8.0293 20.0732)" fill="var(--primary)"></rect>
+                                            </svg>
+                                        </span>
+                                        <div class="media-body ms-1">
+                                            <p class="mb-2">Physical event happened</p>
+                                            <h3 class="mb-0 text-black font-w600">0</h3>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </Row>
                 </div>
             </div>

@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
+import { useParams } from 'react-router-dom';
 import { Button, Col, Row } from "react-bootstrap";
 import Card from 'react-bootstrap/Card';
 import { apiurl, admin_url } from '../../../common/Helpers';
 import { Link } from "react-router-dom";
 const Dashboard = ({ title }) => {
-    
+    const { id, name } = useParams();
     const [Loader, setLoader] = useState(false);
     const [Listitems, setListitems] = useState([]);
     const fetchList = async () => {
@@ -30,9 +31,40 @@ const Dashboard = ({ title }) => {
             console.error('Login api error:', error);
         }
     }
+    const fetchListWithfilter = async () => {
+        try {
+            const requestData = {
+                membershipid: id,
+            };
+            fetch(apiurl + 'admin/get-customer-list-with-filter', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json', // Set the Content-Type header to JSON
+                },
+                body: JSON.stringify(requestData),
+            })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success == true) {
+                        setListitems(data.data);
+                    } else {
+
+                    }
+                })
+                .catch(error => {
+                    console.error('Insert error:', error);
+                });
+        } catch (error) {
+            console.error('Login api error:', error);
+        }
+    }
     useEffect(() => {
-        fetchList();
-    }, []);
+        if (id) {
+            fetchListWithfilter();
+        } else {
+            fetchList();
+        }
+    }, [id]);
     return (
         <>
             <div className="content-body" style={{ background: '#F1F1F1' }}>
@@ -73,7 +105,7 @@ const Dashboard = ({ title }) => {
                                                                             <svg width="20px" height="20px" viewBox="0 0 24 24" version="1.1"><g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><rect x="0" y="0" width="24" height="24" /><circle fill="#000000" cx="5" cy="12" r="2" /><circle fill="#000000" cx="12" cy="12" r="2" /><circle fill="#000000" cx="19" cy="12" r="2" /></g></svg>
                                                                         </button>
                                                                         <div class="dropdown-menu">
-                                                                            <Button variant="link" class="dropdown-item">View</Button>
+                                                                            <Link to={`${admin_url}user-details/${item._id}/${item.name}`} class="dropdown-item">View</Link>
                                                                         </div>
                                                                     </div>
                                                                 </td>

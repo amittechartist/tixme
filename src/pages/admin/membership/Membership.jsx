@@ -273,6 +273,7 @@ const Dashboard = ({ title }) => {
                                                                 <th><strong>Plan name</strong></th>
                                                                 <th><strong>Purchase amount</strong></th>
                                                                 <th><strong>Discount</strong></th>
+                                                                <th><strong>Total User</strong></th>
                                                                 <th></th>
                                                             </tr>
                                                         </thead>
@@ -283,6 +284,7 @@ const Dashboard = ({ title }) => {
                                                                     <td><strong className="text-capitalize">{item.name}</strong></td>
                                                                     <td>{item.purchase_amount}</td>
                                                                     <td>{item.discount_amount} (%)</td>
+                                                                    <td>0</td>
                                                                     <td>
                                                                         <div class="dropdown">
                                                                             <button type="button" class="btn btn-success light sharp" data-bs-toggle="dropdown">

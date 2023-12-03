@@ -113,3 +113,29 @@ XYZ.jsx:22 Profile Photo URL: https://lh3.googleusercontent.com/a/ACg8ocKp-XP35c
 orderitem table add istransfer and change owner name and email 
 also set a log 
 and new table sher tickets 
+
+1.Day & Night Parties
+2.Music & Concerts
+3.Business & Networking
+4.Sports & Fitness
+5.Food & Drink
+6.Arts & Theater
+7.Festivals & Holidays
+8.Bollywood
+9.Travel & Outdoor
+10.Education & Careers
+11.Expos & Exhibitions
+12.Conferences & Seminars 
+13.Fashion & Beauty
+14.Film & Media
+15.Meet & Greet
+16.Technology & Innovation
+17.Gaming & eSports
+18.Religious & Spiritual
+19.Pets & Animals
+20.Literary & Books
+21.Cultural Fests
+22.Home & Garden 
+23.Hobbies & Interests
+24.Health & Wellness
+25.Charity & Causes

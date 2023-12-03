@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from "react";
 import DashboardIcon from '../../../common/icon/dashboardicon.svg';
 import EventIcon from '../../../common/icon/event 1.svg';
 import ticketIcon from '../../../common/icon/ticket 1.svg';
@@ -8,11 +8,41 @@ import MenuIcon from '../../../common/icon/Menu sidebar.svg';
 import peopleIcon from '../../../common/icon/people 1.svg';
 import supportIcon from '../../../common/icon/support.svg';
 import { Link, useNavigate } from 'react-router-dom';
-import { admin_url, app_url } from '../../../common/Helpers';
+import { admin_url, app_url, apiurl } from '../../../common/Helpers';
 
 import { FaUsers } from "react-icons/fa6";
 
 const Sidebar = () => {
+    const [Listitems, setListitems] = useState([]);
+    const fetchList = async () => {
+        try {
+
+            fetch(apiurl + 'admin/package-plan-list', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json', // Set the Content-Type header to JSON
+                },
+            })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success == true) {
+                        setListitems(data.data);
+                    }
+
+                })
+                .catch(error => {
+                    console.error('Insert error:', error);
+
+                });
+        } catch (error) {
+            console.error('Login api error:', error);
+
+        }
+
+    }
+    useEffect(() => {
+        fetchList();
+    }, []);
     const navigate = useNavigate();
     function d() {
         const mainWrapperView = document.getElementById('main-wrapper view');
@@ -38,10 +68,19 @@ const Sidebar = () => {
                             <span className="nav-text">Dashboard</span>
                         </Link>
                         </li>
-                        <li onClick={() => d()}><Link to={admin_url + 'all-customers'} className="ai-icon" aria-expanded="false">
-                            <span className='menu-icon'><FaUsers /></span>
-                            <span className="nav-text">All Customers</span>
-                        </Link>
+                        <li onClick={() => d()}>
+                            <a href="javascript:void(0);" class="has-arrow ai-icon" aria-expanded="false">
+                                <img src={EventIcon} alt="Your Logo" />
+                                <span class="nav-text">Customers</span>
+                            </a>
+                            <ul aria-expanded="false">
+                                {Listitems.map((item, index) => (
+                                    <li>
+                                        <Link className='text-black' to={`${admin_url}customers/${item._id}/${item.name}`}>{item.name}</Link></li>
+                                ))}
+                                <li>
+                                    <Link className='text-black' to={admin_url + 'all-customers'}>No Membership</Link></li>
+                            </ul>
                         </li>
                         <li onClick={() => d()}>
                             <Link to={admin_url + 'all-category'} className="ai-icon" aria-expanded="false">

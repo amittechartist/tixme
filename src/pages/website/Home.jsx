@@ -27,9 +27,10 @@ import CountUp from "react-countup";
 import Fade from "react-reveal/Fade";
 import Zoom from 'react-reveal/Zoom';
 import { Link, useNavigate } from "react-router-dom";
-import { apiurl,onlyDayMonth,shortPer,app_url } from "../../common/Helpers";
+import { apiurl, onlyDayMonth, shortPer, app_url } from "../../common/Helpers";
 const Home = ({ title }) => {
   const [Eventlist, setEventlist] = useState([]);
+  const [Listitems, setListitems] = useState([]);
   const navigate = useNavigate();
   const settings = {
     dots: false,
@@ -77,14 +78,14 @@ const Home = ({ title }) => {
       }
     ]
   };
-  const viewEvent = async (id,name) => {
+  const viewEvent = async (id, name) => {
     navigate(`${app_url}event/${id}/${name}`)
   }
   const fetchEvent = async () => {
     try {
       const requestData = {
-        limit:10,
-        organizerid:null
+        limit: 10,
+        organizerid: null
       }
       fetch(apiurl + "website/all-events-list", {
         method: "POST",
@@ -107,8 +108,33 @@ const Home = ({ title }) => {
       console.error("Login api error:", error);
     }
   };
+  const fetchCategory = async () => {
+    try {
+      fetch(apiurl + 'category/get-category-list', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json', // Set the Content-Type header to JSON
+        }
+      })
+        .then(response => response.json())
+        .then(data => {
+          if (data.success == true) {
+            setListitems(data.data);
+
+          } else {
+
+          }
+        })
+        .catch(error => {
+          console.error('Insert error:', error);
+        });
+    } catch (error) {
+      console.error('Login api error:', error);
+    }
+  }
   useEffect(() => {
     fetchEvent();
+    fetchCategory();
   }, []);
   return (
     <>
@@ -149,7 +175,11 @@ const Home = ({ title }) => {
                 </Col>
                 <Col md={12} className="Find-Near-form">
                   <select name="" id="" className="theme-dropdown dropdown-custome">
-                    <option value="">Category</option>
+                    {Listitems.map((item, index) => (
+                      <option value={item._id}>{item.name}</option>
+                    ))}
+
+
                   </select>
                   <select name="" id="" className="theme-dropdown dropdown-custome">
                     <option value="">Location</option>
@@ -174,83 +204,20 @@ const Home = ({ title }) => {
                           <p className="category-title">Music</p>
                         </div>
                       </div>
-                      <div className=" mx-2">
-                        <div className="category-items-box">
-                          <img
-                            className="ticket-category-bg"
-                            src={MusicIcon}
-                            alt=""
-                          />
-                          <img className="ticket-bg" src={TicketIcon} alt="" />
-                          <p className="category-title">NIGHTLIFE</p>
+                      {Listitems.map((item, index) => (
+                        <div className=" mx-2">
+                          <div className="category-items-box">
+                            <img
+                              className="ticket-category-bg"
+                              src={MusicIcon}
+                              alt=""
+                            />
+                            <img className="ticket-bg" src={TicketIcon} alt="" />
+                            <p className="category-title">{item.name}</p>
+                          </div>
                         </div>
-                      </div>
-                      <div className=" mx-2">
-                        <div className="category-items-box">
-                          <img
-                            className="ticket-category-bg"
-                            src={MusicIcon}
-                            alt=""
-                          />
-                          <img className="ticket-bg" src={TicketIcon} alt="" />
-                          <p className="category-title">Business & Networking</p>
-                        </div>
-                      </div>
-                      <div className=" mx-2">
-                        <div className="category-items-box">
-                          <img
-                            className="ticket-category-bg"
-                            src={MusicIcon}
-                            alt=""
-                          />
-                          <img className="ticket-bg" src={TicketIcon} alt="" />
-                          <p className="category-title">Sports & Fitness</p>
-                        </div>
-                      </div>
-                      <div className=" mx-2">
-                        <div className="category-items-box">
-                          <img
-                            className="ticket-category-bg"
-                            src={MusicIcon}
-                            alt=""
-                          />
-                          <img className="ticket-bg" src={TicketIcon} alt="" />
-                          <p className="category-title">Food & Drinks</p>
-                        </div>
-                      </div>
-                      <div className=" mx-2">
-                        <div className="category-items-box">
-                          <img
-                            className="ticket-category-bg"
-                            src={MusicIcon}
-                            alt=""
-                          />
-                          <img className="ticket-bg" src={TicketIcon} alt="" />
-                          <p className="category-title">Arts & Theater</p>
-                        </div>
-                      </div>
-                      <div className=" mx-2">
-                        <div className="category-items-box">
-                          <img
-                            className="ticket-category-bg"
-                            src={MusicIcon}
-                            alt=""
-                          />
-                          <img className="ticket-bg" src={TicketIcon} alt="" />
-                          <p className="category-title">Arts & Theater</p>
-                        </div>
-                      </div>
-                      <div className=" mx-2">
-                        <div className="category-items-box">
-                          <img
-                            className="ticket-category-bg"
-                            src={MusicIcon}
-                            alt=""
-                          />
-                          <img className="ticket-bg" src={TicketIcon} alt="" />
-                          <p className="category-title">Music</p>
-                        </div>
-                      </div>
+                      ))}
+
                     </Slider>
                   </div>
                 </Col>
@@ -265,7 +232,7 @@ const Home = ({ title }) => {
             </span>
             <Row className="event-box-mobile event-box-mobile-home">
               {Eventlist.map((item, index) => (
-                <Col md={4} className="mb-5 cursor-pointer" title="View" onClick={() => viewEvent(item._id,item.name)}>
+                <Col md={4} className="mb-5 cursor-pointer" title="View" onClick={() => viewEvent(item._id, item.name)}>
                   <Fade bottom>
                     <div className="event-box-style">
                       <div className="event-image-part">
