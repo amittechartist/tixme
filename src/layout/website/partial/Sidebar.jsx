@@ -22,7 +22,7 @@ const Sidebar = () => {
                             </span>
                         </Link>
                     </li>
-                    <li className="nav-item">
+                    {/* <li className="nav-item">
                         <Link className="button-join" to={app_url + 'terms-and-conditions'}>
                             <span>
                                 Terms & conditions
@@ -42,7 +42,7 @@ const Sidebar = () => {
                                 FAQ
                             </span>
                         </Link>
-                    </li>
+                    </li> */}
                     <li className="nav-item">
                         <Link className="button-join" to={app_url + 'contact'}>
                             <span>
