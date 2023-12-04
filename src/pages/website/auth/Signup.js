@@ -403,17 +403,7 @@ const Home = ({ title }) => {
                                 </p>
                             </div>
                             <div className="login-area-form-sec">
-                                <div className="form-group">
-                                    <p>Are you an organizer ot ticket buyer? <span className="text-danger">*</span></p>
-                                    <Select
-                                        isClearable={false}
-                                        options={userOption}
-                                        className='react-select'
-                                        classNamePrefix='select'
-                                        onChange={signupUseroption}
-                                        value={SignupUseroption}
-                                    />
-                                </div>
+                                
                                 {SignupUseroptionid == 1 ? (
                                     <div>
                                         <div className="form-group">

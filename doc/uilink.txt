@@ -1,0 +1,141 @@
+https://www.figma.com/file/oLOg4fLQZhinBwzV7KnjlM/Web-Application?type=design&node-id=0%3A1&mode=design&t=qw36yGepfB3n166S-1
+
+
+https://www.figma.com/file/nnPxb1rXvU2BBfOpvst5cI/TIXME?type=design&node-id=0%3A1&mode=design&t=j2T1skJHTygnYgVj-1
+
+
+forget password page ui
+customer dashbord ui
+customer ticket list ui 
+admin dashboad ui 
+customer My Rewards  page ui
+Following & Interests  page ui
+Support tickets  page ui
+edit profile page ui
+Filters on Events Page on the left hand side with events on right hand side ui 
+
+
+"homepage": "https://tixme-app.vercel.app/",
+
+
+
+
+https://tixme.co/
+Mahaveer Sawant1:38 PM
+https://www.figma.com/file/nnPxb1rXvU2BBfOpvst5cI/TIXME?type=design&node-id=0-1&mode=design&t=Onm1ZKcAyVpiTp5a-0
+Mahaveer Sawant1:40 PM
+https://www.eventbrite.com/
+https://www.eventbrite.com/e/boston-new-years-eve-at-westin-copley-grand-ballroom-30-back-bay-ball-tickets-596012939747?aff=ebdssbehomepeforyou&_gl=1*14ng0e*_up*MQ..*_ga*NTEzOTMxMTQyLjE2OTk0MzEwMjA.*_ga_TQVES5V6SH*MTY5OTQzMTAxOS4xLjAuMTY5OTQzMTAxOS4wLjAuMA..
+Mahaveer Sawant1:41 PM
+https://www.cutthecode.com/about-us
+Mahaveer Sawant1:50 PM
+https://www.cutthecode.com/no-code-development#faq
+
+https://redux.js.org/introduction/examples#shopping-cart
+
+
+
+item arraw
+user id
+amount 
+
+{
+    ** order table  = 
+    ------
+    total price (donation + original price)
+    user id 
+    user name
+    user email 
+    date 
+    time
+    min date
+    min time
+    pay_cheker_id = (future status check)
+    payment_method = name of gatway
+    payment_status = 0 = pending | 1 = success  | 2 = failed
+    currency
+    session_data = object
+    total qty
+
+    blank field = 
+    payment id
+    location
+}
+------------------
+
+order detils table = 
+main order table insert id
+eventid
+
+event ticket name
+event ticket price = price | 00 | donaton amount
+
+userid
+user name
+user email
+user id
+new user email = (for tranfer)
+new user name  = (for tranfer)
+new user id = (for tranfer)
+date
+time
+mindate
+mintime
+status = (0 = not scaned | 1 for scan)
+isvalid = (0 = yes | 1 no)
+
+
+
+
+
+
+https://konaxtechnologies.in/tixme/auth/admin/login
+id : super
+password : 12345
+
+https://konaxtechnologies.in/tixme/auth/customer/signup
+id : amitmajumder559@gmail.com
+password : 12345678
+
+https://konaxtechnologies.in/tixme/auth/organizer/login
+amitmajumder559@gmail.com
+12345678
+
+nitishchandra@essane.in
+Xitish@123
+
+Email: amitmajumder559@gmail.com
+XYZ.jsx:20 Display Name: Amit Majumder
+XYZ.jsx:21 UID: oMBmZcr7ogRpXCWY4VimuTEzKQo2
+XYZ.jsx:22 Profile Photo URL: https://lh3.googleusercontent.com/a/ACg8ocKp-XP35c_05GvqnBtPxFqS-UVHTg_uKlexqoloQEZ-yojF=s96-c
+
+
+orderitem table add istransfer and change owner name and email 
+also set a log 
+and new table sher tickets 
+
+1.Day & Night Parties
+2.Music & Concerts
+3.Business & Networking
+4.Sports & Fitness
+5.Food & Drink
+6.Arts & Theater
+7.Festivals & Holidays
+8.Bollywood
+9.Travel & Outdoor
+10.Education & Careers
+11.Expos & Exhibitions
+12.Conferences & Seminars 
+13.Fashion & Beauty
+14.Film & Media
+15.Meet & Greet
+16.Technology & Innovation
+17.Gaming & eSports
+18.Religious & Spiritual
+19.Pets & Animals
+20.Literary & Books
+21.Cultural Fests
+22.Home & Garden 
+23.Hobbies & Interests
+24.Health & Wellness
+25.Charity & Causes

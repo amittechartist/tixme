@@ -9,6 +9,13 @@ import BookingLogo from "../../common/icon/image 8.png";
 import ExpediaIcon from "../../common/icon/image 9.png";
 import TuiIconIcon from "../../common/icon/image 10.png";
 
+import Arts from '../../category/Arts & Theater.svg';
+import Business from '../../category/Business & Networking.svg';
+import Food from '../../category/Food & Drinks.svg';
+import Music from '../../category/Music.svg';
+import NIGHTLIFE from '../../category/NIGHTLIFE.svg';
+import Sports from '../../category/Sports & Fitness.svg';
+
 import OurPartnerIcon from "../../common/icon/Our Partner.svg";
 import MusicIcon from "../../common/icon/Music.svg";
 import TicketIcon from "../../common/icon/Ticket vector.svg";
@@ -197,27 +204,91 @@ const Home = ({ title }) => {
                         <div className="category-items-box">
                           <img
                             className="ticket-category-bg"
-                            src={MusicIcon}
+                            src={Arts}
+                            alt=""
+                          />
+                          <img className="ticket-bg" src={TicketIcon} alt="" />
+                          <p className="category-title">Arts & Theater</p>
+                        </div>
+                      </div>
+                      <div className=" mx-2">
+                        <div className="category-items-box">
+                          <img
+                            className="ticket-category-bg"
+                            src={Arts}
+                            alt=""
+                          />
+                          <img className="ticket-bg" src={TicketIcon} alt="" />
+                          <p className="category-title">Arts & Theater</p>
+                        </div>
+                      </div>
+                      <div className=" mx-2">
+                        <div className="category-items-box">
+                          <img
+                            className="ticket-category-bg"
+                            src={Arts}
+                            alt=""
+                          />
+                          <img className="ticket-bg" src={TicketIcon} alt="" />
+                          <p className="category-title">Arts & Theater</p>
+                        </div>
+                      </div>
+
+                      <div className=" mx-2">
+                        <div className="category-items-box">
+                          <img
+                            className="ticket-category-bg"
+                            src={Business}
+                            alt=""
+                          />
+                          <img className="ticket-bg" src={TicketIcon} alt="" />
+                          <p className="category-title">Business & Networking</p>
+                        </div>
+                      </div>
+                      <div className=" mx-2">
+                        <div className="category-items-box">
+                          <img
+                            className="ticket-category-bg"
+                            src={Food}
+                            alt=""
+                          />
+                          <img className="ticket-bg" src={TicketIcon} alt="" />
+                          <p className="category-title">Food & Drinks</p>
+                        </div>
+                      </div>
+                      <div className=" mx-2">
+                        <div className="category-items-box">
+                          <img
+                            className="ticket-category-bg"
+                            src={Music}
                             alt=""
                           />
                           <img className="ticket-bg" src={TicketIcon} alt="" />
                           <p className="category-title">Music</p>
                         </div>
                       </div>
-                      {Listitems.map((item, index) => (
-                        <div className=" mx-2">
-                          <div className="category-items-box">
-                            <img
-                              className="ticket-category-bg"
-                              src={MusicIcon}
-                              alt=""
-                            />
-                            <img className="ticket-bg" src={TicketIcon} alt="" />
-                            <p className="category-title">{item.name}</p>
-                          </div>
+                      <div className=" mx-2">
+                        <div className="category-items-box">
+                          <img
+                            className="ticket-category-bg"
+                            src={NIGHTLIFE}
+                            alt=""
+                          />
+                          <img className="ticket-bg" src={TicketIcon} alt="" />
+                          <p className="category-title">NIGHTLIFE</p>
                         </div>
-                      ))}
-
+                      </div>
+                      <div className=" mx-2">
+                        <div className="category-items-box">
+                          <img
+                            className="ticket-category-bg"
+                            src={Sports}
+                            alt=""
+                          />
+                          <img className="ticket-bg" src={TicketIcon} alt="" />
+                          <p className="category-title">Sports & Fitness</p>
+                        </div>
+                      </div>
                     </Slider>
                   </div>
                 </Col>

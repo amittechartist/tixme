@@ -77,7 +77,7 @@ const Dashboard = ({ title }) => {
         }
     }
     
-    console.log(Eventlist)
+    
     useEffect(() => {
         if (!organizerid) {
             navigate(app_url);

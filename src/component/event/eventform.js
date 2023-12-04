@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import GroupIcon from '../../common/icon/Group.svg';
 import OnlineIcon from '../../common/icon/Host Online.svg';
+import PlacesAutocomplete, { geocodeByAddress, getLatLng } from 'react-places-autocomplete';
 import OffliveIcon from '../../common/icon/oflineeventlogo.svg';
 import whitestar from '../../common/icon/whitestar.svg';
 import Locationstart from '../../common/icon/locationstart.svg';
@@ -44,6 +45,7 @@ const Type = ({ title, editid }) => {
     const [Displayprice, setDisplayprice] = useState();
     const [Displaycutprice, setDisplaycutprice] = useState();
 
+
     const [Type, setType] = useState(1);
     const [Category, setCategory] = useState();
     const [CategoryId, setCategoryId] = useState();
@@ -62,6 +64,8 @@ const Type = ({ title, editid }) => {
     const [Displayendtime, setDisplayendtime] = useState(false);
     const [Eventdesc, setEventdesc] = useState();
     const [categoryList, setcategoryList] = useState([{ value: "", label: "Category" }]);
+    const [countryList, setcountryList] = useState([{ value: "", label: "Country" }]);
+    const [currencyList, setcurrencyList] = useState([{ value: "", label: "Currency" }]);
     const [EventtypecategoryList, setEventtypecategoryList] = useState([{ value: "", label: "Type" }]);
     const [inputValue, setInputValue] = useState('');
     const [tags, setTags] = useState([]);
@@ -83,6 +87,15 @@ const Type = ({ title, editid }) => {
         width: '100%',
         height: '200px'
     }
+    const handleSelect = async (selectedLocation) => {
+        const results = await geocodeByAddress(selectedLocation);
+        const latLng = await getLatLng(results[0]);
+        console.log('Selected location:', selectedLocation);
+        console.log('Latlng:', latLng);
+    
+        // Now, you can set the location in your state or perform any other actions.
+        setLocation(selectedLocation);
+      };
     function CheckDelete(editid, pricename) {
         MySwal.fire({
             title: 'Are you sure you want to remove?',
@@ -421,40 +434,71 @@ const Type = ({ title, editid }) => {
             console.error('Login api error:', error);
         }
     }
+    const fetchCountry = async () => {
+        try {
+            fetch(apiurl + 'admin/country-list', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json', // Set the Content-Type header to JSON
+                }
+            })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success == true) {
+                        const countryData = data.data;
+                        const countryOption = countryData.map(item => ({
+                            value: item.name,
+                            label: item.name
+                        }));
+                        const currencyOption = countryData.map(item => ({
+                            value: item.currency,
+                            label: item.symbol
+                        }));
+                        setcountryList(countryOption);
+                        setcurrencyList(currencyOption)
+                    }
+                })
+                .catch(error => {
+                    console.error('Insert error:', error);
+                });
+        } catch (error) {
+            console.error('Login api error:', error);
+        }
+    }
     const fetchAllTicket = async () => {
         try {
-                setApiloader(true);
-                const requestData = {
-                    updateid: EditId
-                };
-                fetch(apiurl + 'event/ticket-list', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json', // Set the Content-Type header to JSON
-                    },
-                    body: JSON.stringify(requestData),
-                })
-                    .then(response => response.json())
-                    .then(data => {
+            setApiloader(true);
+            const requestData = {
+                updateid: EditId
+            };
+            fetch(apiurl + 'event/ticket-list', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json', // Set the Content-Type header to JSON
+                },
+                body: JSON.stringify(requestData),
+            })
+                .then(response => response.json())
+                .then(data => {
 
-                        if (data.success == true) {
-                            const fetchdata = data.data.allprice;
-                            setTicketList(fetchdata);
-                            if (fetchdata.length > 0) {
-                                setIsEventTicket(false);
-                            } else {
-                                setIsEventTicket(true);
-                            }
+                    if (data.success == true) {
+                        const fetchdata = data.data.allprice;
+                        setTicketList(fetchdata);
+                        if (fetchdata.length > 0) {
+                            setIsEventTicket(false);
+                        } else {
+                            setIsEventTicket(true);
                         }
-                        setApiloader(false);
-                    })
-                    .catch(error => {
-                        console.error('Insert error:', error);
+                    }
+                    setApiloader(false);
+                })
+                .catch(error => {
+                    console.error('Insert error:', error);
 
-                        setApiloader(false);
+                    setApiloader(false);
 
-                    });
-            
+                });
+
         } catch (error) {
             console.error('Login api error:', error);
             setApiloader(false);
@@ -551,9 +595,14 @@ const Type = ({ title, editid }) => {
             options: categoryList
         }
     ]
-    const EventtypeCategoryOption = [
+    const CountryOption = [
         {
-            options: EventtypecategoryList
+            options: countryList
+        }
+    ]
+    const CurrencyOption = [
+        {
+            options: currencyList
         }
     ]
     function HandelCreateticket() {
@@ -616,6 +665,7 @@ const Type = ({ title, editid }) => {
     }
     useEffect(() => {
         fetchCategory();
+        fetchCountry();
         fetchEventtypeCategory();
         if (editid) {
             getEditdata(editid)
@@ -696,17 +746,6 @@ const Type = ({ title, editid }) => {
                                         <input type="text" class="form-control input-default " value={Displayname} onChange={(e) => setDisplayname(e.target.value)} placeholder="Enter Event Display Name" />
                                     </div>
                                     <div className="col-md-4 mt-4">
-                                        <label htmlFor="" className="text-black">Select Type</label>
-                                        <Select
-                                            isClearable={false}
-                                            options={EventtypeCategoryOption}
-                                            className='react-select select-theme'
-                                            classNamePrefix='select'
-                                            onChange={selectEventtypeCategory}
-                                            value={EventtypeCategory}
-                                        />
-                                    </div>
-                                    <div className="col-md-4 mt-4">
                                         <label htmlFor="" className="text-black">Select Category</label>
                                         <Select
                                             isClearable={false}
@@ -717,11 +756,22 @@ const Type = ({ title, editid }) => {
                                             value={Category}
                                         />
                                     </div>
-                                    <div className="col-md-6 mt-4">
+                                    <div className="col-md-8 mt-4"></div>
+                                    <div className="col-md-4 mt-4">
+                                        <label htmlFor="" className="text-black">Select Currency</label>
+                                        <Select
+                                            isClearable={false}
+                                            options={CurrencyOption}
+                                            className='react-select select-theme'
+                                            classNamePrefix='select'
+                                            
+                                        />
+                                    </div>
+                                    <div className="col-md-4 mt-4">
                                         <label htmlFor="" className="text-black">Display price</label>
                                         <input type="text" class="form-control input-default" value={Displayprice} onChange={(e) => setDisplayprice(e.target.value)} placeholder="Enter Amount" />
                                     </div>
-                                    <div className="col-md-6  mt-4">
+                                    <div className="col-md-4  mt-4">
                                         <label htmlFor="" className="text-black">Display cut price</label>
                                         <input type="text" class="form-control input-default" value={Displaycutprice} onChange={(e) => setDisplaycutprice(e.target.value)} placeholder="Enter Amount" />
                                     </div>
@@ -759,7 +809,6 @@ const Type = ({ title, editid }) => {
                                             <span onClick={() => setVisibility(2)} className={Visibility == 2 ? "tab-button-active" : ""}><img src={LockIcon} alt="" /> Private</span>
                                         </div>
                                     </div>
-
                                     <div className="col-md-8 mt-4">
                                         <label htmlFor="">Location</label>
                                         <p>Help people in the area discover your event and let attendees know where to show up.</p>
@@ -769,16 +818,47 @@ const Type = ({ title, editid }) => {
                                             <span onClick={() => setEventtype(3)} className={Eventtype == 3 ? "tab-button-active" : ""}>To be announced</span>
                                         </div>
                                     </div>
-
+                                    <div className="col-md-12 mt-4"></div>
+                                    <div className="col-md-3 mt-4">
+                                        <label htmlFor="" className="text-black">Select Country</label>
+                                        <Select
+                                            isClearable={false}
+                                            options={CountryOption}
+                                            className='react-select select-theme'
+                                            classNamePrefix='select'
+                                            
+                                        />
+                                    </div>
                                     <div className="col-md-6 mt-4">
-                                        <label htmlFor="">Venue Location</label>
-                                        <div class="input-group mb-3 input-warning-o">
-                                            <span class="input-group-text"><img src={Magnify} alt="" /></span>
-                                            <input type="text" class="form-control" value={Location} onChange={(e) => setLocation(e.target.value)} placeholder="Search for venue or address" />
-                                        </div>
+                                        {/* ... (other code) */}
+                                        <label htmlFor="" className="text-black">Address</label>
+                                        <PlacesAutocomplete
+                                            value={Location}
+                                            onChange={(e) => setLocation(e)}
+                                            onSelect={handleSelect}
+                                        >
+                                            {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
+                                                <div>
+                                                    <input
+                                                        {...getInputProps({
+                                                            placeholder: 'Search for venue or address',
+                                                            className: 'form-control',
+                                                        })}
+                                                    />
+                                                    <div>
+                                                        {loading ? <div>Loading...</div> : null}
+
+                                                        {suggestions.map((suggestion) => (
+                                                            <div className="location-sugg" {...getSuggestionItemProps(suggestion)}>
+                                                                {suggestion.description}
+                                                            </div>
+                                                        ))}
+                                                    </div>
+                                                </div>
+                                            )}
+                                        </PlacesAutocomplete>
                                     </div>
 
-                                    <div className="col-md-6"></div>
                                     <div className="col-md-6 mt-4">
                                         <label htmlFor="">Date & Time</label>
                                         <p>Tell event-goers when your event starts and ends so they can make plans to attend.</p>

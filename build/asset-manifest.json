@@ -1,12 +1,14 @@
 {
   "files": {
     "main.css": "/static/css/main.849fde88.css",
-    "main.js": "/static/js/main.2a3bbe94.js",
+    "main.js": "/static/js/main.e63ced71.js",
     "static/js/787.cda612ba.chunk.js": "/static/js/787.cda612ba.chunk.js",
     "static/media/user.png": "/static/media/user.cfe9f79c746ba3002568.png",
     "static/media/event1.png": "/static/media/event1.01f504db838e668b291e.png",
+    "static/media/Food & Drinks.svg": "/static/media/Food & Drinks.2073060f2c8ae7b333a53a269e9b1fc7.svg",
     "static/media/eventhomebg.png": "/static/media/eventhomebg.634868da50df3a2a8dd6.png",
     "static/media/Rectangle.png": "/static/media/Rectangle.28b6b7a591e7ba8cc120.png",
+    "static/media/NIGHTLIFE.svg": "/static/media/NIGHTLIFE.8327062010fa527bf59113afa2827825.svg",
     "static/media/62d5204681dc2.jpg": "/static/media/62d5204681dc2.6085abd00754648597b4.jpg",
     "static/media/findnearByEvents.png": "/static/media/findnearByEvents.566f984497b60e5b51a6.png",
     "static/media/Gilroy-Regular.ttf": "/static/media/Gilroy-Regular.5b89a8df3b17dccdb73f.ttf",
@@ -16,7 +18,10 @@
     "static/media/oflineeventlogo.svg": "/static/media/oflineeventlogo.c8b44820eedfcb894e96438aeb6ef1e8.svg",
     "static/media/about11.webp": "/static/media/about11.afe6b7bc1c5b70d247ef.webp",
     "static/media/eventlogo.svg": "/static/media/eventlogo.8573753331384c8262a59f8eac5c2abd.svg",
+    "static/media/Arts & Theater.svg": "/static/media/Arts & Theater.cde1d731717e19c41492acddf38d4b4f.svg",
     "static/media/about2.webp": "/static/media/about2.b298eccaadee184d5cd8.webp",
+    "static/media/Business & Networking.svg": "/static/media/Business & Networking.e54f67c4fa79685f5cf64f14013a4dfd.svg",
+    "static/media/Sports & Fitness.svg": "/static/media/Sports & Fitness.a618f77257f22af1063632b55a0d96c7.svg",
     "static/media/world.svg": "/static/media/world.78a8afc919622583f2385e9c38f0234a.svg",
     "static/media/google.png": "/static/media/google.e12914ad8afda3f6f2e8.png",
     "static/media/nouser.png": "/static/media/nouser.0d14c6999b4a5c8e86a7.png",
@@ -29,7 +34,7 @@
     "static/media/qr-code-pay.png": "/static/media/qr-code-pay.f19b9ee0b2247da833cd.png",
     "static/media/image 8.png": "/static/media/image 8.e2d63c9ed706caac32ac.png",
     "static/media/image 9.png": "/static/media/image 9.de4bcf8c40065e9609b9.png",
-    "static/media/Music.svg": "/static/media/Music.bf63c050246a6e34e184e6a8fc74f2bc.svg",
+    "static/media/Music.svg": "/static/media/Music.dea153a7fcc1fd70e3b69d0b8eb73e2c.svg",
     "static/media/googleicon.svg": "/static/media/googleicon.f559a19196ebbdf345f261d1af6486f5.svg",
     "static/media/findnear By Events.svg": "/static/media/findnear By Events.b14bc22f4e1a59b1d483718fcc95e05c.svg",
     "static/media/Menu sidebar.svg": "/static/media/Menu sidebar.e493984636aa331b0f2836da0bd5d4ab.svg",
@@ -70,11 +75,11 @@
     "static/media/checkbox.svg": "/static/media/checkbox.6b89dd1044e81cb01245ec36793eec4e.svg",
     "static/media/Ellipse 5.svg": "/static/media/Ellipse 5.fd34f75240b05c180ae0ed36209d4dac.svg",
     "main.849fde88.css.map": "/static/css/main.849fde88.css.map",
-    "main.2a3bbe94.js.map": "/static/js/main.2a3bbe94.js.map",
+    "main.e63ced71.js.map": "/static/js/main.e63ced71.js.map",
     "787.cda612ba.chunk.js.map": "/static/js/787.cda612ba.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.849fde88.css",
-    "static/js/main.2a3bbe94.js"
+    "static/js/main.e63ced71.js"
   ]
 }

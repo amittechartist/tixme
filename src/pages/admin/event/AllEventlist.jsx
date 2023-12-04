@@ -105,6 +105,9 @@ const Dashboard = ({ title }) => {
                                                             <th style={{ width: '80px' }}><strong>#</strong></th>
                                                             <th><strong>Organizer</strong></th>
                                                             <th><strong>Event name</strong></th>
+                                                            <th><strong>Location</strong></th>
+                                                            <th><strong>Revenue</strong></th>
+                                                            <th><strong>Tickets sold</strong></th>
                                                             <th><strong>Date</strong></th>
                                                             <th><strong>Status</strong></th>
                                                             <th></th>
@@ -116,6 +119,9 @@ const Dashboard = ({ title }) => {
                                                                 <td><strong>{index + 1}</strong></td>
                                                                 <td>{item.organizer_name}</td>
                                                                 <td>{item.name}</td>
+                                                                <td>{item.location}</td>
+                                                                <td>{item.name}</td>
+                                                                <td>{item.orderCount}</td>
                                                                 <td>{item.date}</td>
                                                                 <td><span class="badge light badge-success">Active</span></td>
                                                                 <td>

@@ -89,9 +89,7 @@ const Home = ({ title }) => {
                                             <input className="form-control" type="password" placeholder="Password" onChange={(e) => setLoginPassword(e.target.value)}></input>
                                         </div>
                                         <p className="forgot-password-text">Forgot your password? <Link className='reset-password-link'>Reset your password</Link></p>
-                                        <Link to={app_url + 'auth/customer/signup'} className='signup-page-btn'>
-                                            <p className="forgot-password-text">Want to login as ticket buyer or create new account? <Link to={app_url + 'auth/customer/signup'} className='reset-password-link'>Login/Signup</Link></p>
-                                        </Link>
+                                        <p className="forgot-password-text">Want to signup as organizer? <Link to={app_url + 'auth/organizer/signup'} className='reset-password-link'>Signup</Link></p>
                                         <div className="form-group">
                                             {Loader ? (
                                                 <Button className='signup-page-btn'>Please wait...</Button>
