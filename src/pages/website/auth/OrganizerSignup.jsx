@@ -36,7 +36,7 @@ const Home = ({ title }) => {
     };
     const HandelOrganizersignup = async () => {
         try {
-            if (!Firstname || !Lastname || !Email || !Confirmemail || !Phonenumber || !Countryname) {
+            if (!Firstname || !Lastname || !Email || !Confirmemail || !Phonenumber || !Countryname || !Message) {
                 return toast.error('Required field must not be empty');
             }
             if (!isEmail(Email)) {
@@ -132,6 +132,7 @@ const Home = ({ title }) => {
     };
     useEffect(() => {
         fetchCountry();
+        window.scrollTo(0, 0);
     }, []);
     return (
         <div className="content-data">
@@ -194,9 +195,10 @@ const Home = ({ title }) => {
                                                     
                                                 </div>
                                                 <div className="form-group">
-                                                    <p>Message</p>
+                                                    <p>Message <span className="text-danger">*</span></p>
                                                     <textarea class="form-control" rows="3" value={Message} onChange={(e) => setMessage(e.target.value)}></textarea>
                                                 </div>
+                                                <p className="forgot-password-text">Already have an account? <Link to={app_url + 'auth/organizer/login'} className='reset-password-link'>Login</Link></p>
                                                 {Loader ? (
                                                     <WhitestarBtn title={'Please wait...'} />
                                                 ) : (

@@ -532,3 +532,15 @@ span.flatpickr-weekday {
   color: #fff;
   border: 1px solid #0047ab;
 }
+.no-data-box p{
+  margin-bottom: 0px;
+  padding: 20px 0px;
+}
+.no-data-box {
+  width: 100%;
+  text-align: center;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import PersonIcon from '../../../common/icon/person 1.svg';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
@@ -12,6 +12,9 @@ import withReactContent from 'sweetalert2-react-content'
 import WhitestarBtn from '../../../component/Whitestarbtn';
 import { apiurl, app_url, isEmail, organizer_url } from '../../../common/Helpers';
 const Home = ({ title }) => {
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, []);
     const navigate = useNavigate();
     const MySwal = withReactContent(Swal)
     const [LoginEmail, setLoginEmail] = useState();

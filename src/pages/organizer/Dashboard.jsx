@@ -76,8 +76,8 @@ const Dashboard = ({ title }) => {
             setApiloader(false)
         }
     }
-    
-    
+
+
     useEffect(() => {
         if (!organizerid) {
             navigate(app_url);
@@ -120,12 +120,16 @@ const Dashboard = ({ title }) => {
                                                 </div>
                                             </div>
                                             <div className="event-ticket-box">
-                                                <p className="text-white">
-                                                    <span className="mr-5">
-                                                        0 / {item.allprice.reduce((total, price) => total + parseInt(price.quantity, 10), 0)}
-                                                    </span>
-                                                    <span>Tickets Sold</span>
-                                                </p>
+                                                {item.allprice ? (
+                                                    <p className="text-white">
+                                                        <span className="mr-5">
+                                                            {item.orderCount} / {item.allprice.reduce((total, price) => total + parseInt(price.quantity, 10), 0)}
+                                                        </span>
+                                                        <span>Tickets Sold</span>
+                                                    </p>
+                                                ) : (
+                                                    <p className="text-white">No tickets found</p>
+                                                )}
                                             </div>
                                         </div>
                                     ))}

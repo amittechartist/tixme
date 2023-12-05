@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Container from 'react-bootstrap/Container';
 import PersonIcon from '../../../common/icon/person 1.svg';
 import Row from 'react-bootstrap/Row';
@@ -12,6 +12,9 @@ import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content'
 import { apiurl, app_url, isEmail, organizer_url, admin_url } from '../../../common/Helpers';
 const Home = ({ title }) => {
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, []);
     const navigate = useNavigate();
     const [Username, setUsername] = useState();
     const [LoginPassword, setLoginPassword] = useState();

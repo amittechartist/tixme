@@ -54,7 +54,7 @@ const Header = () => {
                                             </>
                                         ) :
                                         (
-                                            <Link className="button-join" to={app_url + 'auth/customer/signup'}>
+                                            <Link className="button-join" to={app_url + 'auth/customer/login'}>
                                                 <WhipersonBtn title={'Login'} />
                                             </Link>
                                         )

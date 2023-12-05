@@ -38,17 +38,11 @@ const Sidebar = () => {
                         </Link>
                         </li>
                         <li onClick={() => d()}>
-                            <a href="javascript:void(0);" class="has-arrow ai-icon" aria-expanded="false">
-                                <img src={EventIcon} alt="Your Logo" />
-                                <span class="nav-text">Event Management</span>
-                            </a>
-                            <ul aria-expanded="false">
-                                <li><Link className='text-black' onClick={() => localStorage.removeItem('eventcreateid')} to={organizer_url + 'event/add-event'}>Add New</Link></li>
-                                <li><Link className='text-black' to={organizer_url + 'event/all-event-list'}>All Event </Link></li>
-
-                            </ul>
+                            <Link to={organizer_url + 'event/all-event-list'} className="ai-icon" aria-expanded="false">
+                                <img src={ticketIcon} alt="Your Logo" />
+                                <span className="nav-text">Event Management</span>
+                            </Link>
                         </li>
-
                         <li><Link href="reports.html" className="ai-icon" aria-expanded="false">
                             <img src={ticketIcon} alt="Your Logo" />
                             <span className="nav-text">Event Bookings</span>

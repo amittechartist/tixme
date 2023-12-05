@@ -33,7 +33,8 @@ import Tixmescannerpage from './pages/organizer/Tixmescannerpage';
 import Qrvalidation from './pages/organizer/Qrvalidation';
 import OrganizerLayout from './layout/organizer/Layout'
 // auth
-import Signup from './pages/website/auth/Signup';
+import CustomerLogin from './pages/website/auth/CustomerLogin';
+import CustomerSignup from './pages/website/auth/CustomerSignup';
 import OrganizerLogin from './pages/website/auth/OrganizerLogin';
 import OrganizerSignup from './pages/website/auth/OrganizerSignup';
 import AdminLogin from './pages/website/auth/AdminLogin';
@@ -66,7 +67,8 @@ function App() {
       <BrowserRouter>
         <Routes>
           {/* auth */}
-          <Route path={app_url + 'auth/customer/signup'} element={<WebsiteLayout> <Signup title={'Tixme'} /> </WebsiteLayout>} />
+          <Route path={app_url + 'auth/customer/signup'} element={<WebsiteLayout> <CustomerSignup title={'Tixme'} /> </WebsiteLayout>} />
+          <Route path={app_url + 'auth/customer/login'} element={<WebsiteLayout> <CustomerLogin title={'Tixme'} /> </WebsiteLayout>} />
           <Route path={app_url + 'auth/organizer/login'} element={<WebsiteLayout> <OrganizerLogin title={'Tixme'} /> </WebsiteLayout>} />
           <Route path={app_url + 'auth/organizer/signup'} element={<WebsiteLayout> <OrganizerSignup title={'Tixme'} /> </WebsiteLayout>} />
           <Route path={app_url + 'auth/admin/login'} element={<WebsiteLayout> <AdminLogin title={'Tixme'} /> </WebsiteLayout>} />

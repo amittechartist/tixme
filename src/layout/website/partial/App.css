@@ -321,12 +321,12 @@ img.ticket-bg {
 .event-category-img {
     background: rgba(0, 71, 171, 0.5);
     color: #fff;
-    padding: 5px 40px;
+    padding: 5px 10px;
     border-radius: 10px;
     position: absolute;
     left: 10px;
     top: 13px;
-    font-size: 24px;
+    font-size: 16px;
     font-weight: 600;
 }
 

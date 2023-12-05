@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
+import '../../common/css/autocompletestyle.css';
 import GroupIcon from '../../common/icon/Group.svg';
 import OnlineIcon from '../../common/icon/Host Online.svg';
 import PlacesAutocomplete, { geocodeByAddress, getLatLng } from 'react-places-autocomplete';
@@ -8,7 +9,6 @@ import Locationstart from '../../common/icon/locationstart.svg';
 import InfoIcon from "../../common/icon/info.svg";
 import LockIcon from "../../common/icon/lock.svg";
 import WorldIcon from "../../common/icon/world.svg";
-import Magnify from "../../common/icon/magnify.svg";
 import DateIcon from "../../common/icon/date 1.svg";
 import TimeIcon from "../../common/icon/time 1.svg";
 import { Button, Col, Row } from "react-bootstrap";
@@ -23,6 +23,7 @@ import Flatpickr from "react-flatpickr";
 import "flatpickr/dist/themes/material_green.css";
 import Lottie from "lottie-react";
 import TicketLotte from '../../lotte/ticketanimation.json';
+import TimezoneSelect from 'react-timezone-select'
 import { organizer_url, apiurl, get_date_time } from '../../common/Helpers';
 import {
     Modal,
@@ -30,7 +31,6 @@ import {
     ModalBody,
     ModalHeader
 } from 'reactstrap'
-
 const Type = ({ title, editid }) => {
     const MySwal = withReactContent(Swal);
     const navigate = useNavigate();
@@ -41,11 +41,8 @@ const Type = ({ title, editid }) => {
     const [Eventtype, setEventtype] = useState();
     const [Name, setName] = useState();
     const [Displayname, setDisplayname] = useState();
-
     const [Displayprice, setDisplayprice] = useState();
     const [Displaycutprice, setDisplaycutprice] = useState();
-
-
     const [Type, setType] = useState(1);
     const [Category, setCategory] = useState();
     const [CategoryId, setCategoryId] = useState();
@@ -69,10 +66,8 @@ const Type = ({ title, editid }) => {
     const [EventtypecategoryList, setEventtypecategoryList] = useState([{ value: "", label: "Type" }]);
     const [inputValue, setInputValue] = useState('');
     const [tags, setTags] = useState([]);
-
     const [IsEventTicket, setIsEventTicket] = useState(true);
     const [TicketList, setTicketList] = useState([]);
-
     const [Tickettype, setTickettype] = useState(1);
     const [Ticketname, setTicketname] = useState();
     const [Quantity, setQuantity] = useState();
@@ -80,9 +75,19 @@ const Type = ({ title, editid }) => {
     const [TicketEndtdate, setTicketEndtdate] = useState(new Date());
     const [Price, setPrice] = useState();
     const [Pricedisable, setPricedisable] = useState(false);
-
     const [EditId, setEditId] = useState();
+    const [Currency, setCurrency] = useState();
+    const [CurrencyId, setCurrencyId] = useState();
+    const [Currencyname, setCurrencyname] = useState();
+    const [Country, setCountry] = useState();
+    const [CountryId, setCountryId] = useState();
+    const [Countryname, setCountryname] = useState();
     const organizerid = localStorage.getItem('organizerid')
+
+    const [selectedTimezone, setSelectedTimezone] = useState(
+        Intl.DateTimeFormat().resolvedOptions().timeZone
+    )
+    // JSON.stringify(selectedTimezone, null, 2)
     const lottewidth = {
         width: '100%',
         height: '200px'
@@ -90,12 +95,11 @@ const Type = ({ title, editid }) => {
     const handleSelect = async (selectedLocation) => {
         const results = await geocodeByAddress(selectedLocation);
         const latLng = await getLatLng(results[0]);
-        console.log('Selected location:', selectedLocation);
-        console.log('Latlng:', latLng);
-    
-        // Now, you can set the location in your state or perform any other actions.
+        console.warn('Selected location:', selectedLocation);
+        console.warn('Latlng:', latLng);
+        console.warn('result:', results);
         setLocation(selectedLocation);
-      };
+    };
     function CheckDelete(editid, pricename) {
         MySwal.fire({
             title: 'Are you sure you want to remove?',
@@ -211,6 +215,9 @@ const Type = ({ title, editid }) => {
             } else {
                 var event_type_name = 'Offline Event';
             }
+            if (!Displayprice || !Displaycutprice || !Name || !Displayname || !Category || !Location || !Country || !Currency || !selectedTimezone) {
+                return toast.error("All field required");
+            }
             const requestData = {
                 updateid: EditId,
                 isdelete: 0,
@@ -240,6 +247,10 @@ const Type = ({ title, editid }) => {
                 display_start_time: Displaystarttime,
                 display_end_time: Displayendtime,
                 organizer_id: organizerid,
+                countryname: Countryname,
+                currencycode: CurrencyId,
+                countrysymbol: Currencyname,
+                timezone: selectedTimezone,
             };
             fetch(apiurl + 'event/update', {
                 method: 'POST',
@@ -266,10 +277,14 @@ const Type = ({ title, editid }) => {
                 });
         } catch (error) {
             console.error('Login api error:', error);
+            setLoader(false);
         }
     }
     const HandelUpdateEventDesc = async (updateid) => {
         try {
+            if (!Eventdesc) {
+                return toast.error("Event description require");
+            }
             setLoader(true);
             const requestData = {
                 event_desc: Eventdesc,
@@ -313,6 +328,9 @@ const Type = ({ title, editid }) => {
             } else {
                 var event_type_name = 'Offline Event';
             }
+            if (!Displayprice || !Displaycutprice || !Name || !Displayname || !CategoryId || !Categoryname || !Location || !Countryname || !Currencyname || !selectedTimezone) {
+                return toast.error("All field required");
+            }
             const requestData = {
                 isdelete: 0,
                 status: 0,
@@ -340,9 +358,12 @@ const Type = ({ title, editid }) => {
                 is_clock_countdown: IsclockCountdown,
                 display_start_time: Displaystarttime,
                 display_end_time: Displayendtime,
-                // event_desc: Eventdesc,
-                // event_image: [],
                 organizer_id: organizerid,
+                countryname: Countryname,
+                currencycode: CurrencyId,
+                countrysymbol: Currencyname,
+                timezone: selectedTimezone,
+
             };
             fetch(apiurl + 'event/create', {
                 method: 'POST',
@@ -370,6 +391,7 @@ const Type = ({ title, editid }) => {
                 });
         } catch (error) {
             console.error('Login api error:', error);
+            setLoader(false);
         }
     }
     function emptyField() {
@@ -403,11 +425,17 @@ const Type = ({ title, editid }) => {
         setCategoryId(selectedValue.value);
         setCategoryname(selectedValue.label);
     };
-    const selectEventtypeCategory = (selectedValue) => {
-        setEventtypeCategory(selectedValue);
-        setEventtypeCategoryId(selectedValue.value);
-        setEventtypeCategoryname(selectedValue.label);
+    const selectCurrency = (selectedValue) => {
+        setCurrency(selectedValue);
+        setCurrencyId(selectedValue.value);
+        setCurrencyname(selectedValue.label);
     };
+    const selectCountry = (selectedValue) => {
+        setCountry(selectedValue);
+        setCountryId(selectedValue.value);
+        setCountryname(selectedValue.label);
+    };
+
     const fetchCategory = async () => {
         try {
             fetch(apiurl + 'category/get-category-list', {
@@ -523,6 +551,7 @@ const Type = ({ title, editid }) => {
             if (!Price && Tickettype == 1) {
                 return toast.error('Enter ticket price');
             }
+            setLoader(true);
             const requestData = {
                 updateid: updateid,
                 ticket_type: Tickettype,
@@ -552,9 +581,9 @@ const Type = ({ title, editid }) => {
                         emptyPriceForm();
                         fetchAllTicket();
                     } else {
-
                         toast.error(data.message);
                     }
+                    setLoader(false);
                 })
                 .catch(error => {
                     setLoader(false);
@@ -562,6 +591,7 @@ const Type = ({ title, editid }) => {
                 });
         } catch (error) {
             console.error('Login api error:', error);
+            setLoader(false);
         }
     }
     const fetchEventtypeCategory = async () => {
@@ -630,10 +660,12 @@ const Type = ({ title, editid }) => {
                         setDisplayname(data.data.display_name)
                         setType(data.data.eventtype)
                         setEventtype(data.data.eventtype)
-                        setEventtypeCategory([{ value: data.data.eventtypecategory, label: data.data.eventtypecategory_name }])
                         setCategoryId(data.data.category)
                         setCategoryname(data.data.category_name)
                         setCategory([{ value: data.data.category, label: data.data.category_name }])
+                        setCountry([{ value: data.data.countryname, label: data.data.countryname }])
+                        setCurrency([{ value: data.data.currencycode, label: data.data.countrysymbol }])
+                        setCurrencyname(data.data.countrysymbol)
                         setEventtypeCategoryId(data.data.eventtypecategory)
                         setEventtypeCategoryname(data.data.eventtypecategory_name)
                         setVisibility(data.data.visibility)
@@ -647,6 +679,7 @@ const Type = ({ title, editid }) => {
                         setEventdesc(data.data.event_desc)
                         setDisplayprice(data.data.displayprice)
                         setDisplaycutprice(data.data.displaycutprice)
+                        setSelectedTimezone(data.data.timezone)
                         setTags(data.data.tags)
                         if (data.data.event_desc) {
                             setEventdesc(data.data.event_desc)
@@ -764,7 +797,8 @@ const Type = ({ title, editid }) => {
                                             options={CurrencyOption}
                                             className='react-select select-theme'
                                             classNamePrefix='select'
-                                            
+                                            onChange={selectCurrency}
+                                            value={Currency}
                                         />
                                     </div>
                                     <div className="col-md-4 mt-4">
@@ -826,7 +860,8 @@ const Type = ({ title, editid }) => {
                                             options={CountryOption}
                                             className='react-select select-theme'
                                             classNamePrefix='select'
-                                            
+                                            onChange={selectCountry}
+                                            value={Country}
                                         />
                                     </div>
                                     <div className="col-md-6 mt-4">
@@ -858,16 +893,26 @@ const Type = ({ title, editid }) => {
                                             )}
                                         </PlacesAutocomplete>
                                     </div>
-
-                                    <div className="col-md-6 mt-4">
+                                    <div className="col-md-12 pt-4">
+                                        <p className="mb-0">Tell event-goers when your event starts and ends so they can make plans to attend.</p>
+                                    </div>
+                                    <div className="col-md-4 mt-4">
                                         <label htmlFor="">Date & Time</label>
-                                        <p>Tell event-goers when your event starts and ends so they can make plans to attend.</p>
                                         <div className="tab-button-box">
                                             <span onClick={() => setEventSubtype(1)} className={EventSubtype == 1 ? "tab-button-active" : ""}>Single Event</span>
                                             <span onClick={() => setEventSubtype(2)} className={EventSubtype == 2 ? "tab-button-active" : ""}> Recurring Event</span>
                                         </div>
                                     </div>
-                                    <div className="col-md-6 checkout-style-bottom">
+                                    <div className="col-md-4 mt-4 d-flex align-items-end">
+                                        <div className="select-wrapper w-100">
+                                            <p>Select time zone</p>
+                                            <TimezoneSelect
+                                                value={selectedTimezone}
+                                                onChange={setSelectedTimezone}
+                                            />
+                                        </div>
+                                    </div>
+                                    <div className="col-md-4 checkout-style-bottom">
                                         <div className="row checkout-style-element Display-date-time-tic">
                                             <div className="col-md-2">
                                                 <div class="input-group mb-3">
@@ -880,9 +925,7 @@ const Type = ({ title, editid }) => {
                                             </div>
                                         </div>
                                     </div>
-                                    <div className="col-md-12 mt-4 mb-4">
-                                        <p>Single event happens once and can last multiple days</p>
-                                    </div>
+
                                     <div className="col-md-12">
                                         <p>Event Starts</p>
                                     </div>
@@ -963,15 +1006,23 @@ const Type = ({ title, editid }) => {
                                             <span onClick={() => setFormSection(1)}>
                                                 <WhitestarBtn title={'Back'} />
                                             </span>
-                                            {EditId ? (
-                                                <span onClick={() => HandelUpdatedetails()}>
-                                                    <WhitestarBtn title={'Update'} />
+                                            {Loader ? (
+                                                <span onClick={HandelPriceform}>
+                                                    <WhitestarBtn title={'Please wait...'} />
                                                 </span>
-
                                             ) : (
-                                                <span onClick={() => HandelSubmit()}>
-                                                    <WhitestarBtn title={'Save'} />
-                                                </span>
+                                                <>
+                                                    {EditId ? (
+                                                        <span onClick={() => HandelUpdatedetails()}>
+                                                            <WhitestarBtn title={'Update'} />
+                                                        </span>
+
+                                                    ) : (
+                                                        <span onClick={() => HandelSubmit()}>
+                                                            <WhitestarBtn title={'Save'} />
+                                                        </span>
+                                                    )}
+                                                </>
                                             )}
                                         </div>
                                     </div>
@@ -1013,14 +1064,22 @@ const Type = ({ title, editid }) => {
                                                 <span onClick={() => setFormSection(2)}>
                                                     <WhitestarBtn title={'Back'} />
                                                 </span>
-                                                {EditId ? (
-                                                    <span onClick={() => HandelUpdateEventDesc(EditId)}>
-                                                        <WhitestarBtn title={'Update'} />
+                                                {Loader ? (
+                                                    <span onClick={HandelPriceform}>
+                                                        <WhitestarBtn title={'Please wait...'} />
                                                     </span>
                                                 ) : (
-                                                    <span onClick={() => HandelSubmit()}>
-                                                        <WhitestarBtn title={'Save'} />
-                                                    </span>
+                                                    <>
+                                                        {EditId ? (
+                                                            <span onClick={() => HandelUpdateEventDesc(EditId)}>
+                                                                <WhitestarBtn title={'Update'} />
+                                                            </span>
+                                                        ) : (
+                                                            <span onClick={() => HandelSubmit()}>
+                                                                <WhitestarBtn title={'Save'} />
+                                                            </span>
+                                                        )}
+                                                    </>
                                                 )}
 
                                             </div>
@@ -1077,7 +1136,7 @@ const Type = ({ title, editid }) => {
                                                                         <p className="ticket-sold-count">Sold : 0 / {item.quantity}</p>
                                                                     </Col>
                                                                     <Col md={1}>
-                                                                        <p className="ticket-price-p"> {item.price ? (<>$ {item.price}</>) : ('')} </p>
+                                                                        <p className="ticket-price-p"> {item.price ? (<>{Currencyname} {item.price}</>) : (Currencyname + '00')} </p>
                                                                     </Col>
                                                                     <Col md={2}>
                                                                         <div class="dropdown">
@@ -1128,7 +1187,7 @@ const Type = ({ title, editid }) => {
                                 {/* tab-button-active */}
                                 <span onClick={() => { setTickettype(1); setPricedisable(false); }} className={Tickettype === 1 ? "tab-button-active" : ""}>Paid</span>
                                 <span onClick={() => { setTickettype(2); setPricedisable(true); setPrice(''); }} className={Tickettype === 2 ? "tab-button-active" : ""}>Free</span>
-                                <span onClick={() => { setTickettype(3); setPricedisable(true); setPrice(''); }} className={Tickettype === 3 ? "tab-button-active" : ""}>Donation</span>
+                                {/* <span onClick={() => { setTickettype(3); setPricedisable(true); setPrice(''); }} className={Tickettype === 3 ? "tab-button-active" : ""}>Donation</span> */}
                             </div>
                         </Col>
                         <Col md={12} className="mb-2 mt-4">
@@ -1191,10 +1250,18 @@ const Type = ({ title, editid }) => {
                             </div>
                         </Col>
                         <Col md={12}>
-                            {Editid ? (
-                                <span onClick={() => handelCreateTicket(Editid)}>
-                                    <WhitestarBtn title={'Add ticket'} />
-                                </span>
+                            {EditId ? (
+                                <>
+                                    {Loader ? (
+                                        <span onClick={HandelPriceform}>
+                                            <WhitestarBtn title={'Please wait...'} />
+                                        </span>
+                                    ) : (
+                                        <span onClick={() => handelCreateTicket(EditId)}>
+                                            <WhitestarBtn title={'Add ticket'} />
+                                        </span>
+                                    )}
+                                </>
                             ) : (<></>)}
                         </Col>
                     </Row>

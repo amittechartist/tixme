@@ -10,6 +10,7 @@ const Dashboard = ({ title }) => {
     const [Listitems, setListitems] = useState([]);
     const fetchList = async () => {
         try {
+            setLoader(true)
             fetch(apiurl + 'admin/get-customer-list', {
                 method: 'POST',
                 headers: {
@@ -23,16 +24,20 @@ const Dashboard = ({ title }) => {
                     } else {
 
                     }
+                    setLoader(false)
                 })
                 .catch(error => {
                     console.error('Insert error:', error);
+                    setLoader(false)
                 });
         } catch (error) {
             console.error('Login api error:', error);
+            setLoader(false)
         }
     }
     const fetchListWithfilter = async () => {
         try {
+            setLoader(true)
             const requestData = {
                 membershipid: id,
             };
@@ -50,12 +55,15 @@ const Dashboard = ({ title }) => {
                     } else {
 
                     }
+                    setLoader(false)
                 })
                 .catch(error => {
                     console.error('Insert error:', error);
+                    setLoader(false)
                 });
         } catch (error) {
             console.error('Login api error:', error);
+            setLoader(false)
         }
     }
     useEffect(() => {
@@ -81,39 +89,53 @@ const Dashboard = ({ title }) => {
                                 <Card.Body>
                                     <Row className="justify-content-center">
                                         <Col md={12}>
-                                            <div class="table-responsive">
-                                                <table class="table table-responsive-md">
-                                                    <thead>
-                                                        <tr>
-                                                            <th style={{ width: '80px' }}><strong>#</strong></th>
-                                                            <th><strong>Name</strong></th>
-                                                            <th><strong>Email</strong></th>
-                                                            <th><strong>Phone Number</strong></th>
-                                                            <th></th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                        {Listitems.map((item, index) => (
-                                                            <tr>
-                                                                <td><strong>{index + 1}</strong></td>
-                                                                <td>{item.name}</td>
-                                                                <td>{item.email}</td>
-                                                                <td>{item.area_code}{item.phone_number}</td>
-                                                                <td>
-                                                                    <div class="dropdown">
-                                                                        <button type="button" class="btn btn-success light sharp" data-bs-toggle="dropdown">
-                                                                            <svg width="20px" height="20px" viewBox="0 0 24 24" version="1.1"><g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><rect x="0" y="0" width="24" height="24" /><circle fill="#000000" cx="5" cy="12" r="2" /><circle fill="#000000" cx="12" cy="12" r="2" /><circle fill="#000000" cx="19" cy="12" r="2" /></g></svg>
-                                                                        </button>
-                                                                        <div class="dropdown-menu">
-                                                                            <Link to={`${admin_url}user-details/${item._id}/${item.name}`} class="dropdown-item">View</Link>
-                                                                        </div>
-                                                                    </div>
-                                                                </td>
-                                                            </tr>
-                                                        ))}
-                                                    </tbody>
-                                                </table>
-                                            </div>
+                                            {Loader ? (
+                                                <div className="linear-background w-100"> </div>
+                                            ) : (
+                                                <>
+                                                    {Listitems.length > 0 ? (
+                                                        <>
+                                                            <div class="table-responsive">
+                                                                <table class="table table-responsive-md">
+                                                                    <thead>
+                                                                        <tr>
+                                                                            <th style={{ width: '80px' }}><strong>#</strong></th>
+                                                                            <th><strong>Name</strong></th>
+                                                                            <th><strong>Email</strong></th>
+                                                                            <th><strong>Phone Number</strong></th>
+                                                                            <th></th>
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tbody>
+                                                                        {Listitems.map((item, index) => (
+                                                                            <tr>
+                                                                                <td><strong>{index + 1}</strong></td>
+                                                                                <td>{item.name}</td>
+                                                                                <td>{item.email}</td>
+                                                                                <td>{item.area_code}{item.phone_number}</td>
+                                                                                <td>
+                                                                                    <div class="dropdown">
+                                                                                        <button type="button" class="btn btn-success light sharp" data-bs-toggle="dropdown">
+                                                                                            <svg width="20px" height="20px" viewBox="0 0 24 24" version="1.1"><g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><rect x="0" y="0" width="24" height="24" /><circle fill="#000000" cx="5" cy="12" r="2" /><circle fill="#000000" cx="12" cy="12" r="2" /><circle fill="#000000" cx="19" cy="12" r="2" /></g></svg>
+                                                                                        </button>
+                                                                                        <div class="dropdown-menu">
+                                                                                            <Link to={`${admin_url}user-details/${item._id}/${item.name}`} class="dropdown-item">View</Link>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </td>
+                                                                            </tr>
+                                                                        ))}
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
+                                                        </>
+                                                    ) : (
+                                                        <div class="no-data-box">
+                                                            <p>No Data Found !</p>
+                                                        </div>
+                                                    )}
+                                                </>
+                                            )}
                                         </Col>
                                     </Row>
                                 </Card.Body>
